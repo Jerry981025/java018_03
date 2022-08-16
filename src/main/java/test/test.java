@@ -24,6 +24,6 @@ public class test extends HttpServlet {
 		String s = sdf.format(new Date(now));
 		out.println("Hello, World, 大家好 " + s);
 		out.println("JerryTest");
-		out.println("KullaTest123");
+		out.println("KullaTest12345");
 	}
 }
