@@ -23,5 +23,6 @@ public class test extends HttpServlet {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String s = sdf.format(new Date(now));
 		out.println("Hello, World, 大家好 " + s);
+		out.println("JerryTest");
 	}
 }
