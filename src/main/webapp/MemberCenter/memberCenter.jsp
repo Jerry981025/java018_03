@@ -35,7 +35,7 @@
             <!-- 手機版顯示 -->
             <div class="navbar-toggler border-0 p-0">
                 <div class="rounded-circle d-flex">
-                    <img src="https://picsum.photos/45/30/?random=1" class="rounded-circle" data-bs-toggle="collapse"
+                    <img src="${pageContext.servletContext.contextPath}/RestrieveMemberImageServlet?id=${MemberBean.mId}" class="rounded-circle" data-bs-toggle="collapse"
                         data-bs-target="#offcanvas">
                     <p class="fs-1 py-2 ps-1 m-0" data-bs-toggle="collapse" data-bs-target="#offcanvas">姓名</p>
                 </div>
@@ -52,7 +52,7 @@
                         <a class="nav-link" href="../ICanHelp/ICanHelp.html">我要幫忙(I can help!)</a>
                     </li>
                 </ul>
-                <img src="https://picsum.photos/40/40/?random=1" class="rounded-circle" data-bs-toggle="offcanvas"
+                <img src="${pageContext.servletContext.contextPath}/RestrieveMemberImageServlet?id=${MemberBean.mId}" class="rounded-circle" style="height:40px; width:40px;" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
             </div>
         </div>
@@ -113,16 +113,16 @@
                     <hr>
                     <!-- 第一列 -->
                     <div class="d-flex my-3">
-                        <button class="rounded-circle">
-                            <img src="<c:url value='/images/svg/person-svgrepo-com.svg'/>" height="100px" width="100px">
+                        <button class="rounded-circle" style="overflow: hidden;">
+                            <img src="${pageContext.servletContext.contextPath}/RestrieveMemberImageServlet?id=${MemberBean.mId}" height="100px" width="100px">
                         </button>
                         <div class="ms-4 mt-1">
                             <p class="fs-2 mb-3">${MemberBean.mFirstName}${MemberBean.mLastName}</p>
-                            <p class="fs-6 text-secondary">會員編號</p>
+                            <p class="fs-6 text-secondary">會員編號#${MemberBean.mId}</p>
                         </div>
                         <div class="ps-5">
                             <div class="d-flex ps-4 p-3">
-                                <p id="rating" class="m-0 me-1 pt-1 fs-5">3.7</p>
+                                <p id="rating" class="m-0 me-1 pt-1 fs-5">${MemberBean.mRank}</p>
                                 <div id="starRating" class="d-flex p-2">
                                 </div>
                             </div>
@@ -135,7 +135,7 @@
                             <p class="p-0 m-0">信箱:</p>
                         </div>
                         <div id="accountDiv" class="col-9 d-flex">
-                            <p id="account" class="p-0 m-0">abcdefghijk@gmail.com</p>
+                            <p id="account" class="p-0 m-0">${MemberBean.mEmail}</p>
                             <a id="accountUpdate" class="ms-3" style="width: 35px;" href="#" >修改</a>
                         </div>
                     </div>
@@ -157,7 +157,7 @@
                             <p class="p-0 m-0">生日:</p>
                         </div>
                         <div class="col-5 d-flex">
-                            <p id="birthday" class="p-0 m-0">1911-01-01</p>
+                            <p id="birthday" class="p-0 m-0">${MemberBean.mBirthday}</p>
                             <input style="display: none;" type="date" id="newBirthday">
                             <a id="birthdayUpdate" class="ms-3" style="width: 35px;" href="javascript:;" >修改</a>
                             <a id="birthdayUpdateConfirm" class="ms-3 pt-1" style="width: 35px; display: none;" href="javascript:;" >確認</a>
@@ -171,7 +171,7 @@
                             <p class="p-0 m-0">常用地址:</p>
                         </div>
                         <div class="col-5">
-                            <p id="commonAddress" class="p-0 m-0">台北科技大學</p>
+                            <p id="commonAddress" class="p-0 m-0">${MemberBean.mAddress}</p>
                         </div>
                     </div>
                     <!-- 第六列 -->
@@ -211,14 +211,14 @@
                             <p class="p-0 m-0">行動電話:</p>
                         </div>
                         <div class="col-9 col-lg-2 d-flex">
-                            <p class="p-0 m-0">0912345678</p>
+                            <p class="p-0 m-0">${MemberBean.mCellphone}</p>
                             <a class="ms-3" href="#">修改</a>
                         </div>
                         <div class="col-3 col-lg-2">
                             <p class="p-0 m-0">家用電話:</p>
                         </div>
                         <div class="col-9 col-lg-4 d-flex">
-                            <p id="phone" class="p-0 m-0">0212345678</p>
+                            <p id="phone" class="p-0 m-0">${MemberBean.mPhone}</p>
                             <input id="newPhone" style="display: none;" type="text" class="p-0">
                             <a id="phoneUpdate" class="ms-3" style="width: 35px;" href="javascript:;" >修改</a>
                             <a id="phoneUpdateConfirm" class="ms-3 pt-1" style="width: 35px; display: none;" href="javascript:;" >確認</a>
@@ -270,14 +270,14 @@
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header pb-0">
             <div class="d-flex">
-                <img src="https://picsum.photos/50/50/?random=1" width="55" height="55" class="rounded-circle">
+                <img src="${pageContext.servletContext.contextPath}/RestrieveMemberImageServlet?id=${MemberBean.mId}" width="55" height="55" class="rounded-circle">
                 <div class="ps-3">
-                    <p class="fs-4 p-0 m-0">姓名處</p>
-                    <p class="fs-6 p-0 mb-2 text-secondary">會員編號</p>
+                    <p class="fs-4 p-0 m-0">${MemberBean.mFirstName}${MemberBean.mLastName}</p>
+                    <p class="fs-6 p-0 mb-2 text-secondary">會員編號#${MemberBean.mId}</p>
                 </div>
                 <div class="ps-2">
                     <div class="d-flex ps-4 pb-1">
-                        <p id="offcanvasRating" class="m-0 me-1 pt-1 fs-6">3.7</p>
+                        <p id="offcanvasRating" class="m-0 me-1 pt-1 fs-6">${MemberBean.mRank}</p>
                         <div id="offcanvasStarRating" class="d-flex p-2">
                         </div>
                     </div>

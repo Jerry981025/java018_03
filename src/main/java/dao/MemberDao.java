@@ -24,13 +24,13 @@ public class MemberDao {
 			throw new RuntimeException(e.getMessage());
 		}
 	}
-	private static final String Select_Member_ByMAccount = "Select MId, MAccount, MPassword, MFirstName, MLastName, MEmail, MAddress, MBirth, MPhone, MBank, MEarning, MRank, MCellphone, MPicture From member Where MId = ?";
-	public MemberBean findByMId(Integer MId) {
+	
+	private static final String SELECT_MEMBER_BYMACCOUNT = "Select * From member Where MId = ?";
+	public MemberBean findByMId(String MId) {
 		MemberBean mb = null;
-		System.out.println("正在執行dao");
 		try {Connection conn = ds.getConnection();
-			PreparedStatement ps = conn.prepareStatement(Select_Member_ByMAccount);
-			ps.setInt(1, MId);
+			PreparedStatement ps = conn.prepareStatement(SELECT_MEMBER_BYMACCOUNT);
+			ps.setString(1, MId);
 			try (ResultSet rs = ps.executeQuery()){
 				if(rs.next()) {
 					mb = new MemberBean();
@@ -52,10 +52,8 @@ public class MemberDao {
 				System.out.println(mb.toString());
 			}
 		} catch (SQLException e) {
-			System.out.println("dao有問題");
 			throw new RuntimeException(e.getMessage());
 		}
 		return mb;
 	}
-	
 }

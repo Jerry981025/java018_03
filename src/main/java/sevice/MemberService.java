@@ -10,7 +10,7 @@ public class MemberService {
 		mDao = new MemberDao();
 	}
 	
-	public MemberBean findByMId(Integer mId) {
+	public MemberBean findByMId(String mId) {
 		return mDao.findByMId(mId);
 	}
 }
