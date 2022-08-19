@@ -28,8 +28,10 @@ public class MemberDao {
 	private static final String SELECT_MEMBER_BYMACCOUNT = "Select * From member Where MId = ?";
 	public MemberBean findByMId(String MId) {
 		MemberBean mb = null;
-		try {Connection conn = ds.getConnection();
-			PreparedStatement ps = conn.prepareStatement(SELECT_MEMBER_BYMACCOUNT);
+		try (
+				Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(SELECT_MEMBER_BYMACCOUNT);
+			){
 			ps.setString(1, MId);
 			try (ResultSet rs = ps.executeQuery()){
 				if(rs.next()) {
