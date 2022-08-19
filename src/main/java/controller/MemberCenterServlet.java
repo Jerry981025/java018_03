@@ -19,7 +19,7 @@ public class MemberCenterServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		System.out.println("正在執行Servlet");
 		MemberService ms = new MemberService();
-		MemberBean mb = ms.findByMId("5");
+		MemberBean mb = ms.findByMId("1");
 		request.setAttribute("MemberBean", mb);
 		RequestDispatcher rd = request.getRequestDispatcher("/MemberCenter/memberCenter.jsp");
 		rd.forward(request, response);
