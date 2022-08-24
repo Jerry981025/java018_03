@@ -2,7 +2,7 @@
 <Context displayName="Servlet 3.0 Web Application" docBase="MemberWebApp" path="/MemberWebApp" reloadable="true">
   <!-- MySQL -->
   <Resource name="jdbc/MyDB" type="javax.sql.DataSource" 
-		username="root" password="willson037084"
+		username="root" password="pipi2684"
 		driverClassName="com.mysql.cj.jdbc.Driver" 
 		url="jdbc:mysql:///mydb"
 		connectionProperties=
