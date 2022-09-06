@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-
+//因為沒有自己的ID 所以不能用Entity
 //@Entity
 @Table(name = "chat")
 public class ChatBean implements Serializable {

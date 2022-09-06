@@ -5,7 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-
+//因為沒有自己的ID 所以不能用Entity
 //@Entity
 @Table(name = "help")
 public class HelpBean implements Serializable{

@@ -36,13 +36,15 @@ public class MemberBean implements Serializable{
 	private String mRank;						// 評分等級
 	private String mCellphone;					// 手機號碼
 	private Blob mPicture;						// 大頭照
+	private String vPref;						// 常用信用卡
+	private String aPref;						// 常用地址
 	
 	
 	public MemberBean() {}
 
 	public MemberBean(Integer mId, String mAccount, String mPassword, String mFirstName, String mLastName,
 			String mEmail, String mAddress, Date mBirth, String mPhone, String mEarning, String mBank, String mRank,
-			String mCellphone, Blob mPicture) {
+			String mCellphone, Blob mPicture, String vPref, String aPref) {
 		this.mId = mId;
 		this.mAccount = mAccount;
 		this.mPassword = mPassword;
@@ -57,6 +59,8 @@ public class MemberBean implements Serializable{
 		this.mRank = mRank;
 		this.mCellphone = mCellphone;
 		this.mPicture = mPicture;
+		this.vPref = vPref;
+		this.aPref = aPref;
 	}
 
 	public Integer getmId() {
@@ -171,40 +175,31 @@ public class MemberBean implements Serializable{
 		this.mPicture = mPicture;
 	}
 
+	public String getvPref() {
+		return vPref;
+	}
+
+	public void setvPref(String vPref) {
+		this.vPref = vPref;
+	}
+
+	public String getaPref() {
+		return aPref;
+	}
+
+	public void setaPref(String aPref) {
+		this.aPref = aPref;
+	}
+
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("MemberBean [mId=");
-		builder.append(mId);
-		builder.append(", mAccount=");
-		builder.append(mAccount);
-		builder.append(", mPassword=");
-		builder.append(mPassword);
-		builder.append(", mFirstName=");
-		builder.append(mFirstName);
-		builder.append(", mLastName=");
-		builder.append(mLastName);
-		builder.append(", mEmail=");
-		builder.append(mEmail);
-		builder.append(", mAddress=");
-		builder.append(mAddress);
-		builder.append(", mBirthday=");
-		builder.append(mBirth);
-		builder.append(", mPhone=");
-		builder.append(mPhone);
-		builder.append(", mEarning=");
-		builder.append(mEarning);
-		builder.append(", mBank=");
-		builder.append(mBank);
-		builder.append(", mRank=");
-		builder.append(mRank);
-		builder.append(", mCellphone=");
-		builder.append(mCellphone);
-		builder.append(", mPicture=");
-		builder.append(mPicture);
-		builder.append("]");
-		return builder.toString();
+		return "MemberBean [mId=" + mId + ", mAccount=" + mAccount + ", mPassword=" + mPassword + ", mFirstName="
+				+ mFirstName + ", mLastName=" + mLastName + ", mEmail=" + mEmail + ", mAddress=" + mAddress
+				+ ", mBirth=" + mBirth + ", mPhone=" + mPhone + ", mEarning=" + mEarning + ", mBank=" + mBank
+				+ ", mRank=" + mRank + ", mCellphone=" + mCellphone + ", mPicture=" + mPicture + ", vPref=" + vPref
+				+ ", aPref=" + aPref + "]";
 	}
+
 
 
 	
