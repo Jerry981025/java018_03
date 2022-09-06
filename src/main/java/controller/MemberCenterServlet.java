@@ -22,7 +22,6 @@ public class MemberCenterServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		System.out.println("正在執行Servlet");
-//		MemberService ms = new MemberServiceImpl();
 		WebApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		MemberService ms = ctx.getBean(MemberService.class);
 		MemberBean mb = ms.findByMId("1");
