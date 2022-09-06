@@ -9,5 +9,7 @@
 </head>
 <body>
 <a href="<c:url value='/MemberCenterServlet.do'/>">Jerry Test do</a>
+<br>
+<a href="<c:url value='/INeedHelpServlet.do'/>">TEST!!!　I Can Help GOGO</a>
 </body>
 </html>
