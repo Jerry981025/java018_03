@@ -13,7 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.MemberBean;
-import sevice.MemberService;
+import service.MemberService;
+import service.Impl.MemberServiceImpl;
 
 @WebServlet("/RestrieveMemberImageServlet")
 public class RestrieveMemberImageServlet extends HttpServlet {
@@ -28,7 +29,7 @@ public class RestrieveMemberImageServlet extends HttpServlet {
 		Blob blob;
 		try {
 			String id = request.getParameter("id");
-			MemberService ms = new MemberService();
+			MemberService ms = new MemberServiceImpl();
 			MemberBean mb = ms.findByMId(id);
 			if (mb != null) {
 				blob = mb.getmPicture();
