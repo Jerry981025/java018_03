@@ -115,11 +115,11 @@ public class MemberBean implements Serializable{
 		this.mAddress = mAddress;
 	}
 
-	public java.util.Date getmBirthday() {
+	public java.util.Date getmBirth() {
 		return mBirth;
 	}
 
-	public void setmBirthday(java.util.Date mBirth) {
+	public void setmBirth(java.util.Date mBirth) {
 		this.mBirth = mBirth;
 	}
 

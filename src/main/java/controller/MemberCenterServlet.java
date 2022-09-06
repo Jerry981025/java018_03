@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import model.MemberBean;
 import service.MemberService;
 import service.Impl.MemberServiceImpl;
@@ -19,7 +22,9 @@ public class MemberCenterServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		System.out.println("正在執行Servlet");
-		MemberService ms = new MemberServiceImpl();
+//		MemberService ms = new MemberServiceImpl();
+		WebApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		MemberService ms = ctx.getBean(MemberService.class);
 		MemberBean mb = ms.findByMId("1");
 		request.setAttribute("MemberBean", mb);
 		System.out.println("搜尋到的: " + mb);
