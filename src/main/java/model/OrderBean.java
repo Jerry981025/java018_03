@@ -21,7 +21,7 @@ public class OrderBean implements Serializable {
 	@Column(name = "OId")
 	private Integer oId;
 	private String oAddress;
-	private java.util.Date OTime;
+	private java.util.Date oTime;
 	private String oBrand;
 	private String oDetail;
 	private Integer oQuantity;
@@ -42,7 +42,7 @@ public class OrderBean implements Serializable {
 		this.member_MId = member_MId;
 		this.oId = oId;
 		this.oAddress = oAddress;
-		this.OTime = oTime;
+		this.oTime = oTime;
 		this.oBrand = oBrand;
 		this.oDetail = oDetail;
 		this.oQuantity = oQuantity;
@@ -80,11 +80,11 @@ public class OrderBean implements Serializable {
 	}
 
 	public java.util.Date getOTime() {
-		return OTime;
+		return oTime;
 	}
 
 	public void setOTime(java.util.Date oTime) {
-		OTime = oTime;
+		oTime = oTime;
 	}
 
 	public String getoBrand() {
@@ -169,7 +169,7 @@ public class OrderBean implements Serializable {
 
 	@Override
 	public String toString() {
-		return "OrderBean [member_MId=" + member_MId + ", oId=" + oId + ", oAddress=" + oAddress + ", OTime=" + OTime
+		return "OrderBean [member_MId=" + member_MId + ", oId=" + oId + ", oAddress=" + oAddress + ", OTime=" + oTime
 				+ ", oBrand=" + oBrand + ", oDetail=" + oDetail + ", oQuantity=" + oQuantity + ", oPrice=" + oPrice
 				+ ", oDeadLine=" + oDeadLine + ", oPic=" + oPic + ", oFee=" + oFee + ", oRanking=" + oRanking
 				+ ", oLat=" + oLat + ", oLng=" + oLng + "]";

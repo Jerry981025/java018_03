@@ -15,7 +15,7 @@ public class AddressBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private MemberBean member_MId; 
+	private Integer member_MId; 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "AId")
@@ -25,17 +25,17 @@ public class AddressBean implements Serializable{
 	public AddressBean() {
 	}
 
-	public AddressBean(MemberBean member_MId, Integer aId, String address) {
+	public AddressBean(Integer member_MId, Integer aId, String address) {
 		this.member_MId = member_MId;
 		this.aId = aId;
 		this.address = address;
 	}
 
-	public MemberBean getMember_MId() {
+	public Integer getMember_MId() {
 		return member_MId;
 	}
 
-	public void setMember_MId(MemberBean member_MId) {
+	public void setMember_MId(Integer member_MId) {
 		this.member_MId = member_MId;
 	}
 
