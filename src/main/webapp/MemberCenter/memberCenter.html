@@ -1,13 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>會員中心</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="<c:url value='/images/handbag-fill.svg'/>">
+    <link rel="shortcut icon" href="../images/handbag-fill.svg">
     <!-- Boostrap5.0 導入程式 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
@@ -16,11 +13,11 @@
         crossorigin="anonymous"></script>
 
     <!-- 連結內容CSS -->
-    <link rel="stylesheet" href="<c:url value='/css/MemberCenter.css'/>">
+    <link rel="stylesheet" href="../css/MemberCenter.css">
 
     <!-- jquery引用 -->
-    <script src="<c:url value='/javaScript/jquery.js'/>"></script>
-    <script src="<c:url value='/javaScript/MemberCenter.js'/>"></script>
+    <script src="../javaScript/jquery.js"></script>
+    <script src="../javaScript/memberCenter.js"></script>
 </head>
 
 <body>
@@ -29,13 +26,13 @@
         <div class="container-fluid">
             <!-- 品牌LOGO -->
             <a class="navbar-brand" href="../LoginHome/LoginHome.html">幫幫忙
-                <img src="<c:url value='/images/handbag-fill.svg'/>" alt="" width="30" height="24"
+                <img src="../images/handbag-fill.svg" alt="" width="30" height="24"
                     class="d-inline-block align-text-top">
             </a>
             <!-- 手機版顯示 -->
             <div class="navbar-toggler border-0 p-0">
                 <div class="rounded-circle d-flex">
-                    <img src="${pageContext.servletContext.contextPath}/RestrieveMemberImageServlet?id=${MemberBean.mId}" class="rounded-circle" data-bs-toggle="collapse"
+                    <img class="rounded-circle" data-bs-toggle="collapse"
                         data-bs-target="#offcanvas">
                     <p class="fs-1 py-2 ps-1 m-0" data-bs-toggle="collapse" data-bs-target="#offcanvas">姓名</p>
                 </div>
@@ -52,7 +49,7 @@
                         <a class="nav-link" href="../ICanHelp/ICanHelp.html">我要幫忙(I can help!)</a>
                     </li>
                 </ul>
-                <img src="${pageContext.servletContext.contextPath}/RestrieveMemberImageServlet?id=${MemberBean.mId}" class="rounded-circle" style="height:40px; width:40px;" data-bs-toggle="offcanvas"
+                <img class="rounded-circle" style="height:40px; width:40px;" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
             </div>
         </div>
@@ -114,16 +111,16 @@
                     <!-- 第一列 -->
                     <div class="d-flex my-3">
                         <button class="rounded-circle" style="overflow: hidden;">
-                            <img src="${pageContext.servletContext.contextPath}/RestrieveMemberImageServlet?id=${MemberBean.mId}" height="100px" width="100px">
+                            <img height="100px" width="100px">
                         </button>
                         <div class="ms-4 mt-1">
-                            <p class="fs-2 mb-3">${MemberBean.mFirstName}${MemberBean.mLastName}</p>
-                            <p class="fs-6 text-secondary">會員編號#${MemberBean.mId}</p>
+                            <p id="c1" class="fs-2 mb-3"></p>
+                            <p class="fs-6 text-secondary">會員編號#<label id="c2"></label></p>
                         </div>
                         <div class="ps-5">
                             <div class="d-flex ps-4 p-3">
-                                <p id="rating" class="m-0 me-1 pt-1 fs-5">${MemberBean.mRank}</p>
-                                <div id="starRating" class="d-flex p-2">
+                                <p id="c3" class="m-0 me-1 pt-1 fs-5"></p>
+                                <div id="c4" class="d-flex p-2">
                                 </div>
                             </div>
                             <a class="m-4" href="#">???筆紀錄</a>
@@ -135,8 +132,8 @@
                             <p class="p-0 m-0">信箱:</p>
                         </div>
                         <div id="accountDiv" class="col-9 d-flex">
-                            <p id="account" class="p-0 m-0">${MemberBean.mEmail}</p>
-                            <a id="accountUpdate" class="ms-3" style="width: 35px;" href="#" >修改</a>
+                            <p id="c5" class="p-0 m-0"></p>
+                            <a id="accountUpdate" class="ms-3" style="width: 35px;" onclick="getMemberDetail()" href="#" >修改</a>
                         </div>
                     </div>
                     <hr>
@@ -157,7 +154,7 @@
                             <p class="p-0 m-0">生日:</p>
                         </div>
                         <div class="col-5 d-flex">
-                            <p id="birthday" class="p-0 m-0">${MemberBean.mBirth}</p>
+                            <p id="c6" class="p-0 m-0"></p>
                             <input style="display: none;" type="date" id="newBirthday">
                             <a id="birthdayUpdate" class="ms-3" style="width: 35px;" href="javascript:;" >修改</a>
                             <a id="birthdayUpdateConfirm" class="ms-3 pt-1" style="width: 35px; display: none;" href="javascript:;" >確認</a>
@@ -171,7 +168,7 @@
                             <p class="p-0 m-0">常用地址:</p>
                         </div>
                         <div class="col-5">
-                            <p id="commonAddress" class="p-0 m-0">${MemberBean.mAddress}</p>
+                            <p id="c7" class="p-0 m-0"></p>
                         </div>
                     </div>
                     <!-- 第六列 -->
@@ -180,11 +177,7 @@
                             <p class="p-0 m-0">儲存地址:</p>
                         </div>
                         <div class="col-9 d-flex">
-                            <select id="saveAddress">
-                                <option>台北科技大學</option>
-                                <option>台北車站</option>
-                                <option>光華商場</option>
-                                <option>幫幫忙</option>
+                            <select id="c8">
                             </select>
                             <a id="setCommonAddress" class="ms-3" href="javascript:;">設為常用</a>
                             <a id="dropAddress" class="ms-3" href="javascript:;">刪除地址</a>
@@ -194,7 +187,7 @@
                     <div class="row">
                         <div class="col-3 col-lg-2">
                             <a id="addAdress" class="d-flex pt-2" href="javascript:;" style="width: 88px;">
-                                <img src="<c:url value='/images/svg/add-create-new-plus-svgrepo-com.svg'/>" style="height: 24px;">
+                                <img src="../images/svg/add-create-new-plus-svgrepo-com.svg" style="height: 24px;">
                                 <p class="m-0 text-dark">新增地址</p>
                             </a>
                         </div>
@@ -211,14 +204,14 @@
                             <p class="p-0 m-0">行動電話:</p>
                         </div>
                         <div class="col-9 col-lg-2 d-flex">
-                            <p class="p-0 m-0">${MemberBean.mCellphone}</p>
+                            <p id="c9" class="p-0 m-0"></p>
                             <a class="ms-3" href="#">修改</a>
                         </div>
                         <div class="col-3 col-lg-2">
                             <p class="p-0 m-0">家用電話:</p>
                         </div>
                         <div class="col-9 col-lg-4 d-flex">
-                            <p id="phone" class="p-0 m-0">${MemberBean.mPhone}</p>
+                            <p id="c10" class="p-0 m-0"></p>
                             <input id="newPhone" style="display: none;" type="text" class="p-0">
                             <a id="phoneUpdate" class="ms-3" style="width: 35px;" href="javascript:;" >修改</a>
                             <a id="phoneUpdateConfirm" class="ms-3 pt-1" style="width: 35px; display: none;" href="javascript:;" >確認</a>
@@ -232,7 +225,7 @@
                             <p class="p-0 m-0">收款帳號:</p>
                         </div>
                         <div class="col-5 d-flex">
-                            <p class="p-0 m-0">****-****-****-0000</p>
+                            <p id="c11" class="p-0 m-0"></p>
                             <a class="ms-3" href="#">修改</a>
                         </div>
                     </div>
@@ -243,7 +236,7 @@
                             <p class="p-0 m-0">常用信用卡:</p>
                         </div>
                         <div class="col-5">
-                            <p id="commonVisa" class="p-0 m-0">****-****-****-0000</p>
+                            <p id="c12" class="p-0 m-0"></p>
                         </div>
                     </div>
                     <div class="row d-flex pb-4 pt-2">
@@ -251,9 +244,7 @@
                             <p class="p-0 m-0">信用卡:</p>
                         </div>
                         <div class="col-5">
-                            <select id="saveVisa">
-                                <option>****-****-****-0000</option>
-                                <option>****-****-****-1111</option>
+                            <select id="c13">
                             </select>
                             <a id="setCommonVisa" class="ms-3" href="javascript:;">設為常用</a>
                             <a id="dropVisa" class="ms-3" href="javascript:;">刪除信用卡</a>
@@ -270,14 +261,14 @@
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header pb-0">
             <div class="d-flex">
-                <img src="${pageContext.servletContext.contextPath}/RestrieveMemberImageServlet?id=${MemberBean.mId}" width="55" height="55" class="rounded-circle">
+                <img width="55" height="55" class="rounded-circle">
                 <div class="ps-3">
-                    <p class="fs-4 p-0 m-0">${MemberBean.mFirstName}${MemberBean.mLastName}</p>
-                    <p class="fs-6 p-0 mb-2 text-secondary">會員編號#${MemberBean.mId}</p>
+                    <p class="fs-4 p-0 m-0"></p>
+                    <p class="fs-6 p-0 mb-2 text-secondary">會員編號#</p>
                 </div>
                 <div class="ps-2">
                     <div class="d-flex ps-4 pb-1">
-                        <p id="offcanvasRating" class="m-0 me-1 pt-1 fs-6">${MemberBean.mRank}</p>
+                        <p id="offcanvasRating" class="m-0 me-1 pt-1 fs-6"></p>
                         <div id="offcanvasStarRating" class="d-flex p-2">
                         </div>
                     </div>
@@ -317,14 +308,14 @@
                     <h6>為了解決這個問題，我們提供一個平台，不管是「I need help ! 」</h6>
                     <h6>還是「I can help ! 」，只要使用「幫幫忙」，問題歹就補！</h6>
                     <div class="">
-                        <a href="#"><img class="bi bi-twitter m-1" src="<c:url value='/images/svg/twitter-svgrepo-com.svg'/>"
+                        <a href="#"><img class="bi bi-twitter m-1" src="../images/svg/twitter-svgrepo-com.svg"
                                 style="height: 40px; width: 40px;"></a>
-                        <a href="#"><img class="bi bi-facebook m-1" src="<c:url value='/images/svg/facebook-svgrepo-com.svg'/>"
+                        <a href="#"><img class="bi bi-facebook m-1" src="../images/svg/facebook-svgrepo-com.svg"
                                 style="height: 40px; width: 40px;"></a>
                         <a href="#"><img class="bi bi-instagram m-1 rounded-circle"
-                                src="<c:url value='/images/svg/instagram-cat-tail-svgrepo-com.svg'/>"
+                                src="../images/svg/instagram-cat-tail-svgrepo-com.svg"
                                 style="height: 40px; width: 40px; border: 1px solid ; color: #aaa;"></a>
-                        <a href="#"><img class="bi bi-linkedin m-1" src="<c:url value='/images/svg/linkedin-svgrepo-com.svg'/>"
+                        <a href="#"><img class="bi bi-linkedin m-1" src="../images/svg/linkedin-svgrepo-com.svg"
                                 style="height: 40px; width: 40px;"></a>
                     </div>
                 </div>
