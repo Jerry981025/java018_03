@@ -14,7 +14,7 @@ public class VisaBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private MemberBean mId;
+	private Integer mId;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,17 +25,17 @@ public class VisaBean implements Serializable {
 	public VisaBean() {
 	}
 
-	public VisaBean(MemberBean mId, Integer vId, String vAccount) {
+	public VisaBean(Integer mId, Integer vId, String vAccount) {
 		this.mId = mId;
 		this.vId = vId;
 		this.vAccount = vAccount;
 	}
 
-	public MemberBean getmId() {
+	public Integer getmId() {
 		return mId;
 	}
 
-	public void setmId(MemberBean mId) {
+	public void setmId(Integer mId) {
 		this.mId = mId;
 	}
 

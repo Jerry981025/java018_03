@@ -1,7 +1,41 @@
 $(document).ready(() => {
+  getMemberDetail()
+  rankingStar()
+})
+
+
+
+
+function getMemberDetail(){
+  let request = new XMLHttpRequest();
+  request.onreadystatechange = function () {
+    if(this.readyState == XMLHttpRequest.DONE && this.status == 200){
+      resJson = JSON.parse(this.responseText)
+      $('#c1').text(resJson.mFirstName+resJson.mLastName)
+      $('#c2').text(resJson.mId)
+      $('#c3').text(resJson.mRank)
+      $('#c5').text(resJson.mEmail)
+      $('#c6').text(resJson.mBirth)
+      $('#c7').text(resJson.aPref)
+      createAddressOption(resJson.addressBeans)
+      $('#c9').text(resJson.mCellphone)
+      $('#c10').text(resJson.mPhone)
+      $('#c11').text(`****-****-****-${resJson.mBank.substr(-4,4)}`)
+      $('#c12').text(`****-****-****-${resJson.vPref.substr(-4,4)}`)
+      createVisaOption(resJson.visaBeans)
+    }
+  };
+  request.open("POST","../MemberCenterServlet",true);
+  request.setRequestHeader("content-type", "application/json")
+  let obj = {"action":"get"};
+  let json = JSON.stringify(obj);
+  request.send(json);
+}
+
+function rankingStar(){
   // 星等顯示
-  let rating = $('#rating').text()
-  let starRating = $('#starRating')
+  let rating = $('#c3').text()
+  let starRating = $('#c4')
   let offcanvasStarRating = $('#offcanvasStarRating')
   let fullStar = `<img src="../images/svg/stars/star-svgrepo-com-full.svg">`
   let halfStar = `<img src="../images/svg/stars/star-svgrepo-com-half.svg">`
@@ -19,148 +53,19 @@ $(document).ready(() => {
       offcanvasStarRating.append(nullStar)
     }
   }
+}
 
-  // 修改生日
-  let birthdayUpdateConfirm = $('#birthdayUpdateConfirm')
-  let birthdayUpdateCancel = $('#birthdayUpdateCancel')
-  let burthdayUpdate = $('#birthdayUpdate')
-  let newBirthday = $('#newBirthday')
-  let originBirthday = $('#birthday').text()
-  
-  $('#birthdayUpdate').click(function () {
-    $('#birthday').css('display','none')
-    newBirthday.css('display','block')
-
-    this.style.display = 'none'
-    birthdayUpdateConfirm.css('display','block')
-    birthdayUpdateCancel.css('display','block')
-  })
-
-  // 確認修改生日
-  birthdayUpdateConfirm.click(function(){
-    // $('#birthday').text(newBirthday.text())
-    $('#birthday').css('display','block').text(newBirthday.val())
-    newBirthday.css('display','none')
-    originBirthday = newBirthday.val()
-
-    burthdayUpdate.css('display','block')
-    birthdayUpdateConfirm.css('display','none')
-    birthdayUpdateCancel.css('display','none')
-  })
-
-  // 取消修改生日
-  birthdayUpdateCancel.click(function(){
-    $('#birthday').css('display','block').text(originBirthday)
-    newBirthday.css('display','none')
-
-    burthdayUpdate.css('display','block')
-    birthdayUpdateConfirm.css('display','none')
-    birthdayUpdateCancel.css('display','none')
-  })
-
-  // 設為常用地址
-  let saveAddress = ''
-  $('#setCommonAddress').click(function(){
-    saveAddress = $('#saveAddress option:selected').text()
-    $('#commonAddress').text(saveAddress)
-  })
-
-  // 刪除地址
-  $('#dropAddress').click(function(){
-    if($('#commonAddress').text() == $('#saveAddress option:selected').text()){
-      $('#commonAddress').text('')
-    }
-    $('#saveAddress option:selected').remove()
-    if($('#saveAddress option:selected').text() == null || $('#saveAddress option:selected').text() == ''){
-      $('#saveAddress').css('display','none')
-      $('#setCommonAddress').css('display','none')
-      $('#dropAddress').css('display','none')
-    } 
-  })
-
-  // 新增地址
-  $('#addAdress').click(function(){
-    $('#newAddress').css('display','block')
-    $('#newAddressConfirm').css('display','block')
-    $('#newAddressCancel').css('display','block')
-  })
-
-  // 新增地址確認
-  $('#newAddressConfirm').click(function(){
-    $('#newAddress').css('display','none')
-    $('#newAddressConfirm').css('display','none')
-    $('#newAddressCancel').css('display','none')
-
-    let newAddress = `<option>`
-    newAddress += $('#newAddress').val()
-    newAddress += `</option>`
-    $('#newAddress').val(``)
-    $('#saveAddress').append(newAddress)
-
-    
-    $('#saveAddress').css('display','block')
-    $('#setCommonAddress').css('display','block')
-    $('#dropAddress').css('display','block')
-    
-  })
-
-  // 新增地址取消
-  $('#newAddressCancel').click(function(){
-    $('#newAddress').css('display','none').val(``)
-    $('#newAddressConfirm').css('display','none')
-    $('#newAddressCancel').css('display','none')
-  })
-
-  // 修改家用電話
-  let phoneUpdate = $('#phoneUpdate')
-  let phoneUpdateConfirm = $('#phoneUpdateConfirm')
-  let phoneUpdateCancel = $('#phoneUpdateCancel')
-  let newPhone = $('#newPhone')
-  let phone = $('#phone')
-  $('#phoneUpdate').click(function(){
-    phone.css('display','none')
-    newPhone.css('display','block')
-    phoneUpdate.css('display','none')
-    phoneUpdateConfirm.css('display','block')
-    phoneUpdateCancel.css('display','block')
-  })
-
-  // 確認修改家用電話
-  phoneUpdateConfirm.click(function(){
-    phone.css('display','block').text(newPhone.val())
-    newPhone.css('display','none').val(``)
-    phoneUpdate.css('display','block')
-    phoneUpdateConfirm.css('display','none')
-    phoneUpdateCancel.css('display','none')
-  })
-
-  // 取消修改家用電話
-  phoneUpdateCancel.click(function(){
-    phone.css('display','block')
-    newPhone.css('display','none').val(``)
-    phoneUpdate.css('display','block')
-    phoneUpdateConfirm.css('display','none')
-    phoneUpdateCancel.css('display','none')
-  })
-
-  // 設為常用信用卡
-  $('#setCommonVisa').click(function(){
-    $('#commonVisa').text($('#saveVisa').val())
-  })
-
-  // 刪除信用卡
-  $('#dropVisa').click( () => {
-    $('#saveVisa').remove($('#saveVisa').val())
-
-
-    if($('#commonVisa').text() == $('#saveVisa option:selected').text()){
-      $('#commonVisa').text('')
-    }
-    $('#saveVisa option:selected').remove()
-    if($('#saveVisa option:selected').text() == null || $('#saveVisa option:selected').text() == ''){
-      $('#saveVisa').css('display','none')
-      $('#setCommonVisa').css('display','none')
-      $('#dropVisa').css('display','none')
-    } 
-  })
-})
+function createAddressOption(addressBeans){
+  let addressOption = "";
+  addressBeans.forEach(addressBean => {
+    addressOption += `<option value='${addressBean.aId}'>${addressBean.aAddress}</option>\n`
+  });
+  $('#c8').html(addressOption)
+}
+function createVisaOption(visaBeans){
+  let visaOption = "";
+  visaBeans.forEach(visaBean => {
+    visaOption += `<option value='${visaBean.aId}'>****-****-****-${visaBean.vAccount.substr(-4,4)}</option>\n`
+  });
+  $('#c13').html(visaOption)
+}
