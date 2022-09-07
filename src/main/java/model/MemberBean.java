@@ -38,7 +38,6 @@ public class MemberBean implements Serializable{
 	private String mCellphone;					// 手機號碼
 	private Blob mPicture;						// 大頭照
 	private String vPref;						// 常用信用卡
-	private String aPref;						// 常用地址
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "mId")
@@ -50,13 +49,9 @@ public class MemberBean implements Serializable{
 	
 	public MemberBean() {}
 
-
-
-
 	public MemberBean(Integer mId, String mAccount, String mPassword, String mFirstName, String mLastName,
 			String mEmail, String mAddress, Date mBirth, String mPhone, String mBank, String mEarning, String mRank,
-			String mCellphone, Blob mPicture, String vPref, String aPref, Set<AddressBean> addressBeans,
-			Set<VisaBean> visaBeans) {
+			String mCellphone, Blob mPicture, String vPref, Set<AddressBean> addressBeans, Set<VisaBean> visaBeans) {
 		this.mId = mId;
 		this.mAccount = mAccount;
 		this.mPassword = mPassword;
@@ -72,13 +67,9 @@ public class MemberBean implements Serializable{
 		this.mCellphone = mCellphone;
 		this.mPicture = mPicture;
 		this.vPref = vPref;
-		this.aPref = aPref;
 		this.addressBeans = addressBeans;
 		this.visaBeans = visaBeans;
 	}
-
-
-
 
 	public Integer getmId() {
 		return mId;
@@ -200,36 +191,20 @@ public class MemberBean implements Serializable{
 		this.vPref = vPref;
 	}
 
-	public String getaPref() {
-		return aPref;
-	}
-
-	public void setaPref(String aPref) {
-		this.aPref = aPref;
-	}
-
-
 	public Set<AddressBean> getAddressBeans() {
 		return addressBeans;
 	}
-
 
 	public void setAddressBeans(Set<AddressBean> addressBeans) {
 		this.addressBeans = addressBeans;
 	}
 
-
 	public Set<VisaBean> getVisaBeans() {
 		return visaBeans;
 	}
-
 
 	public void setVisaBeans(Set<VisaBean> visaBeans) {
 		this.visaBeans = visaBeans;
 	}
 
-
-
-
-	
 }
