@@ -15,28 +15,27 @@ public class AddressBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private Integer member_MId; 
+	private Integer mId; 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "AId")
 	private Integer aId;
-	private String address;
+	private String aAddress;
 
 	public AddressBean() {
 	}
 
-	public AddressBean(Integer member_MId, Integer aId, String address) {
-		this.member_MId = member_MId;
+	public AddressBean(Integer mId, Integer aId, String aAddress) {
+		this.mId = mId;
 		this.aId = aId;
-		this.address = address;
+		this.aAddress = aAddress;
 	}
 
-	public Integer getMember_MId() {
-		return member_MId;
+	public Integer getmId() {
+		return mId;
 	}
 
-	public void setMember_MId(Integer member_MId) {
-		this.member_MId = member_MId;
+	public void setmId(Integer mId) {
+		this.mId = mId;
 	}
 
 	public Integer getaId() {
@@ -47,23 +46,17 @@ public class AddressBean implements Serializable{
 		this.aId = aId;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getaAddress() {
+		return aAddress;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public void setaAddress(String aAddress) {
+		this.aAddress = aAddress;
 	}
 
 	@Override
 	public String toString() {
-		return "AddressBean [member_MId=" + member_MId + ", aId=" + aId + ", address=" + address + "]";
+		return "AddressBean [mId=" + mId + ", aId=" + aId + ", aAddress=" + aAddress + "]";
 	}
-	
-
 
 }

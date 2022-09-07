@@ -31,8 +31,8 @@ public class MemberBean implements Serializable{
 	private String mAddress;					// 常用地址
 	private java.util.Date mBirth;				// 生日
 	private String mPhone;	     				// 市話電話
-	private String mEarning;					// 收入
 	private String mBank;						// 收款帳號
+	private String mEarning;					// 收入
 	private String mRank;						// 評分等級
 	private String mCellphone;					// 手機號碼
 	private Blob mPicture;						// 大頭照

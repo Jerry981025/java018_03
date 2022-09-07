@@ -4,43 +4,57 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
-//因為沒有自己的ID 所以不能用Entity
-//@Entity
+@Entity
 @Table(name = "help")
 public class HelpBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer member_MId;
-	private Integer order_OId;
+	private Integer mId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer hId;
+	private Integer oId;
 	private String hStatus;
 	private Date hTime;
 	
 	public HelpBean() {
 	}
 
-	public HelpBean(Integer member_MId, Integer order_OId, String hStatus, Date hTime) {
-		this.member_MId = member_MId;
-		this.order_OId = order_OId;
+	public HelpBean(Integer mId, Integer hId, Integer oId, String hStatus, Date hTime) {
+		this.mId = mId;
+		this.hId = hId;
+		this.oId = oId;
 		this.hStatus = hStatus;
 		this.hTime = hTime;
 	}
 
-	public Integer getMember_MId() {
-		return member_MId;
+	public Integer getmId() {
+		return mId;
 	}
 
-	public void setMember_MId(Integer member_MId) {
-		this.member_MId = member_MId;
+	public void setmId(Integer mId) {
+		this.mId = mId;
 	}
 
-	public Integer getOrder_OId() {
-		return order_OId;
+	public Integer gethId() {
+		return hId;
 	}
 
-	public void setOrder_OId(Integer order_OId) {
-		this.order_OId = order_OId;
+	public void sethId(Integer hId) {
+		this.hId = hId;
+	}
+
+	public Integer getoId() {
+		return oId;
+	}
+
+	public void setoId(Integer oId) {
+		this.oId = oId;
 	}
 
 	public String gethStatus() {
@@ -61,8 +75,8 @@ public class HelpBean implements Serializable{
 
 	@Override
 	public String toString() {
-		return "HelpBean [member_MId=" + member_MId + ", order_OId=" + order_OId + ", hStatus=" + hStatus + ", hTime="
-				+ hTime + "]";
+		return "HelpBean [mId=" + mId + ", hId=" + hId + ", oId=" + oId + ", hStatus=" + hStatus + ", hTime=" + hTime
+				+ "]";
 	}
-	
+
 }
