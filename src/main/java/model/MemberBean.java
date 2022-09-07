@@ -3,9 +3,25 @@ package model;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "member")
 public class MemberBean implements Serializable{
 	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "MId")
 	private Integer mId;   			    		// ObjectId
 	private String mAccount;   					// 帳號
 	private String mPassword;   				// 密碼
@@ -13,19 +29,22 @@ public class MemberBean implements Serializable{
 	private String mLastName;					// 姓
 	private String mEmail;						// 信箱
 	private String mAddress;					// 常用地址
-	private java.util.Date mBirthday;			// 生日
+	private java.util.Date mBirth;				// 生日
 	private String mPhone;	     				// 市話電話
 	private String mEarning;					// 收入
 	private String mBank;						// 收款帳號
 	private String mRank;						// 評分等級
 	private String mCellphone;					// 手機號碼
 	private Blob mPicture;						// 大頭照
+	private String vPref;						// 常用信用卡
+	private String aPref;						// 常用地址
+	
 	
 	public MemberBean() {}
 
 	public MemberBean(Integer mId, String mAccount, String mPassword, String mFirstName, String mLastName,
-			String mEmail, String mAddress, Date mBirthday, String mPhone, String mEarning, String mBank, String mRank,
-			String mCellphone, Blob mPicture) {
+			String mEmail, String mAddress, Date mBirth, String mPhone, String mEarning, String mBank, String mRank,
+			String mCellphone, Blob mPicture, String vPref, String aPref) {
 		this.mId = mId;
 		this.mAccount = mAccount;
 		this.mPassword = mPassword;
@@ -33,13 +52,15 @@ public class MemberBean implements Serializable{
 		this.mLastName = mLastName;
 		this.mEmail = mEmail;
 		this.mAddress = mAddress;
-		this.mBirthday = mBirthday;
+		this.mBirth = mBirth;
 		this.mPhone = mPhone;
 		this.mEarning = mEarning;
 		this.mBank = mBank;
 		this.mRank = mRank;
 		this.mCellphone = mCellphone;
 		this.mPicture = mPicture;
+		this.vPref = vPref;
+		this.aPref = aPref;
 	}
 
 	public Integer getmId() {
@@ -98,12 +119,12 @@ public class MemberBean implements Serializable{
 		this.mAddress = mAddress;
 	}
 
-	public java.util.Date getmBirthday() {
-		return mBirthday;
+	public java.util.Date getmBirth() {
+		return mBirth;
 	}
 
-	public void setmBirthday(java.util.Date mBirthday) {
-		this.mBirthday = mBirthday;
+	public void setmBirth(java.util.Date mBirth) {
+		this.mBirth = mBirth;
 	}
 
 	public String getmPhone() {
@@ -153,7 +174,33 @@ public class MemberBean implements Serializable{
 	public void setmPicture(Blob mPicture) {
 		this.mPicture = mPicture;
 	}
-	public String toString (){
-		return "[" + mId + "," + mAccount + "," + mPassword + "," + mFirstName + "," + mLastName + "," + mEmail + "," + mAddress + "," + mBirthday + "," + mPhone + "," + mBank  + "," + mEarning+ "," + mRank + "," + mCellphone + "," + mPicture + "]";
+
+	public String getvPref() {
+		return vPref;
 	}
+
+	public void setvPref(String vPref) {
+		this.vPref = vPref;
+	}
+
+	public String getaPref() {
+		return aPref;
+	}
+
+	public void setaPref(String aPref) {
+		this.aPref = aPref;
+	}
+
+	@Override
+	public String toString() {
+		return "MemberBean [mId=" + mId + ", mAccount=" + mAccount + ", mPassword=" + mPassword + ", mFirstName="
+				+ mFirstName + ", mLastName=" + mLastName + ", mEmail=" + mEmail + ", mAddress=" + mAddress
+				+ ", mBirth=" + mBirth + ", mPhone=" + mPhone + ", mEarning=" + mEarning + ", mBank=" + mBank
+				+ ", mRank=" + mRank + ", mCellphone=" + mCellphone + ", mPicture=" + mPicture + ", vPref=" + vPref
+				+ ", aPref=" + aPref + "]";
+	}
+
+
+
+	
 }

@@ -157,7 +157,7 @@
                             <p class="p-0 m-0">生日:</p>
                         </div>
                         <div class="col-5 d-flex">
-                            <p id="birthday" class="p-0 m-0">${MemberBean.mBirthday}</p>
+                            <p id="birthday" class="p-0 m-0">${MemberBean.mBirth}</p>
                             <input style="display: none;" type="date" id="newBirthday">
                             <a id="birthdayUpdate" class="ms-3" style="width: 35px;" href="javascript:;" >修改</a>
                             <a id="birthdayUpdateConfirm" class="ms-3 pt-1" style="width: 35px; display: none;" href="javascript:;" >確認</a>
