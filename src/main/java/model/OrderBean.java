@@ -15,10 +15,9 @@ import javax.persistence.Table;
 public class OrderBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private Integer member_MId;
+	private Integer mId;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "OId")
 	private Integer oId;
 	private String oAddress;
 	private java.util.Date oTime;
@@ -36,10 +35,10 @@ public class OrderBean implements Serializable {
 	public OrderBean() {
 	}
 
-	public OrderBean(Integer member_MId, Integer oId, String oAddress, Date oTime, String oBrand, String oDetail,
+	public OrderBean(Integer mId, Integer oId, String oAddress, Date oTime, String oBrand, String oDetail,
 			Integer oQuantity, Integer oPrice, String oDeadLine, String oPic, Double oFee, String oRanking, String oLat,
 			String oLng) {
-		this.member_MId = member_MId;
+		this.mId = mId;
 		this.oId = oId;
 		this.oAddress = oAddress;
 		this.oTime = oTime;
@@ -55,12 +54,12 @@ public class OrderBean implements Serializable {
 		this.oLng = oLng;
 	}
 
-	public Integer getMember_MId() {
-		return member_MId;
+	public Integer getmId() {
+		return mId;
 	}
 
-	public void setMember_MId(Integer member_MId) {
-		this.member_MId = member_MId;
+	public void setmId(Integer mId) {
+		this.mId = mId;
 	}
 
 	public Integer getoId() {
@@ -79,12 +78,12 @@ public class OrderBean implements Serializable {
 		this.oAddress = oAddress;
 	}
 
-	public java.util.Date getOTime() {
+	public java.util.Date getoTime() {
 		return oTime;
 	}
 
-	public void setOTime(java.util.Date oTime) {
-		oTime = oTime;
+	public void setoTime(java.util.Date oTime) {
+		this.oTime = oTime;
 	}
 
 	public String getoBrand() {
@@ -169,11 +168,12 @@ public class OrderBean implements Serializable {
 
 	@Override
 	public String toString() {
-		return "OrderBean [member_MId=" + member_MId + ", oId=" + oId + ", oAddress=" + oAddress + ", OTime=" + oTime
-				+ ", oBrand=" + oBrand + ", oDetail=" + oDetail + ", oQuantity=" + oQuantity + ", oPrice=" + oPrice
-				+ ", oDeadLine=" + oDeadLine + ", oPic=" + oPic + ", oFee=" + oFee + ", oRanking=" + oRanking
-				+ ", oLat=" + oLat + ", oLng=" + oLng + "]";
+		return "OrderBean [mId=" + mId + ", oId=" + oId + ", oAddress=" + oAddress + ", oTime=" + oTime + ", oBrand="
+				+ oBrand + ", oDetail=" + oDetail + ", oQuantity=" + oQuantity + ", oPrice=" + oPrice + ", oDeadLine="
+				+ oDeadLine + ", oPic=" + oPic + ", oFee=" + oFee + ", oRanking=" + oRanking + ", oLat=" + oLat
+				+ ", oLng=" + oLng + "]";
 	}
+
 	
 	
 }

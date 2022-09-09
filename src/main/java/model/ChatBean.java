@@ -5,45 +5,57 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
-//因為沒有自己的ID 所以不能用Entity
-//@Entity
+@Entity
 @Table(name = "chat")
 public class ChatBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private Integer order_OId;
-	private Integer member_MId;
-	@Column(name = "CTime")
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer cId;
+	private Integer oId;
+	private Integer mId;
 	private java.util.Date cTime;
-	@Column(name = "CContent")
 	private String cContent;
 	
 	public ChatBean() {
 	}
 
-	public ChatBean(Integer order_OId, Integer member_MId, Date cTime, String cContent) {
-		this.order_OId = order_OId;
-		this.member_MId = member_MId;
+	public ChatBean(Integer cId, Integer oId, Integer mId, Date cTime, String cContent) {
+		this.cId = cId;
+		this.oId = oId;
+		this.mId = mId;
 		this.cTime = cTime;
 		this.cContent = cContent;
 	}
 
-	public Integer getOrder_OId() {
-		return order_OId;
+	public Integer getcId() {
+		return cId;
 	}
 
-	public void setOrder_OId(Integer order_OId) {
-		this.order_OId = order_OId;
+	public void setcId(Integer cId) {
+		this.cId = cId;
 	}
 
-	public Integer getMember_MId() {
-		return member_MId;
+	public Integer getoId() {
+		return oId;
 	}
 
-	public void setMember_MId(Integer member_MId) {
-		this.member_MId = member_MId;
+	public void setoId(Integer oId) {
+		this.oId = oId;
+	}
+
+	public Integer getmId() {
+		return mId;
+	}
+
+	public void setmId(Integer mId) {
+		this.mId = mId;
 	}
 
 	public java.util.Date getcTime() {
@@ -64,9 +76,10 @@ public class ChatBean implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ChatBean [order_OId=" + order_OId + ", member_MId=" + member_MId + ", cTime=" + cTime + ", cContent="
-				+ cContent + "]";
+		return "ChatBean [cId=" + cId + ", oId=" + oId + ", mId=" + mId + ", cTime=" + cTime + ", cContent=" + cContent
+				+ "]";
 	}
+
 	
 	
 	

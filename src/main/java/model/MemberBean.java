@@ -12,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -31,20 +32,26 @@ public class MemberBean implements Serializable{
 	private String mAddress;					// 常用地址
 	private java.util.Date mBirth;				// 生日
 	private String mPhone;	     				// 市話電話
-	private String mEarning;					// 收入
 	private String mBank;						// 收款帳號
+	private String mEarning;					// 收入
 	private String mRank;						// 評分等級
 	private String mCellphone;					// 手機號碼
 	private Blob mPicture;						// 大頭照
 	private String vPref;						// 常用信用卡
-	private String aPref;						// 常用地址
 	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "mId")
+	private Set<AddressBean> addressBeans;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "mId")
+	private Set<VisaBean> visaBeans;
 	
 	public MemberBean() {}
 
 	public MemberBean(Integer mId, String mAccount, String mPassword, String mFirstName, String mLastName,
-			String mEmail, String mAddress, Date mBirth, String mPhone, String mEarning, String mBank, String mRank,
-			String mCellphone, Blob mPicture, String vPref, String aPref) {
+			String mEmail, String mAddress, Date mBirth, String mPhone, String mBank, String mEarning, String mRank,
+			String mCellphone, Blob mPicture, String vPref, Set<AddressBean> addressBeans, Set<VisaBean> visaBeans) {
 		this.mId = mId;
 		this.mAccount = mAccount;
 		this.mPassword = mPassword;
@@ -54,13 +61,14 @@ public class MemberBean implements Serializable{
 		this.mAddress = mAddress;
 		this.mBirth = mBirth;
 		this.mPhone = mPhone;
-		this.mEarning = mEarning;
 		this.mBank = mBank;
+		this.mEarning = mEarning;
 		this.mRank = mRank;
 		this.mCellphone = mCellphone;
 		this.mPicture = mPicture;
 		this.vPref = vPref;
-		this.aPref = aPref;
+		this.addressBeans = addressBeans;
+		this.visaBeans = visaBeans;
 	}
 
 	public Integer getmId() {
@@ -183,24 +191,20 @@ public class MemberBean implements Serializable{
 		this.vPref = vPref;
 	}
 
-	public String getaPref() {
-		return aPref;
+	public Set<AddressBean> getAddressBeans() {
+		return addressBeans;
 	}
 
-	public void setaPref(String aPref) {
-		this.aPref = aPref;
+	public void setAddressBeans(Set<AddressBean> addressBeans) {
+		this.addressBeans = addressBeans;
 	}
 
-	@Override
-	public String toString() {
-		return "MemberBean [mId=" + mId + ", mAccount=" + mAccount + ", mPassword=" + mPassword + ", mFirstName="
-				+ mFirstName + ", mLastName=" + mLastName + ", mEmail=" + mEmail + ", mAddress=" + mAddress
-				+ ", mBirth=" + mBirth + ", mPhone=" + mPhone + ", mEarning=" + mEarning + ", mBank=" + mBank
-				+ ", mRank=" + mRank + ", mCellphone=" + mCellphone + ", mPicture=" + mPicture + ", vPref=" + vPref
-				+ ", aPref=" + aPref + "]";
+	public Set<VisaBean> getVisaBeans() {
+		return visaBeans;
 	}
 
+	public void setVisaBeans(Set<VisaBean> visaBeans) {
+		this.visaBeans = visaBeans;
+	}
 
-
-	
 }

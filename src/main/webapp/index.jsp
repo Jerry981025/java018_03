@@ -8,6 +8,6 @@
 <title>This for test</title>
 </head>
 <body>
-<a href="<c:url value='/MemberCenterServlet.do'/>">Jerry Test do</a>
+<a href="<c:url value='MemberCenter/memberCenter.html'/>">Jerry Test do</a>
 </body>
 </html>

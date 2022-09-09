@@ -1,5 +1,7 @@
 package model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,9 +10,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "visa")
-public class VisaBean {
+public class VisaBean implements Serializable {
 
-	private MemberBean member_MId;
+	private static final long serialVersionUID = 1L;
+
+	private Integer mId;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,18 +25,18 @@ public class VisaBean {
 	public VisaBean() {
 	}
 
-	public VisaBean(MemberBean member_MId, Integer vId, String vAccount) {
-		this.member_MId = member_MId;
+	public VisaBean(Integer mId, Integer vId, String vAccount) {
+		this.mId = mId;
 		this.vId = vId;
 		this.vAccount = vAccount;
 	}
 
-	public MemberBean getMember_MId() {
-		return member_MId;
+	public Integer getmId() {
+		return mId;
 	}
 
-	public void setMember_MId(MemberBean member_MId) {
-		this.member_MId = member_MId;
+	public void setmId(Integer mId) {
+		this.mId = mId;
 	}
 
 	public Integer getvId() {
@@ -53,15 +57,8 @@ public class VisaBean {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("VisaBean [member_MIdv=");
-		builder.append(member_MId);
-		builder.append(", vId=");
-		builder.append(vId);
-		builder.append(", vAccount=");
-		builder.append(vAccount);
-		builder.append("]");
-		return builder.toString();
+		return "VisaBean [mId=" + mId + ", vId=" + vId + ", vAccount=" + vAccount + "]";
 	}
+
 
 }
