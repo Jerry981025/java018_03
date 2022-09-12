@@ -1,0 +1,38 @@
+body{
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+}
+
+nav{
+    height: 70px;
+}
+
+
+.navbar{
+    background-color:azure
+}
+
+li a{
+    /* color:darkgray !important; */
+    font-size: 20px;
+}
+
+li a:hover{
+    color:darkslateblue !important;
+}
+a{
+    text-decoration: none;
+}
+.policies{
+    background-color: azure;
+    border: 1px solid #ccc;
+    margin: 10px 20px 10px 20px;
+    padding: 10px 20px;
+}
+.policiesTitle{
+    font-size: large;
+    margin: 1% auto;
+}
+.listType{
+    list-style-type: none;
+}
