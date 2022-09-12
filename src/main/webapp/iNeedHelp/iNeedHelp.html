@@ -21,42 +21,47 @@
         <div class="container-fluid">
             <!-- 品牌LOGO -->
             <a class="navbar-brand" href="../LoginHome/LoginHome.html">幫幫忙
-                <img src="https://picsum.photos/300/200/?random=2" alt="" width="30" height="25"
+                <img src="../images/handbag-fill.svg" alt="" width="30" height="24"
                     class="d-inline-block align-text-top">
             </a>
             <!-- 手機版顯示 -->
-            <div class="navbar-toggler rounded-circle">
-                <img src="https://picsum.photos/50/50/?random=1" class="rounded-circle" data-bs-toggle="collapse"
-                    data-bs-target="#offcanvas">
+            <div class="navbar-toggler border-0 p-0">
+                <div class="rounded-circle d-flex">
+                    <img class="rounded-circle" data-bs-toggle="collapse"
+                        data-bs-target="#offcanvas">
+                    <p id="c14" class="fs-1 py-2 ps-1 m-0" data-bs-toggle="collapse" data-bs-target="#offcanvas"></p>
+                </div>
             </div>
             <!-- 桌機版顯示 -->
+
             <div class="collapse navbar-collapse" id="linkbar">
                 <!-- 內容 -->
-                <ul class="nav navbar-nav me-auto p-2">
+                <ul class="navbar-nav me-auto p-2">
                     <li class="nav-item">
-                        <p class="nav-link active m-0 fs-5">提出需求(I need help!)</p>
+                        <a class="nav-link" href="../INeedHelp/INeedHelp.html">提出需求(I need help!)</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../ICanHelp/ICanHelp.html">我要幫忙(I can help!)</a>
                     </li>
                 </ul>
-                <img src="https://picsum.photos/40/40/?random=1" class="rounded-circle" data-bs-toggle="offcanvas"
+                <img class="rounded-circle" style="height:40px; width:40px;" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
             </div>
         </div>
     </nav>
+
     <!-- 小視窗時點大頭貼的offcanvas -->
     <div class="collapse navbar-collapse bg-light p-2" id="offcanvas">
         <!-- 內容 -->
         <ul class="navbar-nav me-auto bg-light">
             <li class="nav-item">
-                <a class="nav-link" href="../MemberCenter/MemberCenter.html">會員中心</a>
+                <p class="nav-link m-0 fs-5 text-dark">會員中心</p>
             </li>
             <li class="nav-item">
-                <p class="nav-link m-0 fs-5 text-dark">提出需求(I need help!)</p>
+                <a class="nav-link" href="../INeedHelp/INeedHelp.html">提出需求(I need help!)</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../ICanHelp/ICanHelp.html">我要幫忙(I can help!)</a>
+                <a class="nav-link" href="../Login-Home/Login-Home.html">我要幫忙(I can help!)</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../CommonProblem/CommonProblem.html">常見問題</a>
@@ -71,34 +76,6 @@
                 <a class="nav-link" href="#">登出</a>
             </li>
         </ul>
-    </div>
-    <!-- 大視窗時點大頭貼的offcanvas -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-        <div class="offcanvas-header">
-            <div class="d-flex pe-5">
-                <img src="https://picsum.photos/50/50/?random=1" width="50" height="50" class="rounded-circle">
-                <h1>名字</h1>
-            </div>
-        </div>
-        <div class="offcanvas-body">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="../MemberCenter/MemberCenter.html">會員中心</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../CommonProblem/CommonProblem.html">常見問題</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../AboutUs/AboutUs.html">關於我們</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../ContactCustomerService/ContactCustomerService.html">聯絡客服</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">登出</a>
-                </li>
-            </ul>
-        </div>
     </div>
 
     <!-- 內容 -->
