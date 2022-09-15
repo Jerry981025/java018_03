@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.web.store")
+@ComponentScan("controller")
 public class WebAppConfig implements WebMvcConfigurer {
 	@Bean
 	public ViewResolver internalResouceViewResolver() {

@@ -59,7 +59,7 @@ public class RootAppConfig {
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
 		factory.setDataSource(dataSource()); // dataSource()為定義在前一頁的方法
-		factory.setPackagesToScan(new String[] { "com.web.store.model" });
+		factory.setPackagesToScan(new String[] { "model" });
 		// additionalProperties ()為定義在後面的方法
 		factory.setHibernateProperties(additionalProperties());
 		return factory;
