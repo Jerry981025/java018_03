@@ -1,9 +1,15 @@
 package controller;
 
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
-@ComponentScan("/MemberCenter")
+@Controller
 public class MemberCenter {
+	
+	@GetMapping({"/memberCenter", "/memberCenter/MemberCenter"})
+	public String loadMemberCenter() {
+		return "MemberCenter/memberCenter";
+	}
 	
 	
 	
