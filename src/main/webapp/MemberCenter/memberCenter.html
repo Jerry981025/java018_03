@@ -11,13 +11,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         crossorigin="anonymous"></script>
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js"></script>
 
     <!-- 連結內容CSS -->
     <link rel="stylesheet" href="css/MemberCenter.css">
 
     <!-- jquery引用 -->
-    <script src="/javaScript/jquery.js"></script>
-    <script src="/javaScript/memberCenter.js"></script>
+    <script src="./javaScript/jquery.js"></script>
+    <script src="./javaScript/memberCenter.js"></script>
 </head>
 
 <body>
@@ -111,7 +113,7 @@
                     <!-- 第一列 -->
                     <div class="d-flex my-3">
                         <button class="rounded-circle" style="overflow: hidden;">
-                            <img height="100px" width="100px">
+                            <img id="c19" height="100px" width="100px">
                         </button>
                         <div class="ms-4 mt-1">
                             <p id="c1" class="fs-2 mb-3"></p>
@@ -133,7 +135,7 @@
                         </div>
                         <div id="accountDiv" class="col-9 d-flex">
                             <p id="c5" class="p-0 m-0"></p>
-                            <a id="accountUpdate" class="ms-3" style="width: 35px;" onclick="getMemberDetail()" href="#" >修改</a>
+                            <a id="accountUpdate" class="ms-3" style="width: 35px;" href="#" >修改</a>
                         </div>
                     </div>
                     <hr>
