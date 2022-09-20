@@ -1,7 +1,10 @@
+window.addEventListener('load',doFirst)
 let i = 0;
 function doFirst(){
     // 先跟 HTML 畫面產生關聯
     loadButton = document.getElementById('loadButton')   
+    paymentButton = document.getElementById('orderButton') // newkni
+    sendAddressButton  = document.getElementById('sendAddressButton') 
     result = document.getElementById('result')
     initMeetingTime()
 
@@ -9,9 +12,15 @@ function doFirst(){
     loadButton.addEventListener('click',function(){
         createItems()
     })
+    paymentButton.addEventListener('click', function() { // newkni
+      paymentPage()
+  })
+  sendAddressButton.addEventListener('click', function() { // newkni
+    calcRoute()
+})
 }
 function createItems(){
-    i++;
+    
     // accordion item
     let accordion = document.createElement('div')
     accordion.setAttribute('class','accordion')
@@ -33,7 +42,7 @@ function createItems(){
     accordionButton.setAttribute('data-bs-target',`#panelsStayOpen-collapse${i}`)
     accordionButton.setAttribute('aria-expanded','true')
     accordionButton.setAttribute('aria-controls',`panelsStayOpen-collapse${i}`)
-    accordionButton.innerText = `購買產品${i}`
+    accordionButton.innerText = `購買產品`
     
 
     let accordionCollapse = document.createElement('div')
@@ -167,6 +176,7 @@ function createItems(){
     
     deleteDiv.appendChild(deleteButton)
     item.appendChild(deleteDiv)
+    i++;
 }
 function initUploadPicButton(time) {
     let compressRatio = 0.8, // 圖片壓縮比例
@@ -235,10 +245,283 @@ function deleteItem(){
     result.removeChild(this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode)
 }
 function initMeetingTime() {
-    const meetingTime = document.getElementById('meeting-time')
-    const date = new Date(+new Date() + 8 * 3600 * 1000).toISOString()
-    const formatTime = date.substring(0, date.lastIndexOf(':'))
+    let meetingTime = document.getElementById('meeting-time')
+    let date = new Date(+new Date() + 8 * 3600 * 1000).toISOString()
+    // console.log(date);
+    let formatTime = date.substring(0, date.lastIndexOf(':'))
+    // console.log(formatTime);
     meetingTime.value = formatTime
     meetingTime.min = formatTime
 }
-window.addEventListener('load',doFirst)
+
+function paymentPage() { // newkni
+  // $('.mission').hide()
+  // $('.payment').show()
+  let cars = []
+  cars.push({
+    make: 'BMW',
+    mode: 'X5',
+    year: 2021,
+})
+  let body = {
+    id:'kulla9527',
+    age:38,
+    gender: 'male',
+    favoriateColor: ['black','moroon','green','gray','white'],
+    car: cars
+  }
+  fetch('http://localhost:8080/java018_03/order/add', 
+  {method:'POST', headers: {'content-type': 'application/json' }, body: JSON.stringify(body)}).then(res=>{
+      console.log('ok');
+  })
+
+}
+
+// GoogleMap part
+
+var myLatLng = { lat: 25.042563029213984, lng: 121.52015437660762 };
+var mapOptions = {
+  center: myLatLng,
+  zoom: 16,
+  mapTypeId: google.maps.MapTypeId.ROADMAP,
+  
+    styles: [
+    {
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#f5f5f5"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.icon",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#616161"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.text.stroke",
+      "stylers": [
+        {
+          "color": "#f5f5f5"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative.land_parcel",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#bdbdbd"
+        }
+      ]
+    },
+    {
+      "featureType": "poi",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#eeeeee"
+        }
+      ]
+    },
+    {
+      "featureType": "poi",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#757575"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.business",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#e5e5e5"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "labels.text",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#9e9e9e"
+        }
+      ]
+    },
+    {
+      "featureType": "road",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#ffffff"
+        }
+      ]
+    },
+    {
+      "featureType": "road.arterial",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#757575"
+        }
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#dadada"
+        }
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#616161"
+        }
+      ]
+    },
+    {
+      "featureType": "road.local",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#9e9e9e"
+        }
+      ]
+    },
+    {
+      "featureType": "transit.line",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#e5e5e5"
+        }
+      ]
+    },
+    {
+      "featureType": "transit.station",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#eeeeee"
+        }
+      ]
+    },
+    {
+      "featureType": "water",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#c9c9c9"
+        }
+      ]
+    },
+    {
+      "featureType": "water",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#9e9e9e"
+        }
+      ]
+    }
+  ]
+};
+
+//create map
+var map = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
+
+//create a DirectionsService object to use the route method and get a result for our request
+var directionsService = new google.maps.DirectionsService();
+
+//create a DirectionsRenderer object which we will use to display the route
+var directionsDisplay = new google.maps.DirectionsRenderer();
+
+//bind the DirectionsRenderer to the map
+directionsDisplay.setMap(map);
+
+
+//define calcRoute function
+function calcRoute() {
+  //create request
+  var request = {
+    origin: document.getElementById("searchInputFrom").value,
+    destination: document.getElementById("searchInputTo").value,
+    travelMode: google.maps.TravelMode.DRIVING, //WALKING, BYCYCLING, TRANSIT
+    unitSystem: google.maps.UnitSystem.METRIC   //距離單位
+  }
+
+  //pass the request to the route method
+  directionsService.route(request, function (result, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+
+      //Get distance and time
+      const output = document.querySelector('#output');
+      output.innerHTML = 
+      "<div class='alert-info'>起點： " + document.getElementById("searchInputFrom").value + 
+      ".<br />終點： " + document.getElementById("searchInputTo").value + 
+      ".<br /> 實際距離 <i class='fas fa-road'></i> : " + result.routes[0].legs[0].distance.text + 
+      "<br />預估抵達時間 <i class='fas fa-hourglass-start'></i> : " + result.routes[0].legs[0].duration.text + "</div>";
+      //display route
+      directionsDisplay.setDirections(result);
+    } else {
+      //delete route from map
+      directionsDisplay.setDirections({ routes: [] });
+      //center map in 中正區
+      map.setCenter(myLatLng);
+
+      //show error message
+      output.innerHTML = "<div class='alert-danger'><i class='fas fa-exclamation-triangle'></i> 開車無法抵達</div>";
+    }
+  });
+
+}
+
+//create autocomplete objects for all inputs
+// var options = {
+//     types: ['(cities)']
+// }
+
+var input1 = document.getElementById("searchInputFrom");
+var autocomplete1 = new google.maps.places.Autocomplete(input1);
+autocomplete1.bindTo('bounds', map);
+
+var input2 = document.getElementById("searchInputTo");
+var autocomplete2 = new google.maps.places.Autocomplete(input2);
+autocomplete2.bindTo('bounds', map);
