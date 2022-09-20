@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -17,32 +17,26 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableTransactionManagement
 @ComponentScan("controller, service, dao")
 public class WebAppConfig implements WebMvcConfigurer {
- @Bean
- public ViewResolver internalResouceViewResolver() {
-  InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-  resolver.setPrefix("/");
-  resolver.setSuffix(".html");
-  return resolver;
- }
- 
- @Override
- public void addViewControllers(ViewControllerRegistry registry) {
-     registry.addViewController("/").setViewName("index");
-     registry.addViewController("/index").setViewName("index");
- }
- 
- @Bean
- public MessageSource messageSource() {
-  ResourceBundleMessageSource rbms = new ResourceBundleMessageSource();
-  rbms.setBasename("messages");
-  return rbms;
- }
- 
-// @Override
-// public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-//  configurer.enable();
-// }
- 
+	@Bean
+	public ViewResolver internalResouceViewResolver() {
+		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+		resolver.setPrefix("/");
+		resolver.setSuffix(".html");
+		return resolver;
+	}
+
+	@Bean
+	public MessageSource messageSource() {
+		ResourceBundleMessageSource rbms = new ResourceBundleMessageSource();
+		rbms.setBasename("messages");
+		return rbms;
+	}
+
+	@Override
+	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+		configurer.enable();
+	}
+
 // @Bean
 // public CommonsMultipartResolver multipartResolver() {
 //  CommonsMultipartResolver resolver = new CommonsMultipartResolver();

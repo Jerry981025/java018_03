@@ -8,7 +8,6 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +15,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "member")
@@ -39,14 +42,17 @@ public class MemberBean implements Serializable{
 	private String mEarning;					// 收入
 	private String mRank;						// 評分等級
 	private String mCellphone;					// 手機號碼
+	@JsonIgnore
 	private Blob mPicture;						// 大頭照
 	private String vPref;						// 常用信用卡
 	
 	@OneToMany(cascade = CascadeType.ALL)
+	@Fetch(FetchMode.JOIN)
 	@JoinColumn(name = "mId")
 	private Set<AddressBean> addressBeans;
 	
 	@OneToMany(cascade = CascadeType.ALL)
+	@Fetch(FetchMode.JOIN)
 	@JoinColumn(name = "mId")
 	private Set<VisaBean> visaBeans;
 	
