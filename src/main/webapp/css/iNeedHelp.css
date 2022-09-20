@@ -31,3 +31,20 @@ img .mapImg{
     height: 95vh;
     overflow: scroll;
 }
+
+#googleMap {
+    width: 100%;
+    height: 60em;
+    /* margin: 10px auto; */
+    
+}
+#output {
+    text-align: center;
+    font-size: 2em;
+    margin: 20px auto;
+}
+.payment{ /* newkni */
+    display: none;
+    height: 95vh;
+    overflow: scroll;
+}

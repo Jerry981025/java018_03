@@ -1,57 +1,64 @@
 package model;
 
-import java.io.Serializable;
+import java.sql.Clob;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "order")
-public class OrderBean implements Serializable {
+public class OrderBean {
 
-	private static final long serialVersionUID = 1L;
-	private Integer mId;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer oId;
-	private String oAddress;
-	private java.util.Date oTime;
-	private String oBrand;
-	private String oDetail;
-	private Integer oQuantity;
+	private Integer mId;
+	private String oShippingAddress;
+	private String oDestinationAddress;
+	private Date oTime;
+	private Date oDeadLine;
 	private Integer oPrice;
-	private String oDeadLine;
-	private String oPic;
 	private Double oFee;
+	private Clob oComment;
 	private String oRanking;
-	private String oLat;
-	private String oLng;
 	
 	public OrderBean() {
 	}
+	
+	@OneToMany(mappedBy="orderBean", cascade=CascadeType.ALL)
+	Set<OrderItemBean> items = new HashSet<>();
 
-	public OrderBean(Integer mId, Integer oId, String oAddress, Date oTime, String oBrand, String oDetail,
-			Integer oQuantity, Integer oPrice, String oDeadLine, String oPic, Double oFee, String oRanking, String oLat,
-			String oLng) {
-		this.mId = mId;
+	public OrderBean(Integer oId, Integer mId, String oShippingAddress, String oDestinationAddress, Date oTime,
+			Date oDeadLine, Integer oPrice, Double oFee, Clob oComment, String oRanking, Set<OrderItemBean> items) {
+		super();
 		this.oId = oId;
-		this.oAddress = oAddress;
+		this.mId = mId;
+		this.oShippingAddress = oShippingAddress;
+		this.oDestinationAddress = oDestinationAddress;
 		this.oTime = oTime;
-		this.oBrand = oBrand;
-		this.oDetail = oDetail;
-		this.oQuantity = oQuantity;
-		this.oPrice = oPrice;
 		this.oDeadLine = oDeadLine;
-		this.oPic = oPic;
+		this.oPrice = oPrice;
 		this.oFee = oFee;
+		this.oComment = oComment;
 		this.oRanking = oRanking;
-		this.oLat = oLat;
-		this.oLng = oLng;
+		this.items = items;
+	}
+
+	public Integer getoId() {
+		return oId;
+	}
+
+	public void setoId(Integer orderNo) {
+		this.oId = orderNo;
 	}
 
 	public Integer getmId() {
@@ -62,52 +69,36 @@ public class OrderBean implements Serializable {
 		this.mId = mId;
 	}
 
-	public Integer getoId() {
-		return oId;
+	public String getoShippingAddress() {
+		return oShippingAddress;
 	}
 
-	public void setoId(Integer oId) {
-		this.oId = oId;
+	public void setoShippingAddress(String oShippingAddress) {
+		this.oShippingAddress = oShippingAddress;
 	}
 
-	public String getoAddress() {
-		return oAddress;
+	public String getoDestinationAddress() {
+		return oDestinationAddress;
 	}
 
-	public void setoAddress(String oAddress) {
-		this.oAddress = oAddress;
+	public void setoDestinationAddress(String oDestinationAddress) {
+		this.oDestinationAddress = oDestinationAddress;
 	}
 
-	public java.util.Date getoTime() {
+	public Date getoTime() {
 		return oTime;
 	}
 
-	public void setoTime(java.util.Date oTime) {
+	public void setoTime(Date oTime) {
 		this.oTime = oTime;
 	}
 
-	public String getoBrand() {
-		return oBrand;
+	public Date getoDeadLine() {
+		return oDeadLine;
 	}
 
-	public void setoBrand(String oBrand) {
-		this.oBrand = oBrand;
-	}
-
-	public String getoDetail() {
-		return oDetail;
-	}
-
-	public void setoDetail(String oDetail) {
-		this.oDetail = oDetail;
-	}
-
-	public Integer getoQuantity() {
-		return oQuantity;
-	}
-
-	public void setoQuantity(Integer oQuantity) {
-		this.oQuantity = oQuantity;
+	public void setoDeadLine(Date oDeadLine) {
+		this.oDeadLine = oDeadLine;
 	}
 
 	public Integer getoPrice() {
@@ -118,28 +109,20 @@ public class OrderBean implements Serializable {
 		this.oPrice = oPrice;
 	}
 
-	public String getoDeadLine() {
-		return oDeadLine;
-	}
-
-	public void setoDeadLine(String oDeadLine) {
-		this.oDeadLine = oDeadLine;
-	}
-
-	public String getoPic() {
-		return oPic;
-	}
-
-	public void setoPic(String oPic) {
-		this.oPic = oPic;
-	}
-
 	public Double getoFee() {
 		return oFee;
 	}
 
 	public void setoFee(Double oFee) {
 		this.oFee = oFee;
+	}
+
+	public Clob getoComment() {
+		return oComment;
+	}
+
+	public void setoComment(Clob oComment) {
+		this.oComment = oComment;
 	}
 
 	public String getoRanking() {
@@ -150,30 +133,12 @@ public class OrderBean implements Serializable {
 		this.oRanking = oRanking;
 	}
 
-	public String getoLat() {
-		return oLat;
+	public Set<OrderItemBean> getItems() {
+		return items;
 	}
 
-	public void setoLat(String oLat) {
-		this.oLat = oLat;
+	public void setItems(Set<OrderItemBean> items) {
+		this.items = items;
 	}
 
-	public String getoLng() {
-		return oLng;
-	}
-
-	public void setoLng(String oLng) {
-		this.oLng = oLng;
-	}
-
-	@Override
-	public String toString() {
-		return "OrderBean [mId=" + mId + ", oId=" + oId + ", oAddress=" + oAddress + ", oTime=" + oTime + ", oBrand="
-				+ oBrand + ", oDetail=" + oDetail + ", oQuantity=" + oQuantity + ", oPrice=" + oPrice + ", oDeadLine="
-				+ oDeadLine + ", oPic=" + oPic + ", oFee=" + oFee + ", oRanking=" + oRanking + ", oLat=" + oLat
-				+ ", oLng=" + oLng + "]";
-	}
-
-	
-	
 }
