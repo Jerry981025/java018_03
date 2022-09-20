@@ -1,41 +1,25 @@
 package controller;
 
-<<<<<<< HEAD
-import org.springframework.beans.factory.annotation.Autowired;
-=======
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
->>>>>>> origin/Jerry
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.MemberBean;
 import service.MemberService;
 
-import service.MemberService;
-
 @Controller
 public class MemberCenter {
-<<<<<<< HEAD
-
-=======
 	
 	@Autowired
 	MemberService memberService;
 	
->>>>>>> origin/Jerry
 	@GetMapping({"/memberCenter", "/memberCenter/MemberCenter"})
 	public String loadMemberCenter() {
 		return "MemberCenter/memberCenter";

@@ -11,7 +11,6 @@ public class KullaVO {
 	private String oOrderType;
 	private String oComment;
 	private List<Item> item;
-	private List<Car> car;
 //	private List<String> favoriateColor;
 	@Override
 	public String toString() {
@@ -33,31 +32,9 @@ public class KullaVO {
 		builder.append(", item=");
 		builder.append(item);
 		builder.append("]");
-		builder.append(", car=");
-		builder.append(car);
-		builder.append("]");
 		return builder.toString();
 	}
 
-	class Car {
-		private String make;
-		private String mode;
-		private Integer year;
-		@Override
-		public String toString() {
-			StringBuilder builder = new StringBuilder();
-			builder.append("Car [make=");
-			builder.append(make);
-			builder.append(", mode=");
-			builder.append(mode);
-			builder.append(", year=");
-			builder.append(year);
-			builder.append("]");
-			return builder.toString();
-		}
-	
-		
-	}
 	
 	class Item {
 		private String brand;
@@ -143,12 +120,5 @@ public class KullaVO {
 		this.item = item;
 	}
 
-	public List<Car> getCar() {
-		return car;
-	}
-
-	public void setCar(List<Car> car) {
-		this.car = car;
-	}
 	
 }
