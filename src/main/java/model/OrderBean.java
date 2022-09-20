@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class OrderBean {
 
 	@Id
@@ -24,23 +24,24 @@ public class OrderBean {
 	private Integer mId;
 	private String oShippingAddress;
 	private String oDestinationAddress;
-	private Date oTime;
-	private Double oFee;
+	private String oTime;
+	private Integer oFee;
 	private Integer oPrice;
-	private Date oDeadLine;
+	private String oDeadLine;
 	private String oOrderType;
-	private Clob oComment;
+	private String oComment;
 	private String oRanking;
 	
 	public OrderBean() {
 	}
 	
-	@OneToMany(mappedBy="orderBean", cascade=CascadeType.ALL)
-	Set<OrderItemBean> items = new HashSet<>();
+//	@OneToMany(mappedBy="orderBean", cascade=CascadeType.ALL)
+//	Set<OrderItemBean> items = new HashSet<>();
 
-	public OrderBean(Integer oId, Integer mId, String oShippingAddress, String oDestinationAddress, Date oTime,
-			Double oFee, Integer oPrice, Date oDeadLine, String oOrderType, Clob oComment, String oRanking,
-			Set<OrderItemBean> items) {
+	public OrderBean(Integer oId, Integer mId, String oShippingAddress, String oDestinationAddress, String oTime,
+			Integer oFee, Integer oPrice, String oDeadLine, String oOrderType, String oComment, String oRanking
+//			Set<OrderItemBean> items
+			) {
 		this.oId = oId;
 		this.mId = mId;
 		this.oShippingAddress = oShippingAddress;
@@ -52,7 +53,7 @@ public class OrderBean {
 		this.oOrderType = oOrderType;
 		this.oComment = oComment;
 		this.oRanking = oRanking;
-		this.items = items;
+//		this.items = items;
 	}
 
 	public Integer getoId() {
@@ -87,19 +88,19 @@ public class OrderBean {
 		this.oDestinationAddress = oDestinationAddress;
 	}
 
-	public Date getoTime() {
+	public String getoTime() {
 		return oTime;
 	}
 
-	public void setoTime(Date oTime) {
+	public void setoTime(String oTime) {
 		this.oTime = oTime;
 	}
 
-	public Double getoFee() {
+	public Integer getoFee() {
 		return oFee;
 	}
 
-	public void setoFee(Double oFee) {
+	public void setoFee(Integer oFee) {
 		this.oFee = oFee;
 	}
 
@@ -111,11 +112,11 @@ public class OrderBean {
 		this.oPrice = oPrice;
 	}
 
-	public Date getoDeadLine() {
+	public String getoDeadLine() {
 		return oDeadLine;
 	}
 
-	public void setoDeadLine(Date oDeadLine) {
+	public void setoDeadLine(String oDeadLine) {
 		this.oDeadLine = oDeadLine;
 	}
 
@@ -127,12 +128,12 @@ public class OrderBean {
 		this.oOrderType = oOrderType;
 	}
 
-	public Clob getoComment() {
+	public String getoComment() {
 		return oComment;
 	}
 
-	public void setoComment(Clob oComment) {
-		this.oComment = oComment;
+	public void setoComment(String string) {
+		this.oComment = string;
 	}
 
 	public String getoRanking() {
@@ -143,13 +144,13 @@ public class OrderBean {
 		this.oRanking = oRanking;
 	}
 
-	public Set<OrderItemBean> getItems() {
-		return items;
-	}
-
-	public void setItems(Set<OrderItemBean> items) {
-		this.items = items;
-	}
+//	public Set<OrderItemBean> getItems() {
+//		return items;
+//	}
+//
+//	public void setItems(Set<OrderItemBean> items) {
+//		this.items = items;
+//	}
 
 	@Override
 	public String toString() {
@@ -176,9 +177,9 @@ public class OrderBean {
 		builder.append(oComment);
 		builder.append(", oRanking=");
 		builder.append(oRanking);
-		builder.append(", items=");
-		builder.append(items);
-		builder.append("]");
+//		builder.append(", items=");
+//		builder.append(items);
+//		builder.append("]");
 		return builder.toString();
 	}
 

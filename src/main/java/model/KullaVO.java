@@ -78,4 +78,77 @@ public class KullaVO {
 		
 		
 	}
+
+	public String getoShippingAddress() {
+		return oShippingAddress;
+	}
+
+	public void setoShippingAddress(String oShippingAddress) {
+		this.oShippingAddress = oShippingAddress;
+	}
+
+	public String getoDestinationAddress() {
+		return oDestinationAddress;
+	}
+
+	public void setoDestinationAddress(String oDestinationAddress) {
+		this.oDestinationAddress = oDestinationAddress;
+	}
+
+	public Integer getoFee() {
+		return oFee;
+	}
+
+	public void setoFee(Integer oFee) {
+		this.oFee = oFee;
+	}
+
+	public Integer getoPrice() {
+		return oPrice;
+	}
+
+	public void setoPrice(Integer oPrice) {
+		this.oPrice = oPrice;
+	}
+
+	public String getoDeadLine() {
+		return oDeadLine;
+	}
+
+	public void setoDeadLine(String oDeadLine) {
+		this.oDeadLine = oDeadLine;
+	}
+
+	public String getoOrderType() {
+		return oOrderType;
+	}
+
+	public void setoOrderType(String oOrderType) {
+		this.oOrderType = oOrderType;
+	}
+
+	public String getoComment() {
+		return oComment;
+	}
+
+	public void setoComment(String oComment) {
+		this.oComment = oComment;
+	}
+
+	public List<Item> getItem() {
+		return item;
+	}
+
+	public void setItem(List<Item> item) {
+		this.item = item;
+	}
+
+	public List<Car> getCar() {
+		return car;
+	}
+
+	public void setCar(List<Car> car) {
+		this.car = car;
+	}
+	
 }

@@ -278,9 +278,9 @@ function paymentPage() { // newkni
   oComment = '================@@@@@@@@@@@@@@@@'
   let items = []
   for (let j = 0; j < i; j++) {
-    let brand = document.querySelector(`#brand${i-1}`).value
-    let detail = document.querySelector(`#detail${i-1}`).value
-    let quantity = document.querySelector(`#quantity${i-1}`).value
+    let brand = document.querySelector(`#brand${j}`).value
+        let detail = document.querySelector(`#detail${j}`).value
+        let quantity = document.querySelector(`#quantity${j}`).value
   // brand = '義美小泡芙'
   // detail = '巧克力'
   // quantity = 5

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import dao.OrderDao;
 import model.OrderBean;
-import model.OrderItemBean;
+//import model.OrderItemBean;
 
 @Repository
 public class OrderDaoImpl implements OrderDao {

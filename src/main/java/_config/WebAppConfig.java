@@ -17,7 +17,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
-@ComponentScan("controller")
+@ComponentScan({"controller", "dao", "model", "service"})
 public class WebAppConfig implements WebMvcConfigurer {
 	@Bean
 	public ViewResolver internalResouceViewResolver() {
