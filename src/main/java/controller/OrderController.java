@@ -24,7 +24,7 @@ import service.OrderService;
 public class OrderController {
 	
 //	OrderService orderService;
-//	
+//
 //	@Autowired
 //	public OrderController(OrderService orderService) {
 //		this.orderService = orderService;
@@ -52,6 +52,6 @@ public class OrderController {
 	public @ResponseBody void addOrder(
 			@RequestBody KullaVO params
 			) {
-		System.out.println("================================="+params);
+		System.out.println(params);
 	}
 }

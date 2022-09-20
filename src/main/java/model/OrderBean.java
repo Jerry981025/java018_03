@@ -25,9 +25,10 @@ public class OrderBean {
 	private String oShippingAddress;
 	private String oDestinationAddress;
 	private Date oTime;
-	private Date oDeadLine;
-	private Integer oPrice;
 	private Double oFee;
+	private Integer oPrice;
+	private Date oDeadLine;
+	private String oOrderType;
 	private Clob oComment;
 	private String oRanking;
 	
@@ -38,16 +39,17 @@ public class OrderBean {
 	Set<OrderItemBean> items = new HashSet<>();
 
 	public OrderBean(Integer oId, Integer mId, String oShippingAddress, String oDestinationAddress, Date oTime,
-			Date oDeadLine, Integer oPrice, Double oFee, Clob oComment, String oRanking, Set<OrderItemBean> items) {
-		super();
+			Double oFee, Integer oPrice, Date oDeadLine, String oOrderType, Clob oComment, String oRanking,
+			Set<OrderItemBean> items) {
 		this.oId = oId;
 		this.mId = mId;
 		this.oShippingAddress = oShippingAddress;
 		this.oDestinationAddress = oDestinationAddress;
 		this.oTime = oTime;
-		this.oDeadLine = oDeadLine;
-		this.oPrice = oPrice;
 		this.oFee = oFee;
+		this.oPrice = oPrice;
+		this.oDeadLine = oDeadLine;
+		this.oOrderType = oOrderType;
 		this.oComment = oComment;
 		this.oRanking = oRanking;
 		this.items = items;
@@ -57,8 +59,8 @@ public class OrderBean {
 		return oId;
 	}
 
-	public void setoId(Integer orderNo) {
-		this.oId = orderNo;
+	public void setoId(Integer oId) {
+		this.oId = oId;
 	}
 
 	public Integer getmId() {
@@ -93,12 +95,12 @@ public class OrderBean {
 		this.oTime = oTime;
 	}
 
-	public Date getoDeadLine() {
-		return oDeadLine;
+	public Double getoFee() {
+		return oFee;
 	}
 
-	public void setoDeadLine(Date oDeadLine) {
-		this.oDeadLine = oDeadLine;
+	public void setoFee(Double oFee) {
+		this.oFee = oFee;
 	}
 
 	public Integer getoPrice() {
@@ -109,12 +111,20 @@ public class OrderBean {
 		this.oPrice = oPrice;
 	}
 
-	public Double getoFee() {
-		return oFee;
+	public Date getoDeadLine() {
+		return oDeadLine;
 	}
 
-	public void setoFee(Double oFee) {
-		this.oFee = oFee;
+	public void setoDeadLine(Date oDeadLine) {
+		this.oDeadLine = oDeadLine;
+	}
+
+	public String getoOrderType() {
+		return oOrderType;
+	}
+
+	public void setoOrderType(String oOrderType) {
+		this.oOrderType = oOrderType;
 	}
 
 	public Clob getoComment() {
@@ -140,5 +150,38 @@ public class OrderBean {
 	public void setItems(Set<OrderItemBean> items) {
 		this.items = items;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("OrderBean [oId=");
+		builder.append(oId);
+		builder.append(", mId=");
+		builder.append(mId);
+		builder.append(", oShippingAddress=");
+		builder.append(oShippingAddress);
+		builder.append(", oDestinationAddress=");
+		builder.append(oDestinationAddress);
+		builder.append(", oTime=");
+		builder.append(oTime);
+		builder.append(", oFee=");
+		builder.append(oFee);
+		builder.append(", oPrice=");
+		builder.append(oPrice);
+		builder.append(", oDeadLine=");
+		builder.append(oDeadLine);
+		builder.append(", oOrderType=");
+		builder.append(oOrderType);
+		builder.append(", oComment=");
+		builder.append(oComment);
+		builder.append(", oRanking=");
+		builder.append(oRanking);
+		builder.append(", items=");
+		builder.append(items);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	
 
 }
