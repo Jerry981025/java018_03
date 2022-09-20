@@ -13,6 +13,7 @@ import service.MemberService;
 @Service
 public class MemberServiceImpl implements MemberService {
 	
+//	@Autowired
 	MemberDao mDao;
 	
 	public MemberServiceImpl(MemberDao mDao) {
@@ -21,7 +22,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override
-	public MemberBean findByMId(String mId) {
+	public MemberBean findByMId(Integer mId) {
 		MemberBean mb = null;
 			mb = mDao.findByMId(mId);
 		return mb;

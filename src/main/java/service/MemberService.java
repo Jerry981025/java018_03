@@ -4,6 +4,6 @@ import model.MemberBean;
 
 public interface MemberService {
 
-	MemberBean findByMId(String mId);
+	MemberBean findByMId(Integer mId);
 
 }

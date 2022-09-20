@@ -18,7 +18,7 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
-	public MemberBean findByMId(String MId) {
+	public MemberBean findByMId(Integer MId) {
 		MemberBean mb = null;
 		String HQL = "From MemberBean Where MId = :mid ";
 		Session session = factory.getCurrentSession();

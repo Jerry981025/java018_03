@@ -4,6 +4,6 @@ import model.MemberBean;
 
 public interface MemberDao {
 
-	MemberBean findByMId(String MId);
+	MemberBean findByMId(Integer MId);
 
 }

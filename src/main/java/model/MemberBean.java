@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "member")
 public class MemberBean implements Serializable{
@@ -30,6 +32,7 @@ public class MemberBean implements Serializable{
 	private String mLastName;					// 姓
 	private String mEmail;						// 信箱
 	private String mAddress;					// 常用地址
+	@JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
 	private java.util.Date mBirth;				// 生日
 	private String mPhone;	     				// 市話電話
 	private String mBank;						// 收款帳號
