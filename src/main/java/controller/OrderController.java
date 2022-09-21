@@ -20,16 +20,10 @@ public class OrderController {
 	
 	OrderService orderService;
 	
-	
-	
-	
 	@Autowired
 	public OrderController(OrderService orderService) {
 		this.orderService = orderService;
 	}
-
-
-
 
 //	@GetMapping("/iNeedHelp")
 //	public String sendingEmptyOrder(Model model) {

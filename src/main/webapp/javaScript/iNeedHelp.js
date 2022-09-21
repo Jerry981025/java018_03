@@ -269,35 +269,35 @@ function paymentPage() { // newkni
   oDeadLine = oDeadLine.replace(/T/g, ' ')
   let oOrderType = document.querySelector('#radio').value
   let oComment = document.querySelector('#talk').value
-  
-  oShippingAddress = '台灣台北市中正區承德路一段台北車站'
-  oDestinationAddress = '台灣新北市板橋區縣民大道二段板橋火車站'
-  oFee = 50
-  oPrice = 200
-  oOrderType = '代買'
-  oComment = '================@@@@@@@@@@@@@@@@'
+
+  // oShippingAddress = '台灣台北市中正區承德路一段台北車站'
+  // oDestinationAddress = '台灣新北市板橋區縣民大道二段板橋火車站'
+  // oFee = 50
+  // oPrice = 200
+  // oOrderType = '代買'
+  // oComment = '================@@@@@@@@@@@@@@@@'
   let items = []
   for (let j = 0; j < i; j++) {
     let brand = document.querySelector(`#brand${j}`).value
-        let detail = document.querySelector(`#detail${j}`).value
-        let quantity = document.querySelector(`#quantity${j}`).value
-  // brand = '義美小泡芙'
-  // detail = '巧克力'
-  // quantity = 5
-  items.push({
-    brand: brand,
-    detail: detail,
-    quantity: quantity,
-  })
+    let detail = document.querySelector(`#detail${j}`).value
+    let quantity = document.querySelector(`#quantity${j}`).value
+    // brand = '義美小泡芙'
+    // detail = '巧克力'
+    // quantity = 5
+    items.push({
+      brand: brand,
+      detail: detail,
+      quantity: quantity,
+    })
   }
-    
+
   // console.log(j);
-  let cars = []
-  cars.push({
-    make: 'BMW',
-    mode: 'X5',
-    year: 2021,
-})
+  // let cars = []
+  // cars.push({
+  //   make: 'BMW',
+  //   mode: 'X5',
+  //   year: 2021,
+  // })
   let body = {
     // favoriateColor: ['black', 'moroon', 'green', 'gray', 'white'],
     oShippingAddress: oShippingAddress,
@@ -307,8 +307,8 @@ function paymentPage() { // newkni
     oDeadLine: `${oDeadLine}`,
     oOrderType: `${oOrderType}`,
     oComment: `${oComment}`,
-    item: items,
-    car: cars
+    item: items
+    // car: cars
   }
   console.log(body);
   fetch('http://localhost:8080/java018_03/order/add',

@@ -7,17 +7,11 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-
 import dao.OrderDao;
 import model.OrderBean;
-//import model.OrderItemBean;
 
 @Repository
 public class OrderDaoImpl implements OrderDao {
-
-//	private static Logger log = LoggerFactory.getLogger(OrderDaoImpl.class);
 
 	SessionFactory factory;
 

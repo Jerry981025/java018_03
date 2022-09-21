@@ -12,48 +12,8 @@ public class KullaVO {
 	private String oComment;
 	private List<Item> item;
 //	private List<String> favoriateColor;
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("KullaVO [oShippingAddress=");
-		builder.append(oShippingAddress);
-		builder.append(", oDestinationAddress=");
-		builder.append(oDestinationAddress);
-		builder.append(", oFee=");
-		builder.append(oFee);
-		builder.append(", oPrice=");
-		builder.append(oPrice);
-		builder.append(", oDeadLine=");
-		builder.append(oDeadLine);
-		builder.append(", oOrderType=");
-		builder.append(oOrderType);
-		builder.append(", oComment=");
-		builder.append(oComment);
-		builder.append(", item=");
-		builder.append(item);
-		builder.append("]");
-		return builder.toString();
-	}
 
-	
-	class Item {
-		private String brand;
-		private String detail;
-		private Integer quantity;
-		@Override
-		public String toString() {
-			StringBuilder builder = new StringBuilder();
-			builder.append("Product [brand=");
-			builder.append(brand);
-			builder.append(", detail=");
-			builder.append(detail);
-			builder.append(", quantity=");
-			builder.append(quantity);
-			builder.append("]");
-			return builder.toString();
-		}
-		
-		
+	public KullaVO() {
 	}
 
 	public String getoShippingAddress() {
@@ -120,5 +80,46 @@ public class KullaVO {
 		this.item = item;
 	}
 
-	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("KullaVO [oShippingAddress=");
+		builder.append(oShippingAddress);
+		builder.append(", oDestinationAddress=");
+		builder.append(oDestinationAddress);
+		builder.append(", oFee=");
+		builder.append(oFee);
+		builder.append(", oPrice=");
+		builder.append(oPrice);
+		builder.append(", oDeadLine=");
+		builder.append(oDeadLine);
+		builder.append(", oOrderType=");
+		builder.append(oOrderType);
+		builder.append(", oComment=");
+		builder.append(oComment);
+		builder.append(", item=");
+		builder.append(item);
+		builder.append("]");
+		return builder.toString();
+	}
+
+}
+
+class Item {
+	private String brand;
+	private String detail;
+	private Integer quantity;
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Product [brand=");
+		builder.append(brand);
+		builder.append(", detail=");
+		builder.append(detail);
+		builder.append(", quantity=");
+		builder.append(quantity);
+		builder.append("]");
+		return builder.toString();
+	}
 }
