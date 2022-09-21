@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -31,17 +31,10 @@ public class WebAppConfig implements WebMvcConfigurer {
 		rbms.setBasename("messages");
 		return rbms;
 	}
-
 	@Override
-	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-		configurer.enable();
-	}
-
-// @Bean
-// public CommonsMultipartResolver multipartResolver() {
-//  CommonsMultipartResolver resolver = new CommonsMultipartResolver();
-//  resolver.setDefaultEncoding("UTF-8");
-//  resolver.setMaxUploadSize(81920000);
-//  return resolver;
-// }
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry
+          .addResourceHandler("/**")
+          .addResourceLocations("/"); 
+    }
 }

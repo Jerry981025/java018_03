@@ -1,19 +1,13 @@
 package controller;
 
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -43,9 +37,10 @@ public class MemberCenter {
 	
 	@GetMapping("/GETMemberPicture")
 	public @ResponseBody String GETMemberPicture(
-			@RequestParam(name = "mId", required = false) Integer mId
+			@RequestParam(name = "mId", required = false) String StrmId
 			) {
-		
+		System.out.println(StrmId);
+		Integer mId = Integer.valueOf(StrmId);
 		MemberBean bean = memberService.findByMId(mId);
 		Blob blob = bean.getmPicture();
 		byte[] b = null;
@@ -60,5 +55,7 @@ public class MemberCenter {
 
 
 	}
+	
+	
 	
 }

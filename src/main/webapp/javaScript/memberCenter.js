@@ -1,13 +1,15 @@
 $(document).ready(() => {
   getMemberDetail()
-  getMemeberPicture()
   // rankingStar()
   
   
 })
 
-function getMemeberPicture(){
-    axios.get(`http://localhost:8080/java018_03/GETMemberPicture`)
+function getMemeberPicture(Id){
+    axios.get(
+      'http://localhost:8080/java018_03/GETMemberPicture',
+      { params:{ mId :Id}
+      })
     .then((res) => { 
       console.log(res.data)
       $('#c19').attr('src', `data:image/jpeg;base64, ${res.data}`)
@@ -69,6 +71,7 @@ function setMemberDetail(resJson){
   $('#c14').text(resJson.mFirstName+resJson.mLastName)
   $('#c15').text(resJson.mFirstName+resJson.mLastName)
   $('#c2').text(resJson.mId)
+  getMemeberPicture(resJson.mId)
   $('#c17').text(resJson.mId)
   $('#c3').text(resJson.mRank)
   $('#c18').text(resJson.mRank)
