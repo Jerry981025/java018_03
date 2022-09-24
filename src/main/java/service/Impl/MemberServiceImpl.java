@@ -28,4 +28,10 @@ public class MemberServiceImpl implements MemberService {
 		return mb;
 	}
 
+
+	@Override
+	public void updateDetail(MemberBean memberBean) {
+		mDao.updateDetail(memberBean);
+	}
+
 }

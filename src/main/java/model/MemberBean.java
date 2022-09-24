@@ -47,12 +47,10 @@ public class MemberBean implements Serializable{
 	private String vPref;						// 常用信用卡
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@Fetch(FetchMode.JOIN)
 	@JoinColumn(name = "mId")
 	private Set<AddressBean> addressBeans;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@Fetch(FetchMode.JOIN)
 	@JoinColumn(name = "mId")
 	private Set<VisaBean> visaBeans;
 	
