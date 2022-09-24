@@ -270,24 +270,24 @@ function paymentPage() { // newkni
   let oOrderType = document.querySelector('#radio').value
   let oComment = document.querySelector('#talk').value
 
-  // oShippingAddress = '台灣台北市中正區承德路一段台北車站'
-  // oDestinationAddress = '台灣新北市板橋區縣民大道二段板橋火車站'
-  // oFee = 50
-  // oPrice = 200
-  // oOrderType = '代買'
-  // oComment = '================@@@@@@@@@@@@@@@@'
+  oShippingAddress = '台灣台北市中正區承德路一段台北車站'
+  oDestinationAddress = '台灣新北市板橋區縣民大道二段板橋火車站'
+  oFee = 50
+  oPrice = 200
+  oOrderType = '代買'
+  oComment = '================@@@@@@@@@@@@@@@@'
   let items = []
   for (let j = 0; j < i; j++) {
     let brand = document.querySelector(`#brand${j}`).value
     let detail = document.querySelector(`#detail${j}`).value
     let quantity = document.querySelector(`#quantity${j}`).value
-    // brand = '義美小泡芙'
-    // detail = '巧克力'
-    // quantity = 5
+    brand = '義美小泡芙'
+    detail = '巧克力'
+    quantity = 5
     items.push({
-      brand: brand,
-      detail: detail,
-      quantity: quantity,
+      oBrand: brand,
+      oDetail: detail,
+      oQuantity: quantity,
     })
   }
 
@@ -301,12 +301,12 @@ function paymentPage() { // newkni
   let body = {
     // favoriateColor: ['black', 'moroon', 'green', 'gray', 'white'],
     oShippingAddress: oShippingAddress,
-    oDestinationAddress: `${oDestinationAddress}`,
-    oFee: `${oFee}`,
-    oPrice: `${oPrice}`,
-    oDeadLine: `${oDeadLine}`,
-    oOrderType: `${oOrderType}`,
-    oComment: `${oComment}`,
+    oDestinationAddress: oDestinationAddress,
+    oFee: oFee,
+    oPrice: oPrice,
+    oDeadLine: oDeadLine,
+    oOrderType: oOrderType,
+    oComment: oComment,
     item: items
     // car: cars
   }
