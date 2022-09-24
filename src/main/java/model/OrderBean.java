@@ -159,38 +159,38 @@ public class OrderBean {
 		this.items = items;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("OrderBean [oId=");
-		builder.append(oId);
-		builder.append(", mId=");
-		builder.append(mId);
-		builder.append(", oShippingAddress=");
-		builder.append(oShippingAddress);
-		builder.append(", oDestinationAddress=");
-		builder.append(oDestinationAddress);
-		builder.append(", oTime=");
-		builder.append(oTime);
-		builder.append(", oFee=");
-		builder.append(oFee);
-		builder.append(", oPrice=");
-		builder.append(oPrice);
-		builder.append(", oDeadLine=");
-		builder.append(oDeadLine);
-		builder.append(", oOrderType=");
-		builder.append(oOrderType);
-		builder.append(", oComment=");
-		builder.append(oComment);
-		builder.append(", oRanking=");
-		builder.append(oRanking);
-		builder.append(", oOrderStatus=");
-		builder.append(oOrderStatus);
-		builder.append(", items=");
-		builder.append(items);
-		builder.append("]");
-		return builder.toString();
-	}
+//	@Override
+//	public String toString() {
+//		StringBuilder builder = new StringBuilder();
+//		builder.append("OrderBean [oId=");
+//		builder.append(oId);
+//		builder.append(", mId=");
+//		builder.append(mId);
+//		builder.append(", oShippingAddress=");
+//		builder.append(oShippingAddress);
+//		builder.append(", oDestinationAddress=");
+//		builder.append(oDestinationAddress);
+//		builder.append(", oTime=");
+//		builder.append(oTime);
+//		builder.append(", oFee=");
+//		builder.append(oFee);
+//		builder.append(", oPrice=");
+//		builder.append(oPrice);
+//		builder.append(", oDeadLine=");
+//		builder.append(oDeadLine);
+//		builder.append(", oOrderType=");
+//		builder.append(oOrderType);
+//		builder.append(", oComment=");
+//		builder.append(oComment);
+//		builder.append(", oRanking=");
+//		builder.append(oRanking);
+//		builder.append(", oOrderStatus=");
+//		builder.append(oOrderStatus);
+//		builder.append(", items=");
+//		builder.append(items);
+//		builder.append("]");
+//		return builder.toString();
+//	}
 
 	
 }

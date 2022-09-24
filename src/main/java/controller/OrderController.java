@@ -63,7 +63,7 @@ public class OrderController {
 	@GetMapping("/allOrders")
 	public @ResponseBody List<OrderBean> orderList(Model model) {
 		List<OrderBean> list = orderService.findAllOrders();
-		model.addAttribute("allOrders", list);
+//		model.addAttribute("allOrders", list);
 		System.out.println(list);
 		return list;
 		
