@@ -18,10 +18,13 @@
     <script>
          $(document).ready(function(){           
             $('#loadButton').click(function(){
-                fetch('http://localhost:8080/java018_03/order/allOrders').then(res => JSON.stringify(res)).then(res => {
+                fetch('http://localhost:8080/java018_03/order/allOrders').then(res => res.json()).then(res => {
                 // fetch('http://localhost:8080/java018_03/order/allOrders',
                 // { method: 'GET', headers: { 'content-type': 'application/json' }}).then(res => {
+                    // res = JSON.stringify(res)
                     console.log(res);
+                    console.log(`${res[1].oId}`);
+                    // console.log(res.data);
                     
                     let orderList = ``
                     // for(let i = 0; i < res.length; i++){

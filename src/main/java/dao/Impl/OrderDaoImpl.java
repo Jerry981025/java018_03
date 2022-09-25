@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import dao.OrderDao;
 import model.OrderBean;
+import model.OrderItemBean;
 
 @Repository
 public class OrderDaoImpl implements OrderDao {
@@ -23,6 +24,9 @@ public class OrderDaoImpl implements OrderDao {
 	@Override
 	public void addOrder(OrderBean ob) {
 		Session session = factory.getCurrentSession();
+		for (OrderItemBean item : ob.getItems()) {
+			item.setOrderBean(ob);
+		}
 		session.save(ob);
 	}
 

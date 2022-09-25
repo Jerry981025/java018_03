@@ -57,7 +57,6 @@ public class OrderController {
 		System.out.println(memberBean);
 		model.addAttribute("memberOrders", memberOrders);
 		return "orderList";
-		
 	}
 	
 	@GetMapping("/allOrders")
@@ -66,6 +65,5 @@ public class OrderController {
 //		model.addAttribute("allOrders", list);
 		System.out.println(list);
 		return list;
-		
 	}
 }

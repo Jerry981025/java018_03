@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "orderitem")
@@ -19,24 +21,24 @@ public class OrderItemBean {
 	private String oBrand;
 	private String oDetail;
 	private Integer oQuantity;
-	private Integer oId;
 //	private Blob oPic;
 	
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "oId",insertable = false,updatable = false)
+	@JoinColumn(name = "FK_orderBean")
 	OrderBean orderBean;
 	
 	public OrderItemBean() {
 	}
 
 	public OrderItemBean(Integer seqno, String oBrand, String oDetail, Integer oQuantity
-			, OrderBean orderBean, Integer oId
+			, OrderBean orderBean//, Integer oId
 			) {
 		this.seqno = seqno;
 		this.oBrand = oBrand;
 		this.oDetail = oDetail;
 		this.oQuantity = oQuantity;
-		this.oId = oId;
+//		this.oId = oId;
 		this.orderBean = orderBean;
 	}
 
@@ -44,13 +46,13 @@ public class OrderItemBean {
 		return seqno;
 	}
 
-	public Integer getoId() {
-		return oId;
-	}
-
-	public void setoId(Integer oId) {
-		this.oId = oId;
-	}
+//	public Integer getoId() {
+//		return oId;
+//	}
+//
+//	public void setoId(Integer oId) {
+//		this.oId = oId;
+//	}
 
 	public void setSeqno(Integer seqno) {
 		this.seqno = seqno;
