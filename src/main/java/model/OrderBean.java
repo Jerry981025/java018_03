@@ -1,9 +1,7 @@
 package model;
 
-import java.sql.Clob;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,7 +13,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class OrderBean {
 
 	@Id
@@ -24,32 +22,36 @@ public class OrderBean {
 	private Integer mId;
 	private String oShippingAddress;
 	private String oDestinationAddress;
-	private Date oTime;
-	private Date oDeadLine;
+	private String oTime;
+	private Integer oFee;
 	private Integer oPrice;
-	private Double oFee;
-	private Clob oComment;
+	private String oDeadLine;
+	private String oOrderType;
+	private String oComment;
 	private String oRanking;
+	private String oOrderStatus;
 	
 	public OrderBean() {
 	}
 	
-	@OneToMany(mappedBy="orderBean", cascade=CascadeType.ALL)
-	Set<OrderItemBean> items = new HashSet<>();
+	@OneToMany(mappedBy="orderBean", cascade = CascadeType.ALL)
+	List<OrderItemBean> items = new ArrayList<>();
 
-	public OrderBean(Integer oId, Integer mId, String oShippingAddress, String oDestinationAddress, Date oTime,
-			Date oDeadLine, Integer oPrice, Double oFee, Clob oComment, String oRanking, Set<OrderItemBean> items) {
-		super();
+	public OrderBean(Integer oId, Integer mId, String oShippingAddress, String oDestinationAddress, String oTime,
+			Integer oFee, Integer oPrice, String oDeadLine, String oOrderType, String oComment, String oRanking,
+			String oOrderStatus, List<OrderItemBean> items) {
 		this.oId = oId;
 		this.mId = mId;
 		this.oShippingAddress = oShippingAddress;
 		this.oDestinationAddress = oDestinationAddress;
 		this.oTime = oTime;
-		this.oDeadLine = oDeadLine;
-		this.oPrice = oPrice;
 		this.oFee = oFee;
+		this.oPrice = oPrice;
+		this.oDeadLine = oDeadLine;
+		this.oOrderType = oOrderType;
 		this.oComment = oComment;
 		this.oRanking = oRanking;
+		this.oOrderStatus = oOrderStatus;
 		this.items = items;
 	}
 
@@ -57,8 +59,8 @@ public class OrderBean {
 		return oId;
 	}
 
-	public void setoId(Integer orderNo) {
-		this.oId = orderNo;
+	public void setoId(Integer oId) {
+		this.oId = oId;
 	}
 
 	public Integer getmId() {
@@ -85,20 +87,20 @@ public class OrderBean {
 		this.oDestinationAddress = oDestinationAddress;
 	}
 
-	public Date getoTime() {
+	public String getoTime() {
 		return oTime;
 	}
 
-	public void setoTime(Date oTime) {
+	public void setoTime(String oTime) {
 		this.oTime = oTime;
 	}
 
-	public Date getoDeadLine() {
-		return oDeadLine;
+	public Integer getoFee() {
+		return oFee;
 	}
 
-	public void setoDeadLine(Date oDeadLine) {
-		this.oDeadLine = oDeadLine;
+	public void setoFee(Integer oFee) {
+		this.oFee = oFee;
 	}
 
 	public Integer getoPrice() {
@@ -109,19 +111,27 @@ public class OrderBean {
 		this.oPrice = oPrice;
 	}
 
-	public Double getoFee() {
-		return oFee;
+	public String getoDeadLine() {
+		return oDeadLine;
 	}
 
-	public void setoFee(Double oFee) {
-		this.oFee = oFee;
+	public void setoDeadLine(String oDeadLine) {
+		this.oDeadLine = oDeadLine;
 	}
 
-	public Clob getoComment() {
+	public String getoOrderType() {
+		return oOrderType;
+	}
+
+	public void setoOrderType(String oOrderType) {
+		this.oOrderType = oOrderType;
+	}
+
+	public String getoComment() {
 		return oComment;
 	}
 
-	public void setoComment(Clob oComment) {
+	public void setoComment(String oComment) {
 		this.oComment = oComment;
 	}
 
@@ -133,12 +143,54 @@ public class OrderBean {
 		this.oRanking = oRanking;
 	}
 
-	public Set<OrderItemBean> getItems() {
+	public String getoOrderStatus() {
+		return oOrderStatus;
+	}
+
+	public void setoOrderStatus(String oOrderStatus) {
+		this.oOrderStatus = oOrderStatus;
+	}
+
+	public List<OrderItemBean> getItems() {
 		return items;
 	}
 
-	public void setItems(Set<OrderItemBean> items) {
+	public void setItems(List<OrderItemBean> items) {
 		this.items = items;
 	}
 
+//	@Override
+//	public String toString() {
+//		StringBuilder builder = new StringBuilder();
+//		builder.append("OrderBean [oId=");
+//		builder.append(oId);
+//		builder.append(", mId=");
+//		builder.append(mId);
+//		builder.append(", oShippingAddress=");
+//		builder.append(oShippingAddress);
+//		builder.append(", oDestinationAddress=");
+//		builder.append(oDestinationAddress);
+//		builder.append(", oTime=");
+//		builder.append(oTime);
+//		builder.append(", oFee=");
+//		builder.append(oFee);
+//		builder.append(", oPrice=");
+//		builder.append(oPrice);
+//		builder.append(", oDeadLine=");
+//		builder.append(oDeadLine);
+//		builder.append(", oOrderType=");
+//		builder.append(oOrderType);
+//		builder.append(", oComment=");
+//		builder.append(oComment);
+//		builder.append(", oRanking=");
+//		builder.append(oRanking);
+//		builder.append(", oOrderStatus=");
+//		builder.append(oOrderStatus);
+//		builder.append(", items=");
+//		builder.append(items);
+//		builder.append("]");
+//		return builder.toString();
+//	}
+
+	
 }

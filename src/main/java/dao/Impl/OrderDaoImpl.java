@@ -7,17 +7,12 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-
 import dao.OrderDao;
 import model.OrderBean;
 import model.OrderItemBean;
 
 @Repository
 public class OrderDaoImpl implements OrderDao {
-
-//	private static Logger log = LoggerFactory.getLogger(OrderDaoImpl.class);
 
 	SessionFactory factory;
 
@@ -27,9 +22,12 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	@Override
-	public void addOrder(OrderBean orderBean) {
+	public void addOrder(OrderBean ob) {
 		Session session = factory.getCurrentSession();
-		session.save(orderBean);
+		for (OrderItemBean item : ob.getItems()) {
+			item.setOrderBean(ob);
+		}
+		session.save(ob);
 	}
 
 	@Override
@@ -47,6 +45,15 @@ public class OrderDaoImpl implements OrderDao {
 					  .setParameter("mid", mId)
 					  .getResultList();
 		return list;
+	}
+
+	@Override
+	public List<OrderBean> findAllOrders() {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM OrderBean";
+		List<OrderBean> beans = session.createQuery(hql, OrderBean.class)
+									  .getResultList();
+		return beans;
 	}
 
 }

@@ -2,7 +2,6 @@ package service;
 
 import java.util.List;
 
-
 import model.OrderBean;
 
 
@@ -14,4 +13,5 @@ public interface OrderService {
 
 	List<OrderBean> findByMemberId(Integer mId);
 	
+	List<OrderBean> findAllOrders();
 }
