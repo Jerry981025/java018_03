@@ -4,8 +4,8 @@ $(document).ready(() => {
 	getMemberDetail()
 	$('#c19').click(() => {
 		content = null
-		$('#c19').attr('src', `data:image/jpeg;base64, ${originalcontent}`)
-		$('#member_picture').attr('src', `data:image/jpeg;base64, ${originalcontent}`)
+		$('#c19').attr('src', originalcontent)
+		$('#member_picture').attr('src', originalcontent)
 	})
 	$('#c20').click(() => {
 		if ($('#file')) {
@@ -22,9 +22,9 @@ function getMemeberPicture(Id) {
 		})
 		.then((res) => {
 			console.log(res.data)
-			originalcontent = res.data
-			$('#c19').attr('src', `data:image/jpeg;base64, ${res.data}`)
-			$('#member_picture').attr('src', `data:image/jpeg;base64, ${res.data}`)
+			originalcontent = `data:${res.data.mineType};base64, ${res.data.base64}`
+			$('#c19').attr('src', originalcontent)
+			$('#member_picture').attr('src', originalcontent)
 		})
 		.catch()
 }
@@ -119,18 +119,6 @@ function updatePicture(){
 		return;
 	}
 	axios.put('http://localhost:8080/java018_03/member',json,config)
-		.then((res) => {console.log(res.data);})
+		.then((res) => {console.log(res.data);getMemeberPicture($('#c2').text())})
 		.catch((error) => { console.error(error) })
 }
-
-function check(string) {
-    if(string.length % 2 == 0) {
-        const x = (string.length/2);
-    }
-    else {
-        const x = (string.length/2)-1;
-    }
-    const string2 = string.substring(0, x);
-}
-
-check(content);
