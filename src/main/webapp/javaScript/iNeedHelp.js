@@ -119,7 +119,7 @@ function createItems() {
 
   //quantity
   let quantityDiv = document.createElement('div')
-  quantityDiv.setAttribute('class', 'quantityDiv input-group mb-1 col-6')
+  quantityDiv.setAttribute('class', 'quantityDiv input-group mb-1')
 
   let quantitySpan = document.createElement('span')
   quantitySpan.setAttribute('class', 'quantitySpan input-group-text')
@@ -257,8 +257,8 @@ function initMeetingTime() {
   meetingTime.value = formatTime
   meetingTime.min = formatTime
 }
-
-function paymentPage() { // newkni
+//選擇付款方式
+function paymentPage() { 
   // $('.mission').hide()
   // $('.payment').show()
   let oShippingAddress = input1.value
@@ -270,20 +270,20 @@ function paymentPage() { // newkni
   let oOrderType = document.querySelector('#radio').value
   let oComment = document.querySelector('#talk').value
 
-  oShippingAddress = '台灣台北市中正區承德路一段台北車站'
-  oDestinationAddress = '台灣新北市板橋區縣民大道二段板橋火車站'
-  oFee = 50
-  oPrice = 200
-  oOrderType = '代買'
-  oComment = '================@@@@@@@@@@@@@@@@'
+  // oShippingAddress = '台灣台北市中正區承德路一段台北車站'
+  // oDestinationAddress = '台灣新北市板橋區縣民大道二段板橋火車站'
+  // oFee = 50
+  // oPrice = 200
+  // oOrderType = '代買'
+  // oComment = '================@@@@@@@@@@@@@@@@'
   let items = []
   for (let j = 0; j < i; j++) {
     let brand = document.querySelector(`#brand${j}`).value
     let detail = document.querySelector(`#detail${j}`).value
     let quantity = document.querySelector(`#quantity${j}`).value
-    brand = '義美小泡芙'
-    detail = '巧克力'
-    quantity = 5
+    // brand = '義美小泡芙'
+    // detail = '巧克力'
+    // quantity = 5
     items.push({
       oBrand: brand,
       oDetail: detail,

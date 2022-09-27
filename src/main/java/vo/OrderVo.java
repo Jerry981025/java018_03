@@ -13,7 +13,6 @@ public class OrderVo {
 	private String oOrderType;
 	private String oComment;
 	private List<OrderItemBean> item;
-//	private List<String> favoriateColor;
 
 	public OrderVo() {
 	}

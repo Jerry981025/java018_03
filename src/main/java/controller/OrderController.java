@@ -1,5 +1,7 @@
 package controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,7 @@ public class OrderController {
 	@PostMapping(value = "/add", produces = { "application/json; charset=UTF-8" })
 	public @ResponseBody void addOrder(@RequestBody() OrderVo params) {
 		System.out.println(params);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		OrderBean bean = new OrderBean();
 		bean.setmId(001);
 		bean.setoShippingAddress(params.getoShippingAddress());
@@ -41,26 +44,27 @@ public class OrderController {
 		bean.setoDeadLine(params.getoDeadLine());
 		bean.setoOrderType(params.getoOrderType());
 		bean.setoComment(params.getoComment());
-		bean.setoRanking("3");
-		bean.setoTime(params.getoDeadLine());
+		bean.setoRanking(0);
+		bean.setoTime(sdf.format(new Date()));
 		bean.setoOrderStatus("未完成");
 		bean.setItems(params.getItem());
 		orderService.addOrder(bean);
 	}
 	
 	@GetMapping("/list")
-	public @ResponseBody String orderListById(
-			@RequestParam(name = "mId", defaultValue = "1") Integer id,Model model) {
+	public @ResponseBody List<OrderBean> orderListById(
+			@RequestParam(name = "mId", defaultValue = "1") Integer id,Model model
+			) {
 		MemberBean memberBean = new MemberBean();
-		List<OrderBean> memberOrders = orderService.findByMemberId(memberBean.getmId());
 		memberBean.setmId(1);
-		System.out.println(memberBean);
-		model.addAttribute("memberOrders", memberOrders);
-		return "orderList";
+		List<OrderBean> memberOrders = orderService.findByMemberId(memberBean.getmId());
+//		System.out.println(memberBean);
+//		model.addAttribute("memberOrders", memberOrders);
+		return memberOrders;
 	}
 	
 	@GetMapping("/allOrders")
-	public @ResponseBody List<OrderBean> orderList(Model model) {
+	public @ResponseBody List<OrderBean> orderList() {
 		List<OrderBean> list = orderService.findAllOrders();
 //		model.addAttribute("allOrders", list);
 		System.out.println(list);

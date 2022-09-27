@@ -11,6 +11,8 @@
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <!-- JQuery 導入程式 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js"></script>
+
     <!-- 連結內容CSS -->
     <!-- <link rel="stylesheet" href="#"> -->
     <!-- 連結內容JS -->
@@ -18,27 +20,23 @@
     <script>
          $(document).ready(function(){           
             $('#loadButton').click(function(){
-                fetch('http://localhost:8080/java018_03/order/allOrders').then(res => res.json()).then(res => {
-                // fetch('http://localhost:8080/java018_03/order/allOrders',
-                // { method: 'GET', headers: { 'content-type': 'application/json' }}).then(res => {
-                    // res = JSON.stringify(res)
-                    console.log(res);
-                    console.log(`${res[1].oId}`);
-                    // console.log(res.data);
-                    
-                    let orderList = ``
-                    // for(let i = 0; i < res.length; i++){
-                    //     orderList += `
-                    //         <div class="list">
-                    //             <a href="${res[i].url}">
-                    //                 <img src="${res[i].image}">
+                axios.get('http://localhost:8080/java018_03/order/allOrders').then(res => {
+                    // console.log(res);
+                    console.log(res.data);
+
+                    // let nodeList = ``   
+                    // for(let i = 0; i < books.length; i++){
+                    //     nodeList += `
+                    //         <div class="book">
+                    //             <a href="${books[i].url}">
+                    //                 <img src="${books[i].image}">
                     //             </a>
-                    //             <h1>${res[i].title}</h1>
-                    //             <p>${res[i].author}</p>
+                    //             <h1>${books[i].title}</h1>
+                    //             <p>${books[i].author}</p>
                     //         </div>
                     //     `
                     // }
-                    // $('#feedback').append(orderList)
+                    // $('#feedback').append(nodeList)
                 })
             })
         })
