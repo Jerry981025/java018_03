@@ -67,13 +67,7 @@ function createAddressOption(addressBeans) {
 	});
 	$('#c8').html(addressOption)
 }
-function createVisaOption(visaBeans) {
-	let visaOption = "";
-	visaBeans.forEach(visaBean => {
-		visaOption += `<option value='${visaBean.aId}'>****-****-****-${visaBean.vAccount.substr(-4, 4)}</option>\n`
-	});
-	$('#c13').html(visaOption)
-}
+
 function setMemberDetail(resJson) {
 	$('#c1').text(resJson.mFirstName + resJson.mLastName)
 	$('#c14').text(resJson.mFirstName + resJson.mLastName)
@@ -91,8 +85,6 @@ function setMemberDetail(resJson) {
 	$('#c9').text(resJson.mCellphone)
 	$('#c10').text(resJson.mPhone)
 	$('#c11').text(`****-****-****-${resJson.mBank.substr(-4, 4)}`)
-	$('#c12').text(`****-****-****-${resJson.vPref.substr(-4, 4)}`)
-	createVisaOption(resJson.visaBeans)
 }
 
 function readFile(event) {
