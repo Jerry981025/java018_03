@@ -12,6 +12,193 @@ $(document).ready(() => {
 			$('#file').click()
 		}
 	})
+
+	// 修改生日
+let birthdayUpdateConfirm = $('#birthdayUpdateConfirm')
+let birthdayUpdateCancel = $('#birthdayUpdateCancel')
+let burthdayUpdate = $('#birthdayUpdate')
+let newBirthday = $('#newBirthday')
+let originBirthday
+$('#birthdayUpdate').click(function () {
+	$('#c6').css('display','none')
+	newBirthday.css('display','block')
+	console.log(originBirthday)
+	this.style.display = 'none'
+	birthdayUpdateConfirm.css('display','block')
+	birthdayUpdateCancel.css('display','block')
+})
+
+// 確認修改生日
+birthdayUpdateConfirm.click(function(){
+	// $('#c6').text(newBirthday.text())
+	$('#birthday').css('display','block').text(newBirthday.val())
+	newBirthday.css('display','none')
+	originBirthday = newBirthday.val()
+
+	burthdayUpdate.css('display','block')
+	birthdayUpdateConfirm.css('display','none')
+	birthdayUpdateCancel.css('display','none')
+})
+
+// 取消修改生日
+birthdayUpdateCancel.click(function(){
+	$('#c6').css('display','block').text(originBirthday)
+	newBirthday.css('display','none')
+	burthdayUpdate.css('display','block')
+	birthdayUpdateConfirm.css('display','none')
+	birthdayUpdateCancel.css('display','none')
+})
+
+// 設為常用地址
+let saveAddress = ''
+$('#setCommonAddress').click(function(){
+	saveAddress = $('#saveAddress option:selected').text()
+	$('#commonAddress').text(saveAddress)
+})
+
+// 刪除地址
+$('#dropAddress').click(function(){
+	if($('#commonAddress').text() == $('#saveAddress option:selected').text()){
+		$('#commonAddress').text('')
+	}
+	$('#saveAddress option:selected').remove()
+	if($('#saveAddress option:selected').text() == null || $('#saveAddress option:selected').text() == ''){
+		$('#saveAddress').css('display','none')
+		$('#setCommonAddress').css('display','none')
+		$('#dropAddress').css('display','none')
+	} 
+})
+
+// 新增地址
+$('#addAdress').click(function(){
+	$('#newAddress').css('display','block')
+	$('#newAddressConfirm').css('display','block')
+	$('#newAddressCancel').css('display','block')
+})
+
+// 新增地址確認
+$('#newAddressConfirm').click(function(){
+	$('#newAddress').css('display','none')
+	$('#newAddressConfirm').css('display','none')
+	$('#newAddressCancel').css('display','none')
+
+	let newAddress = `<option>`
+	newAddress += $('#newAddress').val()
+	newAddress += `</option>`
+	$('#newAddress').val(``)
+	$('#saveAddress').append(newAddress)
+
+	
+	$('#saveAddress').css('display','block')
+	$('#setCommonAddress').css('display','block')
+	$('#dropAddress').css('display','block')
+	
+})
+
+// 新增地址取消
+$('#newAddressCancel').click(function(){
+	$('#newAddress').css('display','none').val(``)
+	$('#newAddressConfirm').css('display','none')
+	$('#newAddressCancel').css('display','none')
+})
+
+// 修改家用電話
+let phoneUpdate = $('#phoneUpdate')
+let phoneUpdateConfirm = $('#phoneUpdateConfirm')
+let phoneUpdateCancel = $('#phoneUpdateCancel')
+let newPhone = $('#newPhone')
+let phone = $('#c10')
+$('#phoneUpdate').click(function(){
+	phone.css('display','none')
+	newPhone.css('display','block')
+	phoneUpdate.css('display','none')
+	phoneUpdateConfirm.css('display','block')
+	phoneUpdateCancel.css('display','block')
+})
+
+// 確認修改家用電話
+phoneUpdateConfirm.click(function(){
+	phone.css('display','block').text(newPhone.val())
+	newPhone.css('display','none').val(``)
+	phoneUpdate.css('display','block')
+	phoneUpdateConfirm.css('display','none')
+	phoneUpdateCancel.css('display','none')
+})
+
+// 取消修改家用電話
+phoneUpdateCancel.click(function(){
+	phone.css('display','block')
+	newPhone.css('display','none').val(``)
+	phoneUpdate.css('display','block')
+	phoneUpdateConfirm.css('display','none')
+	phoneUpdateCancel.css('display','none')
+})
+
+// 修改行動電話
+let cellPhoneUpdate = $('#c12')
+let cellPhoneUpdateConfirm = $('#c13')
+let cellPhoneUpdateCancel = $('#c21')
+let newCellPhone = $('#newCellPhone')
+let cellPhone = $('#c9')
+$('#c12').click(function(){
+	cellPhone.css('display','none')
+	newCellPhone.css('display','block')
+	cellPhoneUpdate.css('display','none')
+	cellPhoneUpdateConfirm.css('display','block')
+	cellPhoneUpdateCancel.css('display','block')
+})
+
+// 確認修改家用電話
+cellPhoneUpdateConfirm.click(function(){
+	cellPhone.css('display','block').text(newPhone.val())
+	newCellPhone.css('display','none').val(``)
+	cellPhoneUpdate.css('display','block')
+	cellPhoneUpdateConfirm.css('display','none')
+	cellPhoneUpdateCancel.css('display','none')
+})
+
+// 取消修改家用電話
+cellPhoneUpdateCancel.click(function(){
+	phone.css('display','block')
+	newCellPhone.css('display','none').val(``)
+	cellPhoneUpdate.css('display','block')
+	cellPhoneUpdateConfirm.css('display','none')
+	cellPhoneUpdateCancel.css('display','none')
+})
+
+// 修改行動電話
+let bankUpdate = $('#c23')
+let bankConfirm = $('#c24')
+let bankCancel = $('#c25')
+let newbank = $('#c22')
+let bank = $('#c11')
+$('#c23').click(function(){
+	bank.css('display','none')
+	newbank.css('display','block')
+	bankUpdate.css('display','none')
+	bankConfirm.css('display','block')
+	bankCancel.css('display','block')
+})
+
+// 確認修改家用電話
+bankConfirm.click(function(){
+	bank.css('display','block').text(newPhone.val())
+	newbank.css('display','none').val(``)
+	bankUpdate.css('display','block')
+	bankConfirm.css('display','none')
+	bankCancel.css('display','none')
+})
+
+// 取消修改家用電話
+bankCancel.click(function(){
+	bank.css('display','block')
+	newbank.css('display','none').val(``)
+	bankUpdate.css('display','block')
+	bankConfirm.css('display','none')
+	bankCancel.css('display','none')
+})
+
+
 })
 
 function getMemeberPicture(Id) {
@@ -21,7 +208,6 @@ function getMemeberPicture(Id) {
 			params: { mId: Id }
 		})
 		.then((res) => {
-			console.log(res.data)
 			originalcontent = `data:${res.data.mineType};base64, ${res.data.base64}`
 			$('#c19').attr('src', originalcontent)
 			$('#member_picture').attr('src', originalcontent)
@@ -67,13 +253,7 @@ function createAddressOption(addressBeans) {
 	});
 	$('#c8').html(addressOption)
 }
-function createVisaOption(visaBeans) {
-	let visaOption = "";
-	visaBeans.forEach(visaBean => {
-		visaOption += `<option value='${visaBean.aId}'>****-****-****-${visaBean.vAccount.substr(-4, 4)}</option>\n`
-	});
-	$('#c13').html(visaOption)
-}
+
 function setMemberDetail(resJson) {
 	$('#c1').text(resJson.mFirstName + resJson.mLastName)
 	$('#c14').text(resJson.mFirstName + resJson.mLastName)
@@ -86,13 +266,12 @@ function setMemberDetail(resJson) {
 	rankingStar(resJson.mRank)
 	$('#c5').text(resJson.mEmail)
 	$('#c6').text(resJson.mBirth)
+	originBirthday = resJson.mBirth
 	$('#c7').text(resJson.mAddress)
 	createAddressOption(resJson.addressBeans)
 	$('#c9').text(resJson.mCellphone)
 	$('#c10').text(resJson.mPhone)
 	$('#c11').text(`****-****-****-${resJson.mBank.substr(-4, 4)}`)
-	$('#c12').text(`****-****-****-${resJson.vPref.substr(-4, 4)}`)
-	createVisaOption(resJson.visaBeans)
 }
 
 function readFile(event) {
@@ -101,11 +280,9 @@ function readFile(event) {
 	var reader = new FileReader();
 	reader.onload = function () {
 		content = reader.result;
-		console.log(content);
 		$('#member_picture').attr('src', content);
 	}
 	reader.readAsDataURL(files[0]);
-	// console.log(reader);
 	event.target.value = null;
 }
 
@@ -122,3 +299,5 @@ function updatePicture(){
 		.then((res) => {console.log(res.data);getMemeberPicture($('#c2').text())})
 		.catch((error) => { console.error(error) })
 }
+
+
