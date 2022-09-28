@@ -1,5 +1,6 @@
 let content
 let originalcontent
+let originBirthday
 $(document).ready(() => {
 	getMemberDetail()
 	$('#c19').click(() => {
@@ -14,189 +15,237 @@ $(document).ready(() => {
 	})
 
 	// 修改生日
-let birthdayUpdateConfirm = $('#birthdayUpdateConfirm')
-let birthdayUpdateCancel = $('#birthdayUpdateCancel')
-let burthdayUpdate = $('#birthdayUpdate')
-let newBirthday = $('#newBirthday')
-let originBirthday
-$('#birthdayUpdate').click(function () {
-	$('#c6').css('display','none')
-	newBirthday.css('display','block')
-	console.log(originBirthday)
-	this.style.display = 'none'
-	birthdayUpdateConfirm.css('display','block')
-	birthdayUpdateCancel.css('display','block')
-})
+	let birthdayUpdateConfirm = $('#birthdayUpdateConfirm')
+	let birthdayUpdateCancel = $('#birthdayUpdateCancel')
+	let burthdayUpdate = $('#birthdayUpdate')
+	let newBirthday = $('#newBirthday')
+	let errorBirthday = document.createElement('div')
+	errorBirthday.setAttribute('id','errorBirthday')
+	errorBirthday.setAttribute('style','color:red;')
+	errorBirthday.setAttribute('class','ms-3 pt-1')
+	$('#birthdayUpdate').click(function () {
+		$('#c6').css('display', 'none')
+		newBirthday.css('display', 'block')
+		this.style.display = 'none'
+		birthdayUpdateConfirm.css('display', 'block')
+		birthdayUpdateCancel.css('display', 'block')
+	})
 
-// 確認修改生日
-birthdayUpdateConfirm.click(function(){
-	// $('#c6').text(newBirthday.text())
-	$('#birthday').css('display','block').text(newBirthday.val())
-	newBirthday.css('display','none')
-	originBirthday = newBirthday.val()
+	// 確認修改生日
+	birthdayUpdateConfirm.click(function () {
+		// $('#c6').text(newBirthday.text())
+		let obj = { "mId": $('#c2').text(), "mBirthday": String(newBirthday.val()) };
+		let json = JSON.stringify(obj);
+		let config = {
+			headers: {
+				'content-type': 'application/json'
+			}
+		}
+		axios.put('http://localhost:8080/java018_03/memberBirthday', json, config)
+			.then((res) => {
+				if (res.data.BirthdayError != null) {
+					errorBirthday.innerText = res.data.BirthdayError
+					$('#birthdayrow').append(errorBirthday)
+				} else if ( res.data.success != null ){
+					$('#c6').css('display', 'block').text( String(newBirthday.val()))
+					newBirthday.css('display', 'none')
+					originBirthday = String(newBirthday.val())
+					burthdayUpdate.css('display', 'block')
+					birthdayUpdateConfirm.css('display', 'none')
+					birthdayUpdateCancel.css('display', 'none')
+				}
+			})
+			.catch((error) => { console.error(error) })
+	})
 
-	burthdayUpdate.css('display','block')
-	birthdayUpdateConfirm.css('display','none')
-	birthdayUpdateCancel.css('display','none')
-})
+	// 取消修改生日
+	birthdayUpdateCancel.click(function () {
+		$('#c6').css('display', 'block').text(originBirthday)
+		newBirthday.css('display', 'none')
+		burthdayUpdate.css('display', 'block')
+		birthdayUpdateConfirm.css('display', 'none')
+		birthdayUpdateCancel.css('display', 'none')
+		document.getElementById('birthdayrow').removeChild(document.getElementById('errorBirthday'))
+	})
 
-// 取消修改生日
-birthdayUpdateCancel.click(function(){
-	$('#c6').css('display','block').text(originBirthday)
-	newBirthday.css('display','none')
-	burthdayUpdate.css('display','block')
-	birthdayUpdateConfirm.css('display','none')
-	birthdayUpdateCancel.css('display','none')
-})
+	// 設為常用地址
+	let saveAddress
+	$('#setCommonAddress').click(function () {
+		saveAddress = $('#c8 option:selected').text()
+		let obj = { "mId": $('#c2').text(), "mAddress": saveAddress};
+		let json = JSON.stringify(obj);
+		let config = {
+			headers: {
+				'content-type': 'application/json'
+			}
+		}
+		axios.put('http://localhost:8080/java018_03/memberAddress', json, config)
+			.then((res) => {
+				console.log(res.data)
+				$('#c7').text(saveAddress)
+			})
+			.catch((error) => { console.error(error) })
+	})
 
-// 設為常用地址
-let saveAddress = ''
-$('#setCommonAddress').click(function(){
-	saveAddress = $('#saveAddress option:selected').text()
-	$('#commonAddress').text(saveAddress)
-})
+	// 刪除地址 
+	$('#dropAddress').click(function () {
+		saveAddress = $('#c8 option:selected').text()
+		let aId = $('#c8 option:selected').val()
+		let commonAddress = $('#c7').text()
+		let obj = { "mId": $('#c2').text(), "aId" : `${aId}`, "saveAddress": saveAddress , "commonAddress": commonAddress};
+		let json = JSON.stringify(obj);
+		let config = {
+			headers: {
+				'content-type': 'application/json'
+			}
+		}
+		console.log(json);
+		axios.delete('http://localhost:8080/java018_03/address', json, config)
+			.then((res) => {
+				if ($('#c7').text() == $('#c8 option:selected').text()) {
+					$('#c7').text('')
+				}
+				$('#c8 option:selected').remove()
+				if ($('#c8 option:selected').text() == null || $('#c8 option:selected').text() == '') {
+					$('#c8').css('display', 'none')
+					$('#setCommonAddress').css('display', 'none')
+					$('#dropAddress').css('display', 'none')
+				}
+			})
+			.catch((error) => { console.error(error) })
 
-// 刪除地址
-$('#dropAddress').click(function(){
-	if($('#commonAddress').text() == $('#saveAddress option:selected').text()){
-		$('#commonAddress').text('')
-	}
-	$('#saveAddress option:selected').remove()
-	if($('#saveAddress option:selected').text() == null || $('#saveAddress option:selected').text() == ''){
-		$('#saveAddress').css('display','none')
-		$('#setCommonAddress').css('display','none')
-		$('#dropAddress').css('display','none')
-	} 
-})
 
-// 新增地址
-$('#addAdress').click(function(){
-	$('#newAddress').css('display','block')
-	$('#newAddressConfirm').css('display','block')
-	$('#newAddressCancel').css('display','block')
-})
+		
+	})
 
-// 新增地址確認
-$('#newAddressConfirm').click(function(){
-	$('#newAddress').css('display','none')
-	$('#newAddressConfirm').css('display','none')
-	$('#newAddressCancel').css('display','none')
+	// 新增地址
+	$('#addAdress').click(function () {
+		$('#newAddress').css('display', 'block')
+		$('#newAddressConfirm').css('display', 'block')
+		$('#newAddressCancel').css('display', 'block')
+	})
 
-	let newAddress = `<option>`
-	newAddress += $('#newAddress').val()
-	newAddress += `</option>`
-	$('#newAddress').val(``)
-	$('#saveAddress').append(newAddress)
+	// 新增地址確認
+	$('#newAddressConfirm').click(function () {
+		$('#newAddress').css('display', 'none')
+		$('#newAddressConfirm').css('display', 'none')
+		$('#newAddressCancel').css('display', 'none')
 
-	
-	$('#saveAddress').css('display','block')
-	$('#setCommonAddress').css('display','block')
-	$('#dropAddress').css('display','block')
-	
-})
+		let newAddress = `<option>`
+		newAddress += $('#newAddress').val()
+		newAddress += `</option>`
+		$('#newAddress').val(``)
+		$('#saveAddress').append(newAddress)
 
-// 新增地址取消
-$('#newAddressCancel').click(function(){
-	$('#newAddress').css('display','none').val(``)
-	$('#newAddressConfirm').css('display','none')
-	$('#newAddressCancel').css('display','none')
-})
 
-// 修改家用電話
-let phoneUpdate = $('#phoneUpdate')
-let phoneUpdateConfirm = $('#phoneUpdateConfirm')
-let phoneUpdateCancel = $('#phoneUpdateCancel')
-let newPhone = $('#newPhone')
-let phone = $('#c10')
-$('#phoneUpdate').click(function(){
-	phone.css('display','none')
-	newPhone.css('display','block')
-	phoneUpdate.css('display','none')
-	phoneUpdateConfirm.css('display','block')
-	phoneUpdateCancel.css('display','block')
-})
+		$('#saveAddress').css('display', 'block')
+		$('#setCommonAddress').css('display', 'block')
+		$('#dropAddress').css('display', 'block')
 
-// 確認修改家用電話
-phoneUpdateConfirm.click(function(){
-	phone.css('display','block').text(newPhone.val())
-	newPhone.css('display','none').val(``)
-	phoneUpdate.css('display','block')
-	phoneUpdateConfirm.css('display','none')
-	phoneUpdateCancel.css('display','none')
-})
+	})
 
-// 取消修改家用電話
-phoneUpdateCancel.click(function(){
-	phone.css('display','block')
-	newPhone.css('display','none').val(``)
-	phoneUpdate.css('display','block')
-	phoneUpdateConfirm.css('display','none')
-	phoneUpdateCancel.css('display','none')
-})
+	// 新增地址取消
+	$('#newAddressCancel').click(function () {
+		$('#newAddress').css('display', 'none').val(``)
+		$('#newAddressConfirm').css('display', 'none')
+		$('#newAddressCancel').css('display', 'none')
+	})
 
-// 修改行動電話
-let cellPhoneUpdate = $('#c12')
-let cellPhoneUpdateConfirm = $('#c13')
-let cellPhoneUpdateCancel = $('#c21')
-let newCellPhone = $('#newCellPhone')
-let cellPhone = $('#c9')
-$('#c12').click(function(){
-	cellPhone.css('display','none')
-	newCellPhone.css('display','block')
-	cellPhoneUpdate.css('display','none')
-	cellPhoneUpdateConfirm.css('display','block')
-	cellPhoneUpdateCancel.css('display','block')
-})
+	// 修改家用電話
+	let phoneUpdate = $('#phoneUpdate')
+	let phoneUpdateConfirm = $('#phoneUpdateConfirm')
+	let phoneUpdateCancel = $('#phoneUpdateCancel')
+	let newPhone = $('#newPhone')
+	let phone = $('#c10')
+	$('#phoneUpdate').click(function () {
+		phone.css('display', 'none')
+		newPhone.css('display', 'block')
+		phoneUpdate.css('display', 'none')
+		phoneUpdateConfirm.css('display', 'block')
+		phoneUpdateCancel.css('display', 'block')
+	})
 
-// 確認修改家用電話
-cellPhoneUpdateConfirm.click(function(){
-	cellPhone.css('display','block').text(newPhone.val())
-	newCellPhone.css('display','none').val(``)
-	cellPhoneUpdate.css('display','block')
-	cellPhoneUpdateConfirm.css('display','none')
-	cellPhoneUpdateCancel.css('display','none')
-})
+	// 確認修改家用電話
+	phoneUpdateConfirm.click(function () {
+		phone.css('display', 'block').text(newPhone.val())
+		newPhone.css('display', 'none').val(``)
+		phoneUpdate.css('display', 'block')
+		phoneUpdateConfirm.css('display', 'none')
+		phoneUpdateCancel.css('display', 'none')
+	})
 
-// 取消修改家用電話
-cellPhoneUpdateCancel.click(function(){
-	phone.css('display','block')
-	newCellPhone.css('display','none').val(``)
-	cellPhoneUpdate.css('display','block')
-	cellPhoneUpdateConfirm.css('display','none')
-	cellPhoneUpdateCancel.css('display','none')
-})
+	// 取消修改家用電話
+	phoneUpdateCancel.click(function () {
+		phone.css('display', 'block')
+		newPhone.css('display', 'none').val(``)
+		phoneUpdate.css('display', 'block')
+		phoneUpdateConfirm.css('display', 'none')
+		phoneUpdateCancel.css('display', 'none')
+	})
 
-// 修改行動電話
-let bankUpdate = $('#c23')
-let bankConfirm = $('#c24')
-let bankCancel = $('#c25')
-let newbank = $('#c22')
-let bank = $('#c11')
-$('#c23').click(function(){
-	bank.css('display','none')
-	newbank.css('display','block')
-	bankUpdate.css('display','none')
-	bankConfirm.css('display','block')
-	bankCancel.css('display','block')
-})
+	// 修改行動電話
+	let cellPhoneUpdate = $('#c12')
+	let cellPhoneUpdateConfirm = $('#c13')
+	let cellPhoneUpdateCancel = $('#c21')
+	let newCellPhone = $('#newCellPhone')
+	let cellPhone = $('#c9')
+	$('#c12').click(function () {
+		cellPhone.css('display', 'none')
+		newCellPhone.css('display', 'block')
+		cellPhoneUpdate.css('display', 'none')
+		cellPhoneUpdateConfirm.css('display', 'block')
+		cellPhoneUpdateCancel.css('display', 'block')
+	})
 
-// 確認修改家用電話
-bankConfirm.click(function(){
-	bank.css('display','block').text(newPhone.val())
-	newbank.css('display','none').val(``)
-	bankUpdate.css('display','block')
-	bankConfirm.css('display','none')
-	bankCancel.css('display','none')
-})
+	// 確認修改家用電話
+	cellPhoneUpdateConfirm.click(function () {
+		cellPhone.css('display', 'block').text(newPhone.val())
+		newCellPhone.css('display', 'none').val(``)
+		cellPhoneUpdate.css('display', 'block')
+		cellPhoneUpdateConfirm.css('display', 'none')
+		cellPhoneUpdateCancel.css('display', 'none')
+	})
 
-// 取消修改家用電話
-bankCancel.click(function(){
-	bank.css('display','block')
-	newbank.css('display','none').val(``)
-	bankUpdate.css('display','block')
-	bankConfirm.css('display','none')
-	bankCancel.css('display','none')
-})
+	// 取消修改家用電話
+	cellPhoneUpdateCancel.click(function () {
+		phone.css('display', 'block')
+		newCellPhone.css('display', 'none').val(``)
+		cellPhoneUpdate.css('display', 'block')
+		cellPhoneUpdateConfirm.css('display', 'none')
+		cellPhoneUpdateCancel.css('display', 'none')
+	})
+
+	// 修改行動電話
+	let bankUpdate = $('#c23')
+	let bankConfirm = $('#c24')
+	let bankCancel = $('#c25')
+	let newbank = $('#c22')
+	let bank = $('#c11')
+	$('#c23').click(function () {
+		bank.css('display', 'none')
+		newbank.css('display', 'block')
+		bankUpdate.css('display', 'none')
+		bankConfirm.css('display', 'block')
+		bankCancel.css('display', 'block')
+	})
+
+	// 確認修改家用電話
+	bankConfirm.click(function () {
+		bank.css('display', 'block').text(newPhone.val())
+		newbank.css('display', 'none').val(``)
+		bankUpdate.css('display', 'block')
+		bankConfirm.css('display', 'none')
+		bankCancel.css('display', 'none')
+	})
+
+	// 取消修改家用電話
+	bankCancel.click(function () {
+		bank.css('display', 'block')
+		newbank.css('display', 'none').val(``)
+		bankUpdate.css('display', 'block')
+		bankConfirm.css('display', 'none')
+		bankCancel.css('display', 'none')
+	})
 
 
 })
@@ -275,9 +324,9 @@ function setMemberDetail(resJson) {
 }
 
 function readFile(event) {
-	
+
 	let files = event.target.files;
-	var reader = new FileReader();
+	let reader = new FileReader();
 	reader.onload = function () {
 		content = reader.result;
 		$('#member_picture').attr('src', content);
@@ -286,17 +335,19 @@ function readFile(event) {
 	event.target.value = null;
 }
 
-function updatePicture(){
+function updatePicture() {
 	let obj = { "mId": $('#c2').text(), "mPicture": content };
-  	let json = JSON.stringify(obj);
-	let config = {headers: {
-		'content-type': 'application/json'
-	}}
-	if(content == null){
+	let json = JSON.stringify(obj);
+	let config = {
+		headers: {
+			'content-type': 'application/json'
+		}
+	}
+	if (content == null) {
 		return;
 	}
-	axios.put('http://localhost:8080/java018_03/member',json,config)
-		.then((res) => {console.log(res.data);getMemeberPicture($('#c2').text())})
+	axios.put('http://localhost:8080/java018_03/memberPicture', json, config)
+		.then((res) => { getMemeberPicture($('#c2').text()) })
 		.catch((error) => { console.error(error) })
 }
 
