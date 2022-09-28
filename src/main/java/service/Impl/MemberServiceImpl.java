@@ -38,4 +38,10 @@ public class MemberServiceImpl implements MemberService {
 	public MemberBean findByEmail(String mEmail) {
 		return memberDao.findByEmail(mEmail);
 	}
+
+	@Override
+	public void updateDetail(MemberBean memberBean) {
+		memberDao.updateDetail(memberBean);
+	}
+
 }

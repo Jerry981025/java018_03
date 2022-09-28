@@ -1,10 +1,16 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "orders")
@@ -22,18 +28,18 @@ public class OrderBean {
 	private String oDeadLine;
 	private String oOrderType;
 	private String oComment;
-	private String oRanking;
+	private Integer oRanking;
+	private String oOrderStatus;
 	
 	public OrderBean() {
 	}
 	
-//	@OneToMany(mappedBy="orderBean", cascade=CascadeType.ALL)
-//	Set<OrderItemBean> items = new HashSet<>();
+	@OneToMany(mappedBy="orderBean", cascade = CascadeType.ALL)
+	List<OrderItemBean> items = new ArrayList<>();
 
 	public OrderBean(Integer oId, Integer mId, String oShippingAddress, String oDestinationAddress, String oTime,
-			Integer oFee, Integer oPrice, String oDeadLine, String oOrderType, String oComment, String oRanking
-//			Set<OrderItemBean> items
-			) {
+			Integer oFee, Integer oPrice, String oDeadLine, String oOrderType, String oComment, Integer oRanking,
+			String oOrderStatus, List<OrderItemBean> items) {
 		this.oId = oId;
 		this.mId = mId;
 		this.oShippingAddress = oShippingAddress;
@@ -45,7 +51,8 @@ public class OrderBean {
 		this.oOrderType = oOrderType;
 		this.oComment = oComment;
 		this.oRanking = oRanking;
-//		this.items = items;
+		this.oOrderStatus = oOrderStatus;
+		this.items = items;
 	}
 
 	public Integer getoId() {
@@ -124,57 +131,32 @@ public class OrderBean {
 		return oComment;
 	}
 
-	public void setoComment(String string) {
-		this.oComment = string;
+	public void setoComment(String oComment) {
+		this.oComment = oComment;
 	}
 
-	public String getoRanking() {
+	public Integer getoRanking() {
 		return oRanking;
 	}
 
-	public void setoRanking(String oRanking) {
+	public void setoRanking(Integer oRanking) {
 		this.oRanking = oRanking;
 	}
 
-//	public Set<OrderItemBean> getItems() {
-//		return items;
-//	}
-//
-//	public void setItems(Set<OrderItemBean> items) {
-//		this.items = items;
-//	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("OrderBean [oId=");
-		builder.append(oId);
-		builder.append(", mId=");
-		builder.append(mId);
-		builder.append(", oShippingAddress=");
-		builder.append(oShippingAddress);
-		builder.append(", oDestinationAddress=");
-		builder.append(oDestinationAddress);
-		builder.append(", oTime=");
-		builder.append(oTime);
-		builder.append(", oFee=");
-		builder.append(oFee);
-		builder.append(", oPrice=");
-		builder.append(oPrice);
-		builder.append(", oDeadLine=");
-		builder.append(oDeadLine);
-		builder.append(", oOrderType=");
-		builder.append(oOrderType);
-		builder.append(", oComment=");
-		builder.append(oComment);
-		builder.append(", oRanking=");
-		builder.append(oRanking);
-//		builder.append(", items=");
-//		builder.append(items);
-//		builder.append("]");
-		return builder.toString();
+	public String getoOrderStatus() {
+		return oOrderStatus;
 	}
 
-	
+	public void setoOrderStatus(String oOrderStatus) {
+		this.oOrderStatus = oOrderStatus;
+	}
+
+	public List<OrderItemBean> getItems() {
+		return items;
+	}
+
+	public void setItems(List<OrderItemBean> items) {
+		this.items = items;
+	}
 
 }

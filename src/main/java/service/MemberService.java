@@ -8,4 +8,7 @@ public interface MemberService {
 	
 	MemberBean findByMId(Integer mId);
 	MemberBean findByEmail(String mEmail);
+
+	void updateDetail(MemberBean memberBean);
+
 }

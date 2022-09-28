@@ -10,4 +10,8 @@ public interface MemberDao {
 	
 	MemberBean findByMId(Integer mid);
 	MemberBean findByEmail(String email);
+
+
+	void updateDetail(MemberBean memberBean);
+
 }

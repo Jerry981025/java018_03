@@ -119,7 +119,7 @@ function createItems() {
 
   //quantity
   let quantityDiv = document.createElement('div')
-  quantityDiv.setAttribute('class', 'quantityDiv input-group mb-1 col-6')
+  quantityDiv.setAttribute('class', 'quantityDiv input-group mb-1')
 
   let quantitySpan = document.createElement('span')
   quantitySpan.setAttribute('class', 'quantitySpan input-group-text')
@@ -257,8 +257,8 @@ function initMeetingTime() {
   meetingTime.value = formatTime
   meetingTime.min = formatTime
 }
-
-function paymentPage() { // newkni
+//選擇付款方式
+function paymentPage() { 
   // $('.mission').hide()
   // $('.payment').show()
   let oShippingAddress = input1.value
@@ -285,9 +285,9 @@ function paymentPage() { // newkni
     // detail = '巧克力'
     // quantity = 5
     items.push({
-      brand: brand,
-      detail: detail,
-      quantity: quantity,
+      oBrand: brand,
+      oDetail: detail,
+      oQuantity: quantity,
     })
   }
 
@@ -301,12 +301,12 @@ function paymentPage() { // newkni
   let body = {
     // favoriateColor: ['black', 'moroon', 'green', 'gray', 'white'],
     oShippingAddress: oShippingAddress,
-    oDestinationAddress: `${oDestinationAddress}`,
-    oFee: `${oFee}`,
-    oPrice: `${oPrice}`,
-    oDeadLine: `${oDeadLine}`,
-    oOrderType: `${oOrderType}`,
-    oComment: `${oComment}`,
+    oDestinationAddress: oDestinationAddress,
+    oFee: oFee,
+    oPrice: oPrice,
+    oDeadLine: oDeadLine,
+    oOrderType: oOrderType,
+    oComment: oComment,
     item: items
     // car: cars
   }

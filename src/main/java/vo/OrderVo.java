@@ -1,8 +1,10 @@
-package model;
+package vo;
 
 import java.util.List;
 
-public class KullaVO {
+import model.OrderItemBean;
+
+public class OrderVo {
 	private String oShippingAddress;
 	private String oDestinationAddress;
 	private Integer oFee;
@@ -10,10 +12,9 @@ public class KullaVO {
 	private String oDeadLine;
 	private String oOrderType;
 	private String oComment;
-	private List<Item> item;
-//	private List<String> favoriateColor;
+	private List<OrderItemBean> item;
 
-	public KullaVO() {
+	public OrderVo() {
 	}
 
 	public String getoShippingAddress() {
@@ -72,18 +73,19 @@ public class KullaVO {
 		this.oComment = oComment;
 	}
 
-	public List<Item> getItem() {
+
+	public List<OrderItemBean> getItem() {
 		return item;
 	}
 
-	public void setItem(List<Item> item) {
+	public void setItem(List<OrderItemBean> item) {
 		this.item = item;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("KullaVO [oShippingAddress=");
+		builder.append("OrderVo [oShippingAddress=");
 		builder.append(oShippingAddress);
 		builder.append(", oDestinationAddress=");
 		builder.append(oDestinationAddress);
@@ -102,24 +104,7 @@ public class KullaVO {
 		builder.append("]");
 		return builder.toString();
 	}
-
+	
+	
 }
 
-class Item {
-	private String brand;
-	private String detail;
-	private Integer quantity;
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Product [brand=");
-		builder.append(brand);
-		builder.append(", detail=");
-		builder.append(detail);
-		builder.append(", quantity=");
-		builder.append(quantity);
-		builder.append("]");
-		return builder.toString();
-	}
-}

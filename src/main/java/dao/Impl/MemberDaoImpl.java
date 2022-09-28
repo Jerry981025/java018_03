@@ -79,4 +79,11 @@ public class MemberDaoImpl implements MemberDao {
 		} 
 		return mb;
 	}
+	
+	@Override
+	public void updateDetail(MemberBean memberBean) {
+		Session session = factory.getCurrentSession();
+		session.update(memberBean);
+	}
+
 }
