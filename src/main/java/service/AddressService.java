@@ -2,6 +2,7 @@ package service;
 
 public interface AddressService {
 
-	void deleteAddress(int mId, int aId);
+	void deleteAddress(int aId);
 
+	int saveAddress(Integer mId, String address);
 }

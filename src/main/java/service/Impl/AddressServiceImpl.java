@@ -11,15 +11,20 @@ import service.AddressService;
 @Transactional
 public class AddressServiceImpl implements AddressService {
 
-	AddressDao AddressDao;
+	AddressDao addressDao;
 	
 	@Autowired
-	public AddressServiceImpl(dao.AddressDao addressDao) {
-		AddressDao = addressDao;
+	public AddressServiceImpl(AddressDao addressDao) {
+		this.addressDao = addressDao;
 	}
 
 	@Override
-	public void deleteAddress(int mId, int aId) {
-		AddressDao.deleteAddress(mId, aId);
+	public void deleteAddress(int aId) {
+		addressDao.deleteAddress(aId);
+	}
+
+	@Override
+	public int saveAddress(Integer mId, String address) {
+		return addressDao.saveAddress(mId, address);
 	}
 }

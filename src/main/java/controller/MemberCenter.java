@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -66,9 +67,7 @@ public class MemberCenter {
 		String base64 = null;
 		byte[] b = null;
 		try {
-			b = blob.getBytes(1, (int) blob.length());
-			mineType = bean.getmMineType();
-			if (b.length == 1 || b.length == 0) {
+			if (blob == null || blob.length() == 0) {
 				try (FileInputStream fis = new FileInputStream(file)) {
 					b = new byte[(int) file.length()];
 					fis.read(b);
@@ -78,6 +77,9 @@ public class MemberCenter {
 					e.printStackTrace();
 					e.getMessage();
 				}
+			} else {
+				b = blob.getBytes(1, (int) blob.length());
+				mineType = bean.getmMineType();
 			}
 			base64 = Base64.getEncoder().encodeToString(b);
 		} catch (SQLException e) {
@@ -180,13 +182,11 @@ public class MemberCenter {
 	}
 
 	@DeleteMapping("/address")
-	public void deleteAddress(@RequestBody Map<String, String> maps) {
-		String strmId = maps.get("mId");
-		String straId = maps.get("aId");
-		int mId = Integer.valueOf(strmId);
-		int aId = Integer.valueOf(straId);
-		String saveAddress = maps.get("saveAddress");
-		String commonAddress = maps.get("commonAddress");
+	public @ResponseBody Map<String, String> deleteAddress(
+			@RequestParam(name = "mId",required = true)Integer mId,
+			@RequestParam(name = "aId",required = true)Integer aId,
+			@RequestParam(name = "saveAddress",required = true)String saveAddress,
+			@RequestParam(name = "commonAddress",required = true)String commonAddress) {
 		MemberBean memberBean = null;
 		Map<String, String> map = new HashMap<>();
 		if (saveAddress.equals(commonAddress)) {
@@ -200,7 +200,108 @@ public class MemberCenter {
 				map.put("fail", "更新失敗");
 			}
 		}
-		addressService.deleteAddress(mId, aId);
+		addressService.deleteAddress(aId);
+		return map;
+	}
+	
+	@PostMapping("/address")
+	public @ResponseBody Map<String, String> addAddress(@RequestBody Map<String, String> maps){
+		Map<String, String> map = new HashMap<>();
+		Integer mId = Integer.valueOf(maps.get("mId"));
+		String mAddress = maps.get("mAddress");
+		if (mAddress == null || mAddress.trim().length() == 0 ) {
+			map.put("fail", "請輸入地址");
+		}
+		if (map.isEmpty()) {
+				int n = addressService.saveAddress(mId, mAddress);
+				if( n == 1) {
+					
+					map.put("success", "更新成功");
+				} else {
+					map.put("fail", "更新失敗");
+				}
+		}
+		return map;
 	}
 
+	@PutMapping("/memberCellphone")
+	public @ResponseBody Map<String, String> updateCellphone(@RequestBody Map<String, String> maps) {
+		Map<String, String> map = new HashMap<>();
+		MemberBean memberBean = null;
+		Integer mId = Integer.valueOf(maps.get("mId"));
+		String mCellphone = maps.get("mCellphone");
+		if (mId != null) {
+			memberBean = memberService.findByMId(mId);
+		}
+		if (mCellphone.matches("^([0]{1}[9]{1}-?[0-9]{4}-?[0-9]{4})$")) {
+			memberBean.setmCellphone(mCellphone);
+		} else {
+			map.put("fail", "請輸入正確格式");
+		}
+
+		if (map.isEmpty()) {
+			try {
+				memberService.updateDetail(memberBean);
+				map.put("success", "更新成功");
+			} catch (Exception e) {
+				e.printStackTrace();
+				map.put("fail", "更新失敗");
+			}
+		}
+		return map;
+	}
+
+	@PutMapping("/memberPhone")
+	public @ResponseBody Map<String, String> updatePhone(@RequestBody Map<String, String> maps) {
+		Map<String, String> map = new HashMap<>();
+		MemberBean memberBean = null;
+		Integer mId = Integer.valueOf(maps.get("mId"));
+		String mphone = maps.get("mPhone");
+		if (mId != null) {
+			memberBean = memberService.findByMId(mId);
+		}
+		if (mphone.matches("^([0]{1}[0-9]{1}-?[0-9]{4}-?[0-9]{4})$")) {
+			memberBean.setmPhone(mphone);
+		} else {
+			map.put("fail", "請輸入正確格式");
+		}
+
+		if (map.isEmpty()) {
+			try {
+				memberService.updateDetail(memberBean);
+				map.put("success", "更新成功");
+			} catch (Exception e) {
+				e.printStackTrace();
+				map.put("fail", "更新失敗");
+			}
+		}
+		return map;
+	}
+	
+	@PutMapping("/memberBank")
+	public @ResponseBody Map<String, String> updateBank(@RequestBody Map<String, String> maps) {
+		Map<String, String> map = new HashMap<>();
+		MemberBean memberBean = null;
+		Integer mId = Integer.valueOf(maps.get("mId"));
+		String mBank = maps.get("mBank");
+		if (mId != null) {
+			memberBean = memberService.findByMId(mId);
+		}
+		if (mBank.matches("^([0-9]{10}|[0-9]{11}|[0-9]{12}|[0-9]{13}|[0-9]{14}|[0-9]{15}|[0-9]{16})$")) {
+			memberBean.setmBank(mBank);
+		} else {
+			map.put("fail", "請輸入10-16碼純數字格式");
+		}
+
+		if (map.isEmpty()) {
+			try {
+				memberService.updateDetail(memberBean);
+				map.put("success", "更新成功");
+			} catch (Exception e) {
+				e.printStackTrace();
+				map.put("fail", "更新失敗");
+			}
+		}
+		return map;
+	}
 }
