@@ -42,17 +42,16 @@ public class MemberBean implements Serializable{
 	private String mEarning;					// 收入
 	private String mRank;						// 評分等級
 	private String mCellphone;					// 手機號碼
+	private String mMineType;
 	@JsonIgnore
 	private Blob mPicture;						// 大頭照
 	private String vPref;						// 常用信用卡
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@Fetch(FetchMode.JOIN)
 	@JoinColumn(name = "mId")
 	private Set<AddressBean> addressBeans;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@Fetch(FetchMode.JOIN)
 	@JoinColumn(name = "mId")
 	private Set<VisaBean> visaBeans;
 	
@@ -60,7 +59,8 @@ public class MemberBean implements Serializable{
 
 	public MemberBean(Integer mId, String mAccount, String mPassword, String mFirstName, String mLastName,
 			String mEmail, String mAddress, Date mBirth, String mPhone, String mBank, String mEarning, String mRank,
-			String mCellphone, Blob mPicture, String vPref, Set<AddressBean> addressBeans, Set<VisaBean> visaBeans) {
+			String mCellphone, String mMineType, Blob mPicture, String vPref, Set<AddressBean> addressBeans,
+			Set<VisaBean> visaBeans) {
 		this.mId = mId;
 		this.mAccount = mAccount;
 		this.mPassword = mPassword;
@@ -74,6 +74,7 @@ public class MemberBean implements Serializable{
 		this.mEarning = mEarning;
 		this.mRank = mRank;
 		this.mCellphone = mCellphone;
+		this.mMineType = mMineType;
 		this.mPicture = mPicture;
 		this.vPref = vPref;
 		this.addressBeans = addressBeans;
@@ -182,6 +183,14 @@ public class MemberBean implements Serializable{
 
 	public void setmCellphone(String mCellphone) {
 		this.mCellphone = mCellphone;
+	}
+	
+	public String getmMineType() {
+		return mMineType;
+	}
+
+	public void setmMineType(String mMineType) {
+		this.mMineType = mMineType;
 	}
 
 	public Blob getmPicture() {
