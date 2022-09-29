@@ -34,7 +34,7 @@
             <!-- 手機版顯示 -->
             <div class="navbar-toggler border-0 p-0">
                 <div class="rounded-circle d-flex">
-                    <img class="rounded-circle" data-bs-toggle="collapse" data-bs-target="#offcanvas">
+                    <img id="c29" width="50" height="50" class="rounded-circle" data-bs-toggle="collapse" data-bs-target="#offcanvas">
                     <p id="c14" class="fs-1 py-2 ps-1 m-0" data-bs-toggle="collapse" data-bs-target="#offcanvas"></p>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                         <a class="nav-link" href="../ICanHelp/ICanHelp.html">我要幫忙(I can help!)</a>
                     </li>
                 </ul>
-                <img class="rounded-circle" style="height:40px; width:40px;" data-bs-toggle="offcanvas"
+                <img class="rounded-circle" id="c27" style="height:40px; width:40px;" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
             </div>
         </div>
@@ -105,7 +105,7 @@
             </div>
 
             <!-- 畫面右側 -->
-            <div class="col-lg-10 px-4 bg-light rounded-3">
+            <div class="col-lg-10  pe-0 bg-light rounded-3">
                 <h1 class="pt-3">會員基本資料</h1>
                 <hr>
                 <!-- 第一列 -->
@@ -153,14 +153,16 @@
                     <div class="col-3 col-lg-2">
                         <p class="p-0 m-0">生日:</p>
                     </div>
-                    <div class="col-5 d-flex" id="birthdayrow">
-                        <p id="c6" class="p-0 m-0"></p>
-                        <input style="display: none;" type="date" id="newBirthday">
-                        <a id="birthdayUpdate" class="ms-3" style="width: 35px;" href="javascript:;">修改</a>
-                        <a id="birthdayUpdateConfirm" class="ms-3 pt-1" style="width: 35px; display: none;"
-                            href="javascript:;">確認</a>
-                        <a id="birthdayUpdateCancel" class="ms-3 pt-1" style="width: 35px; display: none;"
-                            href="javascript:;">取消</a>
+                    <div class="col-9">
+                    	<div class="d-flex" id="birthdayrow">
+                        	<p id="c6" class="p-0 m-0"></p>
+                        	<input style="display: none;" type="date" id="newBirthday">
+                        	<a id="birthdayUpdate" class="ms-3" style="width: 35px;" href="javascript:;">修改</a>
+                        	<a id="birthdayUpdateConfirm" class="ms-3 pt-1" style="width: 35px; display: none;"
+                            	href="javascript:;">確認</a>
+                        	<a id="birthdayUpdateCancel" class="ms-3 pt-1" style="width: 35px; display: none;"
+                            	href="javascript:;">取消</a>
+                        </div>
                     </div>
                 </div>
                 <hr>
@@ -213,7 +215,7 @@
                         <a id="c12" class="ms-3" href="javascript:;">修改</a>
                         <a id="c13" class="ms-3 pt-1" style="width: 35px; display: none;"
                             href="javascript:;">確認</a>
-                        <a id="c21" class="ms-3 pt-1" style="width: 35px; display: none;"
+                        <a id="c26" class="ms-3 pt-1" style="width: 35px; display: none;"
                             href="javascript:;">取消</a>
                     </div>
                     <div class="col-3 col-lg-2">
@@ -255,7 +257,7 @@
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header pb-0">
             <div class="d-flex">
-                <img width="55" height="55" class="rounded-circle">
+                <img id="c28" width="55" height="55" class="rounded-circle">
                 <div class="ps-3">
                     <p id="c15" class="fs-4 p-0 m-0"></p>
                     <p class="fs-6 p-0 mb-2 text-secondary">會員編號#<label id="c17"></label></p>

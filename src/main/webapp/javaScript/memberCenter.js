@@ -6,6 +6,9 @@ $(document).ready(() => {
 	$('#c19').click(() => {
 		content = null
 		$('#c19').attr('src', originalcontent)
+		$('#c27').attr('src', originalcontent)
+		$('#c28').attr('src', originalcontent)
+		$('#c29').attr('src', originalcontent)
 		$('#member_picture').attr('src', originalcontent)
 	})
 	$('#c20').click(() => {
@@ -248,7 +251,7 @@ $(document).ready(() => {
 	// 修改行動電話
 	let cellPhoneUpdate = $('#c12')
 	let cellPhoneUpdateConfirm = $('#c13')
-	let cellPhoneUpdateCancel = $('#c21')
+	let cellPhoneUpdateCancel = $('#c26')
 	let newCellPhone = $('#newCellPhone')
 	let cellPhone = $('#c9')
 	let errorCellphone = document.createElement('div')
@@ -373,6 +376,9 @@ function getMemeberPicture(Id) {
 		.then((res) => {
 			originalcontent = `data:${res.data.mineType};base64, ${res.data.base64}`
 			$('#c19').attr('src', originalcontent)
+			$('#c27').attr('src', originalcontent)
+			$('#c29').attr('src', originalcontent)
+			$('#c28').attr('src', originalcontent)
 			$('#member_picture').attr('src', originalcontent)
 		})
 		.catch()
