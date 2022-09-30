@@ -31,69 +31,70 @@
     </nav>
 
     <div class="container">
-        <form action="">
-            <h1>會員註冊</h1>
-            <hr>
-            <!-- 姓名 -->
-            <div class="row">
-                <div class="col-sm-3 gy-4">
+        <h1>會員註冊</h1>
+        <hr>
+        <!-- 姓名 -->
+        <div class="row">
+            <div class="col-sm-3 gy-4">
+                <div id="lastNameRow" class="d-flex">
                     <label for="validationDefault01" class="form-label">姓氏</label>
-                    <input type="text" class="form-control" id="validationDefault01" placeholder="" required>
                 </div>
-                <div class="col-sm-3 p-1 gy-4">
+                <input type="text" class="form-control" id="lastName" placeholder="" required>
+            </div>
+            <div class="col-sm-3 gy-4">
+                <div id="firstNameRow" class="d-flex">
                     <label for="validationDefault02" class="form-label">名字</label>
-                    <input type="text" class="form-control" id="validationDefault02" placeholder="" required>
+                </div>
+                <input type="text" class="form-control" id="firstName" placeholder="" required>
+            </div>
+        </div>
+        <br>
+        <!-- 密碼 -->
+        <div class="row">
+            <div class="col-sm-6">
+                <label>密碼</label>
+                <div class="form-floating" id="passwordRow">
+                    <input type="password" class="form-control" placeholder="密碼" id="password" required>
+                    <label>輸入密碼</label>
                 </div>
             </div>
-            <br>
-            <!-- 密碼 -->
-            <div class="row">
-                <div class="col-sm-6">
-                    <label>密碼</label>
-                    <div class="form-floating">
-                        <input type="password" class="form-control" placeholder="密碼">
-                        <label>輸入密碼</label>
-                    </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-floating" id="CheckPasswordRow">
+                    <input type="password" class="form-control" placeholder="確認密碼" id="checkpassword" required>
+                    <label>確認密碼</label>
                 </div>
             </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-floating">
-                        <input type="password" class="form-control" placeholder="確認密碼">
-                        <label>確認密碼</label>
-                    </div>
-                </div>
+        </div>
+        <br>
+        <!-- 生日 -->
+        <div class="row">
+            <div class="col-sm-6" id="birthdayRow">
+                <label>生日</label>
+                <input type="date" placeholder="生日" class="form-control" id="birthday" required>
             </div>
-            <br>
-            <!-- 生日 -->
-            <div class="row">
-                <div class="col-sm-6">
-                    <label>生日</label>
-                    <input type="date" placeholder="生日" class="form-control" required>
-                </div>
-
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-6" id="emailRow">
+                <label for="inputEmail4" class="form-label">電子信箱</label>
+                <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
             </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-6">
-                    <label for="inputEmail4" class="form-label">電子信箱</label>
-                    <input type="email" class="form-control" id="inputEmail4" placeholder="name@example.com" required>
-                </div>
+        </div>
+        <br>
+        <!-- 第四列 -->
+        <div class="row">
+            <div class="col-sm-6" id="mobileRow">
+                <label>行動電話</label>
+                <input name="mobile" id="mobile" class="form-control" maxlength="10" placeholder="0912-345678" required>
             </div>
-            <br>
-            <!-- 第四列 -->
-            <div class="row">
-                <div class="col-sm-6">
-                    <label>行動電話</label>
-                    <input name="mobile" id="mobile" class="form-control" maxlength="10" placeholder="0912-345678"
-                        required>
-                </div>
-            </div>
-            <br>
-            <!-- 第五列 -->
-            <div class="row">
-                <div class="col-sm-6">
+        </div>
+        <br>
+        <!-- 第五列 -->
+        <div class="row">
+            <!-- <div class="col-sm-6">
                     <label for="inputArea" class="form-label">國家</label>
                     <input type="text" list="state" name="State" placeholder="請選擇..." class="form-control" required>
                     <datalist id="state">
@@ -101,52 +102,53 @@
                         <option value="美國">美國</option>
                         <option value="日本">日本</option>
                     </datalist>
-                </div>
+                </div>  -->
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-2">
+                <label for="inputZip" class="form-label">地址</label>
+                <input type="text" class="form-select" id="inputZip" placeholder="郵遞區號">
             </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-2">
-                    <label for="inputZip" class="form-label">地址</label>
-                    <input type="text" class="form-select" id="inputZip" placeholder="郵遞區號">
-                </div>
-                <div class="col-sm-4">
-                    <label for="inputArea" class="form-label">地區</label>
-                    <input type="text" list="area" name="Area" placeholder="請選擇地區" class="form-control" required>
-                    <datalist id="area">
-                        <option value="基隆市">基隆市</option>
-                        <option value="新北市">新北市</option>
-                        <option value="台北市">台北市</option>
-                        <option value="桃園市">桃園市</option>
-                        <option value="新竹縣">新竹縣</option>
-                        <option value="新竹市">新竹市</option>
-                        <option value="苗栗縣">苗栗縣</option>
-                        <option value="台中市">台中市</option>
-                        <option value="彰化縣">彰化縣</option>
-                        <option value="南投縣">南投縣</option>
-                        <option value="雲林縣">雲林縣</option>
-                        <option value="嘉義縣">嘉義縣</option>
-                        <option value="嘉義市">嘉義市</option>
-                        <option value="台南市">台南市</option>
-                        <option value="高雄市">高雄市</option>
-                        <option value="屏東縣">屏東縣</option>
-                        <option value="宜蘭縣">宜蘭縣</option>
-                        <option value="花蓮縣">花蓮縣</option>
-                        <option value="台東縣">台東縣</option>
-                        <option value="澎湖縣">澎湖縣</option>
-                        <option value="金門縣">金門縣</option>
-                        <option value="連江縣">連江縣</option>
-                    </datalist>
-                </div>
+            <div class="col-sm-4">
+                <label for="inputArea" class="form-label">地區</label>
+                <input id="inputAddress" type="text" list="address" name="Area" placeholder="請選擇地區" class="form-control"
+                    required>
+                <datalist id="address">
+                    <option value="基隆市">基隆市</option>
+                    <option value="新北市">新北市</option>
+                    <option value="台北市">台北市</option>
+                    <option value="桃園市">桃園市</option>
+                    <option value="新竹縣">新竹縣</option>
+                    <option value="新竹市">新竹市</option>
+                    <option value="苗栗縣">苗栗縣</option>
+                    <option value="台中市">台中市</option>
+                    <option value="彰化縣">彰化縣</option>
+                    <option value="南投縣">南投縣</option>
+                    <option value="雲林縣">雲林縣</option>
+                    <option value="嘉義縣">嘉義縣</option>
+                    <option value="嘉義市">嘉義市</option>
+                    <option value="台南市">台南市</option>
+                    <option value="高雄市">高雄市</option>
+                    <option value="屏東縣">屏東縣</option>
+                    <option value="宜蘭縣">宜蘭縣</option>
+                    <option value="花蓮縣">花蓮縣</option>
+                    <option value="台東縣">台東縣</option>
+                    <option value="澎湖縣">澎湖縣</option>
+                    <option value="金門縣">金門縣</option>
+                    <option value="連江縣">連江縣</option>
+                </datalist>
             </div>
-            <div class="row">
-                <div class="col-sm-6 p-2">
-                    <label></label>
-                    <input type="text" placeholder="路名街道巷弄名稱" class="form-control" required>
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 p-2 d-flex" id="addressRow">
+                <label></label>
+                <input type="text" placeholder="路名街道巷弄名稱" class="form-control" id="roadAddress" required>
             </div>
-            <br>
-            <!-- 第五列  驗証碼-->
-            <div class="vcode">
+        </div>
+        <br>
+        <!-- 第五列  驗証碼-->
+        <!-- <div class="vcode">
                 <div class="row">
                     <div class="col-sm-6" class="input_code" required>
                         <label for="inputCode">驗證碼：</label>
@@ -159,13 +161,13 @@
                     </div>
                 </div>
                 <input id="Button1" type="button" value="確定" />
-            </div>
+            </div> -->
     </div>
 
     <!-- 第六列 -->
     <div class="row">
         <div class="col-sm-6 p-2">
-            <input type="checkbox">
+            <input type="checkbox" required>
             <a href="../privacyPolicy/privacy.html" class="link-dark">我已閱讀，並同意隱私政策</a>
         </div>
     </div>
@@ -174,7 +176,7 @@
     <!-- 第七列 -->
     <div class="row">
         <div class="col-sm-4"></div>
-        <button type="submit" class="btn btn-primary">
+        <button class="btn btn-primary" id="register">
             送出
         </button>
     </div>
@@ -217,7 +219,8 @@
                             <a class="nav-link p-0 text-secondary fs-6" aria-current="page" href="#">使用者條款</a>
                         </li>
                         <li class="nav-item pt-1">
-                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page" href="../privacyPolicy/privacy.html">隱私權條款</a>
+                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
+                                href="../privacyPolicy/privacy.html">隱私權條款</a>
                         </li>
                         <li class="nav-item pt-1">
                             <a class="nav-link p-0 text-secondary fs-6" aria-current="page" href="#">常見問題</a>
