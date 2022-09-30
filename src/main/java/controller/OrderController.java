@@ -56,7 +56,7 @@ public class OrderController {
 			@RequestParam(name = "mId", defaultValue = "1") Integer id,Model model
 			) {
 		MemberBean memberBean = new MemberBean();
-		memberBean.setmId(1);
+		memberBean.setmId(3);
 		List<OrderBean> memberOrders = orderService.findByMemberId(memberBean.getmId());
 //		System.out.println(memberBean);
 //		model.addAttribute("memberOrders", memberOrders);
