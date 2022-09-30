@@ -1,5 +1,8 @@
 package dao.Impl;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.persistence.NoResultException;
 
 import org.hibernate.Session;
@@ -36,6 +39,16 @@ public class MemberDaoImpl implements MemberDao {
 	public void updateDetail(MemberBean memberBean) {
 		Session session = factory.getCurrentSession();
 		session.update(memberBean);
+	}
+
+	@Override
+	public List<Integer> findMemberRankByStatus(String status) {
+		Session session = factory.getCurrentSession();
+		String hql = "SELECT oRanking From orders o WHERE o.oOrderStatus = :status";
+		List<Integer> ranks = session.createQuery(hql, Integer.class)
+									 .setParameter("status", status)
+									 .getResultList();
+		return ranks;
 	}
 
 }

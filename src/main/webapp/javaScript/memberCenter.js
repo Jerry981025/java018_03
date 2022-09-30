@@ -1,6 +1,7 @@
 let content
 let originalcontent
 let originBirthday
+let input1 = document.getElementById("newAddress");
 $(document).ready(() => {
 	getMemberDetail()
 	$('#c19').click(() => {
@@ -16,7 +17,6 @@ $(document).ready(() => {
 			$('#file').click()
 		}
 	})
-
 	// 修改生日
 	let birthdayUpdateConfirm = $('#birthdayUpdateConfirm')
 	let birthdayUpdateCancel = $('#birthdayUpdateCancel')
@@ -88,7 +88,7 @@ $(document).ready(() => {
 		}
 		axios.put('http://localhost:8080/java018_03/memberAddress', json, config)
 			.then((res) => {
-				if(res.data.success){
+				if (res.data.success) {
 					$('#c7').text(saveAddress)
 					alert(res.data.success)
 				}
@@ -104,14 +104,8 @@ $(document).ready(() => {
 		let obj = {
 			params: { "mId": $('#c2').text(), "aId": `${aId}`, "saveAddress": saveAddress, "commonAddress": commonAddress }
 		};
-		// let config = {
-		// 	headers: {
-		// 		'content-type': 'application/json'
-		// 	}
-		// }
 		axios.delete('http://localhost:8080/java018_03/address', obj)
 			.then((res) => {
-				console.log(res.data);
 				if (commonAddress == saveAddress) {
 					$('#c7').text('')
 				}
@@ -128,12 +122,6 @@ $(document).ready(() => {
 
 	})
 
-	// 新增地址
-	$('#addAdress').click(function () {
-		$('#newAddress').css('display', 'block')
-		$('#newAddressConfirm').css('display', 'block')
-		$('#newAddressCancel').css('display', 'block')
-	})
 
 	let errorAddress = document.createElement('div')
 	errorAddress.setAttribute('id', 'errorAddress')
@@ -152,24 +140,26 @@ $(document).ready(() => {
 		axios.post('http://localhost:8080/java018_03/address', json, config)
 			.then((res) => {
 				if (res.data.success != null) {
-					$('#newAddress').css('display', 'none')
-					$('#newAddressConfirm').css('display', 'none')
-					$('#newAddressCancel').css('display', 'none')
+					// $('#newAddress').css('display', 'none')
+					// $('#newAddressConfirm').css('display', 'none')
+					// $('#newAddressCancel').css('display', 'none')
 
-					let newAddress = `<option>`
-					newAddress += $('#newAddress').val()
-					newAddress += `</option>`
-					$('#newAddress').val(``)
-					$('#saveAddress').append(newAddress)
+					// let newAddress = `<option>`
+					// newAddress += $('#newAddress').val()
+					// newAddress += `</option>`
+					// $('#newAddress').val(``)
+					// $('#saveAddress').append(newAddress)
 
 
-					$('#saveAddress').css('display', 'block')
-					$('#setCommonAddress').css('display', 'block')
-					$('#dropAddress').css('display', 'block')
-					if (errorAddress != null) {
-						$('#errorAddress').remove();
-					}
-					getMemberDetail()
+					// $('#saveAddress').css('display', 'block')
+					// $('#setCommonAddress').css('display', 'block')
+					// $('#dropAddress').css('display', 'block')
+					// if (errorAddress != null) {
+					// 	$('#errorAddress').remove();
+					// }
+					// getMemberDetail()
+					window.location.reload()
+					alert(res.data.success)
 				} else {
 					errorAddress.innerText = res.data.fail
 					$('#addressRow').append(errorAddress)
@@ -182,13 +172,6 @@ $(document).ready(() => {
 
 
 
-	})
-
-	// 新增地址取消
-	$('#newAddressCancel').click(function () {
-		$('#newAddress').css('display', 'none').val(``)
-		$('#newAddressConfirm').css('display', 'none')
-		$('#newAddressCancel').css('display', 'none')
 	})
 
 	// 修改家用電話
@@ -395,8 +378,6 @@ function getMemberDetail() {
 
 function rankingStar(mRank) {
 	// 星等顯示
-	$('#c4 img').remove();
-	$('#offcanvasStarRating img').remove();
 	let starRating = $('#c4');
 	let offcanvasStarRating = $('#offcanvasStarRating');
 
@@ -474,4 +455,202 @@ function updatePicture() {
 		.catch((error) => { console.error(error) })
 }
 
+let myLatLng = { lat: 25.042563029213984, lng: 121.52015437660762 };
+let mapOptions = {
+  center: myLatLng,
+  zoom: 16,
+  mapTypeId: google.maps.MapTypeId.ROADMAP,
 
+  styles: [
+    {
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#f5f5f5"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.icon",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#616161"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.text.stroke",
+      "stylers": [
+        {
+          "color": "#f5f5f5"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative.land_parcel",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#bdbdbd"
+        }
+      ]
+    },
+    {
+      "featureType": "poi",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#eeeeee"
+        }
+      ]
+    },
+    {
+      "featureType": "poi",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#757575"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.business",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#e5e5e5"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "labels.text",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#9e9e9e"
+        }
+      ]
+    },
+    {
+      "featureType": "road",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#ffffff"
+        }
+      ]
+    },
+    {
+      "featureType": "road.arterial",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#757575"
+        }
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#dadada"
+        }
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#616161"
+        }
+      ]
+    },
+    {
+      "featureType": "road.local",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#9e9e9e"
+        }
+      ]
+    },
+    {
+      "featureType": "transit.line",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#e5e5e5"
+        }
+      ]
+    },
+    {
+      "featureType": "transit.station",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#eeeeee"
+        }
+      ]
+    },
+    {
+      "featureType": "water",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#c9c9c9"
+        }
+      ]
+    },
+    {
+      "featureType": "water",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#9e9e9e"
+        }
+      ]
+    }
+  ]
+};
+
+//create map
+let map = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
+
+//create a DirectionsService object to use the route method and get a result for our request
+let directionsService = new google.maps.DirectionsService();
+
+//create a DirectionsRenderer object which we will use to display the route
+let directionsDisplay = new google.maps.DirectionsRenderer();
+
+//bind the DirectionsRenderer to the map
+directionsDisplay.setMap(map);
+
+let autocomplete1 = new google.maps.places.Autocomplete(input1);
+	autocomplete1.bindTo('bounds', map);

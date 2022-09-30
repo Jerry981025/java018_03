@@ -52,7 +52,7 @@ public class MemberCenter {
 		if (mId == null || mId == 0) {
 			mId = (int) (Math.random() * 5) + 1;
 		}
-		return memberService.findByMId(mId);
+		return memberService.findByMId(3);
 	}
 
 	@GetMapping("/memberPicture")
@@ -290,7 +290,7 @@ public class MemberCenter {
 		if (mBank.matches("^([0-9]{10}|[0-9]{11}|[0-9]{12}|[0-9]{13}|[0-9]{14}|[0-9]{15}|[0-9]{16})$")) {
 			memberBean.setmBank(mBank);
 		} else {
-			map.put("fail", "請輸入10-16碼純數字格式");
+			map.put("fail", "請輸入10-16數字");
 		}
 
 		if (map.isEmpty()) {

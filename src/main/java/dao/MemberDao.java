@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import model.MemberBean;
 
 public interface MemberDao {
@@ -8,4 +10,5 @@ public interface MemberDao {
 
 	void updateDetail(MemberBean memberBean);
 
+	List<Integer> findMemberRankByStatus(String status);
 }
