@@ -60,18 +60,6 @@ public class OrderDaoImpl implements OrderDao {
 	public void updateOrderStatus(OrderBean ob) {
 		Session session = factory.getCurrentSession();
 		session.update(ob);
-		
-	}
-
-	@Override
-	public OrderBean findOrderByOId(Integer oId) {
-		Session session = factory.getCurrentSession();
-		OrderBean ob = null;
-		String hql = "FROM OrderBean ob WHERE ob.oId = :oId";
-		 ob = (OrderBean) session.createQuery(hql, OrderBean.class)
-				  			  			  .setParameter("oid", oId)
-				  			  			  .getResultList();
-		return ob;
 	}
 
 }

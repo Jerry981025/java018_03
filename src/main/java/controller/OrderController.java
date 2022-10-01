@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import _01.model.Member;
 import model.MemberBean;
 import model.OrderBean;
 import service.OrderService;
@@ -57,10 +56,9 @@ public class OrderController {
 	}
 
 	@GetMapping("/list")
-	public @ResponseBody List<OrderBean> orderListById() {
-		MemberBean memberBean = new MemberBean();
-		memberBean.setmId(1);
-		List<OrderBean> memberOrders = orderService.findByMemberId(memberBean.getmId());
+	public @ResponseBody List<OrderBean> orderListById(Integer mId) {
+		mId = 1;
+		List<OrderBean> memberOrders = orderService.findByMemberId(mId);
 		return memberOrders;
 	}
 
@@ -71,17 +69,16 @@ public class OrderController {
 		return list;
 	}
 	
-	@GetMapping("/singleOrder")
-	public @ResponseBody OrderBean orderListByOId(OrderBean oId) {
-		OrderBean ob = orderService.updateOrderStatus(oId);;
-		return ob;
-	}
-	
-	@PutMapping("/cancel/{key}")
-	public @ResponseBody Map<String, String> updateMember(@RequestBody OrderBean ob, @PathVariable Integer key) {
-		OrderBean ob = new OrderBean();
-		OrderBean bean = orderService.
-		bean.setoOrderStatus("已取消");
-		return bean;
+	@PutMapping(value = "/cancel",produces = { "application/json; charset=UTF-8" })
+	public @ResponseBody String updateMember(@RequestBody() Integer oId) {
+		OrderBean bean = orderService.findById(oId);
+		if (!bean.getoOrderStatus().equals("未完成")) {
+			return "訂單不能取消";
+		}else {
+			bean.setoOrderStatus("已取消");
+			orderService.updateOrderStatus(bean);
+			return "訂單取消成功";
+		}
+		
 	}
 }

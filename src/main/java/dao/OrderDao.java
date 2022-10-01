@@ -13,7 +13,6 @@ public interface OrderDao {
 	
 	List<OrderBean> findAllOrders();
 	
-	OrderBean findOrderByOId(Integer oId);
-	
 	void updateOrderStatus(OrderBean ob);
+	
 }

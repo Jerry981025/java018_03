@@ -89,21 +89,11 @@ function orderItem(x) {
     })
 }
 function cancelOrder(oId) {
-    // fetch('http://localhost:8080/java018_03/order/list').then(res => res.json()).then(res => {
-        // console.log(res[x].oOrderStatus)
-        // let oId = res[x].oId
-        // let oOrderStatus = res[x].oOrderStatus
-        // oOrderStatus = "已取消"
-        // console.log(oOrderStatus)
-        let body = { 
-            oId: oId,
-            // oOrderStatus: oOrderStatus 
-        }
+        let body = oId
         fetch('http://localhost:8080/java018_03/order/cancel',
-            { method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) }).then(res => {
-                console.log('ok');
+            { method: 'PUT', headers: { 'content-type': 'application/json' }, body}).then((response) => response.text()).then(res => {
+                console.log(res);
             }).catch((error) => {
                 console.log(`Error`);
             })
-    // })
 }

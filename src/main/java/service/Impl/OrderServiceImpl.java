@@ -47,9 +47,4 @@ public class OrderServiceImpl implements OrderService {
 		
 	}
 
-	@Override
-	public OrderBean findOrderByOId(Integer oId) {
-		return orderDao.findOrderByOId(oId);
-	}
-
 }
