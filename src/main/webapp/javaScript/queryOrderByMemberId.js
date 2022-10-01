@@ -3,7 +3,7 @@ $(document).ready(function () {
     fetch('http://localhost:8080/java018_03/order/list').then(res => res.json()).then(res => {
         let orderList = ``
         orderList += `
-        <div class="container">
+        <div class="col-10">
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
@@ -15,6 +15,7 @@ $(document).ready(function () {
                         <th scope="col">總計</th>
                         <th scope="col">訂單狀態</th>
                         <th scope="col">評分</th>
+                        <th scope="col">運送人員</th>
                         </tr>
                         </thead>
                         <tbody>`
@@ -31,6 +32,7 @@ $(document).ready(function () {
             <td>${res[i].oPrice + res[i].oFee}</td>
             <td>${res[i].oOrderStatus}</td>
             <td>${res[i].oRanking}</td>
+            <td></td>
             </tr>`
             x++
         }
@@ -49,7 +51,7 @@ function orderItem(x) {
         }
         orderDetail = ``
         orderDetail += `
-        <div class="col-8">
+        <div class="col-6">
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
