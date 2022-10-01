@@ -8,7 +8,6 @@ import dao.MemberDao;
 import model.MemberBean;
 import service.MemberService;
 
-@Transactional
 @Service
 public class MemberServiceImpl implements MemberService {
 	
@@ -18,6 +17,7 @@ public class MemberServiceImpl implements MemberService {
 	public MemberServiceImpl() {
 	}
 	
+	@Transactional
 	@Override
 	public Integer saveMember(MemberBean mb) {
 		if (memberDao.existsByEmail(mb.getmEmail())) {
@@ -27,11 +27,13 @@ public class MemberServiceImpl implements MemberService {
 		return 0;
 	}
 	
+	@Transactional
 	@Override
 	public MemberBean findByMId(Integer mId) {
 		return memberDao.findByMId(mId);
 	}
 	
+	@Transactional
 	@Override
 	public MemberBean findByEmail(String mEmail) {
 		return memberDao.findByEmail(mEmail);
