@@ -12,4 +12,8 @@ public interface OrderDao {
 	List<OrderBean> findByMemberId(Integer mId);
 	
 	List<OrderBean> findAllOrders();
+	
+	OrderBean findOrderByOId(Integer oId);
+	
+	void updateOrderStatus(OrderBean ob);
 }

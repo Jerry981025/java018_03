@@ -41,4 +41,15 @@ public class OrderServiceImpl implements OrderService {
 		return orderDao.findAllOrders();
 	}
 
+	@Override
+	public void updateOrderStatus(OrderBean ob) {
+		orderDao.updateOrderStatus(ob);
+		
+	}
+
+	@Override
+	public OrderBean findOrderByOId(Integer oId) {
+		return orderDao.findOrderByOId(oId);
+	}
+
 }
