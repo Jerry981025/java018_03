@@ -44,7 +44,7 @@ $(document).ready(() => {
 				'content-type': 'application/json'
 			}
 		}
-		axios.put('http://localhost:8080/java018_03/memberBirthday', json, config)
+		axios.put('./memberBirthday', json, config)
 			.then((res) => {
 				if (res.data.BirthdayError != null) {
 					errorBirthday.innerText = res.data.BirthdayError
@@ -86,7 +86,7 @@ $(document).ready(() => {
 				'content-type': 'application/json'
 			}
 		}
-		axios.put('http://localhost:8080/java018_03/memberAddress', json, config)
+		axios.put('./memberAddress', json, config)
 			.then((res) => {
 				if (res.data.success) {
 					$('#c7').text(saveAddress)
@@ -104,7 +104,7 @@ $(document).ready(() => {
 		let obj = {
 			params: { "mId": $('#c2').text(), "aId": `${aId}`, "saveAddress": saveAddress, "commonAddress": commonAddress }
 		};
-		axios.delete('http://localhost:8080/java018_03/address', obj)
+		axios.delete('./address', obj)
 			.then((res) => {
 				if (commonAddress == saveAddress) {
 					$('#c7').text('')
@@ -137,7 +137,7 @@ $(document).ready(() => {
 			}
 		}
 		console.log(json);
-		axios.post('http://localhost:8080/java018_03/address', json, config)
+		axios.post('./address', json, config)
 			.then((res) => {
 				if (res.data.success != null) {
 					// $('#newAddress').css('display', 'none')
@@ -202,7 +202,7 @@ $(document).ready(() => {
 			}
 		}
 		console.log(json);
-		axios.put('http://localhost:8080/java018_03/memberPhone', json, config)
+		axios.put('./memberPhone', json, config)
 			.then((res) => {
 				console.log(res.data)
 				if (res.data.fail != null) {
@@ -259,7 +259,7 @@ $(document).ready(() => {
 			}
 		}
 		console.log(json);
-		axios.put('http://localhost:8080/java018_03/memberCellphone', json, config)
+		axios.put('./memberCellphone', json, config)
 			.then((res) => {
 				console.log(res.data)
 				if (res.data.fail != null) {
@@ -317,7 +317,7 @@ $(document).ready(() => {
 			}
 		}
 		console.log(json);
-		axios.put('http://localhost:8080/java018_03/memberBank', json, config)
+		axios.put('./memberBank', json, config)
 			.then((res) => {
 				console.log(res.data)
 				if (res.data.fail != null) {
@@ -352,7 +352,7 @@ $(document).ready(() => {
 
 function getMemeberPicture(Id) {
 	axios.get(
-		'http://localhost:8080/java018_03/memberPicture',
+		'./memberPicture',
 		{
 			params: { mId: Id }
 		})
@@ -369,7 +369,7 @@ function getMemeberPicture(Id) {
 
 
 function getMemberDetail() {
-	axios.get('http://localhost:8080/java018_03/member')
+	axios.get('./member')
 		.then((res) => {
 			setMemberDetail(res.data)
 		})
@@ -450,7 +450,7 @@ function updatePicture() {
 	if (content == null) {
 		return;
 	}
-	axios.put('http://localhost:8080/java018_03/memberPicture', json, config)
+	axios.put('./memberPicture', json, config)
 		.then((res) => { getMemeberPicture($('#c2').text()) })
 		.catch((error) => { console.error(error) })
 }
