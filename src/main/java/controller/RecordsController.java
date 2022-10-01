@@ -33,9 +33,25 @@ public class RecordsController {
 //			return "redirect:/_02_login/login";
 //		}
 		List<OrderBean> memberOrders = recordsService.findByMemberId(memberBean.getmId());
-		
+		model.addAttribute("memberOrders", memberOrders);
 		return memberOrders;
 	}
+	
+	@GetMapping(value="/RecordsDetailINeedHelp/{oId}", produces="application/json; charset=UTF-8")
+	public @ResponseBody OrderBean getOrderDetailByOrderId(
+			@RequestParam(value = "oId", defaultValue = "1") Integer oId, Model model
+			){
+		
+//		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
+//		if (memberBean == null) {
+//			return "redirect:/_02_login/login";
+//		}
+		OrderBean orderBean = recordsService.findById(oId);
+		model.addAttribute("OrderBean", orderBean);
+		return orderBean;
+	}
+	
+	
 	
 //	@GetMapping("/orderList")
 //	protected String orderList(Model model) {
