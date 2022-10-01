@@ -4,6 +4,11 @@ import model.MemberBean;
 
 public interface MemberService {
 
-	MemberBean findByMId(String mId);
+	Integer saveMember(MemberBean mb);
+	
+	MemberBean findByMId(Integer mId);
+	MemberBean findByEmail(String mEmail);
+
+	void updateDetail(MemberBean memberBean);
 
 }

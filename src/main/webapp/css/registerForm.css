@@ -1,0 +1,97 @@
+body {
+    background: rgb(238, 174, 202);
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    text-align: center;
+    padding: 10px;
+}
+
+h5 {
+    text-align: left
+}
+
+label {
+    font-size: 18px;
+}
+
+.btn-primary {
+    background-color: cadetblue;
+    width: 43%;
+    font-size: 20px;
+    padding: 10px;
+    Position: absolute;
+}
+
+.breadcrumb {
+    text-decoration: none;
+    font-size: larger;
+}
+
+.row {
+    display: felx;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ============================================*/
+/* 驗証碼部分 */
+
+.vcode {
+    width: 600px;
+    margin: 0 auto;
+    padding: 12px;
+}
+
+.vcode>input {
+    width: 60px;
+    height: 36px;
+    margin-top: 10px;
+}
+
+.code_show {
+    overflow: hidden;
+}
+
+.code_show span {
+    display: block;
+    float: left;
+    margin-bottom: 10px;
+}
+
+.code_show a {
+    display: block;
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.code {
+    font-style: italic;
+    background-color: #f5f5f5;
+    color: #288bc4;
+    font-size: 30px;
+    letter-spacing: 3px;
+    font-weight: bolder;
+    float: left;
+    cursor: pointer;
+    padding: 0 5px;
+    text-align: center;
+}
+
+#inputCode {
+    width: 100px;
+    height: 30px;
+}
+
+a {
+    text-decoration: none;
+    font-size: 15px;
+    color: #288bc4;
+    cursor: pointer;
+}

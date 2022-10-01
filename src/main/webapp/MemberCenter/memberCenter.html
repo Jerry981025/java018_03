@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>會員中心</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../images/handbag-fill.svg">
+    <link rel="shortcut icon" href="images/handbag-fill.svg">
     <!-- Boostrap5.0 導入程式 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         crossorigin="anonymous"></script>
-
-    <!-- 連結內容CSS -->
-    <link rel="stylesheet" href="../css/MemberCenter.css">
-
     <!-- jquery引用 -->
-    <script src="../javaScript/jquery.js"></script>
-    <script src="../javaScript/memberCenter.js"></script>
+        <script src="javaScript/jquery.js"></script>
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js"></script>
+    <!-- 連結內容CSS -->
+    <link rel="stylesheet" href="css/MemberCenter.css">
+    
+ 
 </head>
 
 <body>
@@ -26,14 +28,12 @@
         <div class="container-fluid">
             <!-- 品牌LOGO -->
             <a class="navbar-brand" href="../LoginHome/LoginHome.html">幫幫忙
-                <img src="../images/handbag-fill.svg" alt="" width="30" height="24"
-                    class="d-inline-block align-text-top">
+                <img src="images/handbag-fill.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
             </a>
             <!-- 手機版顯示 -->
             <div class="navbar-toggler border-0 p-0">
                 <div class="rounded-circle d-flex">
-                    <img class="rounded-circle" data-bs-toggle="collapse"
-                        data-bs-target="#offcanvas">
+                    <img id="c29" width="50" height="50" class="rounded-circle" data-bs-toggle="collapse" data-bs-target="#offcanvas">
                     <p id="c14" class="fs-1 py-2 ps-1 m-0" data-bs-toggle="collapse" data-bs-target="#offcanvas"></p>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                         <a class="nav-link" href="../ICanHelp/ICanHelp.html">我要幫忙(I can help!)</a>
                     </li>
                 </ul>
-                <img class="rounded-circle" style="height:40px; width:40px;" data-bs-toggle="offcanvas"
+                <img class="rounded-circle" id="c27" style="height:40px; width:40px;" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
             </div>
         </div>
@@ -104,154 +104,145 @@
             </div>
 
             <!-- 畫面右側 -->
-            <div class="col-lg-10 px-4">
-                <form class=" bg-light rounded-3 px-4">
-                    <h1 class="pt-3">會員基本資料</h1>
-                    <hr>
-                    <!-- 第一列 -->
-                    <div class="d-flex my-3">
-                        <button class="rounded-circle" style="overflow: hidden;">
-                            <img height="100px" width="100px">
-                        </button>
-                        <div class="ms-4 mt-1">
-                            <p id="c1" class="fs-2 mb-3"></p>
-                            <p class="fs-6 text-secondary">會員編號#<label id="c2"></label></p>
-                        </div>
-                        <div class="ps-5">
-                            <div class="d-flex ps-4 p-3">
-                                <p id="c3" class="m-0 me-1 pt-1 fs-5"></p>
-                                <div id="c4" class="d-flex p-2">
-                                </div>
+            <div class="col-lg-10  pe-0 bg-light rounded-3">
+                <h1 class="pt-3">會員基本資料</h1>
+                <hr>
+                <!-- 第一列 -->
+                <div class="d-flex my-3">
+                    <button class="border-0" style="border-radius: 50%;overflow: hidden;" data-bs-toggle="modal"
+                        data-bs-target="#exampleModalCenter123">
+                        <img id="c19" class="rounded-circle" height="100px" width="100px">
+                    </button>
+                    <div class="ms-4 mt-1">
+                        <p id="c1" class="fs-2 mb-3"></p>
+                        <p class="fs-6 text-secondary">會員編號#<label id="c2"></label></p>
+                    </div>
+                    <div class="ps-5">
+                        <div class="d-flex ps-4 p-3">
+                            <p id="c3" class="m-0 me-1 pt-1 fs-5"></p>
+                            <div id="c4" class="d-flex p-2">
                             </div>
-                            <a class="m-4" href="#">???筆紀錄</a>
+                        </div>
+                        <a class="m-4" href="#">???筆紀錄</a>
+                    </div>
+                </div>
+                <!-- 第二列 -->
+                <div class="row d-flex">
+                    <div class="col-3 col-lg-2">
+                        <p class="p-0 m-0">信箱:</p>
+                    </div>
+                    <div id="accountDiv" class="col-9 d-flex">
+                        <p id="c5" class="p-0 m-0"></p>
+                    </div>
+                </div>
+                <hr>
+                <!-- 第三列 -->
+                <div class="row d-flex">
+                    <div class="col-3 col-lg-2">
+                        <p class="p-0 m-0">密碼:</p>
+                    </div>
+                    <div class="col-9 d-flex">
+                        <p class="p-0 m-0">********</p>
+                        <a class="ms-3" href="#">修改</a>
+                    </div>
+                </div>
+                <hr>
+                <!-- 第四列 -->
+                <div class="row d-flex">
+                    <div class="col-3 col-lg-2">
+                        <p class="p-0 m-0">生日:</p>
+                    </div>
+                    <div class="col-9">
+                    	<div class="d-flex" id="birthdayrow">
+                        	<p id="c6" class="p-0 m-0"></p>
+                        	<input style="display: none;" type="date" id="newBirthday">
+                        	<a id="birthdayUpdate" class="ms-3" style="width: 35px;" href="javascript:;">修改</a>
+                        	<a id="birthdayUpdateConfirm" class="ms-3 pt-1" style="width: 35px; display: none;"
+                            	href="javascript:;">確認</a>
+                        	<a id="birthdayUpdateCancel" class="ms-3 pt-1" style="width: 35px; display: none;"
+                            	href="javascript:;">取消</a>
                         </div>
                     </div>
-                    <!-- 第二列 -->
-                    <div class="row d-flex">
-                        <div class="col-3 col-lg-2">
-                            <p class="p-0 m-0">信箱:</p>
-                        </div>
-                        <div id="accountDiv" class="col-9 d-flex">
-                            <p id="c5" class="p-0 m-0"></p>
-                            <a id="accountUpdate" class="ms-3" style="width: 35px;" onclick="getMemberDetail()" href="#" >修改</a>
-                        </div>
+                </div>
+                <hr>
+                <!-- 第五列 -->
+                <div class="row d-flex">
+                    <div class="col-3 col-lg-2">
+                        <p class="p-0 m-0">常用地址:</p>
                     </div>
-                    <hr>
-                    <!-- 第三列 -->
-                    <div class="row d-flex">
-                        <div class="col-3 col-lg-2">
-                            <p class="p-0 m-0">密碼:</p>
-                        </div>
-                        <div class="col-9 d-flex">
-                            <p class="p-0 m-0">********</p>
-                            <a class="ms-3" href="#">修改</a>
-                        </div>
+                    <div class="col-5">
+                        <p id="c7" class="p-0 m-0"></p>
                     </div>
-                    <hr>
-                    <!-- 第四列 -->
-                    <div class="row d-flex">
-                        <div class="col-3 col-lg-2">
-                            <p class="p-0 m-0">生日:</p>
-                        </div>
-                        <div class="col-5 d-flex">
-                            <p id="c6" class="p-0 m-0"></p>
-                            <input style="display: none;" type="date" id="newBirthday">
-                            <a id="birthdayUpdate" class="ms-3" style="width: 35px;" href="javascript:;" >修改</a>
-                            <a id="birthdayUpdateConfirm" class="ms-3 pt-1" style="width: 35px; display: none;" href="javascript:;" >確認</a>
-                            <a id="birthdayUpdateCancel" class="ms-3 pt-1" style="width: 35px; display: none;" href="javascript:;" >取消</a>
-                        </div>
+                </div>
+                <!-- 第六列 -->
+                <div class="row pt-2">
+                    <div class="col-3 col-lg-2">
+                        <p class="p-0 m-0">儲存地址:</p>
                     </div>
-                    <hr>
-                    <!-- 第五列 -->
-                    <div class="row d-flex">
-                        <div class="col-3 col-lg-2">
-                            <p class="p-0 m-0">常用地址:</p>
-                        </div>
-                        <div class="col-5">
-                            <p id="c7" class="p-0 m-0"></p>
-                        </div>
+                    <div class="col-9 d-flex">
+                        <select id="c8">
+                        </select>
+                        <a id="setCommonAddress" class="ms-3" href="javascript:;">設為常用</a>
+                        <a id="dropAddress" class="ms-3" href="javascript:;">刪除地址</a>
                     </div>
-                    <!-- 第六列 -->
-                    <div class="row pt-2">
-                        <div class="col-3 col-lg-2">
-                            <p class="p-0 m-0">儲存地址:</p>
-                        </div>
-                        <div class="col-9 d-flex">
-                            <select id="c8">
-                            </select>
-                            <a id="setCommonAddress" class="ms-3" href="javascript:;">設為常用</a>
-                            <a id="dropAddress" class="ms-3" href="javascript:;">刪除地址</a>
-                        </div>
+                </div>
+                <!-- 第七列 -->
+                <div class="row pt-2">
+                    <div class="col-3 col-lg-2 d-flex">
+                        <img src="images/svg/add-create-new-plus-svgrepo-com.svg" style="height: 24px;">
+                        <p class="m-0 text-dark">新增地址</p>
                     </div>
-                    <!-- 第七列 -->
-                    <div class="row">
-                        <div class="col-3 col-lg-2">
-                            <a id="addAdress" class="d-flex pt-2" href="javascript:;" style="width: 88px;">
-                                <img src="../images/svg/add-create-new-plus-svgrepo-com.svg" style="height: 24px;">
-                                <p class="m-0 text-dark">新增地址</p>
-                            </a>
-                        </div>
-                        <div class="col-9 pt-2 d-flex">
-                            <input style="display: none;" type="text" id="newAddress">
-                            <a id="newAddressConfirm" class="ms-3 pt-1" style="width: 35px; display: none;" href="javascript:;" >確認</a>
-                            <a id="newAddressCancel" class="ms-3 pt-1" style="width: 35px; display: none;" href="javascript:;" >取消</a>
-                        </div>
+                    <div class="col-9 d-flex" id="addressRow">
+                        <input type="text" id="newAddress"><div id="googleMap"></div>
+                        <a id="newAddressConfirm" class="ms-3 pt-1" style="width: 35px;"
+                            href="javascript:;">確認</a>
                     </div>
-                    <hr>
-                    <!-- 第八列 -->
-                    <div class="row d-flex">
-                        <div class="col-3 col-lg-2">
-                            <p class="p-0 m-0">行動電話:</p>
-                        </div>
-                        <div class="col-9 col-lg-2 d-flex">
-                            <p id="c9" class="p-0 m-0"></p>
-                            <a class="ms-3" href="#">修改</a>
-                        </div>
-                        <div class="col-3 col-lg-2">
-                            <p class="p-0 m-0">家用電話:</p>
-                        </div>
-                        <div class="col-9 col-lg-4 d-flex">
-                            <p id="c10" class="p-0 m-0"></p>
-                            <input id="newPhone" style="display: none;" type="text" class="p-0">
-                            <a id="phoneUpdate" class="ms-3" style="width: 35px;" href="javascript:;" >修改</a>
-                            <a id="phoneUpdateConfirm" class="ms-3 pt-1" style="width: 35px; display: none;" href="javascript:;" >確認</a>
-                            <a id="phoneUpdateCancel" class="ms-3 pt-1" style="width: 35px; display: none;" href="javascript:;" >取消</a>
-                        </div>
+                </div>
+                <hr>
+                <!-- 第八列 -->
+                <div class="row d-flex">
+                    <div class="col-3 col-lg-2">
+                        <p class="p-0 m-0">行動電話:</p>
                     </div>
-                    <hr>
-                    <!-- 第九列 -->
-                    <div class="row d-flex">
-                        <div class="col-3 col-lg-2">
-                            <p class="p-0 m-0">收款帳號:</p>
-                        </div>
-                        <div class="col-5 d-flex">
-                            <p id="c11" class="p-0 m-0"></p>
-                            <a class="ms-3" href="#">修改</a>
-                        </div>
+                    <div class="col-9 col-lg-4 d-flex" id="cellphoneRow">
+                        <p id="c9" class="p-0 m-0"></p>
+                        <input id="newCellPhone" style="display: none;" type="text" class="p-0">
+                        <a id="c12" class="ms-3" href="javascript:;">修改</a>
+                        <a id="c13" class="ms-3 pt-1" style="width: 35px; display: none;"
+                            href="javascript:;">確認</a>
+                        <a id="c26" class="ms-3 pt-1" style="width: 35px; display: none;"
+                            href="javascript:;">取消</a>
                     </div>
-                    <hr>
-                    <!-- 第十列 -->
-                    <div class="row d-flex">
-                        <div class="col-3 col-lg-2">
-                            <p class="p-0 m-0">常用信用卡:</p>
-                        </div>
-                        <div class="col-5">
-                            <p id="c12" class="p-0 m-0"></p>
-                        </div>
+                    <div class="col-3 col-lg-2">
+                        <p class="p-0 m-0">家用電話:</p>
                     </div>
-                    <div class="row d-flex pb-4 pt-2">
-                        <div class="col-3 col-lg-2">
-                            <p class="p-0 m-0">信用卡:</p>
-                        </div>
-                        <div class="col-5">
-                            <select id="c13">
-                            </select>
-                            <a id="setCommonVisa" class="ms-3" href="javascript:;">設為常用</a>
-                            <a id="dropVisa" class="ms-3" href="javascript:;">刪除信用卡</a>
-                            <a class="ms-3" href="#">新增信用卡</a>
-                        </div>
+                    <div class="col-9 col-lg-4 d-flex" id="phoneRow">
+                        <p id="c10" class="p-0 m-0"></p>
+                        <input id="newPhone" style="display: none;" type="text" class="p-0">
+                        <a id="phoneUpdate" class="ms-3" style="width: 35px;" href="javascript:;">修改</a>
+                        <a id="phoneUpdateConfirm" class="ms-3 pt-1" style="width: 35px; display: none;"
+                            href="javascript:;">確認</a>
+                        <a id="phoneUpdateCancel" class="ms-3 pt-1" style="width: 35px; display: none;"
+                            href="javascript:;">取消</a>
                     </div>
-                </form>
+                </div>
+                <hr>
+                <!-- 第九列 -->
+                <div class="row d-flex">
+                    <div class="col-3 col-lg-2">
+                        <p class="p-0 m-0">收款帳號:</p>
+                    </div>
+                    <div class="col-5 d-flex" id="bankRow">
+                        <p id="c11" class="p-0 m-0"></p>
+                        <input id="c22" style="display: none;" type="text" class="p-0">
+                        <a id="c23"class="ms-3" href="javascript:;">修改</a>
+                        <a id="c24" class="ms-3 pt-1" style="width: 35px; display: none;"
+                            href="javascript:;">確認</a>
+                        <a id="c25" class="ms-3 pt-1" style="width: 35px; display: none;"
+                            href="javascript:;">取消</a>
+                    </div>
+                </div>
+                <hr>
             </div>
         </div>
     </div>
@@ -261,7 +252,7 @@
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header pb-0">
             <div class="d-flex">
-                <img width="55" height="55" class="rounded-circle">
+                <img id="c28" width="55" height="55" class="rounded-circle">
                 <div class="ps-3">
                     <p id="c15" class="fs-4 p-0 m-0"></p>
                     <p class="fs-6 p-0 mb-2 text-secondary">會員編號#<label id="c17"></label></p>
@@ -297,6 +288,29 @@
         </div>
     </div>
 
+    <!-- 更換大頭貼彈出視窗 -->
+    <div class="modal fade" id="exampleModalCenter123" tabindex="-1" aria-labelledby="exampleModalCenterTitle"
+        style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">更換個人照片</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <input id="file" type="file" style="display: none;" accept="images/*" onchange="readFile(event)">
+                    <button id="c20" class="rounded-circle border-0">
+                        <img id="member_picture" style="border-radius: 50%;" height="300px" width="300px">
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button id="c21" type="button" onclick="updatePicture()" class="btn btn-primary" data-bs-dismiss="modal">修改</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- 頁尾 -->
     <footer class="footer border-top bg-dark text-light">
         <div class="container">
@@ -308,14 +322,14 @@
                     <h6>為了解決這個問題，我們提供一個平台，不管是「I need help ! 」</h6>
                     <h6>還是「I can help ! 」，只要使用「幫幫忙」，問題歹就補！</h6>
                     <div class="">
-                        <a href="#"><img class="bi bi-twitter m-1" src="../images/svg/twitter-svgrepo-com.svg"
+                        <a href="#"><img class="bi bi-twitter m-1" src="images/svg/twitter-svgrepo-com.svg"
                                 style="height: 40px; width: 40px;"></a>
-                        <a href="#"><img class="bi bi-facebook m-1" src="../images/svg/facebook-svgrepo-com.svg"
+                        <a href="#"><img class="bi bi-facebook m-1" src="images/svg/facebook-svgrepo-com.svg"
                                 style="height: 40px; width: 40px;"></a>
                         <a href="#"><img class="bi bi-instagram m-1 rounded-circle"
-                                src="../images/svg/instagram-cat-tail-svgrepo-com.svg"
+                                src="images/svg/instagram-cat-tail-svgrepo-com.svg"
                                 style="height: 40px; width: 40px; border: 1px solid ; color: #aaa;"></a>
-                        <a href="#"><img class="bi bi-linkedin m-1" src="../images/svg/linkedin-svgrepo-com.svg"
+                        <a href="#"><img class="bi bi-linkedin m-1" src="images/svg/linkedin-svgrepo-com.svg"
                                 style="height: 40px; width: 40px;"></a>
                     </div>
                 </div>
@@ -369,8 +383,9 @@
             </div>
         </div>
     </footer>
-
-
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTRB1lKaBC5bZnOqjeff7M3sjzvaOGVPo&libraries=places"></script>
+    <script src="javaScript/memberCenter.js"></script>
 </body>
 
 </html>

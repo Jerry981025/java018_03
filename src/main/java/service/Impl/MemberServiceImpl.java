@@ -1,30 +1,47 @@
 package service.Impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import dao.MemberDao;
 import model.MemberBean;
 import service.MemberService;
 
-@Transactional
 @Service
 public class MemberServiceImpl implements MemberService {
 	
-	MemberDao mDao;
+	@Autowired
+	MemberDao memberDao;
 	
-	public MemberServiceImpl(MemberDao mDao) {
-		this.mDao = mDao;
+	public MemberServiceImpl() {
 	}
 	
-	
+	@Transactional
 	@Override
-	public MemberBean findByMId(String mId) {
-		MemberBean mb = null;
-			mb = mDao.findByMId(mId);
-		return mb;
+	public Integer saveMember(MemberBean mb) {
+		if (memberDao.existsByEmail(mb.getmEmail())) {
+			return -1;
+		}
+		memberDao.save(mb);
+		return 0;
+	}
+	
+	@Transactional
+	@Override
+	public MemberBean findByMId(Integer mId) {
+		return memberDao.findByMId(mId);
+	}
+	
+	@Transactional
+	@Override
+	public MemberBean findByEmail(String mEmail) {
+		return memberDao.findByEmail(mEmail);
+	}
+
+	@Override
+	public void updateDetail(MemberBean memberBean) {
+		memberDao.updateDetail(memberBean);
 	}
 
 }

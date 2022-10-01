@@ -1,0 +1,83 @@
+body {
+    margin: 0%;
+    background: rgb(238, 174, 202);
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+
+}
+
+.bground-video {
+    width: 80%;
+    height: 70%;
+}
+
+nav {
+    height: 70px;
+}
+
+.navbar {
+    background-color: azure
+}
+
+li a {
+    color: darkgray !important;
+    font-size: 20px;
+}
+
+li a:hover {
+    color: darkslateblue !important;
+}
+
+
+/* a{
+    text-decoration: none;
+    font-size: 20px;
+    color:darkslateblue;
+    margin: 50px;
+} */
+
+footer a {
+    margin: 0px;
+}
+
+/* 彈出視窗 */
+.modal-header h3 {
+    font-size: 30px;
+    color: cadetblue;
+    position: absolute;
+    top: 7%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal-content {
+    background-color: gainsboro;
+}
+
+.modal-body form .account,
+.password {
+    margin: 30px;
+    width: 90%;
+    border-radius: 20px;
+}
+
+
+.mycheckbox {
+    margin-bottom: 20px;
+}
+
+.modal-body form .btn {
+    width: 100%;
+    font-size: 20px;
+    color: white;
+}
+
+.container-fluid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#googlemap {
+    width: 80%;
+    height: 80%;
+}
