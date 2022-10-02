@@ -13,6 +13,10 @@
         crossorigin="anonymous"></script>
     <!-- 連結內容CSS -->
     <link rel="stylesheet" href="./css/frontPage.css">
+
+    <!-- 連結內容js -->
+    <script src="javaScript/frontPage.js"></script>
+
 </head>
 
 <body>
@@ -49,23 +53,24 @@
                                     </div>
                                     <!-- Body -->
                                     <div class="modal-body">
-                                        <!-- 登入表單 -->
+                                        <!-- 登入表單-彈跳視窗 -->
                                         <form>
                                             <!-- email -->
-                                            <div class="form-group">
-                                                <input type="email" class="account form-control" placeholder="Email">
+                                            <div class="form-group " id="logMailRow">
+                                                <input id="loginEmail" type="email" class="account form-control"
+                                                    placeholder="Email" required>
                                             </div>
                                             <!-- password -->
-                                            <div class="form-group">
-                                                <input type="password" class="password form-control"
-                                                    placeholder="Password">
+                                            <div class="form-group" id="">
+                                                <input id="loginPassword" type="password" class="password form-control"
+                                                    placeholder="Password" required>
                                             </div>
                                             <!-- checkbox -->
                                             <div class="form-group">
                                                 <input type="checkbox" class="mycheckbox">記住密碼
                                             </div>
                                             <!-- 送出按鈕 -->
-                                            <button type="button" class="btn btn-info">登入</button>
+                                            <button id="clickLogin" type="button" class="btn btn-info">登入</button>
                                         </form>
                                         <!-- Footer -->
                                         <div class="modal-footer">
@@ -75,6 +80,7 @@
                                                     class="member">立即加入</a>
                                             </div>
                                         </div>
+                                        <div id="errMsg" class="error"></div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./registerForm/registerForm.html">會員註冊</a>
@@ -159,6 +165,7 @@
             </div>
         </div>
     </footer>
+
 </body>
 
 </html>

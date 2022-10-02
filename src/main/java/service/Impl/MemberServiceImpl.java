@@ -29,8 +29,11 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Transactional
 	@Override
-	public MemberBean findByMId(Integer mId) {
-		return memberDao.findByMId(mId);
+	public boolean existsByEmail(String id) {
+		boolean exist = false;
+		exist = memberDao.existsByEmail(id);
+		
+		return exist;
 	}
 	
 	@Transactional
@@ -38,10 +41,22 @@ public class MemberServiceImpl implements MemberService {
 	public MemberBean findByEmail(String mEmail) {
 		return memberDao.findByEmail(mEmail);
 	}
+	
+	@Transactional
+	@Override
+	public MemberBean findByMId(Integer mId) {
+		return memberDao.findByMId(mId);
+	}
+	
 
 	@Override
 	public void updateDetail(MemberBean memberBean) {
 		memberDao.updateDetail(memberBean);
 	}
 
+	@Transactional
+	@Override
+	public MemberBean findByEmailAndPassword(MemberBean mb) {
+		return memberDao.findByEmailAndPassword(mb);
+	}
 }

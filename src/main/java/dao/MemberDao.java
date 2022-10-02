@@ -10,7 +10,7 @@ public interface MemberDao {
 	
 	MemberBean findByMId(Integer mid);
 	MemberBean findByEmail(String email);
-
+	MemberBean findByEmailAndPassword(MemberBean mb);	
 
 	void updateDetail(MemberBean memberBean);
 
