@@ -1,6 +1,7 @@
 package dao.Impl;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.naming.NamingException;
 import javax.persistence.NoResultException;
@@ -93,5 +94,11 @@ public class MemberDaoImpl implements MemberDao {
 		} catch(NoResultException e) {
 			return null;
 		} 
+	}
+
+	@Override
+	public List<Integer> findMemberRankByStatus(String status) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
