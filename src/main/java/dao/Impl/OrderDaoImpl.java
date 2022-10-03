@@ -56,4 +56,19 @@ public class OrderDaoImpl implements OrderDao {
 		return beans;
 	}
 
+	@Override
+	public void updateOrderStatus(OrderBean ob) {
+		Session session = factory.getCurrentSession();
+		session.update(ob);
+	}
+
+	@Override
+	public List<OrderBean> findByOrderStatus(String status) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM OrderBean ob WHERE ob.oOrderStatus = :status";
+		return  session.createQuery(hql, OrderBean.class)
+					  .setParameter("status", status)
+					  .getResultList();
+	}
+
 }

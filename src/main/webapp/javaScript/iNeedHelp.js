@@ -311,7 +311,7 @@ function paymentPage() {
     // car: cars
   }
   console.log(body);
-  fetch('http://localhost:8080/java018_03/order/add',
+  fetch('add',
     { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) }).then(res => {
       console.log('ok');
     }).catch((error) => {

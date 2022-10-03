@@ -13,9 +13,9 @@ import service.OrderService;
 @Service
 @Transactional
 public class OrderServiceImpl implements OrderService {
-	
+
 	private OrderDao orderDao;
-	
+
 	@Autowired
 	public OrderServiceImpl(OrderDao orderDao) {
 		this.orderDao = orderDao;
@@ -39,6 +39,17 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<OrderBean> findAllOrders() {
 		return orderDao.findAllOrders();
+	}
+
+	@Override
+	public void updateOrderStatus(OrderBean ob) {
+		orderDao.updateOrderStatus(ob);
+
+	}
+
+	@Override
+	public List<OrderBean> findByOrderStatus(String status) {
+		return orderDao.findByOrderStatus(status);
 	}
 
 }
