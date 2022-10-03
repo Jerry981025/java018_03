@@ -3,17 +3,17 @@ package controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import model.MemberBean;
 import model.OrderBean;
 import service.RecordsService;
 
-@Controller
+@RestController
+//@RequestMapping("/RecordsINeedHelp")
 public class RecordsController {
 	
 	@Autowired
@@ -23,43 +23,28 @@ public class RecordsController {
 		this.recordsService = recordsService;
 	}
 
-	@GetMapping(value="/RecordsINeedHelp/{mId}", produces="application/json; charset=UTF-8")
-	public @ResponseBody List<OrderBean> getOrdersByMemberId(
+	@GetMapping(value="/RecordsINeedHelp", produces="application/json; charset=UTF-8")
+	public  List<OrderBean> getOrdersByMemberId(
 			@RequestParam(value = "mId", defaultValue = "1") Integer mId, Model model
 			){
-		MemberBean memberBean = new MemberBean();
 //		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
 //		if (memberBean == null) {
 //			return "redirect:/_02_login/login";
 //		}
-		List<OrderBean> memberOrders = recordsService.findByMemberId(memberBean.getmId());
-		
+		List<OrderBean> memberOrders = recordsService.findByMemberId(mId);
 		return memberOrders;
 	}
 	
-//	@GetMapping("/orderList")
-//	protected String orderList(Model model) {
+	@GetMapping(value="/RecordsDetailINeedHelp", produces="application/json; charset=UTF-8")
+	public OrderBean getOrderDetailByMemberId(
+			@RequestParam(value = "oId", defaultValue = "1") Integer oId, Model model
+			){
+		OrderBean orderBean = recordsService.findById(oId);
 //		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
 //		if (memberBean == null) {
 //			return "redirect:/_02_login/login";
 //		}
-//		List<OrderBean> memberOrders = orderService.findByMemberId(memberBean.getMemberId());
-//		model.addAttribute("memberOrders", memberOrders);
-//		log.info("會員:" + memberBean.getMemberId() + "的訂單: " + memberOrders);
-//		return "_05_orderProcess/OrderList";
-//	}
-//	
-//	@GetMapping("/orderDetail")
-//	protected String orderDetail(Model model, 
-//			@RequestParam("orderNo") Integer orderNo 
-//			) {
-//		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
-//		if (memberBean == null) {
-//			return "redirect:/_02_login/login";
-//		}
-//		OrderBean ob = orderService.findById(orderNo);
-//		model.addAttribute("OrderBean", ob);
-//		log.info("訂單編號:" + orderNo + "的內容: " + ob);
-//		return "_05_orderProcess/ShowOrderDetail";
-//	}
+		return orderBean;
+	}
+	
 }
