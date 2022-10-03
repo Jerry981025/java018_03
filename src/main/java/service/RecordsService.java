@@ -18,8 +18,6 @@ import model.OrderBean;
 //
 
 public interface RecordsService {
-	
-	OrderBean findById(Integer oId);
 
 	List<OrderBean> findByMemberId(Integer mId);
 }

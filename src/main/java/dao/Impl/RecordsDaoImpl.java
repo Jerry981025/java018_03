@@ -22,13 +22,6 @@ public class RecordsDaoImpl implements RecordsDao {
 	}
 	
 	@Override
-	public OrderBean findById(Integer oId) {
-		Session session = factory.getCurrentSession();
-		OrderBean orderBean = session.get(OrderBean.class, oId);
-		return orderBean;
-	}
-	
-	@Override
 	public List<OrderBean> findByMemberId(Integer mId) {
 		List<OrderBean> list = null;
 		Session session = factory.getCurrentSession();

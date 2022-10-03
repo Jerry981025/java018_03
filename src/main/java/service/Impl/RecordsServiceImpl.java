@@ -21,12 +21,6 @@ public class RecordsServiceImpl implements RecordsService {
 	}
 
 	@Override
-	public OrderBean findById(Integer oId) {
-		OrderBean  bean = recordsDao.findById(oId);
-		return bean;
-	}
-
-	@Override
 	public List<OrderBean> findByMemberId(Integer mId) {
 		List<OrderBean> list = recordsDao.findByMemberId(mId);
         return list;

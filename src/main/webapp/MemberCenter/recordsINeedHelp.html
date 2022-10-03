@@ -16,8 +16,9 @@
     <link rel="stylesheet" href="../css/Records.css">
 
     <!-- jquery引用 -->
-    <script src="../javaScript/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
     <script src="../javaScript/recordsINeedHelp.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js"></script>
 </head>
 
 <body>
@@ -69,10 +70,7 @@
                 <a class="nav-link" href="../Login-Home/Login-Home.html">我要幫忙(I can help!)</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../CommonProblem/CommonProblem.html">常見問題</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../others/aboutUs.html">關於我們</a>
+                <a class="nav-link" href="../others/QA.html">常見問題</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../others/contactUs.html">聯絡我們</a>
@@ -109,202 +107,6 @@
                     <div>
                         <p class="accordion-header recordsTitle">I need help 紀錄</p>
                         <div class="accordion-item" id="INHArea">
-                            <h2 class="accordion-header" id="heading0">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse0" aria-expanded="false" aria-controls="collapse0">
-                                    <div class="orderId"><strong>編號 <label id="OId"></label></strong></div>
-                                    <div class="orderDate"><label id="OTime"></label></strong></div>
-                                    <div class="orderStatus"><strong>已完成</strong></div>
-                                </button>
-                            </h2>
-                            <div id="collapse0" class="accordion-collapse collapse" aria-labelledby="heading0" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <form class="px-4">
-                                        <div class="row d-flex">
-                                            <div class="col-2 col-lg-3">
-                                                <p class="py-1 m-0">服務類別</p>
-                                            </div>
-                                            <div class="col-10 col-lg-9">
-                                                <p class="py-1 m-0">代買</p>
-                                            </div>
-                                            <hr>
-                                        </div>
-                                        <div class="row d-flex">
-                                            <div class="col-2 col-lg-3">
-                                                <p class="py-1 m-0">跑腿費</p>
-                                            </div>
-                                            <div class="col-10 col-lg-9">
-                                                <p class="py-1 m-0"><label id="OFee"></label></p>
-                                            </div>
-                                            <hr>
-                                        </div>
-                                        <div class="row d-flex">
-                                            <div class="col-2 col-lg-3">
-                                                <p class="py-1 m-0">預估價格</p>
-                                            </div>
-                                            <div class="col-10 col-lg-9">
-                                                <p class="py-1 m-0"><label id="OPrice"></label></p>
-                                            </div>
-                                            <hr>
-                                        </div>
-                                        <div class="row d-flex">
-                                            <div class="col-2 col-lg-3">
-                                                <p class="py-1 m-0">截止時間</p>
-                                            </div>
-                                            <div class="col-10 col-lg-9">
-                                                <p class="py-1 m-0"><label id="ODeadLine"></label></p>
-                                            </div>
-                                            <hr>
-                                        </div>
-                                        <div class="row d-flex">
-                                            <div class="col-2 col-lg-3">
-                                                <p class="py-1 m-0">品項</p>
-                                            </div>
-                                            <div class="col-10 col-lg-9">
-                                                <p class="py-1 m-0">品名 <label id="OBrand"></label></p>
-                                                <p class="py-1 m-0">細項 <label id="ODetail"></label></p>
-                                                <p class="py-1 m-0">數量 <label id="OQuantity"></label></p>
-                                            </div>
-                                            <hr>
-                                        </div>
-                                        <div class="row d-flex">
-                                            <div class="col-2 col-lg-3">
-                                                <p class="py-1 m-0">起點</p>
-                                            </div>
-                                            <div class="col-10 col-lg-9">
-                                                <p class="py-1 m-0"><label id="OStart"></label></p>
-                                            </div>
-                                            <hr>
-                                        </div>
-                                        <div class="row d-flex">
-                                            <div class="col-2 col-lg-3">
-                                                <p class="py-1 m-0">終點</p>
-                                            </div>
-                                            <div class="col-10 col-lg-9">
-                                                <p class="py-1 m-0"><label id="OEnd"></label></p>
-                                            </div>
-                                            <hr>
-                                        </div>
-                                        <div class="row d-flex">
-                                            <div class="col-2 col-lg-3">
-                                                <p class="py-1 m-0">備註</p>
-                                            </div>
-                                            <div class="col-10 col-lg-9">
-                                                <p class="py-1 m-0"><label id="ONote"></label></p>
-                                            </div>
-                                            <hr>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <h2 class="accordion-header" id="heading1">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
-                                    <div class="orderId"><strong>編號 NH00000001</strong></div>
-                                    <div class="orderDate"><strong>2022/09/13 11:00</strong></div>
-                                    <div class="orderStatus"><strong>已完成</strong></div>
-                                </button>
-                            </h2>
-                            <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <form class="px-4">
-                                        <div class="row d-flex">
-                                            <div class="col-2 col-lg-3">
-                                                <p class="py-1 m-0">服務類別</p>
-                                            </div>
-                                            <div class="col-10 col-lg-9">
-                                                <p class="py-1 m-0">代買</p>
-                                            </div>
-                                            <hr>
-                                        </div>
-                                        <div class="row d-flex">
-                                            <div class="col-2 col-lg-3">
-                                                <p class="py-1 m-0">跑腿費</p>
-                                            </div>
-                                            <div class="col-10 col-lg-9">
-                                                <p class="py-1 m-0">$80</p>
-                                            </div>
-                                            <hr>
-                                        </div>
-                                        <div class="row d-flex">
-                                            <div class="col-2 col-lg-3">
-                                                <p class="py-1 m-0">預估價格</p>
-                                            </div>
-                                            <div class="col-10 col-lg-9">
-                                                <p class="py-1 m-0">$1020</p>
-                                            </div>
-                                            <hr>
-                                        </div>
-                                        <div class="row d-flex">
-                                            <div class="col-2 col-lg-3">
-                                                <p class="py-1 m-0">截止時間</p>
-                                            </div>
-                                            <div class="col-10 col-lg-9">
-                                                <p class="py-1 m-0">2022/09/13 12:30</p>
-                                            </div>
-                                            <hr>
-                                        </div>
-                                        <div class="row d-flex">
-                                            <div class="col-2 col-lg-3">
-                                                <p class="py-1 m-0">品項</p>
-                                            </div>
-                                            <div class="col-10 col-lg-9">
-                                                <p class="py-1 m-0">品名 乾煸四季豆</p>
-                                                <p class="py-1 m-0">細項 無</p>
-                                                <p class="py-1 m-0">數量 1份</p>
-                                            </div>
-                                            <hr>
-                                        </div>
-                                        <div class="row d-flex">
-                                            <div class="col-2 col-lg-3">
-                                                <p class="py-1 m-0">品項</p>
-                                            </div>
-                                            <div class="col-10 col-lg-9">
-                                                <p class="py-1 m-0">品名 小籠包</p>
-                                                <p class="py-1 m-0">細項 10個</p>
-                                                <p class="py-1 m-0">數量 3份</p>
-                                            </div>
-                                            <hr>
-                                        </div>
-                                        <div class="row d-flex">
-                                            <div class="col-2 col-lg-3">
-                                                <p class="py-1 m-0">品項</p>
-                                            </div>
-                                            <div class="col-10 col-lg-9">
-                                                <p class="py-1 m-0">品名 黃金流沙包</p>
-                                                <p class="py-1 m-0">細項 2個</p>
-                                                <p class="py-1 m-0">數量 5份</p>
-                                            </div>
-                                            <hr>
-                                        </div>
-                                        <div class="row d-flex">
-                                            <div class="col-2 col-lg-3">
-                                                <p class="py-1 m-0">起點</p>
-                                            </div>
-                                            <div class="col-10 col-lg-9">
-                                                <p class="py-1 m-0">台北市 信義區市府路45號B1 鼎泰豐</p>
-                                            </div>
-                                            <hr>
-                                        </div>
-                                        <div class="row d-flex">
-                                            <div class="col-2 col-lg-3">
-                                                <p class="py-1 m-0">終點</p>
-                                            </div>
-                                            <div class="col-10 col-lg-9">
-                                                <p class="py-1 m-0">台北市 信義區市府路45號B1 鼎泰豐</p>
-                                            </div>
-                                            <hr>
-                                        </div>
-                                        <div class="row d-flex">
-                                            <div class="col-2 col-lg-3">
-                                                <p class="py-1 m-0">備註</p>
-                                            </div>
-                                            <div class="col-10 col-lg-9">
-                                                <p class="py-1 m-0">醬料另外包，需餐具</p>
-                                            </div>
-                                            <hr>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

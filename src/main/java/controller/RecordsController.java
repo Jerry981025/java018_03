@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import model.MemberBean;
 import model.OrderBean;
 import service.RecordsService;
 
@@ -27,24 +28,15 @@ public class RecordsController {
 	public  List<OrderBean> getOrdersByMemberId(
 			@RequestParam(value = "mId", defaultValue = "1") Integer mId, Model model
 			){
+		// for test
+		MemberBean memberBean = new MemberBean();
+		memberBean.setmId(1);
 //		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
 //		if (memberBean == null) {
 //			return "redirect:/_02_login/login";
 //		}
-		List<OrderBean> memberOrders = recordsService.findByMemberId(mId);
+		List<OrderBean> memberOrders = recordsService.findByMemberId(memberBean.getmId());
 		return memberOrders;
-	}
-	
-	@GetMapping(value="/RecordsDetailINeedHelp", produces="application/json; charset=UTF-8")
-	public OrderBean getOrderDetailByMemberId(
-			@RequestParam(value = "oId", defaultValue = "1") Integer oId, Model model
-			){
-		OrderBean orderBean = recordsService.findById(oId);
-//		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
-//		if (memberBean == null) {
-//			return "redirect:/_02_login/login";
-//		}
-		return orderBean;
 	}
 	
 }
