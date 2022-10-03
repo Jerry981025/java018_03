@@ -15,4 +15,6 @@ public interface OrderDao {
 	
 	void updateOrderStatus(OrderBean ob);
 	
+	List<OrderBean> findByOrderStatus(String status);
+	
 }

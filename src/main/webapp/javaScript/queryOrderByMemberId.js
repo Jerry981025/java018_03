@@ -1,6 +1,6 @@
 //訂單列表
 $(document).ready(function () {
-    fetch('/java018_03/order/list').then(res => res.json()).then(res => {
+    fetch('list').then(res => res.json()).then(res => {
         let orderList = ``
         orderList += `
         <div class="col-10">
@@ -22,7 +22,7 @@ $(document).ready(function () {
                 <tbody>`
         x = 0
         for (let i = 0; i < res.length; i++) {
-            let oId=res[i].oId
+            let oId = res[i].oId
             orderList += `
             <tr>
                 <th scope="row" style="text-align: center;">
@@ -38,7 +38,25 @@ $(document).ready(function () {
                 <td></td>
                 <td>`
             if (res[x].oOrderStatus === "未完成") {
-                orderList += `<button id=cancelBtn${oId} onclick="cancelOrder(${oId})" class="btn btn-warning">取消</button>`
+                orderList += `
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">取消</button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">取消訂單</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                        <div class="modal-body">確定要取消嗎?</div>
+                            <div class="modal-footer">
+                                <button id=cancelBtn${oId} onclick="cancelOrder(${oId})" class="btn btn-warning refresh-butto">確定</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `
 
             } else {
 
@@ -56,7 +74,7 @@ $(document).ready(function () {
 })
 //訂單明細
 function orderItem(x) {
-    fetch('http://localhost:8080/java018_03/order/list').then(res => res.json()).then(res => {
+    fetch('/java018_03/order/list').then(res => res.json()).then(res => {
         while (document.querySelector('#result').hasChildNodes()) {
             result.removeChild(result.firstChild)
         }
@@ -89,11 +107,12 @@ function orderItem(x) {
     })
 }
 function cancelOrder(oId) {
-        let body = oId
-        fetch('http://localhost:8080/java018_03/order/cancel',
-            { method: 'PUT', headers: { 'content-type': 'application/json' }, body}).then((response) => response.text()).then(res => {
-                console.log(res);
-            }).catch((error) => {
-                console.log(`Error`);
-            })
+    let body = oId
+    fetch('http://localhost:8080/java018_03/order/cancel',
+        { method: 'PUT', headers: { 'content-type': 'application/json' }, body }).then((response) => response.text()).then(res => {
+            // console.log(res);
+            window.location.reload();
+        }).catch((error) => {
+            console.log(`Error`);
+        })
 }
