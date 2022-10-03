@@ -22,21 +22,18 @@ import vo.OrderVo;
 @RequestMapping("/iNeedHelp")
 public class OrderController {
 
-//	OrderBean orderBean;
-
 	OrderService orderService;
 
 	@Autowired
 	public OrderController(OrderService orderService) {
-//		this.orderBean = orderBean;
 		this.orderService = orderService;
 	}
-	
+
 	@GetMapping("/addOrder")
 	public String addOrders() {
 		return "iNeedHelp/iNeedHelp";
 	}
-	
+
 	@GetMapping("/myOrders")
 	public String myOrders() {
 		return "iNeedHelp/queryOrderByMemberId";
@@ -74,23 +71,22 @@ public class OrderController {
 		System.out.println(list);
 		return list;
 	}
-	
-	@PutMapping(value = "/cancel",produces = { "application/json; charset=UTF-8" })
+
+	@PutMapping(value = "/cancel", produces = { "application/json; charset=UTF-8" })
 	public @ResponseBody String updateMember(@RequestBody() Integer oId) {
 		OrderBean bean = orderService.findById(oId);
 		if (!bean.getoOrderStatus().equals("未完成")) {
 			return "訂單不能取消";
-		}else {
+		} else {
 			bean.setoOrderStatus("已取消");
 			orderService.updateOrderStatus(bean);
 			return "訂單取消成功";
 		}
-		
+
 	}
-	
+
 	@GetMapping("/status")
-	public @ResponseBody List<OrderBean> findByOrderStatus(
-			@RequestParam()String status) {
+	public @ResponseBody List<OrderBean> findByOrderStatus(@RequestParam() String status) {
 		List<OrderBean> ob = orderService.findByOrderStatus(status);
 		return ob;
 	}
