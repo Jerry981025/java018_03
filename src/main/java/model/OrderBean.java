@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "orders")
 public class OrderBean {
@@ -29,17 +30,16 @@ public class OrderBean {
 	private String oComment;
 	private Integer oRanking;
 	private String oOrderStatus;
-	private Integer hId;
-
+	
 	public OrderBean() {
 	}
-
-	@OneToMany(mappedBy = "orderBean", cascade = CascadeType.ALL)
+	
+	@OneToMany(mappedBy="orderBean", cascade = CascadeType.ALL)
 	List<OrderItemBean> items = new ArrayList<>();
 
 	public OrderBean(Integer oId, Integer mId, String oShippingAddress, String oDestinationAddress, String oTime,
 			Integer oFee, Integer oPrice, String oDeadLine, String oOrderType, String oComment, Integer oRanking,
-			String oOrderStatus, List<OrderItemBean> items, Integer hId) {
+			String oOrderStatus, List<OrderItemBean> items) {
 		this.oId = oId;
 		this.mId = mId;
 		this.oShippingAddress = oShippingAddress;
@@ -53,7 +53,6 @@ public class OrderBean {
 		this.oRanking = oRanking;
 		this.oOrderStatus = oOrderStatus;
 		this.items = items;
-		this.hId = hId;
 	}
 
 	public Integer getoId() {
@@ -160,11 +159,4 @@ public class OrderBean {
 		this.items = items;
 	}
 
-	public Integer gethId() {
-		return hId;
-	}
-
-	public void sethId(Integer hId) {
-		this.hId = hId;
-	}
 }

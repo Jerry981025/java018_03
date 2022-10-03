@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -30,6 +31,7 @@ import service.AddressService;
 import service.MemberService;
 
 @Controller
+@RequestMapping
 public class MemberCenter {
 	String noImagePath = "C:/_SpringBoot/workspace/java018_03/src/main/webapp/images/Noimages.png";
 
@@ -42,9 +44,9 @@ public class MemberCenter {
 		this.addressService = addressService;
 	}
 
-	@GetMapping("/memberCenter")
+	@GetMapping("/MemberCenter")
 	public String loadMemberCenter() {
-		return "MemberCenter/memberCenter";
+		return "memberCenter";
 	}
 
 	@GetMapping("/member")
