@@ -14,4 +14,8 @@ public interface OrderService {
 	List<OrderBean> findByMemberId(Integer mId);
 	
 	List<OrderBean> findAllOrders();
+	
+	void updateOrderStatus(OrderBean ob);
+	
+	List<OrderBean> findByOrderStatus(String status);
 }
