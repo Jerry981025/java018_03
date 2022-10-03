@@ -51,4 +51,55 @@ public class MemberDaoImpl implements MemberDao {
 		return ranks;
 	}
 
+	@Override
+	public void save(MemberBean mb) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean existsByEmail(String email) {
+		MemberBean mb = null;
+		String HQL = "From MemberBean Where mAccount = :email ";
+		Session session = factory.getCurrentSession();
+		try {
+			mb = (MemberBean)session.createQuery(HQL)
+									.setParameter("email", email)
+									.getSingleResult();
+		} catch(NoResultException e) {
+			mb = null;
+		}
+		
+		return (mb != null);
+	}
+
+	@Override
+	public MemberBean findByEmail(String email) {
+		MemberBean mb = null;
+		String HQL = "From MemberBean Where mEmail = :email ";
+		Session session = factory.getCurrentSession();
+		try {
+			mb = (MemberBean)session.createQuery(HQL)
+									.setParameter("mEmail", email)
+									.getSingleResult();
+		} catch(NoResultException e) {
+			mb = null;
+		} 
+		return mb;
+	}
+
+	@Override
+	public MemberBean findByEmailAndPassword(MemberBean mb) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM MemberBean WHERE mEmail = :mail and mPassword = :pswd";
+		try {
+			return session.createQuery(hql, MemberBean.class)
+					.setParameter("mail", mb.getmEmail())
+					.setParameter("pswd", mb.getmPassword())
+					.getSingleResult();
+		} catch(NoResultException e) {
+			return null;
+		} 
+	}
+
 }

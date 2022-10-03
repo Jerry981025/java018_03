@@ -8,4 +8,12 @@ public interface MemberService {
 
 	void updateDetail(MemberBean memberBean);
 
+	boolean existsByEmail(String id);
+
+	Integer saveMember(MemberBean mb);
+
+	MemberBean findByEmail(String mEmail);
+
+	MemberBean findByEmailAndPassword(MemberBean mb);
+
 }

@@ -12,26 +12,48 @@ import service.MemberService;
 @Transactional
 @Service
 public class MemberServiceImpl implements MemberService {
-	
+
 //	@Autowired
-	MemberDao mDao;
-	
-	public MemberServiceImpl(MemberDao mDao) {
-		this.mDao = mDao;
-	}
-	
-	
-	@Override
-	public MemberBean findByMId(Integer mId) {
-		MemberBean mb = null;
-			mb = mDao.findByMId(mId);
-		return mb;
+	MemberDao memberDao;
+
+	public MemberServiceImpl(MemberDao memberDao) {
+		this.memberDao = memberDao;
 	}
 
+	@Override
+	public Integer saveMember(MemberBean mb) {
+		if (memberDao.existsByEmail(mb.getmEmail())) {
+			return -1;
+		}
+		memberDao.save(mb);
+		return 0;
+	}
+
+	@Override
+	public boolean existsByEmail(String id) {
+		boolean exist = false;
+		exist = memberDao.existsByEmail(id);
+
+		return exist;
+	}
+
+	@Override
+	public MemberBean findByEmail(String mEmail) {
+		return memberDao.findByEmail(mEmail);
+	}
+
+	@Override
+	public MemberBean findByMId(Integer mId) {
+		return memberDao.findByMId(mId);
+	}
 
 	@Override
 	public void updateDetail(MemberBean memberBean) {
-		mDao.updateDetail(memberBean);
+		memberDao.updateDetail(memberBean);
 	}
 
+	@Override
+	public MemberBean findByEmailAndPassword(MemberBean mb) {
+		return memberDao.findByEmailAndPassword(mb);
+	}
 }
