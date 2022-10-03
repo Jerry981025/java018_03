@@ -62,20 +62,10 @@ public class OrderController {
 	}
 
 	@GetMapping("/list")
-<<<<<<< HEAD
-	public @ResponseBody List<OrderBean> orderListById(
-			@RequestParam(name = "mId", defaultValue = "1") Integer id,Model model
-			) {
-		MemberBean memberBean = new MemberBean();
-		memberBean.setmId(1);
-		List<OrderBean> memberOrders = orderService.findByMemberId(memberBean.getmId());
-//		System.out.println(memberBean);
-//		model.addAttribute("memberOrders", memberOrders);
-=======
+
 	public @ResponseBody List<OrderBean> orderListById(Integer mId) {
 		mId = 1;
 		List<OrderBean> memberOrders = orderService.findByMemberId(mId);
->>>>>>> KullaTest
 		return memberOrders;
 	}
 
