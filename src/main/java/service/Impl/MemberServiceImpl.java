@@ -1,7 +1,8 @@
 package service.Impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import dao.MemberDao;
@@ -12,49 +13,25 @@ import service.MemberService;
 @Service
 public class MemberServiceImpl implements MemberService {
 	
-	@Autowired
-	MemberDao memberDao;
+//	@Autowired
+	MemberDao mDao;
 	
-	public MemberServiceImpl() {
+	public MemberServiceImpl(MemberDao mDao) {
+		this.mDao = mDao;
 	}
 	
-	@Override
-	public Integer saveMember(MemberBean mb) {
-		if (memberDao.existsByEmail(mb.getmEmail())) {
-			return -1;
-		}
-		memberDao.save(mb);
-		return 0;
-	}
 	
-	@Override
-	public boolean existsByEmail(String id) {
-		boolean exist = false;
-		exist = memberDao.existsByEmail(id);
-		
-		return exist;
-	}
-	
-	@Override
-	public MemberBean findByEmail(String mEmail) {
-		return memberDao.findByEmail(mEmail);
-	}
-	
-	@Transactional
 	@Override
 	public MemberBean findByMId(Integer mId) {
-		return memberDao.findByMId(mId);
+		MemberBean mb = null;
+			mb = mDao.findByMId(mId);
+		return mb;
 	}
-	
+
 
 	@Override
 	public void updateDetail(MemberBean memberBean) {
-		memberDao.updateDetail(memberBean);
+		mDao.updateDetail(memberBean);
 	}
 
-	@Transactional
-	@Override
-	public MemberBean findByEmailAndPassword(MemberBean mb) {
-		return memberDao.findByEmailAndPassword(mb);
-	}
 }
