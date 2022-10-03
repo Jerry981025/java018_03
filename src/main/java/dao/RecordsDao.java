@@ -8,4 +8,6 @@ public interface RecordsDao {
 
 	List<OrderBean> findByMemberId(Integer mId);
 	
+	List<OrderBean> findByHelperId(Integer mId);
+	
 }

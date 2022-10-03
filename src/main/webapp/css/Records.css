@@ -38,8 +38,28 @@ a{
 	width: 20%;
     margin-right: 1%;
 }
-.orderRanking{
+.orderRating{
 	font-size: medium;
-	width: 34%;
+	width: 7%;
     margin-right: 1%;
+}
+.stars{
+	float: right;
+	width: 25%;
+}
+img{
+	display: inline-block;
+	vertical-align: middle;
+	width: 7%;
+}
+.itemsDetail{
+	margin-left: 0%;
+}
+.itemsDetailTitle{
+	width:15%;
+    display: inline-block;
+}
+.itemsDetailContent{
+	width:40%;
+    display: inline-block;
 }

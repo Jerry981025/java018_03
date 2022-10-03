@@ -20,4 +20,6 @@ import model.OrderBean;
 public interface RecordsService {
 
 	List<OrderBean> findByMemberId(Integer mId);
+	
+	List<OrderBean> findByHelperId(Integer mId);
 }

@@ -25,4 +25,12 @@ public class RecordsServiceImpl implements RecordsService {
 		List<OrderBean> list = recordsDao.findByMemberId(mId);
         return list;
 	}
+
+	@Override
+	public List<OrderBean> findByHelperId(Integer mId) {
+		List<OrderBean> list = recordsDao.findByHelperId(mId);
+        return list;
+	}
+	
+	
 }

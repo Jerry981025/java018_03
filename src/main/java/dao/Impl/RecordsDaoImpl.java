@@ -31,5 +31,16 @@ public class RecordsDaoImpl implements RecordsDao {
 					  .getResultList();
 		return list;
 	}
+
+	@Override
+	public List<OrderBean> findByHelperId(Integer hId) {
+		List<OrderBean> list = null;
+		Session session = factory.getCurrentSession();
+		String hql = "FROM OrderBean ob WHERE ob.hId = :hId";
+		list = session.createQuery(hql, OrderBean.class)
+					  .setParameter("hId", hId)
+					  .getResultList();
+		return list;
+	}
 	
 }
