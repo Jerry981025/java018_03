@@ -1,9 +1,8 @@
 package service;
 
-import java.util.List;
+import java.util.Map;
 
 import model.MemberBean;
-import model.OrderBean;
 
 public interface MemberService {
 
@@ -19,6 +18,6 @@ public interface MemberService {
 
 	MemberBean findByEmailAndPassword(MemberBean mb);
 	
-	List<OrderBean> findByOrderStatusAndHId(String status, Integer hId);
+	Map<String, Integer> findByOrderStatusAndHId(String status, Integer hId);
 
 }

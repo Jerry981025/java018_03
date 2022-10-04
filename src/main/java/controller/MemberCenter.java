@@ -306,7 +306,7 @@ public class MemberCenter {
 	
 	@GetMapping("/star")
 	@ResponseBody
-	public List<OrderBean> getRank() {
-		return memberService.findByOrderStatusAndHId("已完成", 1);
+	public Map<String, Integer> getRank(@SessionAttribute MemberBean member) {
+		return memberService.findByOrderStatusAndHId("已完成", member.getmId());
 	}
 }

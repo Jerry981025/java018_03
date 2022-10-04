@@ -1,6 +1,8 @@
 package service.Impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 //import org.slf4j.Logger;
@@ -19,7 +21,7 @@ public class MemberServiceImpl implements MemberService {
 
 //	@Autowired
 	MemberDao memberDao;
-	
+
 	OrderDao orderDao;
 
 	public MemberServiceImpl(MemberDao memberDao, OrderDao orderDao) {
@@ -65,7 +67,15 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<OrderBean> findByOrderStatusAndHId(String status, Integer hId) {
-		return orderDao.findByOrderStatusAndhId(status, hId);
+	public Map<String, Integer> findByOrderStatusAndHId(String status, Integer hId) {
+		Map<String, Integer> map = new HashMap<>();
+		List<OrderBean> orders = orderDao.findByOrderStatusAndhId(status, hId);
+		Integer rank = 0;
+		for (OrderBean order : orders) {
+			rank += order.getoRanking();
+		}
+		map.put("count", orders.size());
+		map.put("rank", rank);
+		return map;
 	}
 }

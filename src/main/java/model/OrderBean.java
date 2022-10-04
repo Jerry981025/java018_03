@@ -30,6 +30,7 @@ public class OrderBean {
 	private String oComment;
 	private Integer oRanking;
 	private String oOrderStatus;
+	private Integer hId;
 	
 	public OrderBean() {
 	}
@@ -39,7 +40,7 @@ public class OrderBean {
 
 	public OrderBean(Integer oId, Integer mId, String oShippingAddress, String oDestinationAddress, String oTime,
 			Integer oFee, Integer oPrice, String oDeadLine, String oOrderType, String oComment, Integer oRanking,
-			String oOrderStatus, List<OrderItemBean> items) {
+			String oOrderStatus, Integer hId, List<OrderItemBean> items) {
 		this.oId = oId;
 		this.mId = mId;
 		this.oShippingAddress = oShippingAddress;
@@ -52,6 +53,7 @@ public class OrderBean {
 		this.oComment = oComment;
 		this.oRanking = oRanking;
 		this.oOrderStatus = oOrderStatus;
+		this.hId = hId;
 		this.items = items;
 	}
 
@@ -158,5 +160,14 @@ public class OrderBean {
 	public void setItems(List<OrderItemBean> items) {
 		this.items = items;
 	}
+
+	public Integer gethId() {
+		return hId;
+	}
+
+	public void sethId(Integer hId) {
+		this.hId = hId;
+	}
+	
 
 }
