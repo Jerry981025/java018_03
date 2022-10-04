@@ -45,7 +45,11 @@ public class OrderBean {
 
 	public OrderBean(Integer oId, Integer mId, String oShippingAddress, String oDestinationAddress, String oTime,
 			Integer oFee, Integer oPrice, String oDeadLine, String oOrderType, String oComment, Integer oRanking,
+<<<<<<< HEAD
 			String oOrderStatus, Integer hId, List<OrderItemBean> items, MemberBean memberBean) {
+=======
+			String oOrderStatus, List<OrderItemBean> items, Integer hId) {
+>>>>>>> d628ec5cb989a9bd65ddb28f86620abac6b0fc66
 		this.oId = oId;
 		this.mId = mId;
 		this.oShippingAddress = oShippingAddress;
@@ -60,7 +64,11 @@ public class OrderBean {
 		this.oOrderStatus = oOrderStatus;
 		this.hId = hId;
 		this.items = items;
+<<<<<<< HEAD
 		this.memberBean = memberBean;
+=======
+		this.hId = hId;
+>>>>>>> d628ec5cb989a9bd65ddb28f86620abac6b0fc66
 	}
 
 	public Integer getoId() {
@@ -175,6 +183,7 @@ public class OrderBean {
 		this.items = items;
 	}
 
+<<<<<<< HEAD
 	public MemberBean getMemberBean() {
 		return memberBean;
 	}
@@ -184,4 +193,13 @@ public class OrderBean {
 	}
 
 	
+=======
+	public Integer gethId() {
+		return hId;
+	}
+
+	public void sethId(Integer hId) {
+		this.hId = hId;
+	}
+>>>>>>> d628ec5cb989a9bd65ddb28f86620abac6b0fc66
 }
