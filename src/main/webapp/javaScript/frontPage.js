@@ -26,7 +26,7 @@ function login(reqBody) {
             let { successful, message } = respBody;
             if (successful) {
                 sessionStorage.setItem('mEmail', respBody.mEmail);
-                location.replace('iNeedHelp/iNeedHelp.html');
+                location.replace('addOrder');
             } else {
                 errMsg.textContent = message;
             }
