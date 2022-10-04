@@ -34,8 +34,54 @@ $(document).ready(function () {
                 <td>${res[i].oTime}</td>
                 <td>${res[i].oPrice + res[i].oFee}</td>
                 <td>${res[i].oOrderStatus}</td>
-                <td>${res[i].oRanking}</td>
-                <td></td>
+                <td>`
+            if (res[x].oRanking == 0) {
+                orderList += `
+                    <!-- Button trigger modal -->
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">給予評價</button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">給予評價</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                        <div class="modal-body">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio${x}">
+                                <label class="form-check-label" for="inlineRadio1">1</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio${x}">
+                                <label class="form-check-label" for="inlineRadio2">2</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio${x}">
+                                <label class="form-check-label" for="inlineRadio3">3</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio${x}">
+                                <label class="form-check-label" for="inlineRadio3">4</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio${x}">
+                                <label class="form-check-label" for="inlineRadio3">5</label>
+                            </div>
+                        </div>
+                            <div class="modal-footer">
+                                <button id=rateBtn${oId} onclick="rateOrder(${oId})" class="btn btn-warning refresh-butto">確定</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    `
+            } else {
+                orderList += `
+                    ${res[i].oRanking}</td>`
+            }
+            orderList += `
+                <td>${res[i].hId}</td>
                 <td>`
             if (res[x].oOrderStatus === "未完成") {
                 orderList += `
@@ -57,11 +103,9 @@ $(document).ready(function () {
                     </div>
                 </div>
                 `
-
-            } else {
-
             }
-            orderList += `</td>
+            orderList += `
+                </td>
             </tr>`
             x++
         }
@@ -108,10 +152,24 @@ function orderItem(x) {
 }
 function cancelOrder(oId) {
     let body = oId
-    fetch('cancel',
+    fetch('cancelOrder',
         { method: 'PUT', headers: { 'content-type': 'application/json' }, body }).then((response) => response.text()).then(res => {
             window.location.reload();
         }).catch((error) => {
             console.log(`Error`);
         })
+}
+function rateOrder(oId) {
+    let oRanking = document.querySelector(`#inlineRadio${x}`).value
+    console.log(oRanking);
+    let body = {
+        oId: oId,
+        oRanking: oRanking
+    }
+    // fetch('rateOrder',
+    //     { method: 'PUT', headers: { 'content-type': 'application/json' }, body }).then((response) => response.text()).then(res => {
+    //         window.location.reload();
+    //     }).catch((error) => {
+    //         console.log(`Error`);
+    //     })
 }
