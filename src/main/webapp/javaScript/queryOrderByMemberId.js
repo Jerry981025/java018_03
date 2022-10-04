@@ -74,7 +74,7 @@ $(document).ready(function () {
 })
 //訂單明細
 function orderItem(x) {
-    fetch('/java018_03/order/list').then(res => res.json()).then(res => {
+    fetch('list').then(res => res.json()).then(res => {
         while (document.querySelector('#result').hasChildNodes()) {
             result.removeChild(result.firstChild)
         }
@@ -108,9 +108,8 @@ function orderItem(x) {
 }
 function cancelOrder(oId) {
     let body = oId
-    fetch('http://localhost:8080/java018_03/order/cancel',
+    fetch('cancel',
         { method: 'PUT', headers: { 'content-type': 'application/json' }, body }).then((response) => response.text()).then(res => {
-            // console.log(res);
             window.location.reload();
         }).catch((error) => {
             console.log(`Error`);
