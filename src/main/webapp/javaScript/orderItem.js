@@ -1,59 +1,16 @@
-// $("#sb").click(function(){
-// 	var method =$("input[name='orderType']:checked").val(); //radio 取值，注意寫法
-// 	if( typeof(method) == "undefined"){ // 注意檢查完全沒有選取的寫法，這行是精華
-// 	alert( "請選取操作方式！");
-// 	return false;
-// 	}
 
 let allOrders;
 
 $(document).ready(function () {
-
-	$('input[name="orderType"]').change(function () {
-		if (res[0].oOrderStatus ==='未完成') {
-			let orderList = ``
-
-			if (res[i].oOrderType ==='代買') {
-
-				for (let i = 0; i < res.length; i++) {
-					orderList += `
-                      <table class="table">
-                          <tbody>
-                              <tr>
-                                  <td>訂單編號: ${res[i].oId}</td>
-                              </tr>
-                              <tr>
-                                  <td>小費金額: ${res[i].oFee}</td>
-                              </tr>
-                              <tr>
-                                  <td>訂單類型: ${res[i].oOrderType}</td>
-                              </tr>
-                              <tr>
-                                  <td>店家地址: ${res[i].oShippingAddress}</td>
-                              </tr>
-                              
-                              <tr>
-                                  <td>截止時間: ${res[i].oDeadLine}</td>
-                              </tr>
-                              <tr>
-                                  <td>
-                                    評分: ${res[i].oRanking}
-						`
-						$('#result').append(orderList)
-				}
-			}
-		}
-	})
-
-	// $('#loadButton').click(function () {
-
-	fetch('http://localhost:8080/java018_03/order/allOrders')
+	
+	fetch('status?status=未完成')
 		.then(res => res.json())
 		.then(res => {
 			allOrders = res
 			console.log(res);
 
 			let orderList = ``
+			
 			for (let i = 0; i < res.length; i++) {
 				orderList += `
                       <table class="table">
@@ -78,7 +35,7 @@ $(document).ready(function () {
                                   <td>
                                     評分: ${res[i].oRanking}
                                     
-                                    <button type="button" class="btn btn-primary"  onclick="itemsDetail(${res[i].oId})" data-bs-toggle="modal" data-bs-target="#exampleModal${res[i].oId}">
+                                    <button type="button" class="btn btn-primary" style="float:right;" onclick="itemsDetail(${res[i].oId})" data-bs-toggle="modal" data-bs-target="#exampleModal${res[i].oId}">
                                         我要接單
                                     </button>
 
@@ -86,7 +43,7 @@ $(document).ready(function () {
 									  <div class="modal-dialog">
 									    <div class="modal-content">
 									      <div class="modal-header">
-									        <h5 class="modal-title" id="exampleModalLabel">訂單${res[i].oId} : </h5>
+									        <h5 class="modal-title" id="exampleModalLabel" style="font-weight:600; font-size: 22px">訂單編號${res[i].oId} : </h5>
 									        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 									      </div>
 									      <div class="modal-body">
@@ -99,25 +56,25 @@ $(document).ready(function () {
 											    <tbody>
 											        <tr>
 											            <td width="20%">顧客姓名</td>
-											            <td width="80%">${res[i].member.mLastName + res[i].member.mFirstName}</td>
+											            <td width="80%">${res[i].memberBean.mLastName + res[i].memberBean.mFirstName}</td>
 											        </tr>
 											        <tr>
 											            <td width="20%">電話</td>
-											            <td width="80%">${res[i].member.mPhone}</td>
+											            <td width="80%">${res[i].memberBean.mPhone}</td>
 											        </tr>
 											        <tr>
 														<td width="20%">訂單細項</td>
 														<td width="80%">${res[i].items[0].oBrand} (${res[i].items[0].oDetail}) * ${res[i].items[0].oQuantity}</td>
 											        </tr>`
 
-				for (let j = 1; j < res[i].items.length; j++) {
-					orderList += `
+													for (let j = 1; j < res[i].items.length; j++) {
+														orderList += `
 																	<tr>
 																		<td width="20%"></td>
 																		<td width="80%">${res[i].items[j].oBrand} (${res[i].items[j].oDetail}) * ${res[i].items[j].oQuantity}</td>
 															        </tr>`
-				}
-				orderList += `
+													}
+													orderList += `
 													<tr>
 											            <td width="20%">店家地址</td>
 											            <td width="80%">${res[i].oShippingAddress}</td>
@@ -145,7 +102,7 @@ $(document).ready(function () {
 									      </div>
 									      <div class="modal-footer">
 									        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-									        <button type="button" class="btn btn-primary">確認接單</button>
+									        <button type="button" class="btn btn-primary" onclick="sendOrderItems()">確認接單</button>
 									      </div>
 									    </div>
 									  </div>
@@ -159,7 +116,6 @@ $(document).ready(function () {
                   	`
 			}
 			$('#result').append(orderList)
-
 		})
 })
 // })
@@ -359,3 +315,136 @@ let mapOptions = {
 
 let map = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
 
+$('input[name="orderType"]').change(function () {
+	$('#result').empty()
+	console.log(allOrders)
+	let orderList = ``
+
+	for (let i = 0; i < allOrders.length; i++) {
+	
+			if (allOrders[i].oOrderType === $( "input:checked" ).val()) {
+			orderList += `
+				  <table class="table">
+					  <tbody>
+						  <tr>
+							  <td>訂單編號: ${allOrders[i].oId}</td>
+						  </tr>
+						  <tr>
+							  <td>小費金額: ${allOrders[i].oFee}</td>
+						  </tr>
+						  <tr>
+							  <td>訂單類型: ${allOrders[i].oOrderType}</td>
+						  </tr>
+						  <tr>
+							  <td>店家地址: ${allOrders[i].oShippingAddress}</td>
+						  </tr>
+						  
+						  <tr>
+							  <td>截止時間: ${allOrders[i].oDeadLine}</td>
+						  </tr>
+						  <tr>
+							  <td>
+								評分: ${allOrders[i].oRanking}
+
+								<button type="button" class="btn btn-primary"  onclick="itemsDetail(${allOrders[i].oId})" data-bs-toggle="modal" data-bs-target="#exampleModal${allOrders[i].oId}">
+									我要接單
+								</button>
+
+								<div class="modal fade" id="exampleModal${allOrders[i].oId}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								  <div class="modal-dialog">
+									<div class="modal-content">
+									  <div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel" style="font-weight:600; font-size: 22px">訂單編號${allOrders[i].oId} : </h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									  </div>
+									  <div class="modal-body">
+										<table width = "100%" class = "detailTab">
+											<thead>
+												<tr>
+													<th colspan="2" width="100%">The table header</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td width="20%">顧客姓名</td>
+													<td width="80%">${allOrders[i].memberBean.mLastName + allOrders[i].memberBean.mFirstName}</td>
+												</tr>
+												<tr>
+													<td width="20%">電話</td>
+													<td width="80%">${allOrders[i].memberBean.mPhone}</td>
+												</tr>
+												<tr>
+													<td width="20%">訂單細項</td>
+													<td width="80%">${allOrders[i].items[0].oBrand} (${allOrders[i].items[0].oDetail}) * ${allOrders[i].items[0].oQuantity}</td>
+												</tr>`
+
+												for (let j = 1; j < allOrders[i].items.length; j++) {
+													orderList += `
+																<tr>
+																	<td width="20%"></td>
+																	<td width="80%">${allOrders[i].items[j].oBrand} (${allOrders[i].items[j].oDetail}) * ${allOrders[i].items[j].oQuantity}</td>
+																</tr>`
+												}
+												orderList += `
+												<tr>
+													<td width="20%">店家地址</td>
+													<td width="80%">${allOrders[i].oShippingAddress}</td>
+												</tr>
+												<tr>
+													<td width="20%">目的地</td>
+													<td width="80%">${allOrders[i].oDestinationAddress}</td>
+												</tr>
+												<tr>
+													<td width="20%">下單時間</td>
+													<td width="80%">${allOrders[i].oTime}</td>
+												</tr>
+												<tr>
+													<td width="20%">截止時間</td>
+													<td width="80%">${allOrders[i].oDeadLine}</td>
+												</tr>
+												<tr>
+													<td width="20%">金額+小費</td>
+													<td width="80%">${allOrders[i].oPrice} + ${allOrders[i].oFee} = ${allOrders[i].oPrice + allOrders[i].oFee}</td>
+												</tr>
+												
+												
+											</tbody>
+										</table>
+									  </div>
+									  <div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+										<button type="button" class="btn btn-primary" onclick="sendOrderItems()">確認接單</button>
+									  </div>
+									</div>
+								  </div>
+								</div>
+							  </td>
+							  
+						  </tr>
+						  <hr>
+					  </tbody>
+				  </table>
+					`
+				}
+			}
+			$('#result').append(orderList)
+})
+
+function sendOrderItems(res) {
+	fetch('status?status=未完成')
+    .then((res) => {
+        console.log(res); 
+    })
+    .catch((error) => {
+        console.log(`Error: ${error}`);
+    })
+}
+
+
+// fetch('status?status=未完成')
+//     .then((res) => {
+//         console.log(res); 
+//     })
+//     .catch((error) => {
+//         console.log(`Error: ${error}`);
+//     })
