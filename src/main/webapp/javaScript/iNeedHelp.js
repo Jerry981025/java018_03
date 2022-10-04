@@ -123,7 +123,7 @@ function createItems() {
 
   let quantitySpan = document.createElement('span')
   quantitySpan.setAttribute('class', 'quantitySpan input-group-text')
-  quantitySpan.innerText = '購買數量'
+  quantitySpan.innerText = '產品數量'
 
   let quantityInput = document.createElement('input')
   quantityInput.setAttribute('id', `quantity${i}`)
@@ -132,7 +132,7 @@ function createItems() {
   quantityInput.setAttribute('min', '0')
 
   quantityInput.addEventListener('change', function () {
-    accordionHeader.title += '購買數量: ' + quantityInput.value + '\n'
+    accordionHeader.title += '產品數量: ' + quantityInput.value + '\n'
   })
 
   quantityDiv.appendChild(quantitySpan)
@@ -311,7 +311,7 @@ function paymentPage() {
     // car: cars
   }
   console.log(body);
-  fetch('http://localhost:8080/java018_03/order/add',
+  fetch('add',
     { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) }).then(res => {
       console.log('ok');
     }).catch((error) => {

@@ -1,9 +1,9 @@
 //訂單列表
 $(document).ready(function () {
-    fetch('http://localhost:8080/java018_03/order/list').then(res => res.json()).then(res => {
+    fetch('list').then(res => res.json()).then(res => {
         let orderList = ``
         orderList += `
-        <div class="container">
+        <div class="col-10">
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
@@ -15,41 +15,72 @@ $(document).ready(function () {
                         <th scope="col">總計</th>
                         <th scope="col">訂單狀態</th>
                         <th scope="col">評分</th>
-                        </tr>
-                        </thead>
-                        <tbody>`
+                        <th scope="col">運送人員</th>
+                        <th scope="col">取消訂單</th>
+                    </tr>
+                </thead>
+                <tbody>`
         x = 0
         for (let i = 0; i < res.length; i++) {
+            let oId = res[i].oId
             orderList += `
             <tr>
-            <th scope="row" style="text-align: center;">
-            <button onclick="orderItem(${x})" class="btn btn-info">查詢</button></th>
-            <td>${res[i].oId}</td>
-            <td>${res[i].oShippingAddress}</td>
-            <td>${res[i].oDestinationAddress}</td>
-            <td>${res[i].oTime}</td>
-            <td>${res[i].oPrice + res[i].oFee}</td>
-            <td>${res[i].oOrderStatus}</td>
-            <td>${res[i].oRanking}</td>
+                <th scope="row" style="text-align: center;">
+                    <button onclick="orderItem(${x})" class="btn btn-info">查詢</button>
+                </th>
+                <td>${res[i].oId}</td>
+                <td>${res[i].oShippingAddress}</td>
+                <td>${res[i].oDestinationAddress}</td>
+                <td>${res[i].oTime}</td>
+                <td>${res[i].oPrice + res[i].oFee}</td>
+                <td>${res[i].oOrderStatus}</td>
+                <td>${res[i].oRanking}</td>
+                <td></td>
+                <td>`
+            if (res[x].oOrderStatus === "未完成") {
+                orderList += `
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">取消</button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">取消訂單</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                        <div class="modal-body">確定要取消嗎?</div>
+                            <div class="modal-footer">
+                                <button id=cancelBtn${oId} onclick="cancelOrder(${oId})" class="btn btn-warning refresh-butto">確定</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `
+
+            } else {
+
+            }
+            orderList += `</td>
             </tr>`
             x++
         }
         orderList += ` 
-        </tbody>
-        </table> 
+                </tbody>
+            </table> 
         </div>`
         $('#feedback').append(orderList)
     })
 })
 //訂單明細
 function orderItem(x) {
-    fetch('http://localhost:8080/java018_03/order/list').then(res => res.json()).then(res => {
+    fetch('/java018_03/order/list').then(res => res.json()).then(res => {
         while (document.querySelector('#result').hasChildNodes()) {
             result.removeChild(result.firstChild)
         }
         orderDetail = ``
         orderDetail += `
-        <div class="col-8">
+        <div class="col-6">
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
@@ -74,4 +105,14 @@ function orderItem(x) {
         </div>`
         $('#result').append(orderDetail)
     })
+}
+function cancelOrder(oId) {
+    let body = oId
+    fetch('http://localhost:8080/java018_03/order/cancel',
+        { method: 'PUT', headers: { 'content-type': 'application/json' }, body }).then((response) => response.text()).then(res => {
+            // console.log(res);
+            window.location.reload();
+        }).catch((error) => {
+            console.log(`Error`);
+        })
 }

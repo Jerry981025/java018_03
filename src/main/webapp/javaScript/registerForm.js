@@ -42,7 +42,7 @@ function doFirst() {
     // createCode();
     // document.getElementById("checkCode").onclick = function () { createCode() }
     // linkbt.onclick = function () { createCode() }
-    // inputCode.onclick = function () { validateCode(); }\
+    // inputCode.onclick = function () { validateCode(); }
     registerBtn = document.getElementById('register')
     registerBtn.addEventListener('click', function () {
 
@@ -84,21 +84,41 @@ function register(body) {
         }).then(function (data) {
             console.log(data);
             console.log(data.addressError);
+            let birthdayRow = document.getElementById('birthdayRow')
             let addressRow = document.getElementById('addressRow')
             let lastNameRow = document.getElementById('lastNameRow')
             let firstNameRow = document.getElementById('firstNameRow')
             let emailRow = document.getElementById('emailRow')
             let passwordRow = document.getElementById('passwordRow')
             let CheckPasswordRow = document.getElementById('CheckPasswordRow')
+            let mobileRow = document.getElementById('mobileRow')
             let address1234 = document.getElementById('AddressErrorShow')
             let firstNameGo = document.getElementById('firstNameErrorShow')
             let lastNameGo = document.getElementById('LastNameErrorShow')
             let emailGo = document.getElementById('EmailErrorShow')
-            let passwordGo = document.getElementById('PasswrodErrorShow')
+            let passwordGo = document.getElementById('PasswordErrorShow')
+            let checkPasswordGo = document.getElementById('CheckPasswordErrorShow')
+            let doublePasswordGo = document.getElementById('CheckPasswordDoubleErrorShow')
+            let cellPhoneGo = document.getElementById('cellPhoneErrorShow')
+            let birthdayGo = document.getElementById('birthdayErrorShow')
+
+
+
+            //生日
+            if (data.birthdayError != null) {
+                let errorBirthday = document.createElement('div')
+                errorBirthday.setAttribute('id', 'birthdayErrorShow')
+                errorBirthday.setAttribute('style', 'color:red;')
+                errorBirthday.innerText = data.birthdayError
+                if (birthdayGo == null) {
+                    birthdayRow.appendChild(errorBirthday)
+                }
+            } else if (data.birthdayError == null && birthdayGo != null) {
+                birthdayRow.removeChild(birthdayGo)
+            }
 
             //地址
             if (data.addressError != null) {
-
                 let errorAddress = document.createElement('div')    // <div></div>
                 errorAddress.setAttribute('id', 'AddressErrorShow') // <div id="AddressErrorShow"></div>
                 errorAddress.setAttribute('style', 'color:red;')    // <div id="AddressErrorShow" style="color:red;"></div>
@@ -159,34 +179,58 @@ function register(body) {
                 if (passwordGo == null) {
                     passwordRow.appendChild(errorPassword)
                 }
-            } else {
+            } else if (data.passwordError == null && passwordGo != null) {
                 passwordRow.removeChild(passwordGo)
             }
 
             //確認密碼
-            if (data.checkPasswordError != null) {
+            if (data.CheckPasswordError != null) {
                 let errorCheckPassword = document.createElement('div')
                 errorCheckPassword.setAttribute('id', 'CheckPasswordErrorShow')
                 errorCheckPassword.setAttribute('style', 'color:red;')
                 errorCheckPassword.innerText = data.CheckPasswordError
-                CheckPasswordRow.appendChild(errorCheckPassword)
-            } else {
-                let checkPassword = document.getElementById('CheckPasswordErrorShow')
-                CheckPasswordRow.removeChild(checkPassword)
+                if (checkPasswordGo == null) {
+                    CheckPasswordRow.appendChild(errorCheckPassword)
+                }
+            } else if (data.CheckPasswordError == null && checkPasswordGo != null) {
+                CheckPasswordRow.removeChild(checkPasswordGo)
             }
 
-            //密碼重複
-            if (data.passwordError != data.checkPasswordError) {
-                let errorCheckPassword = document.createElement('div')
-                errorCheckPassword.setAttribute('id', 'CheckPasswordErrorShow')
-                errorCheckPassword.setAttribute('style', 'color:red;')
-                errorCheckPassword.innerText = data.CheckPasswordError
-                CheckPasswordRow.appendChild(errorCheckPassword)
-            } else {
-                let checkPassword = document.getElementById('CheckPasswordErrorShow')
-                CheckPasswordRow.removeChild(checkPassword)
+            //密碼確認密碼不一致
+            if (data.passwordNotSameError != null) {
+                let errorCheckPasswordNotMatch = document.createElement('div')
+                errorCheckPasswordNotMatch.setAttribute('id', 'CheckPasswordDoubleErrorShow')
+                errorCheckPasswordNotMatch.setAttribute('style', 'color:red;')
+                errorCheckPasswordNotMatch.innerText = data.passwordNotSameError
+                if (doublePasswordGo = null) {
+                    CheckPasswordRow.appendChild(errorCheckPasswordNotMatch)
+                }
+            } else if (data.passwordNotSameError == null && doublePasswordGo != null) {
+                CheckPasswordRow.removeChild(doublePasswordGo)
             }
 
+            //手機號碼
+            if (data.cellPhoneError != null) {
+                let errorcellPhone = document.createElement('div')
+                errorcellPhone.setAttribute('id', 'cellPhoneErrorShow')
+                errorcellPhone.setAttribute('style', 'color:red;')
+                errorcellPhone.innerText = data.cellPhoneError
+                if (cellPhoneGo == null) {
+                    mobileRow.appendChild(errorcellPhone)
+                }
+            } else {
+                mobileRow.removeChild(cellPhoneGo)
+            }
+
+
+
+            // //密碼長度限制
+            // let loginPassword = document.querySelector('#password');
+            // let pwdLength = loginPassword.value.length;
+            // if (pwdLength < 6 || pwdLength > 12) {
+            //     msg.textContent = '密碼長度須介於6~12字元';
+            //     return;
+            // }
 
 
 
