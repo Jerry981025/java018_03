@@ -8,9 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 
 @Entity
 @Table(name = "orders")
@@ -30,16 +31,21 @@ public class OrderBean {
 	private String oComment;
 	private Integer oRanking;
 	private String oOrderStatus;
-	
+	private Integer hId;
+
 	public OrderBean() {
 	}
-	
-	@OneToMany(mappedBy="orderBean", cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "orderBean", cascade = CascadeType.ALL)
 	List<OrderItemBean> items = new ArrayList<>();
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	 @JoinColumn(name="MId")
+	 MemberBean memberBean;
 
 	public OrderBean(Integer oId, Integer mId, String oShippingAddress, String oDestinationAddress, String oTime,
 			Integer oFee, Integer oPrice, String oDeadLine, String oOrderType, String oComment, Integer oRanking,
-			String oOrderStatus, List<OrderItemBean> items) {
+			String oOrderStatus, Integer hId, List<OrderItemBean> items, MemberBean memberBean) {
 		this.oId = oId;
 		this.mId = mId;
 		this.oShippingAddress = oShippingAddress;
@@ -52,7 +58,9 @@ public class OrderBean {
 		this.oComment = oComment;
 		this.oRanking = oRanking;
 		this.oOrderStatus = oOrderStatus;
+		this.hId = hId;
 		this.items = items;
+		this.memberBean = memberBean;
 	}
 
 	public Integer getoId() {
@@ -151,6 +159,14 @@ public class OrderBean {
 		this.oOrderStatus = oOrderStatus;
 	}
 
+	public Integer gethId() {
+		return hId;
+	}
+
+	public void sethId(Integer hId) {
+		this.hId = hId;
+	}
+
 	public List<OrderItemBean> getItems() {
 		return items;
 	}
@@ -159,4 +175,13 @@ public class OrderBean {
 		this.items = items;
 	}
 
+	public MemberBean getMemberBean() {
+		return memberBean;
+	}
+
+	public void setMemberBean(MemberBean memberBean) {
+		this.memberBean = memberBean;
+	}
+
+	
 }
