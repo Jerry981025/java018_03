@@ -19,7 +19,6 @@ import service.OrderService;
 import vo.OrderVo;
 
 @Controller
-@RequestMapping("/iNeedHelp")
 public class OrderController {
 
 	OrderService orderService;
@@ -31,12 +30,12 @@ public class OrderController {
 
 	@GetMapping("/addOrder")
 	public String addOrders() {
-		return "iNeedHelp/iNeedHelp";
+		return "iNeedHelp";
 	}
 
 	@GetMapping("/myOrders")
 	public String myOrders() {
-		return "iNeedHelp/queryOrderByMemberId";
+		return "queryOrderByMemberId";
 	}
 
 	@PostMapping(value = "/add", produces = { "application/json; charset=UTF-8" })
