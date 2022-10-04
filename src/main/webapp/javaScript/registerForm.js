@@ -218,7 +218,7 @@ function register(body) {
                 if (cellPhoneGo == null) {
                     mobileRow.appendChild(errorcellPhone)
                 }
-            } else {
+            } else if (data.cellPhoneError == null && cellPhoneGo != null) {
                 mobileRow.removeChild(cellPhoneGo)
             }
 
