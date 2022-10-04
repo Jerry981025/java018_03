@@ -77,7 +77,6 @@ public class RegisterFormController {
 //		}
 		
 		
-		saveBean.setmAccount(saveBean.getmEmail());
 		memberService.saveMember(saveBean);
 		messageMap.put("fail", "信箱已經存在，請更換信箱");
 		
