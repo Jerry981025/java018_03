@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.MemberBean;
-import service.MemberService;
+import service.MemberService;;
 
 @Controller
 public class RegisterFormController {
 	@Autowired
 	ServletContext ctx;
-
+	
 	@Autowired
 	MemberService memberService;
 
@@ -70,17 +70,31 @@ public class RegisterFormController {
 		if (saveBean.getmAddress() == null || saveBean.getmAddress().trim().length() == 0) {
 			messageMap.put("addressError", "請輸入地址");
 		}
+		
 
-		// 檢查信箱是否重複
-//		if (memberService.existsByEmail(saveBean.getmEmail())) == ) {
-//			messageMap.put("emailDoubleError","信箱重複，請重新輸入" );
-//		}
-		
-		
 		memberService.saveMember(saveBean);
 		messageMap.put("fail", "信箱已經存在，請更換信箱");
 		
 		return messageMap;
 	}
+	
+	public Integer savemember(@RequestBody MemberBean mb) {
+		Map<String, Object> respMap = new HashMap<>();
+		if (mb == null) {
+			mb = new MemberBean();
+			respMap.put("message", "註冊成功");
+		}else {
+			respMap.put("message", "註冊未完成");
+		}
+		return memberService.saveMember(mb);
+	}
+	
+//	@RequestMapping(value = "/registerForm")
+//	public ModelAndView hello(RedirectAttributes redirectAttributes) {  // RedirectAttributes必須放在準備重新導向的方法參數中，Spring MVC會自動建立這個物件來讓我們使用
+//	  
+//	  redirectAttributes.addFlashAttribute("message", "This is the String passed by redirect"); // 在RedirectAttributes物件中呼叫addFlashAttribute()加入一個要被傳遞的參數
+//	  ModelAndView mv = new ModelAndView("redirect:/world"); // 重新導向至 /world，這個request會被另一個Controller的方法來處理
+//	  return mv;
+//	}
 
 }

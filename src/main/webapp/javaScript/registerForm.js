@@ -218,19 +218,19 @@ function register(body) {
                 if (cellPhoneGo == null) {
                     mobileRow.appendChild(errorcellPhone)
                 }
-            } else {
+            } else if (data.cellPhoneError == null && cellPhoneGo != null) {
                 mobileRow.removeChild(cellPhoneGo)
             }
 
 
-
-            // //密碼長度限制
-            // let loginPassword = document.querySelector('#password');
-            // let pwdLength = loginPassword.value.length;
-            // if (pwdLength < 6 || pwdLength > 12) {
-            //     msg.textContent = '密碼長度須介於6~12字元';
-            //     return;
-            // }
+            // 註冊完送出並轉跳頁面
+            errMsg.textContent = '';
+            let { successful, message } = data;
+            if (successful) {
+                location.replace('iNeedHelp/iNeedHelp.html');
+            } else {
+                errMsg.textContent = message;
+            }
 
 
 
