@@ -7,20 +7,19 @@
     <title>I Need Help</title>
     <!-- Boostrap5.0 導入程式 -->
     <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/bootstrap.css">
     <!-- JQuery 導入程式 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="static/js/jquery-3.6.0.min.js"></script>
     <!-- 連結內容CSS -->
-    <link rel="stylesheet" href="../css/iNeedHelp.css">
+    <link rel="stylesheet" href="css/iNeedHelp.css">
 
 <body>
     <!-- 導覽列 -->
     <nav class="navbar navbar-expand-md navbar-light">
         <div class="container-fluid">
             <!-- 品牌LOGO -->
-            <a class="navbar-brand" href="../LoginHome/LoginHome.html">幫幫忙
-                <img src="../images/handbag-fill.svg" alt="" width="30" height="24"
+            <a class="navbar-brand" href="LoginHome/LoginHome.html">幫幫忙
+                <img src="images/handbag-fill.svg" alt="" width="30" height="24"
                     class="d-inline-block align-text-top">
             </a>
             <!-- 手機版顯示 -->
@@ -35,14 +34,14 @@
                 <!-- 內容 -->
                 <ul class="navbar-nav me-auto p-2">
                     <li class="nav-item">
-                        <a class="nav-link" href="../INeedHelp/INeedHelp.html">提出需求(I need help!)</a>
+                        <a class="nav-link" href="INeedHelp/INeedHelp.html">提出需求(I need help!)</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../ICanHelp/ICanHelp.html">我要幫忙(I can help!)</a>
+                        <a class="nav-link" href="ICanHelp/ICanHelp.html">我要幫忙(I can help!)</a>
                     </li>
                 </ul>
                 <img class="rounded-circle" style="height:40px; width:40px;" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" src="../images/h59cdWc.bmp">
+                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" src="images/h59cdWc.bmp">
             </div>
         </div>
     </nav>
@@ -54,19 +53,19 @@
                 <p class="nav-link m-0 fs-5 text-dark">會員中心</p>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../INeedHelp/INeedHelp.html">提出需求(I need help!)</a>
+                <a class="nav-link" href="INeedHelp/INeedHelp.html">提出需求(I need help!)</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../Login-Home/Login-Home.html">我要幫忙(I can help!)</a>
+                <a class="nav-link" href="Login-Home/Login-Home.html">我要幫忙(I can help!)</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../CommonProblem/CommonProblem.html">常見問題</a>
+                <a class="nav-link" href="CommonProblem/CommonProblem.html">常見問題</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../AboutUs/AboutUs.html">關於我們</a>
+                <a class="nav-link" href="AboutUs/AboutUs.html">關於我們</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../ContactCustomerService/ContactCustomerService.html">聯絡客服</a>
+                <a class="nav-link" href="ContactCustomerService/ContactCustomerService.html">聯絡客服</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">登出</a>
@@ -77,7 +76,7 @@
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header pb-0">
             <div class="d-flex">
-                <img width="55" height="55" class="rounded-circle" src="../images/h59cdWc.bmp">
+                <img width="55" height="55" class="rounded-circle" src="images/h59cdWc.bmp">
                 <div class="ps-3">
                     <p id="c15" class="fs-4 p-0 m-0"></p>
                     <p class="fs-6 p-0 mb-2 text-secondary">會員編號#<label id="c17"></label></p>
@@ -98,13 +97,13 @@
                     <p class="nav-link m-0 fs-5 text-dark">會員中心</p>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../CommonProblem/CommonProblem.html">常見問題</a>
+                    <a class="nav-link" href="CommonProblem/CommonProblem.html">常見問題</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../AboutUs/AboutUs.html">關於我們</a>
+                    <a class="nav-link" href="AboutUs/AboutUs.html">關於我們</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../ContactCustomerService/ContactCustomerService.html">聯絡客服</a>
+                    <a class="nav-link" href="ContactCustomerService/ContactCustomerService.html">聯絡客服</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">登出</a>
@@ -282,14 +281,14 @@
                     <h6>為了解決這個問題,我們提供一個平台,不管是「I need help ! 」</h6>
                     <h6>還是「I can help ! 」，只要使用「幫幫忙」，問題歹就補！</h6>
                     <div class="">
-                        <a href="#"><img class="bi bi-twitter m-1" src="../images/svg/twitter-svgrepo-com.svg"
+                        <a href="#"><img class="bi bi-twitter m-1" src="images/svg/twitter-svgrepo-com.svg"
                                 style="height: 40px; width: 40px;"></a>
-                        <a href="#"><img class="bi bi-facebook m-1" src="../images/svg/facebook-svgrepo-com.svg"
+                        <a href="#"><img class="bi bi-facebook m-1" src="images/svg/facebook-svgrepo-com.svg"
                                 style="height: 40px; width: 40px;"></a>
                         <a href="#"><img class="bi bi-instagram m-1 rounded-circle"
-                                src="../images/svg/instagram-cat-tail-svgrepo-com.svg"
+                                src="images/svg/instagram-cat-tail-svgrepo-com.svg"
                                 style="height: 40px; width: 40px; border: 1px solid ; color: #aaa;"></a>
-                        <a href="#"><img class="bi bi-linkedin m-1" src="../images/svg/linkedin-svgrepo-com.svg"
+                        <a href="#"><img class="bi bi-linkedin m-1" src="images/svg/linkedin-svgrepo-com.svg"
                                 style="height: 40px; width: 40px;"></a>
                     </div>
                 </div>
@@ -298,11 +297,11 @@
                     <ul class="nav flex-column">
                         <li class="nav-item pt-1">
                             <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
-                                href="../Login-Home/Login-Home.html">首頁</a>
+                                href="Login-Home/Login-Home.html">首頁</a>
                         </li>
                         <li class="nav-item pt-1">
                             <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
-                                href="../MemberCenter/MemberCenter.html">會員中心</a>
+                                href="MemberCenter">會員中心</a>
                         </li>
                         <li class="nav-item pt-1">
                             <a class="nav-link p-0 text-secondary fs-6" aria-current="page" href="#">使用者條款</a>
@@ -312,7 +311,7 @@
                         </li>
                         <li class="nav-item pt-1">
                             <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
-                                href="../CommonProblem/CommonProblem.html">常見問題</a>
+                                href="CommonProblem/CommonProblem.html">常見問題</a>
                         </li>
                     </ul>
                 </div>
@@ -321,12 +320,12 @@
                     <ul class="nav flex-column">
                         <li class="nav-item pt-2">
                             <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
-                                href="../INeedHelp/INeedHelp.html">提出需求(I need
+                                href="INeedHelp/INeedHelp.html">提出需求(I need
                                 help!)</a>
                         </li>
                         <li class="nav-item pt-2">
                             <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
-                                href="../Login-Home/Login-Home.html">我要幫忙(I can
+                                href="Login-Home/Login-Home.html">我要幫忙(I can
                                 help!)</a>
                         </li>
                     </ul>
@@ -345,20 +344,15 @@
     </footer>
     <!-- Boostrap5.0 導入程式 -->
     <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
-        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
-        crossorigin="anonymous"></script>
-
+    <script src="static/js/bootstrap.bundle.js"></script>    
+    <script src="static/js/popper.min.js"></script>
     <!-- GOOGLE MAP 導入 -->
     <!--         <script src="http://maps.google.com/maps/api/js?sensor=false"></script> -->
     <!--         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTRB1lKaBC5bZnOqjeff7M3sjzvaOGVPo&libraries=places&sensor=false"></script> -->
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTRB1lKaBC5bZnOqjeff7M3sjzvaOGVPo&libraries=places&sensor=false"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="../javaScript/iNeedHelp.js"></script>
+    <script src="javaScript/iNeedHelp.js"></script>
 
 </body>
 
