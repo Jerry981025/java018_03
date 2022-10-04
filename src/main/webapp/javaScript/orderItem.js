@@ -1,22 +1,29 @@
-$(document).ready(function() {
-	$('#loadButton').click(function() {
+// $("#sb").click(function(){
+// 	var method =$("input[name='orderType']:checked").val(); //radio 取值，注意寫法
+// 	if( typeof(method) == "undefined"){ // 注意檢查完全沒有選取的寫法，這行是精華
+// 	alert( "請選取操作方式！");
+// 	return false;
+// 	}
 
+let allOrders;
 
-		fetch('http://localhost:8080/java018_03/order/searchAll')
-			.then(res => res.json())
-			.then(res => {
-				console.log(res);
+$(document).ready(function () {
 
-				let orderList = ``
+	$('input[name="orderType"]').change(function () {
+		if (res[0].oOrderStatus ==='未完成') {
+			let orderList = ``
+
+			if (res[i].oOrderType ==='代買') {
+
 				for (let i = 0; i < res.length; i++) {
 					orderList += `
                       <table class="table">
                           <tbody>
                               <tr>
-                                  <td>訂單編號:  ${res[i].oId}</td>
+                                  <td>訂單編號: ${res[i].oId}</td>
                               </tr>
                               <tr>
-                                  <td>總金額:  ${res[i].oPrice + res[i].oFee}</td>
+                                  <td>小費金額: ${res[i].oFee}</td>
                               </tr>
                               <tr>
                                   <td>訂單類型: ${res[i].oOrderType}</td>
@@ -24,9 +31,46 @@ $(document).ready(function() {
                               <tr>
                                   <td>店家地址: ${res[i].oShippingAddress}</td>
                               </tr>
+                              
                               <tr>
-                                  <td>目的地: ${res[i].oDestinationAddress}</td>
+                                  <td>截止時間: ${res[i].oDeadLine}</td>
                               </tr>
+                              <tr>
+                                  <td>
+                                    評分: ${res[i].oRanking}
+						`
+						$('#result').append(orderList)
+				}
+			}
+		}
+	})
+
+	// $('#loadButton').click(function () {
+
+	fetch('http://localhost:8080/java018_03/order/allOrders')
+		.then(res => res.json())
+		.then(res => {
+			allOrders = res
+			console.log(res);
+
+			let orderList = ``
+			for (let i = 0; i < res.length; i++) {
+				orderList += `
+                      <table class="table">
+                          <tbody>
+                              <tr>
+                                  <td>訂單編號: ${res[i].oId}</td>
+                              </tr>
+                              <tr>
+                                  <td>小費金額: ${res[i].oFee}</td>
+                              </tr>
+                              <tr>
+                                  <td>訂單類型: ${res[i].oOrderType}</td>
+                              </tr>
+                              <tr>
+                                  <td>店家地址: ${res[i].oShippingAddress}</td>
+                              </tr>
+                              
                               <tr>
                                   <td>截止時間: ${res[i].oDeadLine}</td>
                               </tr>
@@ -46,11 +90,62 @@ $(document).ready(function() {
 									        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 									      </div>
 									      <div class="modal-body">
-									        
+										    <table width = "100%" class = "detailTab">
+											    <thead>
+											        <tr>
+											            <th colspan="2" width="100%">The table header</th>
+											        </tr>
+											    </thead>
+											    <tbody>
+											        <tr>
+											            <td width="20%">顧客姓名</td>
+											            <td width="80%">${res[i].member.mLastName + res[i].member.mFirstName}</td>
+											        </tr>
+											        <tr>
+											            <td width="20%">電話</td>
+											            <td width="80%">${res[i].member.mPhone}</td>
+											        </tr>
+											        <tr>
+														<td width="20%">訂單細項</td>
+														<td width="80%">${res[i].items[0].oBrand} (${res[i].items[0].oDetail}) * ${res[i].items[0].oQuantity}</td>
+											        </tr>`
+
+				for (let j = 1; j < res[i].items.length; j++) {
+					orderList += `
+																	<tr>
+																		<td width="20%"></td>
+																		<td width="80%">${res[i].items[j].oBrand} (${res[i].items[j].oDetail}) * ${res[i].items[j].oQuantity}</td>
+															        </tr>`
+				}
+				orderList += `
+													<tr>
+											            <td width="20%">店家地址</td>
+											            <td width="80%">${res[i].oShippingAddress}</td>
+											        </tr>
+											        <tr>
+											            <td width="20%">目的地</td>
+											            <td width="80%">${res[i].oDestinationAddress}</td>
+											        </tr>
+													<tr>
+											            <td width="20%">下單時間</td>
+											            <td width="80%">${res[i].oTime}</td>
+											        </tr>
+													<tr>
+											            <td width="20%">截止時間</td>
+											            <td width="80%">${res[i].oDeadLine}</td>
+											        </tr>
+											        <tr>
+											            <td width="20%">金額+小費</td>
+											            <td width="80%">${res[i].oPrice} + ${res[i].oFee} = ${res[i].oPrice + res[i].oFee}</td>
+											        </tr>
+											        
+											        
+											    </tbody>
+											</table>
 									      </div>
 									      <div class="modal-footer">
-									        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-									        <button type="button" class="btn btn-primary">Save changes</button>
+									        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+									        <button type="button" class="btn btn-primary">確認接單</button>
 									      </div>
 									    </div>
 									  </div>
@@ -61,13 +156,13 @@ $(document).ready(function() {
                               <hr>
                           </tbody>
                       </table>
-                  `
+                  	`
+			}
+			$('#result').append(orderList)
 
-				}
-				$('#result').append(orderList)
-			})
-	})
+		})
 })
+// })
 
 
 function itemsDetail(items) {

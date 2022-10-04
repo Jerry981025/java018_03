@@ -2,7 +2,7 @@ $(document).ready(function () {
   $('#loadButton').click(function () {
 
 
-    fetch('http://localhost:8080/java018_03/order/searchAll')
+    fetch('http://localhost:8080/java018_03/order/allOrders')
       .then(res => res.json())
       .then(res => {
         console.log(res);
