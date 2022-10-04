@@ -31,7 +31,7 @@ public class AddressDaoImpl implements AddressDao {
 		Session session = factory.getCurrentSession();
 		AddressBean saveAddress = new AddressBean();
 		saveAddress.setmId(mId);
-		saveAddress.setaAddress(address);
+		saveAddress.setAddress(address);
 		try {
 			session.save(saveAddress);
 			return 1;

@@ -32,7 +32,6 @@ public class OrderBean {
 	private Integer oRanking;
 	private String oOrderStatus;
 	private Integer hId;
-
 	public OrderBean() {
 	}
 
@@ -182,6 +181,5 @@ public class OrderBean {
 	public void setMemberBean(MemberBean memberBean) {
 		this.memberBean = memberBean;
 	}
-
 	
 }
