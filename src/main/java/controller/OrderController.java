@@ -84,8 +84,9 @@ public class OrderController {
 	}
 
 	@PutMapping(value = "/rateOrder", produces = { "application/json; charset=UTF-8" })
-	public @ResponseBody void rateOrder(@RequestBody() Integer oId, OrderVo params) {
-		OrderBean bean = orderService.findById(oId);
+	public @ResponseBody void rateOrder(@RequestBody() OrderVo params) {
+		System.out.println(params);
+		OrderBean bean = orderService.findById(params.getoId());
 		bean.setoRanking(params.getoRanking());
 		orderService.updateOrderStatus(bean);
 	}
