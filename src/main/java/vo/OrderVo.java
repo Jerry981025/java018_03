@@ -5,6 +5,7 @@ import java.util.List;
 import model.OrderItemBean;
 
 public class OrderVo {
+	private Integer oId;
 	private String oShippingAddress;
 	private String oDestinationAddress;
 	private Integer oFee;
@@ -12,9 +13,18 @@ public class OrderVo {
 	private String oDeadLine;
 	private String oOrderType;
 	private String oComment;
+	private String oOrderStatus;
 	private List<OrderItemBean> item;
 
 	public OrderVo() {
+	}
+
+	public Integer getoId() {
+		return oId;
+	}
+
+	public void setoId(Integer oId) {
+		this.oId = oId;
 	}
 
 	public String getoShippingAddress() {
@@ -73,6 +83,13 @@ public class OrderVo {
 		this.oComment = oComment;
 	}
 
+	public String getoOrderStatus() {
+		return oOrderStatus;
+	}
+
+	public void setoOrderStatus(String oOrderStatus) {
+		this.oOrderStatus = oOrderStatus;
+	}
 
 	public List<OrderItemBean> getItem() {
 		return item;
@@ -85,7 +102,9 @@ public class OrderVo {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("OrderVo [oShippingAddress=");
+		builder.append("OrderVo [oId=");
+		builder.append(oId);
+		builder.append(", oShippingAddress=");
 		builder.append(oShippingAddress);
 		builder.append(", oDestinationAddress=");
 		builder.append(oDestinationAddress);
@@ -99,12 +118,12 @@ public class OrderVo {
 		builder.append(oOrderType);
 		builder.append(", oComment=");
 		builder.append(oComment);
+		builder.append(", oOrderStatus=");
+		builder.append(oOrderStatus);
 		builder.append(", item=");
 		builder.append(item);
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
-}
 
+}

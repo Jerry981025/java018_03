@@ -71,6 +71,7 @@ public class RegisterFormController {
 			messageMap.put("addressError", "請輸入地址");
 		}
 		
+
 		memberService.saveMember(saveBean);
 		messageMap.put("fail", "信箱已經存在，請更換信箱");
 		
