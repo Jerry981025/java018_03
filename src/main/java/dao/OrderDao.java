@@ -17,4 +17,5 @@ public interface OrderDao {
 	
 	List<OrderBean> findByOrderStatus(String status);
 	
+	List<OrderBean> findByOrderStatusAndhId(String status, Integer hId);
 }

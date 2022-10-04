@@ -1,12 +1,16 @@
 package service.Impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import dao.MemberDao;
+import dao.OrderDao;
 import model.MemberBean;
+import model.OrderBean;
 import service.MemberService;
 
 @Transactional
@@ -15,9 +19,12 @@ public class MemberServiceImpl implements MemberService {
 
 //	@Autowired
 	MemberDao memberDao;
+	
+	OrderDao orderDao;
 
-	public MemberServiceImpl(MemberDao memberDao) {
+	public MemberServiceImpl(MemberDao memberDao, OrderDao orderDao) {
 		this.memberDao = memberDao;
+		this.orderDao = orderDao;
 	}
 
 	@Override
@@ -55,5 +62,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberBean findByEmailAndPassword(MemberBean mb) {
 		return memberDao.findByEmailAndPassword(mb);
+	}
+
+	@Override
+	public List<OrderBean> findByOrderStatusAndHId(String status, Integer hId) {
+		return orderDao.findByOrderStatusAndhId(status, hId);
 	}
 }

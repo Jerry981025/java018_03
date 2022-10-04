@@ -402,12 +402,13 @@ function rankingStar(mRank) {
 function createAddressOption(addressBeans) {
 	let addressOption = "";
 	addressBeans.forEach(addressBean => {
-		addressOption += `<option value='${addressBean.aId}'>${addressBean.aAddress}</option>\n`
+		addressOption += `<option value='${addressBean.aId}'>${addressBean.address}</option>\n`
 	});
 	$('#c8').html(addressOption)
 }
 
 function setMemberDetail(resJson) {
+	console.log(resJson);
 	$('#c1').text(resJson.mFirstName + resJson.mLastName)
 	$('#c14').text(resJson.mFirstName + resJson.mLastName)
 	$('#c15').text(resJson.mFirstName + resJson.mLastName)
