@@ -20,7 +20,7 @@ public class WebAppConfig implements WebMvcConfigurer {
 	@Bean
 	public ViewResolver internalResouceViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-		resolver.setPrefix("/");
+		resolver.setPrefix("/views/");
 		resolver.setSuffix(".html");
 		return resolver;
 	}

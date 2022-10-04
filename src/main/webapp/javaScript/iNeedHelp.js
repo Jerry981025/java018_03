@@ -6,7 +6,7 @@ let input2 = document.getElementById("searchInputTo");
 function doFirst() {
   // 先跟 HTML 畫面產生關聯
   loadButton = document.getElementById('loadButton')
-  paymentButton = document.getElementById('orderButton') // newkni
+  paymentButton = document.getElementById('orderButton') 
   sendAddressButton = document.getElementById('sendAddressButton')
   result = document.getElementById('result')
   initMeetingTime()
@@ -16,10 +16,10 @@ function doFirst() {
   loadButton.addEventListener('click', function () {
     createItems()
   })
-  paymentButton.addEventListener('click', function () { // newkni
+  paymentButton.addEventListener('click', function () { 
     paymentPage()
   })
-  sendAddressButton.addEventListener('click', function () { // newkni
+  sendAddressButton.addEventListener('click', function () { 
     calcRoute()
   })
 }
@@ -140,18 +140,18 @@ function createItems() {
   item.appendChild(quantityDiv)
 
   //上傳圖片
-  let imgDiv = document.createElement('div')
-  imgDiv.setAttribute('class', 'imgDiv input-group mb-1')
+  // let imgDiv = document.createElement('div')
+  // imgDiv.setAttribute('class', 'imgDiv input-group mb-1')
 
-  let imgSpan = document.createElement('sapn')
-  imgSpan.setAttribute('class', 'imgSpan input-group-text')
-  imgSpan.innerText = '上傳圖片'
+  // let imgSpan = document.createElement('sapn')
+  // imgSpan.setAttribute('class', 'imgSpan input-group-text')
+  // imgSpan.innerText = '上傳圖片'
 
   // let time = new Date().getTime();
-  let imgInput = document.createElement('input');
-  imgInput.setAttribute('id', `productImg${i}`)
-  imgInput.setAttribute('class', 'imgInput form-control')
-  imgInput.setAttribute('type', 'file')
+  // let imgInput = document.createElement('input');
+  // imgInput.setAttribute('id', `productImg${i}`)
+  // imgInput.setAttribute('class', 'imgInput form-control')
+  // imgInput.setAttribute('type', 'file')
 
   // let newImgDiv = document.createElement('div')
   // newImgDiv.setAttribute('id', `newImg${time}`)
@@ -160,11 +160,11 @@ function createItems() {
   // newImg.setAttribute('id', `newImg${i}`)
   // newImgDiv.setAttribute('class', 'newImg')
 
-  imgDiv.appendChild(imgSpan)
+  // imgDiv.appendChild(imgSpan)
   // imgDiv.appendChild(newImg)
   // imgDiv.appendChild(newImgDiv)
-  imgDiv.appendChild(imgInput)
-  item.appendChild(imgDiv)
+  // imgDiv.appendChild(imgInput)
+  // item.appendChild(imgDiv)
   // initUploadPicButton(time);
 
   //deleteButton
@@ -251,9 +251,7 @@ function deleteItem() {
 function initMeetingTime() {
   let meetingTime = document.getElementById('meeting-time')
   let date = new Date(+new Date() + 8 * 3600 * 1000).toISOString()
-  // console.log(date);
   let formatTime = date.substring(0, date.lastIndexOf(':'))
-  // console.log(formatTime);
   meetingTime.value = formatTime
   meetingTime.min = formatTime
 }
@@ -270,17 +268,17 @@ function paymentPage() {
   let oOrderType = document.querySelector('#radio').value
   let oComment = document.querySelector('#talk').value
 
-  // oShippingAddress = '台灣台北市中正區承德路一段台北車站'
-  // oDestinationAddress = '台灣新北市板橋區縣民大道二段板橋火車站'
-  // oFee = 50
-  // oPrice = 200
-  // oOrderType = '代買'
-  // oComment = '================@@@@@@@@@@@@@@@@'
   let items = []
   for (let j = 0; j < i; j++) {
     let brand = document.querySelector(`#brand${j}`).value
     let detail = document.querySelector(`#detail${j}`).value
     let quantity = document.querySelector(`#quantity${j}`).value
+    // oShippingAddress = '台灣台北市中正區承德路一段台北車站'
+    // oDestinationAddress = '台灣新北市板橋區縣民大道二段板橋火車站'
+    // oFee = 50
+    // oPrice = 200
+    // oOrderType = '代買'
+    // oComment = '================@@@@@@@@@@@@@@@@'
     // brand = '義美小泡芙'
     // detail = '巧克力'
     // quantity = 5
@@ -299,7 +297,6 @@ function paymentPage() {
   //   year: 2021,
   // })
   let body = {
-    // favoriateColor: ['black', 'moroon', 'green', 'gray', 'white'],
     oShippingAddress: oShippingAddress,
     oDestinationAddress: oDestinationAddress,
     oFee: oFee,
@@ -308,7 +305,6 @@ function paymentPage() {
     oOrderType: oOrderType,
     oComment: oComment,
     item: items
-    // car: cars
   }
   console.log(body);
   fetch('add',
