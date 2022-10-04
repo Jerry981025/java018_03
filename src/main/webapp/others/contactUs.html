@@ -27,14 +27,12 @@
         <div class="container-fluid">
             <!-- 品牌LOGO -->
             <a class="navbar-brand" href="../LoginHome/LoginHome.html">幫幫忙
-                <img src="../images/handbag-fill.svg" alt="" width="30" height="24"
-                    class="d-inline-block align-text-top">
+                <img src="../images/handbag-fill.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
             </a>
             <!-- 手機版顯示 -->
             <div class="navbar-toggler border-0 p-0">
                 <div class="rounded-circle d-flex">
-                    <img class="rounded-circle" data-bs-toggle="collapse"
-                        data-bs-target="#offcanvas">
+                    <img id="c29" width="50" height="50" class="rounded-circle" data-bs-toggle="collapse" data-bs-target="#offcanvas">
                     <p id="c14" class="fs-1 py-2 ps-1 m-0" data-bs-toggle="collapse" data-bs-target="#offcanvas"></p>
                 </div>
             </div>
@@ -50,18 +48,17 @@
                         <a class="nav-link" href="../ICanHelp/ICanHelp.html">我要幫忙(I can help!)</a>
                     </li>
                 </ul>
-                <img class="rounded-circle" style="height:40px; width:40px;" data-bs-toggle="offcanvas"
+                <img class="rounded-circle" id="c27" style="height:40px; width:40px;" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
             </div>
         </div>
     </nav>
-
     <!-- 小視窗時點大頭貼的offcanvas -->
     <div class="collapse navbar-collapse bg-light p-2" id="offcanvas">
         <!-- 內容 -->
         <ul class="navbar-nav me-auto bg-light">
             <li class="nav-item">
-                <a class="nav-link" href="../MemberCenter/memberCenter.html">會員中心</p>
+                <p class="nav-link" href="../MemberCenter/memberCenter.html">會員中心</p>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../INeedHelp/INeedHelp.html">提出需求(I need help!)</a>
@@ -73,47 +70,81 @@
                 <a class="nav-link" href="../others/QA.html">常見問題</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../others/aboutUs.html">關於我們</a>
-            </li>
-            <li class="nav-item">
-                <p class="nav-link m-0 fs-5 text-dark">聯絡我們</a>
+                <a class="nav-link m-0 fs-5 text-dark">聯絡我們</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">登出</a>
             </li>
         </ul>
     </div>
-
-    <!-- 內容 -->
-    <div class="container-fluid px-0 py-3">
-    	<p class="contactUsTitle">聯絡我們</p>
-        <div class="contactBox">
-            <!-- 一開始即執行javascript的 init() function -->
-            <div onload="init()">
-                <form   enctype="text/plain" accept-charset="utf-8">
-                <!-- 寄件者姓名    -->
-                    <input id="nameText" type="text" name="Name"  value size="60" placeholder="姓名(name)" required>  <!-- required 必填欄位 ，placeholder 預設內容--> 
-                    
-                    <!-- 寄件者email -->
-                    <input id="emailText" type="email" name="Email"  value size="60" placeholder="Email" required>
-                    
-                    <!-- 寄件者電話 -->
-                    <input id="telText"type="tel" name="Phone"  value size="60" aria-invalid="false" placeholder="電話(phone)" required>
-                    
-                    <!-- 郵件主旨 -->
-                    <input  id="subText" type="text" name="Subject"  value size="60" aria-invalid="false" placeholder="主旨(subject)" required>
-                            
-                    <!-- 郵件內容 -->
-                    <textarea id="bodyText" name="your-message" cols="40" rows="10"  aria-required="true" aria-invalid="false" placeholder="你的訊息(Your Message)" required></textarea>
-                    
-                    <!-- 傳送按鈕 -->
-                    <div>
-                        <input type="button" value="送出訊息" onclick="submitHandler();">
-                        <a id="mailTo"></a>
+    <!-- 大視窗時點大頭貼的offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header pb-0">
+            <div class="d-flex">
+                <img id="c28" width="55" height="55" class="rounded-circle">
+                <div class="ps-3">
+                    <p id="c15" class="fs-4 p-0 m-0"></p>
+                    <p class="fs-6 p-0 mb-2 text-secondary">會員編號#<label id="c17"></label></p>
+                </div>
+                <div class="ps-2">
+                    <div class="d-flex ps-4 pb-1">
+                        <p id="c18" class="m-0 me-1 pt-1 fs-6"></p>
+                        <div id="offcanvasStarRating" class="d-flex p-2">
+                        </div>
                     </div>
-                </form>
-            </div>    
+                    <a class="m-4" href="#">???筆紀錄</a>
+                </div>
+            </div>
         </div>
+        <div class="offcanvas-body pt-0">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <p class="nav-link" href="../MemberCenter/memberCenter.html">會員中心</p>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../others/QA.html">常見問題</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link m-0 fs-5 text-dark">聯絡我們</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">登出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- 內容 -->
+	<div class='main-content'>
+	    <div class="container-fluid px-0 py-3">
+	    	<p class="contactUsTitle">聯絡我們</p>
+	        <div class="contactBox">
+	            <!-- 一開始即執行javascript的 init() function -->
+	            <div onload="init()">
+	                <form   enctype="text/plain" accept-charset="utf-8">
+	                <!-- 寄件者姓名    -->
+	                    <input id="nameText" type="text" name="Name"  value size="60" placeholder="姓名(name)" required>  <!-- required 必填欄位 ，placeholder 預設內容--> 
+	                    
+	                    <!-- 寄件者email -->
+	                    <input id="emailText" type="email" name="Email"  value size="60" placeholder="Email" required>
+	                    
+	                    <!-- 寄件者電話 -->
+	                    <input id="telText"type="tel" name="Phone"  value size="60" aria-invalid="false" placeholder="電話(phone)" required>
+	                    
+	                    <!-- 郵件主旨 -->
+	                    <input  id="subText" type="text" name="Subject"  value size="60" aria-invalid="false" placeholder="主旨(subject)" required>
+	                            
+	                    <!-- 郵件內容 -->
+	                    <textarea id="bodyText" name="your-message" cols="40" rows="10"  aria-required="true" aria-invalid="false" placeholder="你的訊息(Your Message)" required></textarea>
+	                    
+	                    <!-- 傳送按鈕 -->
+	                    <div>
+	                        <input type="button" value="送出訊息" onclick="submitHandler();">
+	                        <a id="mailTo"></a>
+	                    </div>
+	                </form>
+	            </div>    
+	        </div>
+	    </div>
     </div>
 
     <!-- 頁尾 -->
@@ -150,10 +181,12 @@
                                 href="../MemberCenter/MemberCenter.html">會員中心</a>
                         </li>
                         <li class="nav-item pt-1">
-                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page" href="../others/userPolicies.html">使用者條款</a>
+                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page" 
+                            	href="../others/userPolicies.html">使用者條款</a>
                         </li>
                         <li class="nav-item pt-1">
-                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page" href="../others/privacyPolicies.html">隱私權條款</a>
+                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page" 
+                            	href="../others/privacyPolicies.html">隱私權條款</a>
                         </li>
                         <li class="nav-item pt-1">
                             <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
@@ -188,7 +221,6 @@
             </div>
         </div>
     </footer>
-
 
 </body>
 

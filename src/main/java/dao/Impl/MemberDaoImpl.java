@@ -53,14 +53,14 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public void save(MemberBean mb) {
-		// TODO Auto-generated method stub
-		
+		Session session = factory.getCurrentSession();
+		session.save(mb);
 	}
 
 	@Override
 	public boolean existsByEmail(String email) {
 		MemberBean mb = null;
-		String HQL = "From MemberBean Where mAccount = :email ";
+		String HQL = "From MemberBean Where mEmail = :email ";
 		Session session = factory.getCurrentSession();
 		try {
 			mb = (MemberBean)session.createQuery(HQL)
