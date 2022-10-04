@@ -27,14 +27,12 @@
         <div class="container-fluid">
             <!-- 品牌LOGO -->
             <a class="navbar-brand" href="../LoginHome/LoginHome.html">幫幫忙
-                <img src="../images/handbag-fill.svg" alt="" width="30" height="24"
-                    class="d-inline-block align-text-top">
+                <img src="../images/handbag-fill.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
             </a>
             <!-- 手機版顯示 -->
             <div class="navbar-toggler border-0 p-0">
                 <div class="rounded-circle d-flex">
-                    <img class="rounded-circle" data-bs-toggle="collapse"
-                        data-bs-target="#offcanvas">
+                    <img id="c29" width="50" height="50" class="rounded-circle" data-bs-toggle="collapse" data-bs-target="#offcanvas">
                     <p id="c14" class="fs-1 py-2 ps-1 m-0" data-bs-toggle="collapse" data-bs-target="#offcanvas"></p>
                 </div>
             </div>
@@ -50,18 +48,17 @@
                         <a class="nav-link" href="../ICanHelp/ICanHelp.html">我要幫忙(I can help!)</a>
                     </li>
                 </ul>
-                <img class="rounded-circle" style="height:40px; width:40px;" data-bs-toggle="offcanvas"
+                <img class="rounded-circle" id="c27" style="height:40px; width:40px;" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
             </div>
         </div>
     </nav>
-
     <!-- 小視窗時點大頭貼的offcanvas -->
     <div class="collapse navbar-collapse bg-light p-2" id="offcanvas">
         <!-- 內容 -->
         <ul class="navbar-nav me-auto bg-light">
             <li class="nav-item">
-                <a class="nav-link" href="../MemberCenter/memberCenter.html">會員中心</p>
+                <p class="nav-link" href="../MemberCenter/memberCenter.html">會員中心</p>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../INeedHelp/INeedHelp.html">提出需求(I need help!)</a>
@@ -70,10 +67,7 @@
                 <a class="nav-link" href="../Login-Home/Login-Home.html">我要幫忙(I can help!)</a>
             </li>
             <li class="nav-item">
-                <p class="nav-link m-0 fs-5 text-dark">常見問題</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../others/aboutUs.html">關於我們</a>
+                <a class="nav-link m-0 fs-5 text-dark">常見問題</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../others/contactUs.html">聯絡我們</a>
@@ -83,168 +77,206 @@
             </li>
         </ul>
     </div>
+    <!-- 大視窗時點大頭貼的offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header pb-0">
+            <div class="d-flex">
+                <img id="c28" width="55" height="55" class="rounded-circle">
+                <div class="ps-3">
+                    <p id="c15" class="fs-4 p-0 m-0"></p>
+                    <p class="fs-6 p-0 mb-2 text-secondary">會員編號#<label id="c17"></label></p>
+                </div>
+                <div class="ps-2">
+                    <div class="d-flex ps-4 pb-1">
+                        <p id="c18" class="m-0 me-1 pt-1 fs-6"></p>
+                        <div id="offcanvasStarRating" class="d-flex p-2">
+                        </div>
+                    </div>
+                    <a class="m-4" href="#">???筆紀錄</a>
+                </div>
+            </div>
+        </div>
+        <div class="offcanvas-body pt-0">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <p class="nav-link" href="../MemberCenter/memberCenter.html">會員中心</p>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link m-0 fs-5 text-dark">常見問題</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../others/contactUs.html">聯絡我們</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">登出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
     <!-- 內容 -->
-    <div class="container-fluid px-0 py-3">
-        <div class="accordion">
-            <div class="QABox">
-                <p class="accordion-header QATitle">常見問題</p>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading1One">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1One" aria-expanded="false" aria-controls="collapse1One">
-                        如何註冊使用呢？
-                        </button>
-                    </h2>
-                    <div id="collapse1One" class="accordion-collapse collapse" aria-labelledby="heading1One" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            第一次加入在首頁點選註冊即可開始進行註冊流程。
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading1Two">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1Two" aria-expanded="false" aria-controls="collapse1Two">
-                        收不到驗證碼？
-                        </button>
-                    </h2>
-                    <div id="collapse1Two" class="accordion-collapse collapse" aria-labelledby="heading1Two" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            如果嘗試了重新寄送驗證碼依然收不到簡訊驗證碼，請直接聯繫客服。
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading1Three">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1Three" aria-expanded="false" aria-controls="collapse1Three">
-                        如何試算費用呢？
-                        </button>
-                    </h2>
-                    <div id="collapse1Three" class="accordion-collapse collapse" aria-labelledby="heading1Three" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            輸入商品預估金額及跑腿費即可在下方得到預估金額。
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading1Four">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1Four" aria-expanded="false" aria-controls="collapse1Four">
-                        如何提出需求？
-                        </button>
-                    </h2>
-                    <div id="collapse1Four" class="accordion-collapse collapse" aria-labelledby="heading1Four" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            登入後，點選<a href="../INeedHelp/INeedHelp.html">提出需求(I need help!)</a>，並把所有欄位填完後點選送出即可。
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading1Five">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1Five" aria-expanded="false" aria-controls="collapse1Five">
-                        如何成為幫手？
-                        </button>
-                    </h2>
-                    <div id="collapse1Five" class="accordion-collapse collapse" aria-labelledby="heading1Five" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            登入後，點選<a href="../Login-Home/Login-Home.html">我要幫忙(I can help!)</a>，點選任一需求提案並確認細節後，按下接受，即可幫助他人。
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading1Six">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1Six" aria-expanded="false" aria-controls="collapse1Six">
-                        有店家合作方案嗎？
-                        </button>
-                    </h2>
-                    <div id="collapse1Six" class="accordion-collapse collapse" aria-labelledby="heading1Six" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            目前尚未有相關方案，如有合作提案請來信至018_team03@xxx.com.tw。
-                        </div>
-                    </div>
-                </div>
-			</div>
-            <div class="QABox">
-                <p class="accordion-header QATitle">收費問題</p>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading2One">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2One" aria-expanded="false" aria-controls="collapse2One">
-                        價格是如何計算的呢？
-                        </button>
-                    </h2>
-                    <div id="collapse2One" class="accordion-collapse collapse" aria-labelledby="heading2One" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            總收取費用為商品總價+跑腿費*1.1。<br>
-                            註：15%為營業稅+平台使用費等費用合計，最低收取30元。
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading2Two">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2Two" aria-expanded="false" aria-controls="collapse2Two">
-                        什麼是白忙一場費用？
-                        </button>
-                    </h2>
-                    <div id="collapse2Two" class="accordion-collapse collapse" aria-labelledby="heading2Two" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            若未能完成需求或提案者自行取消，提案者或幫手須在雙方聊天室中按下白忙一場按鈕，重新協調應收取之跑腿費。<br>
-                            但仍須收取最低30元之營業稅+平台使用費。
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading2Three">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2Three" aria-expanded="false" aria-controls="collapse2Three">
-                        能使用現金支付嗎？
-                        </button>
-                    </h2>
-                    <div id="collapse2Three" class="accordion-collapse collapse" aria-labelledby="heading2Three" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            為避免現金交易之衍生問題，平台不提供現金交易。
-                        </div>
-                    </div>
-                </div>
-			</div>
-            <div class="QABox">
-                <p class="accordion-header QATitle">關於任務</p>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading3One">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3One" aria-expanded="false" aria-controls="collapse3One">
-                        如何取消需求提案呢？
-                        </button>
-                    </h2>
-                    <div id="collapse3One" class="accordion-collapse collapse" aria-labelledby="heading3One" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            登入後，點選右上角個人圖像，選擇「會員中心」，之後選擇左側「I need help 紀錄」，點選該任務右方的取消按鈕，即可取消。
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading3Two">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3Two" aria-expanded="false" aria-controls="collapse3Two">
-                        若對需求提案有任何問題？
-                        </button>
-                    </h2>
-                    <div id="collapse3Two" class="accordion-collapse collapse" aria-labelledby="heading3Two" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            如請直接點選聊天室與需求提案者或是幫手聯繫。
-                        </div>
-                    </div>
-                </div>
-			</div>
-            <div class="QABox">
-                <p class="accordion-header QATitle">個人基本資料問題</p>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading4One">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4One" aria-expanded="false" aria-controls="collapse4One">
-                        如何修改個人註冊資訊，如信箱、電話、常用地址......？
-                        </button>
-                    </h2>
-                    <div id="collapse4One" class="accordion-collapse collapse" aria-labelledby="heading4One" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            登入後，點選右上角個人圖像，選擇「會員中心」，至會員中心修改即可。
-                        </div>
-                    </div>
-                </div>
-			</div>
+    <div class='main-content'>
+	    <div class="container-fluid px-0 py-3">
+	        <div class="accordion">
+	            <div class="QABox">
+	                <p class="accordion-header QATitle">常見問題</p>
+	                <div class="accordion-item">
+	                    <h2 class="accordion-header" id="heading1One">
+	                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1One" aria-expanded="false" aria-controls="collapse1One">
+	                        如何註冊使用呢？
+	                        </button>
+	                    </h2>
+	                    <div id="collapse1One" class="accordion-collapse collapse" aria-labelledby="heading1One" data-bs-parent="#accordionExample">
+	                        <div class="accordion-body">
+	                            第一次加入在首頁點選註冊即可開始進行註冊流程。
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="accordion-item">
+	                    <h2 class="accordion-header" id="heading1Two">
+	                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1Two" aria-expanded="false" aria-controls="collapse1Two">
+	                        收不到驗證碼？
+	                        </button>
+	                    </h2>
+	                    <div id="collapse1Two" class="accordion-collapse collapse" aria-labelledby="heading1Two" data-bs-parent="#accordionExample">
+	                        <div class="accordion-body">
+	                            如果嘗試了重新寄送驗證碼依然收不到簡訊驗證碼，請直接聯繫客服。
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="accordion-item">
+	                    <h2 class="accordion-header" id="heading1Three">
+	                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1Three" aria-expanded="false" aria-controls="collapse1Three">
+	                        如何試算費用呢？
+	                        </button>
+	                    </h2>
+	                    <div id="collapse1Three" class="accordion-collapse collapse" aria-labelledby="heading1Three" data-bs-parent="#accordionExample">
+	                        <div class="accordion-body">
+	                            輸入商品預估金額及跑腿費即可在下方得到預估金額。
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="accordion-item">
+	                    <h2 class="accordion-header" id="heading1Four">
+	                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1Four" aria-expanded="false" aria-controls="collapse1Four">
+	                        如何提出需求？
+	                        </button>
+	                    </h2>
+	                    <div id="collapse1Four" class="accordion-collapse collapse" aria-labelledby="heading1Four" data-bs-parent="#accordionExample">
+	                        <div class="accordion-body">
+	                            登入後，點選<a href="../INeedHelp/INeedHelp.html">提出需求(I need help!)</a>，並把所有欄位填完後點選送出即可。
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="accordion-item">
+	                    <h2 class="accordion-header" id="heading1Five">
+	                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1Five" aria-expanded="false" aria-controls="collapse1Five">
+	                        如何成為幫手？
+	                        </button>
+	                    </h2>
+	                    <div id="collapse1Five" class="accordion-collapse collapse" aria-labelledby="heading1Five" data-bs-parent="#accordionExample">
+	                        <div class="accordion-body">
+	                            登入後，點選<a href="../Login-Home/Login-Home.html">我要幫忙(I can help!)</a>，點選任一需求提案並確認細節後，按下接受，即可幫助他人。
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="accordion-item">
+	                    <h2 class="accordion-header" id="heading1Six">
+	                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1Six" aria-expanded="false" aria-controls="collapse1Six">
+	                        有店家合作方案嗎？
+	                        </button>
+	                    </h2>
+	                    <div id="collapse1Six" class="accordion-collapse collapse" aria-labelledby="heading1Six" data-bs-parent="#accordionExample">
+	                        <div class="accordion-body">
+	                            目前尚未有相關方案，如有合作提案請來信至018_team03@xxx.com.tw。
+	                        </div>
+	                    </div>
+	                </div>
+				</div>
+	            <div class="QABox">
+	                <p class="accordion-header QATitle">收費問題</p>
+	                <div class="accordion-item">
+	                    <h2 class="accordion-header" id="heading2One">
+	                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2One" aria-expanded="false" aria-controls="collapse2One">
+	                        價格是如何計算的呢？
+	                        </button>
+	                    </h2>
+	                    <div id="collapse2One" class="accordion-collapse collapse" aria-labelledby="heading2One" data-bs-parent="#accordionExample">
+	                        <div class="accordion-body">
+	                            總收取費用為商品總價+跑腿費*1.1。<br>
+	                            註：15%為營業稅+平台使用費等費用合計，最低收取30元。
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="accordion-item">
+	                    <h2 class="accordion-header" id="heading2Two">
+	                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2Two" aria-expanded="false" aria-controls="collapse2Two">
+	                        什麼是白忙一場費用？
+	                        </button>
+	                    </h2>
+	                    <div id="collapse2Two" class="accordion-collapse collapse" aria-labelledby="heading2Two" data-bs-parent="#accordionExample">
+	                        <div class="accordion-body">
+	                            若未能完成需求或提案者自行取消，提案者或幫手須在雙方聊天室中按下白忙一場按鈕，重新協調應收取之跑腿費。<br>
+	                            但仍須收取最低30元之營業稅+平台使用費。
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="accordion-item">
+	                    <h2 class="accordion-header" id="heading2Three">
+	                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2Three" aria-expanded="false" aria-controls="collapse2Three">
+	                        能使用現金支付嗎？
+	                        </button>
+	                    </h2>
+	                    <div id="collapse2Three" class="accordion-collapse collapse" aria-labelledby="heading2Three" data-bs-parent="#accordionExample">
+	                        <div class="accordion-body">
+	                            為避免現金交易之衍生問題，平台不提供現金交易。
+	                        </div>
+	                    </div>
+	                </div>
+				</div>
+	            <div class="QABox">
+	                <p class="accordion-header QATitle">關於任務</p>
+	                <div class="accordion-item">
+	                    <h2 class="accordion-header" id="heading3One">
+	                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3One" aria-expanded="false" aria-controls="collapse3One">
+	                        如何取消需求提案呢？
+	                        </button>
+	                    </h2>
+	                    <div id="collapse3One" class="accordion-collapse collapse" aria-labelledby="heading3One" data-bs-parent="#accordionExample">
+	                        <div class="accordion-body">
+	                            登入後，點選右上角個人圖像，選擇「會員中心」，之後選擇左側「I need help 紀錄」，點選該任務右方的取消按鈕，即可取消。
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="accordion-item">
+	                    <h2 class="accordion-header" id="heading3Two">
+	                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3Two" aria-expanded="false" aria-controls="collapse3Two">
+	                        若對需求提案有任何問題？
+	                        </button>
+	                    </h2>
+	                    <div id="collapse3Two" class="accordion-collapse collapse" aria-labelledby="heading3Two" data-bs-parent="#accordionExample">
+	                        <div class="accordion-body">
+	                            如請直接點選聊天室與需求提案者或是幫手聯繫。
+	                        </div>
+	                    </div>
+	                </div>
+				</div>
+	            <div class="QABox">
+	                <p class="accordion-header QATitle">個人基本資料問題</p>
+	                <div class="accordion-item">
+	                    <h2 class="accordion-header" id="heading4One">
+	                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4One" aria-expanded="false" aria-controls="collapse4One">
+	                        如何修改個人註冊資訊，如信箱、電話、常用地址......？
+	                        </button>
+	                    </h2>
+	                    <div id="collapse4One" class="accordion-collapse collapse" aria-labelledby="heading4One" data-bs-parent="#accordionExample">
+	                        <div class="accordion-body">
+	                            登入後，點選右上角個人圖像，選擇「會員中心」，至會員中心修改即可。
+	                        </div>
+	                    </div>
+	                </div>
+				</div>
+	        </div>
         </div>
 
     <!-- 頁尾 -->
@@ -281,14 +313,16 @@
                                 href="../MemberCenter/MemberCenter.html">會員中心</a>
                         </li>
                         <li class="nav-item pt-1">
-                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page" href="../others/userPolicies.html">使用者條款</a>
+                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page" 
+                            	href="../others/userPolicies.html">使用者條款</a>
                         </li>
                         <li class="nav-item pt-1">
-                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page" href="../others/privacyPolicies.html">隱私權條款</a>
+                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page" 
+                            	href="../others/privacyPolicies.html">隱私權條款</a>
                         </li>
                         <li class="nav-item pt-1">
                             <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
-                                href="../CommonProblem/CommonProblem.html">常見問題</a>
+                                href="../others/QA.html">常見問題</a>
                         </li>
                     </ul>
                 </div>
