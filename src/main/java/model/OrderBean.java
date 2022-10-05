@@ -20,7 +20,6 @@ public class OrderBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer oId;
-	private Integer mId;
 	private String oShippingAddress;
 	private String oDestinationAddress;
 	private String oTime;
@@ -39,14 +38,13 @@ public class OrderBean {
 	List<OrderItemBean> items = new ArrayList<>();
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	 @JoinColumn(name="MId")
-	 MemberBean memberBean;
+	@JoinColumn(name="mId")
+	MemberBean memberBean;
 
-	public OrderBean(Integer oId, Integer mId, String oShippingAddress, String oDestinationAddress, String oTime,
+	public OrderBean(Integer oId, String oShippingAddress, String oDestinationAddress, String oTime,
 			Integer oFee, Integer oPrice, String oDeadLine, String oOrderType, String oComment, Integer oRanking,
 			String oOrderStatus, Integer hId, List<OrderItemBean> items, MemberBean memberBean) {
 		this.oId = oId;
-		this.mId = mId;
 		this.oShippingAddress = oShippingAddress;
 		this.oDestinationAddress = oDestinationAddress;
 		this.oTime = oTime;
@@ -68,14 +66,6 @@ public class OrderBean {
 
 	public void setoId(Integer oId) {
 		this.oId = oId;
-	}
-
-	public Integer getmId() {
-		return mId;
-	}
-
-	public void setmId(Integer mId) {
-		this.mId = mId;
 	}
 
 	public String getoShippingAddress() {

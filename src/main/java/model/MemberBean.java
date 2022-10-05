@@ -27,7 +27,7 @@ public class MemberBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "MId")
+	@Column(name = "mId")
 	private Integer mId;   			    		// ObjectId
 	private String mPassword;   				// 密碼
 	private String mFirstName;       			// 名
