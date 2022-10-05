@@ -9,6 +9,7 @@ $(document).ready(function(){
 			content += `
             <h2 class="accordion-header" id="heading${i}">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${i}" aria-expanded="false" aria-controls="collapse${i}">
+                <div class="helpNo">序號 #${i+1}</div>
                 <div class="orderId">需求編號 #${orders[i].oId}</div>
                 <div class="orderFee">跑腿費NTD$ ${orders[i].oFee}</div>
                 <div class="orderStatus">需求狀態 ${orders[i].oOrderStatus}</div>
@@ -127,4 +128,14 @@ function myRating(rating, i){
 			$("#eachRating" + i).append(nullStar)
 		}
 	}
+}
+const logout = document.querySelector('#logout');
+   logout.addEventListener('click', () => {
+   sessionStorage.removeItem('mEmail');
+   fetch('member/logout');
+   location = `${getContextPath()}/index.html`;
+});
+
+function getContextPath() {
+  return window.location.pathname.substring(0, window.location.pathname.indexOf('/', 2));
 }
