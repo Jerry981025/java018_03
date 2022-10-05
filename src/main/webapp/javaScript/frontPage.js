@@ -26,7 +26,7 @@ function login(reqBody) {
             let { successful, message } = respBody;
             if (successful) {
                 sessionStorage.setItem('mEmail', respBody.mEmail);
-                location.replace('addOrder');
+                location.replace('MemeberCenter');
                 alert("登入成功")
             } else {
                 errMsg.setAttribute('style', 'color:red;')

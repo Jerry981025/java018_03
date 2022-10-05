@@ -73,7 +73,7 @@ public class MemberServiceImpl implements MemberService {
 		memberDao.save(mb);
 		final Integer mId = mb.getmId();
 		if (mId != null) {
-			messageMap.put("emailError", "註冊成功");
+			messageMap.put("emailCorrect", "註冊成功");
 			messageMap.put("successful", true);
 		} else {
 			messageMap.put("emailError", "註冊失敗");
