@@ -27,7 +27,9 @@ function login(reqBody) {
             if (successful) {
                 sessionStorage.setItem('mEmail', respBody.mEmail);
                 location.replace('addOrder');
+                alert("登入成功")
             } else {
+                errMsg.setAttribute('style', 'color:red;')
                 errMsg.textContent = message;
             }
         })
