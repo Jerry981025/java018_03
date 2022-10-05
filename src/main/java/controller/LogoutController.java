@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.support.SessionStatus;
 
 @RestController
-@RequestMapping("member/logout")
+@RequestMapping("/logout")
 public class LogoutController {
 
 	@GetMapping

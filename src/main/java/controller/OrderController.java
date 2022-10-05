@@ -70,8 +70,8 @@ public class OrderController {
 		return list;
 	}
 
-	@PutMapping(value = "/cancel", produces = { "application/json; charset=UTF-8" })
-	public @ResponseBody String updateMember(@RequestBody() Integer oId) {
+	@PutMapping(value = "/cancelOrder", produces = { "application/json; charset=UTF-8" })
+	public @ResponseBody String cancelOrder(@RequestBody() Integer oId) {
 		OrderBean bean = orderService.findById(oId);
 		if (!bean.getoOrderStatus().equals("未完成")) {
 			return "訂單不能取消";
@@ -81,6 +81,14 @@ public class OrderController {
 			return "訂單取消成功";
 		}
 
+	}
+
+	@PutMapping(value = "/rateOrder", produces = { "application/json; charset=UTF-8" })
+	public @ResponseBody void rateOrder(@RequestBody() OrderVo params) {
+		System.out.println(params);
+		OrderBean bean = orderService.findById(params.getoId());
+		bean.setoRanking(params.getoRanking());
+		orderService.updateOrderStatus(bean);
 	}
 
 	@GetMapping("/status")

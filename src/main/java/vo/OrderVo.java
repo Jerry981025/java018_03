@@ -10,6 +10,7 @@ public class OrderVo {
 	private String oDestinationAddress;
 	private Integer oFee;
 	private Integer oPrice;
+	private Integer oRanking;
 	private String oDeadLine;
 	private String oOrderType;
 	private String oComment;
@@ -59,6 +60,14 @@ public class OrderVo {
 		this.oPrice = oPrice;
 	}
 
+	public Integer getoRanking() {
+		return oRanking;
+	}
+
+	public void setoRanking(Integer oRanking) {
+		this.oRanking = oRanking;
+	}
+
 	public String getoDeadLine() {
 		return oDeadLine;
 	}
@@ -101,29 +110,11 @@ public class OrderVo {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("OrderVo [oId=");
-		builder.append(oId);
-		builder.append(", oShippingAddress=");
-		builder.append(oShippingAddress);
-		builder.append(", oDestinationAddress=");
-		builder.append(oDestinationAddress);
-		builder.append(", oFee=");
-		builder.append(oFee);
-		builder.append(", oPrice=");
-		builder.append(oPrice);
-		builder.append(", oDeadLine=");
-		builder.append(oDeadLine);
-		builder.append(", oOrderType=");
-		builder.append(oOrderType);
-		builder.append(", oComment=");
-		builder.append(oComment);
-		builder.append(", oOrderStatus=");
-		builder.append(oOrderStatus);
-		builder.append(", item=");
-		builder.append(item);
-		builder.append("]");
-		return builder.toString();
+		return "OrderVo [oId=" + oId + ", oShippingAddress=" + oShippingAddress + ", oDestinationAddress="
+				+ oDestinationAddress + ", oFee=" + oFee + ", oPrice=" + oPrice + ", oRanking=" + oRanking
+				+ ", oDeadLine=" + oDeadLine + ", oOrderType=" + oOrderType + ", oComment=" + oComment
+				+ ", oOrderStatus=" + oOrderStatus + ", item=" + item + "]";
 	}
 
+	
 }
