@@ -347,18 +347,6 @@ $(document).ready(() => {
 		bankCancel.css('display', 'none')
 		errorBank.remove();
 	})
-
-	const logout = document.querySelector('#logout');
-		logout.addEventListener('click', () => {
-			sessionStorage.removeItem('mEmail');
-			fetch('member/logout');
-			location = `${getContextPath()}/index.html`;
-	});
-
-	function getContextPath() {
-		return window.location.pathname.substring(0, window.location.pathname.indexOf('/', 2));
-	}
-
 })
 
 function getMemeberPicture(Id) {
