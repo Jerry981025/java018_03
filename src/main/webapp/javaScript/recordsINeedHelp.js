@@ -5,7 +5,7 @@ $(document).ready(function(){
 		orders = res.data
 		let content =``
 		for(let i = 0; i < orders.length; i++){
-      content =``
+      		content =``
 			content += `
             <h2 class="accordion-header" id="heading${i}">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${i}" aria-expanded="false" aria-controls="collapse${i}">
@@ -112,6 +112,72 @@ $(document).ready(function(){
                             </div>
                             <hr>
                         </div>
+                        <div class="row d-flex">`
+                        if (orders[i].oRanking == 0) {
+			                content += `
+				                <!-- Button trigger modal -->
+				                <div class="INHbtn"><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#rateModal${i}">給予評價</button></div>
+				                <!-- Modal -->
+				                <div class="modal fade" id="rateModal${i}" tabindex="-1" aria-labelledby="rateModalLabel${i}" aria-hidden="true">
+				                    <div class="modal-dialog">
+				                        <div class="modal-content">
+				                            <div class="modal-header">
+				                                <h5 class="modal-title" id="rateModalLabel${i}">給予評價</h5>
+				                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				                            </div>
+				                        <div class="modal-body">
+				                            <div class="form-check form-check-inline">
+				                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio${i}" value="1">
+				                                <label class="form-check-label" for="inlineRadio1">1</label>
+				                            </div>
+				                            <div class="form-check form-check-inline">
+				                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio${i}" value="2">
+				                                <label class="form-check-label" for="inlineRadio2">2</label>
+				                            </div>
+				                            <div class="form-check form-check-inline">
+				                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio${i}" value="3">
+				                                <label class="form-check-label" for="inlineRadio3">3</label>
+				                            </div>
+				                            <div class="form-check form-check-inline">
+				                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio${i}" value="4">
+				                                <label class="form-check-label" for="inlineRadio3">4</label>
+				                            </div>
+				                            <div class="form-check form-check-inline">
+				                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio${i}" value="5">
+				                                <label class="form-check-label" for="inlineRadio3">5</label>
+				                            </div>
+				                        </div>
+				                            <div class="modal-footer">
+				                                <button id=rateBtn${orders[i].oId} onclick="rateOrder(${orders[i].oId},${i})" class="btn btn-success refresh-butto">確定</button>
+				                            </div>
+				                        </div>
+				                    </div>
+				                </div>
+				            `
+					}
+					if (orders[i].oOrderStatus === "未完成") {
+                		content+= `
+		                <!-- Button trigger modal -->
+		                <div class="INHbtn"><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal${i}">取消</button></div>
+		                <!-- Modal -->
+		                <div class="modal fade" id="exampleModal${i}" tabindex="-1" aria-labelledby="exampleModalLabel${i}" aria-hidden="true">
+		                    <div class="modal-dialog">
+		                        <div class="modal-content">
+		                            <div class="modal-header">
+		                                <h5 class="modal-title" id="exampleModalLabel${i}">取消訂單</h5>
+		                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		                            </div>
+		                        <div class="modal-body">確定要取消嗎?</div>
+		                            <div class="modal-footer">
+		                                <button id=cancelBtn${orders[i].oId} onclick="cancelOrder(${orders[i].oId})" class="btn btn-warning refresh-butto">確定</button>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+	                	`
+	            	}
+                content+= `
+                		</div>
                     </form>
                 </div>
             </div>
@@ -136,4 +202,39 @@ function orderRating(rating, i){
 			$("#eachOrderRating" + i).append(nullStar)
 		}
 	}
+}
+function cancelOrder(oId) {
+    // console.log(oId);
+    let body = oId
+    fetch('cancelOrder',
+        { method: 'PUT', headers: { 'content-type': 'application/json' }, body }).then((response) => response.text()).then(res => {
+            window.location.reload();
+        }).catch((error) => {
+            console.log(`Error`);
+        })
+}
+function rateOrder(oId,i) {
+    let oRanking = document.querySelector(`#inlineRadio${i}:checked`).value
+    console.log(oRanking);
+    console.log(oId);
+    let body = {
+        oId: oId,
+        oRanking: oRanking
+    }
+    fetch('rateOrder',
+        { method: 'PUT', headers: { 'content-type': 'application/json' }, body:JSON.stringify(body) }).then((response) => response.text()).then(res => {
+            window.location.reload();
+        }).catch((error) => {
+            console.log(`Error`);
+        })
+}
+const logout = document.querySelector('#logout');
+   logout.addEventListener('click', () => {
+   sessionStorage.removeItem('mEmail');
+   fetch('member/logout');
+   location = `${getContextPath()}/index.html`;
+});
+
+function getContextPath() {
+  return window.location.pathname.substring(0, window.location.pathname.indexOf('/', 2));
 }
