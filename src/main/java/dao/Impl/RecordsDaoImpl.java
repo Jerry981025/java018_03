@@ -42,5 +42,6 @@ public class RecordsDaoImpl implements RecordsDao {
 					  .getResultList();
 		return list;
 	}
+
 	
 }
