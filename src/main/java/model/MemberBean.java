@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -27,7 +28,7 @@ public class MemberBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "MId")
+	@Column(name = "mId")
 	private Integer mId;   			    		// ObjectId
 	private String mPassword;   				// 密碼
 	private String mFirstName;       			// 名
@@ -46,6 +47,8 @@ public class MemberBean implements Serializable{
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "mId")
 	private Set<AddressBean> addressBeans;
+	@Transient
+	private String mCheckPassword;
 	
 	public MemberBean() {}
 
@@ -171,4 +174,11 @@ public class MemberBean implements Serializable{
 		this.addressBeans = addressBeans;
 	}
 
+	public String getmCheckPassword() {
+		return mCheckPassword;
+	}
+
+	public void setmCheckPassword(String mCheckPassword) {
+		this.mCheckPassword = mCheckPassword;
+	}
 }

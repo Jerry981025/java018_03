@@ -12,7 +12,7 @@ public interface MemberService {
 
 	boolean existsByEmail(String id);
 
-	Integer saveMember(MemberBean mb);
+	Map<String, Object> saveMember(MemberBean mb);
 
 	MemberBean findByEmail(String mEmail);
 

@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
+import model.MemberBean;
 import model.OrderBean;
 import service.OrderService;
 import vo.OrderVo;
@@ -43,10 +45,11 @@ public class OrderController {
 	}
 
 	@PostMapping(value = "/add", produces = { "application/json; charset=UTF-8" })
-	public @ResponseBody void addOrder(@RequestBody() OrderVo params) {
+	public @ResponseBody void addOrder(@RequestBody() OrderVo params,
+			@SessionAttribute MemberBean member) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		OrderBean bean = new OrderBean();
-		bean.setmId(001);
+		bean.setMemberBean(member);
 		bean.setoShippingAddress(params.getoShippingAddress());
 		bean.setoDestinationAddress(params.getoDestinationAddress());
 		bean.setoFee(params.getoFee());

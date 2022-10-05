@@ -6,7 +6,7 @@ let input2 = document.getElementById("searchInputTo");
 function doFirst() {
   // 先跟 HTML 畫面產生關聯
   loadButton = document.getElementById('loadButton')
-  paymentButton = document.getElementById('orderButton') 
+  paymentButton = document.getElementById('orderButton')
   sendAddressButton = document.getElementById('sendAddressButton')
   result = document.getElementById('result')
   initMeetingTime()
@@ -16,10 +16,10 @@ function doFirst() {
   loadButton.addEventListener('click', function () {
     createItems()
   })
-  paymentButton.addEventListener('click', function () { 
+  paymentButton.addEventListener('click', function () {
     paymentPage()
   })
-  sendAddressButton.addEventListener('click', function () { 
+  sendAddressButton.addEventListener('click', function () {
     calcRoute()
   })
 }
@@ -129,7 +129,8 @@ function createItems() {
   quantityInput.setAttribute('id', `quantity${i}`)
   quantityInput.setAttribute('class', 'quantityInput form-control')
   quantityInput.setAttribute('type', 'number')
-  quantityInput.setAttribute('min', '0')
+  quantityInput.setAttribute('min', '1')
+  quantityInput.setAttribute('step', '1')
 
   quantityInput.addEventListener('change', function () {
     accordionHeader.title += '產品數量: ' + quantityInput.value + '\n'
@@ -256,7 +257,7 @@ function initMeetingTime() {
   meetingTime.min = formatTime
 }
 //選擇付款方式
-function paymentPage() { 
+function paymentPage() {
   // $('.mission').hide()
   // $('.payment').show()
   let oShippingAddress = input1.value
@@ -267,21 +268,44 @@ function paymentPage() {
   oDeadLine = oDeadLine.replace(/T/g, ' ')
   let oOrderType = document.querySelector('#radio').value
   let oComment = document.querySelector('#talk').value
-
   let items = []
   for (let j = 0; j < i; j++) {
     let brand = document.querySelector(`#brand${j}`).value
     let detail = document.querySelector(`#detail${j}`).value
     let quantity = document.querySelector(`#quantity${j}`).value
-    // oShippingAddress = '台灣台北市中正區承德路一段台北車站'
-    // oDestinationAddress = '台灣新北市板橋區縣民大道二段板橋火車站'
-    // oFee = 50
-    // oPrice = 200
-    // oOrderType = '代買'
-    // oComment = '================@@@@@@@@@@@@@@@@'
-    // brand = '義美小泡芙'
-    // detail = '巧克力'
-    // quantity = 5
+
+    re = /^\d+$/;
+    if (oShippingAddress == "" && oDestinationAddress == "") {
+      alert("請輸入運送地址");
+      oShippingAddress.focus();
+      oDestinationAddress.focus();
+      return (false);
+    } if (brand == "") {
+      alert("請輸入產品名稱!!");
+      brand.focus();
+      return (false);
+    } if (detail == "") {
+      alert("請輸入產品細項");
+      detail.focus();
+      return (false);
+    } if (!re.test(quantity)) {
+      alert("請輸入購買數量");
+      quantity.focus();
+      return false;
+    } if (!re.test(oFee)) {
+      alert("請輸入跑腿費");
+      oFee.focus();
+      return false;
+    } if (!re.test(oPrice)) {
+      alert("請輸入預估價格");
+      oPrice.focus();
+      return false;
+    }
+    if (oComment == "") {
+      alert("請輸入留言內容!!");
+      oComment.focus();
+      return (false);
+    }
     items.push({
       oBrand: brand,
       oDetail: detail,
@@ -289,13 +313,6 @@ function paymentPage() {
     })
   }
 
-  // console.log(j);
-  // let cars = []
-  // cars.push({
-  //   make: 'BMW',
-  //   mode: 'X5',
-  //   year: 2021,
-  // })
   let body = {
     oShippingAddress: oShippingAddress,
     oDestinationAddress: oDestinationAddress,
