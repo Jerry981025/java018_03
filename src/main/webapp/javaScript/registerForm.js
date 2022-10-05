@@ -158,12 +158,14 @@ function register(body) {
 
             //Email
             if (data.emailError != null) {
-                let errorEmail = document.createElement('div')
-                errorEmail.setAttribute('id', 'EmailErrorShow')
-                errorEmail.setAttribute('style', 'color:red;')
-                errorEmail.innerText = data.emailError
-                if (emailGo == null) {
-                    emailRow.appendChild(errorEmail)
+                if (emailGo != null) {
+                    emailGo.innerText = data.emailError;
+                } else {
+                    let errorEmail = document.createElement('div')
+                    errorEmail.setAttribute('id', 'EmailErrorShow')
+                    errorEmail.setAttribute('style', 'color:red;')
+                    errorEmail.innerText = data.emailError;
+                    emailRow.appendChild(errorEmail);
                 }
             } else if (data.emailError == null && emailGo != null) {
                 emailRow.removeChild(emailGo)
@@ -221,17 +223,17 @@ function register(body) {
                 mobileRow.removeChild(cellPhoneGo)
             }
 
-            //Email重複
-
-
             // 註冊完送出並轉跳頁面
             errMsg.textContent = '';
             let { successful, message } = data;
             if (successful) {
                 location.replace('../index.html');
+                alert("註冊成功");
             } else {
                 errMsg.textContent = message;
             }
+
+
 
 
 
