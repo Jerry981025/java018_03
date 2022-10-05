@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,7 +18,6 @@ import service.OrderService;
 import vo.OrderVo;
 
 @Controller
-@RequestMapping("/iNeedHelp")
 public class OrderController {
 
 	OrderService orderService;
@@ -31,12 +29,12 @@ public class OrderController {
 
 	@GetMapping("/addOrder")
 	public String addOrders() {
-		return "iNeedHelp/iNeedHelp";
+		return "iNeedHelp";
 	}
 
 	@GetMapping("/myOrders")
 	public String myOrders() {
-		return "iNeedHelp/queryOrderByMemberId";
+		return "queryOrderByMemberId";
 	}
 
 	@PostMapping(value = "/add", produces = { "application/json; charset=UTF-8" })
@@ -72,8 +70,8 @@ public class OrderController {
 		return list;
 	}
 
-	@PutMapping(value = "/cancel", produces = { "application/json; charset=UTF-8" })
-	public @ResponseBody String updateMember(@RequestBody() Integer oId) {
+	@PutMapping(value = "/cancelOrder", produces = { "application/json; charset=UTF-8" })
+	public @ResponseBody String cancelOrder(@RequestBody() Integer oId) {
 		OrderBean bean = orderService.findById(oId);
 		if (!bean.getoOrderStatus().equals("未完成")) {
 			return "訂單不能取消";
@@ -83,6 +81,14 @@ public class OrderController {
 			return "訂單取消成功";
 		}
 
+	}
+
+	@PutMapping(value = "/rateOrder", produces = { "application/json; charset=UTF-8" })
+	public @ResponseBody void rateOrder(@RequestBody() OrderVo params) {
+		System.out.println(params);
+		OrderBean bean = orderService.findById(params.getoId());
+		bean.setoRanking(params.getoRanking());
+		orderService.updateOrderStatus(bean);
 	}
 
 	@GetMapping("/status")

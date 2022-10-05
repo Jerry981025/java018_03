@@ -126,7 +126,7 @@ function register(body) {
                 if (address1234 == null) {
                     addressRow.appendChild(errorAddress)
                 }
-            } else {
+            } else if (data.addressError == null && address1234 != null) {
                 addressRow.removeChild(address1234)
             }
 
@@ -139,7 +139,7 @@ function register(body) {
                 if (firstNameGo == null) {
                     firstNameRow.appendChild(errorfirstName)
                 }
-            } else {
+            } else if (data.firstNameError == null && firstNameGo != null) {
                 firstNameRow.removeChild(firstNameGo)
             }
 
@@ -152,8 +152,7 @@ function register(body) {
                 if (lastNameGo == null) {
                     lastNameRow.appendChild(errorLastName)
                 }
-            } else {
-
+            } else if (data.lastNameError == null && lastNameGo != null) {
                 lastNameRow.removeChild(lastNameGo)
             }
 
@@ -166,7 +165,7 @@ function register(body) {
                 if (emailGo == null) {
                     emailRow.appendChild(errorEmail)
                 }
-            } else {
+            } else if (data.emailError == null && emailGo != null) {
                 emailRow.removeChild(emailGo)
             }
 
@@ -218,19 +217,21 @@ function register(body) {
                 if (cellPhoneGo == null) {
                     mobileRow.appendChild(errorcellPhone)
                 }
-            } else {
+            } else if (data.cellPhoneError == null && cellPhoneGo != null) {
                 mobileRow.removeChild(cellPhoneGo)
             }
 
+            //Email重複
 
 
-            // //密碼長度限制
-            // let loginPassword = document.querySelector('#password');
-            // let pwdLength = loginPassword.value.length;
-            // if (pwdLength < 6 || pwdLength > 12) {
-            //     msg.textContent = '密碼長度須介於6~12字元';
-            //     return;
-            // }
+            // 註冊完送出並轉跳頁面
+            errMsg.textContent = '';
+            let { successful, message } = data;
+            if (successful) {
+                location.replace('../index.html');
+            } else {
+                errMsg.textContent = message;
+            }
 
 
 

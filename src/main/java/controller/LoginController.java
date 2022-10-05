@@ -17,7 +17,6 @@ import global.GlobalService;
 import model.MemberBean;
 import service.MemberService;
 
-
 @RestController
 public class LoginController {
 
@@ -53,25 +52,18 @@ public class LoginController {
 		return loginForm;
 	}
 
-	
-//	@GetMapping("test")
-//	public MemberBean Test(HttpSession session) {
-//		MemberBean memberBean = (MemberBean) session.getAttribute("member");
-//		return memberBean;
-//	}
-	
+
 	@PostMapping("/login")
-	public Map<String, Object> checkAccount(@RequestBody MemberBean mb, HttpSession session
-			 ) {
+	public Map<String, Object> checkAccount(@RequestBody MemberBean mb, HttpSession session) {
 		mb = memberService.findByEmailAndPassword(mb);
+		Map<String, Object> respMap = new HashMap<>();
 		if (mb != null) {
 			session.setAttribute("member", mb);
+			respMap.put("mEmail", mb.getmEmail());
+		} else {
+			respMap.put("message", "帳號或密碼錯誤");
 		}
-		
-		Map<String, Object> respMap = new HashMap<>();
-		respMap.put("mEmail", mb.getmEmail());
-		respMap.put("mPassword", mb.getmPassword());
+		respMap.put("successful", mb != null);
 		return respMap;
-
 	}
 }
