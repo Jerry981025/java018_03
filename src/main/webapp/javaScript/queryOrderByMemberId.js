@@ -4,7 +4,7 @@ $(document).ready(function () {
         let orderList = ``
         orderList += `
         <div class="col-10">
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered table-striped" style="text-align: center; line-height:50px">
                 <thead>
                     <tr>
                         <th scope="col">訂單明細</th>
@@ -34,19 +34,65 @@ $(document).ready(function () {
                 <td>${res[i].oTime}</td>
                 <td>${res[i].oPrice + res[i].oFee}</td>
                 <td>${res[i].oOrderStatus}</td>
-                <td>${res[i].oRanking}</td>
-                <td></td>
+                <td>`
+            if (res[x].oRanking == 0) {
+                orderList += `
+                    <!-- Button trigger modal -->
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#rateModal${i}">給予評價</button>
+                <!-- Modal -->
+                <div class="modal fade" id="rateModal${i}" tabindex="-1" aria-labelledby="rateModalLabel${i}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="rateModalLabel${i}">給予評價</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                        <div class="modal-body">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio${i}" value="1">
+                                <label class="form-check-label" for="inlineRadio1">1</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio${i}" value="2">
+                                <label class="form-check-label" for="inlineRadio2">2</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio${i}" value="3">
+                                <label class="form-check-label" for="inlineRadio3">3</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio${i}" value="4">
+                                <label class="form-check-label" for="inlineRadio3">4</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio${i}" value="5">
+                                <label class="form-check-label" for="inlineRadio3">5</label>
+                            </div>
+                        </div>
+                            <div class="modal-footer">
+                                <button id=rateBtn${oId} onclick="rateOrder(${oId},${i})" class="btn btn-success refresh-butto">確定</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    `
+            } else {
+                orderList += `
+                    ${res[i].oRanking}</td>`
+            }
+            orderList += `
+                <td>${res[i].hId}</td>
                 <td>`
             if (res[x].oOrderStatus === "未完成") {
                 orderList += `
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">取消</button>
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal${i}">取消</button>
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="exampleModal${i}" tabindex="-1" aria-labelledby="exampleModalLabel${i}" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">取消訂單</h5>
+                                <h5 class="modal-title" id="exampleModalLabel${i}">取消訂單</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                         <div class="modal-body">確定要取消嗎?</div>
@@ -57,11 +103,9 @@ $(document).ready(function () {
                     </div>
                 </div>
                 `
-
-            } else {
-
             }
-            orderList += `</td>
+            orderList += `
+                </td>
             </tr>`
             x++
         }
@@ -107,9 +151,25 @@ function orderItem(x) {
     })
 }
 function cancelOrder(oId) {
+    // console.log(oId);
     let body = oId
-    fetch('cancel',
+    fetch('cancelOrder',
         { method: 'PUT', headers: { 'content-type': 'application/json' }, body }).then((response) => response.text()).then(res => {
+            window.location.reload();
+        }).catch((error) => {
+            console.log(`Error`);
+        })
+}
+function rateOrder(oId,i) {
+    let oRanking = document.querySelector(`#inlineRadio${i}:checked`).value
+    console.log(oRanking);
+    console.log(oId);
+    let body = {
+        oId: oId,
+        oRanking: oRanking
+    }
+    fetch('rateOrder',
+        { method: 'PUT', headers: { 'content-type': 'application/json' }, body:JSON.stringify(body) }).then((response) => response.text()).then(res => {
             window.location.reload();
         }).catch((error) => {
             console.log(`Error`);
