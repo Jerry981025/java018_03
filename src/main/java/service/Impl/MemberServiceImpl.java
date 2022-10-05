@@ -20,9 +20,13 @@ import service.MemberService;
 @Transactional
 @Service
 public class MemberServiceImpl implements MemberService {
-	@Autowired
 	MemberDao memberDao;
 	OrderDao orderDao;
+
+	public MemberServiceImpl(MemberDao memberDao, OrderDao orderDao) {
+		this.memberDao = memberDao;
+		this.orderDao = orderDao;
+	}
 
 	@Override
 	public Map<String, Object> saveMember(MemberBean mb) {
@@ -123,7 +127,7 @@ public class MemberServiceImpl implements MemberService {
 		map.put("rank", rank);
 		return map;
 	}
-	
+
 	private String enPassword(String password) {
 		String encryptStr = GlobalService.encryptString(password);
 		return GlobalService.getMD5Endocing(encryptStr);
