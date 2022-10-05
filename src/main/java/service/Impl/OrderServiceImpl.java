@@ -37,8 +37,14 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<OrderBean> findAllOrders() {
-		return orderDao.findAllOrders();
+	public List<OrderBean> findAllOrders(Integer mId) {
+		List<OrderBean> orders = orderDao.findAllOrders();
+		for (OrderBean order : orders) {
+			if (order.getMemberBean().getmId() == mId) {
+				orders.remove(order);
+			}
+		}
+		return orders;
 	}
 
 	@Override

@@ -39,7 +39,7 @@ public class OrderController {
 		return "queryOrderByMemberId";
 	}
 	
-	@GetMapping("/orderitem")
+	@GetMapping("/orderItem")
 	public String orderitem() {
 		return "orderItem";
 	}
@@ -72,8 +72,8 @@ public class OrderController {
 	}
 
 	@GetMapping("/allOrders")
-	public @ResponseBody List<OrderBean> orderList() {
-		List<OrderBean> list = orderService.findAllOrders();
+	public @ResponseBody List<OrderBean> orderList(@SessionAttribute MemberBean member) {
+		List<OrderBean> list = orderService.findAllOrders(member.getmId());
 		System.out.println(list);
 		return list;
 	}

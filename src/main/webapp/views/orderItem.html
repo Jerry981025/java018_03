@@ -18,10 +18,11 @@
 
 <body>
     <!-- 導覽列 -->
+    <div class="header"></div>
     <nav class="navbar navbar-expand-md navbar-light">
         <div class="container-fluid">
             <!-- 品牌LOGO -->
-            <a class="navbar-brand" href="LoginHome/LoginHome.html">幫幫忙
+            <a class="navbar-brand" href="index.html">幫幫忙
                 <img src="images/handbag-fill.svg" alt="" width="30" height="24"
                     class="d-inline-block align-text-top">
             </a>
@@ -38,10 +39,10 @@
                 <!-- 內容 -->
                 <ul class="navbar-nav me-auto p-2">
                     <li class="nav-item">
-                        <a class="nav-link" href="INeedHelp/INeedHelp.html">提出需求(I need help!)</a>
+                        <a class="nav-link" href="addOrder">提出需求(I need help!)</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="ICanHelp/ICanHelp.html">我要幫忙(I can help!)</a>
+                        <a class="nav-link" href="orderItem">我要幫忙(I can help!)</a>
                     </li>
                 </ul>
                 <img class="rounded-circle" style="height:40px; width:40px;" data-bs-toggle="offcanvas"
@@ -58,10 +59,10 @@
                 <p class="nav-link m-0 fs-5 text-dark">會員中心</p>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="INeedHelp/INeedHelp.html">提出需求(I need help!)</a>
+                <a class="nav-link" href="addOrder">提出需求(I need help!)</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="Login-Home/Login-Home.html">我要幫忙(I can help!)</a>
+                <a class="nav-link" href="orderItem">我要幫忙(I can help!)</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="CommonProblem/CommonProblem.html">常見問題</a>
@@ -191,7 +192,7 @@
                         </li>
                         <li class="nav-item pt-1">
                             <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
-                                href="MemberCenter/MemberCenter.html">會員中心</a>
+                                href="MemberCenter">會員中心</a>
                         </li>
                         <li class="nav-item pt-1">
                             <a class="nav-link p-0 text-secondary fs-6" aria-current="page" href="#">使用者條款</a>
@@ -210,12 +211,12 @@
                     <ul class="nav flex-column">
                         <li class="nav-item pt-2">
                             <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
-                                href="INeedHelp/INeedHelp.html">提出需求(I need
+                                href="addOrder">提出需求(I need
                                 help!)</a>
                         </li>
                         <li class="nav-item pt-2">
                             <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
-                                href="Login-Home/Login-Home.html">我要幫忙(I can
+                                href="orderItem">我要幫忙(I can
                                 help!)</a>
                         </li>
                     </ul>
@@ -233,8 +234,8 @@
         </div>
     </footer>
 
-
-
+	
+	<div id="footer"></div>
     <!-- Boostrap5.0 導入程式 -->
     <!-- JavaScript Bundle with Popper -->
 
@@ -251,7 +252,7 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTRB1lKaBC5bZnOqjeff7M3sjzvaOGVPo&libraries=places"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="javaScript/orderItem.js"></script>
-
+	<script src="javaScript/logout.js"></script>
 </body>
 
 </html>
