@@ -126,7 +126,7 @@ function register(body) {
                 if (address1234 == null) {
                     addressRow.appendChild(errorAddress)
                 }
-            } else {
+            } else if (data.addressError == null && address1234 != null) {
                 addressRow.removeChild(address1234)
             }
 
@@ -139,7 +139,7 @@ function register(body) {
                 if (firstNameGo == null) {
                     firstNameRow.appendChild(errorfirstName)
                 }
-            } else {
+            } else if (data.firstNameError == null && firstNameGo != null) {
                 firstNameRow.removeChild(firstNameGo)
             }
 
@@ -152,8 +152,7 @@ function register(body) {
                 if (lastNameGo == null) {
                     lastNameRow.appendChild(errorLastName)
                 }
-            } else {
-
+            } else if (data.lastNameError == null && lastNameGo != null) {
                 lastNameRow.removeChild(lastNameGo)
             }
 
@@ -166,7 +165,7 @@ function register(body) {
                 if (emailGo == null) {
                     emailRow.appendChild(errorEmail)
                 }
-            } else {
+            } else if (data.emailError == null && emailGo != null) {
                 emailRow.removeChild(emailGo)
             }
 
@@ -222,12 +221,14 @@ function register(body) {
                 mobileRow.removeChild(cellPhoneGo)
             }
 
+            //Email重複
+
 
             // 註冊完送出並轉跳頁面
             errMsg.textContent = '';
             let { successful, message } = data;
             if (successful) {
-                location.replace('iNeedHelp/iNeedHelp.html');
+                location.replace('../index.html');
             } else {
                 errMsg.textContent = message;
             }

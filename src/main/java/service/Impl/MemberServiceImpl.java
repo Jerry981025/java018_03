@@ -1,12 +1,18 @@
 package service.Impl;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import dao.MemberDao;
+import dao.OrderDao;
 import model.MemberBean;
+import model.OrderBean;
 import service.MemberService;
 
 @Transactional
@@ -16,8 +22,11 @@ public class MemberServiceImpl implements MemberService {
 //	@Autowired
 	MemberDao memberDao;
 
-	public MemberServiceImpl(MemberDao memberDao) {
+	OrderDao orderDao;
+
+	public MemberServiceImpl(MemberDao memberDao, OrderDao orderDao) {
 		this.memberDao = memberDao;
+		this.orderDao = orderDao;
 	}
 
 	@Override
@@ -55,5 +64,18 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberBean findByEmailAndPassword(MemberBean mb) {
 		return memberDao.findByEmailAndPassword(mb);
+	}
+
+	@Override
+	public Map<String, Integer> findByOrderStatusAndHId(String status, Integer hId) {
+		Map<String, Integer> map = new HashMap<>();
+		List<OrderBean> orders = orderDao.findByOrderStatusAndhId(status, hId);
+		Integer rank = 0;
+		for (OrderBean order : orders) {
+			rank += order.getoRanking();
+		}
+		map.put("count", orders.size());
+		map.put("rank", rank);
+		return map;
 	}
 }

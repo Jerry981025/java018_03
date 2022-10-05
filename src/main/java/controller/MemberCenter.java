@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.sql.rowset.serial.SerialBlob;
@@ -16,7 +17,6 @@ import javax.sql.rowset.serial.SerialException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import model.MemberBean;
+import model.OrderBean;
 import service.AddressService;
 import service.MemberService;
 
@@ -301,5 +302,11 @@ public class MemberCenter {
 			}
 		}
 		return map;
+	}
+	
+	@GetMapping("/star")
+	@ResponseBody
+	public Map<String, Integer> getRank(@SessionAttribute MemberBean member) {
+		return memberService.findByOrderStatusAndHId("已完成", member.getmId());
 	}
 }

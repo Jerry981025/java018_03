@@ -52,11 +52,6 @@ public class LoginController {
 		return loginForm;
 	}
 
-//	@GetMapping("test")
-//	public MemberBean Test(HttpSession session) {
-//		MemberBean memberBean = (MemberBean) session.getAttribute("member");
-//		return memberBean;
-//	}
 
 	@PostMapping("/login")
 	public Map<String, Object> checkAccount(@RequestBody MemberBean mb, HttpSession session) {
