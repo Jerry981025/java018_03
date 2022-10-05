@@ -19,15 +19,15 @@ public class AddressBean implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer aId;
-	private String Address;
+	private String address;
 
 	public AddressBean() {
 	}
 
-	public AddressBean(Integer mId, Integer aId, String Address) {
+	public AddressBean(Integer mId, Integer aId, String address) {
 		this.mId = mId;
 		this.aId = aId;
-		this.Address = Address;
+		this.address = address;
 	}
 
 	public Integer getmId() {
@@ -46,12 +46,12 @@ public class AddressBean implements Serializable{
 		this.aId = aId;
 	}
 
-	public String getAddress() {
-		return Address;
+	public String getaddress() {
+		return address;
 	}
 
-	public void setAddress(String Address) {
-		this.Address = Address;
+	public void setaddress(String address) {
+		this.address = address;
 	}
 
 
