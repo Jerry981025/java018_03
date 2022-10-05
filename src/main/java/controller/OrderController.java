@@ -36,6 +36,11 @@ public class OrderController {
 	public String myOrders() {
 		return "queryOrderByMemberId";
 	}
+	
+	@GetMapping("/orderitem")
+	public String orderitem() {
+		return "orderItem";
+	}
 
 	@PostMapping(value = "/add", produces = { "application/json; charset=UTF-8" })
 	public @ResponseBody void addOrder(@RequestBody() OrderVo params) {
