@@ -7,8 +7,6 @@ $(document).ready(function () {
 		.then(res => res.json())
 		.then(res => {
 			allOrders = res
-			console.log(res);
-
 			let orderList = ``
 			
 			for (let i = 0; i < res.length; i++) {
