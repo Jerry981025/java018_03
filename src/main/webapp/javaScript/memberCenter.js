@@ -349,24 +349,6 @@ $(document).ready(() => {
 	})
 })
 
-function getMemeberPicture(Id) {
-	axios.get(
-		'memberPicture',
-		{
-			params: { mId: Id }
-		})
-		.then((res) => {
-			originalcontent = `data:${res.data.mineType};base64, ${res.data.base64}`
-			$('#c19').attr('src', originalcontent)
-			$('#c27').attr('src', originalcontent)
-			$('#c29').attr('src', originalcontent)
-			$('#c28').attr('src', originalcontent)
-			$('#member_picture').attr('src', originalcontent)
-		})
-		.catch()
-}
-
-
 function getMemberDetail() {
 	axios.get('member')
 		.then((res) => {
@@ -425,7 +407,6 @@ function setMemberDetail(resJson) {
 	$('#c14').text(resJson.mFirstName + resJson.mLastName)
 	$('#c15').text(resJson.mFirstName + resJson.mLastName)
 	$('#c2').text(resJson.mId)
-	getMemeberPicture(resJson.mId)
 	$('#c17').text(resJson.mId)
 	$('#c5').text(resJson.mEmail)
 	$('#c6').text(resJson.mBirth)
@@ -463,6 +444,19 @@ function updatePicture() {
 	axios.put('memberPicture', json, config)
 		.then((res) => { getMemeberPicture($('#c2').text()) })
 		.catch((error) => { console.error(error) })
+}
+
+function getMemeberPicture() {
+	axios.get('memberPicture')
+		.then((res) => {
+			originalcontent = `data:${res.data.mineType};base64, ${res.data.base64}`
+			$('#c19').attr('src', originalcontent)
+			$('#c27').attr('src', originalcontent)
+			$('#c29').attr('src', originalcontent)
+			$('#c28').attr('src', originalcontent)
+			$('#member_picture').attr('src', originalcontent)
+		})
+		.catch()
 }
 
 let myLatLng = { lat: 25.042563029213984, lng: 121.52015437660762 };
