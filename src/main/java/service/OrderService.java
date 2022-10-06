@@ -10,10 +10,10 @@ public interface OrderService {
 	void addOrder(OrderBean ob);
 	
 	OrderBean findById(Integer oId);
-
+	
 	List<OrderBean> findByMemberId(Integer mId);
 	
-	List<OrderBean> findAllOrders();
+	List<OrderBean> findAllOrders(Integer mId);
 	
 	void updateOrderStatus(OrderBean ob);
 	

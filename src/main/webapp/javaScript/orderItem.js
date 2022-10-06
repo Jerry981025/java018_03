@@ -51,7 +51,7 @@ $(document).ready(function abc() {
 					// 建立marker視窗
 					if (marker.content) {
 						const detailWindow = new google.maps.InfoWindow({
-							content: marker.fee
+							content: marker.id
 						});
 						google.maps.event.addListener(map, 'click', function () {
 							detailWindow.close();
@@ -419,7 +419,7 @@ $('input[name="orderType"]').change(function () {
 				// 建立marker視窗
 				if (marker.content) {
 					const detailWindow = new google.maps.InfoWindow({
-						content: marker.fee
+						content: marker.id
 					});
 					google.maps.event.addListener(map, 'click', function () {
 						detailWindow.close();
@@ -489,14 +489,14 @@ $('input[name="orderType"]').change(function () {
 													<td width="80%">${allOrders[i].items[0].oBrand} (${allOrders[i].items[0].oDetail}) * ${allOrders[i].items[0].oQuantity}</td>
 												</tr>`
 
-			for (let j = 1; j < allOrders[i].items.length; j++) {
-				orderList += `
+												for (let j = 1; j < allOrders[i].items.length; j++) {
+													orderList += `
 																<tr>
 																	<td width="20%"></td>
 																	<td width="80%">${allOrders[i].items[j].oBrand} (${allOrders[i].items[j].oDetail}) * ${allOrders[i].items[j].oQuantity}</td>
 																</tr>`
-			}
-			orderList += `
+												}
+												orderList += `
 												<tr>
 													<td width="20%">店家地址</td>
 													<td width="80%">${allOrders[i].oShippingAddress}</td>
@@ -579,7 +579,7 @@ $('input[name="orderType"]').change(function () {
 				// 建立marker視窗
 				if (marker.content) {
 					const detailWindow = new google.maps.InfoWindow({
-						content: marker.fee
+						content: marker.id
 					});
 					google.maps.event.addListener(map, 'click', function () {
 						detailWindow.close();
