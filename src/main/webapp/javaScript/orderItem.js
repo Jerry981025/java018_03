@@ -457,7 +457,7 @@ $('input[name="orderType"]').change(function () {
 							  <td>
 								評分: ${allOrders[i].oRanking}
 
-								<button type="button" class="btn btn-primary"  onclick="itemsDetail(${allOrders[i].oId})" data-bs-toggle="modal" data-bs-target="#exampleModal${allOrders[i].oId}">
+								<button type="button" style="float:right;" class="btn btn-primary"  onclick="itemsDetail(${allOrders[i].oId})" data-bs-toggle="modal" data-bs-target="#exampleModal${allOrders[i].oId}">
 									我要接單
 								</button>
 

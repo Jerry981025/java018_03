@@ -72,8 +72,8 @@ public class OrderController {
 	}
 
 	@GetMapping("/allOrders")
-	public @ResponseBody List<OrderBean> orderList(@SessionAttribute MemberBean member) {
-		List<OrderBean> list = orderService.findAllOrders(member.getmId());
+	public @ResponseBody List<OrderBean> orderList() {
+		List<OrderBean> list = orderService.findAllOrders();
 		System.out.println(list);
 		return list;
 	}
@@ -100,8 +100,8 @@ public class OrderController {
 	}
 
 	@GetMapping("/status")
-	public @ResponseBody List<OrderBean> findByOrderStatus(@RequestParam() String status) {
-		List<OrderBean> ob = orderService.findByOrderStatus(status);
+	public @ResponseBody List<OrderBean> findByOrderStatus(@RequestParam() String status, @SessionAttribute MemberBean member) {
+		List<OrderBean> ob = orderService.findByOrderStatus(status, member.getmId());
 		return ob;
 	}
 }

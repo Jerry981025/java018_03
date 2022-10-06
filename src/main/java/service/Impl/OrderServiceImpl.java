@@ -1,6 +1,8 @@
 package service.Impl;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.function.Consumer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,14 +39,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<OrderBean> findAllOrders(Integer mId) {
-		List<OrderBean> orders = orderDao.findAllOrders();
-		for (OrderBean order : orders) {
-			if (order.getMemberBean().getmId() == mId) {
-				orders.remove(order);
-			}
-		}
-		return orders;
+	public List<OrderBean> findAllOrders() {
+		return orderDao.findAllOrders();
 	}
 
 	@Override
@@ -54,8 +50,13 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<OrderBean> findByOrderStatus(String status) {
-		return orderDao.findByOrderStatus(status);
+	public List<OrderBean> findByOrderStatus(String status, Integer mId) {
+		List<OrderBean> orders = orderDao.findByOrderStatus(status);
+		for (int i = 0; i < orders.size(); i++) {
+			if (orders.get(i).getMemberBean().getmId() == mId) {
+				orders.remove(i);
+			}
+		}
+		return orders;
 	}
-
 }
