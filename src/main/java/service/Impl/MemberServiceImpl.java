@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 //import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
+import dao.AddressDao;
 import dao.MemberDao;
 import dao.OrderDao;
 import global.GlobalService;
@@ -20,9 +21,15 @@ import service.MemberService;
 @Transactional
 @Service
 public class MemberServiceImpl implements MemberService {
-	@Autowired
 	MemberDao memberDao;
 	OrderDao orderDao;
+	AddressDao addressDao;
+
+	public MemberServiceImpl(MemberDao memberDao, OrderDao orderDao, AddressDao addressDao) {
+		this.memberDao = memberDao;
+		this.orderDao = orderDao;
+		this.addressDao = addressDao;
+	}
 
 	@Override
 	public Map<String, Object> saveMember(MemberBean mb) {
@@ -71,6 +78,7 @@ public class MemberServiceImpl implements MemberService {
 
 		mb.setmPassword(enPassword(mb.getmPassword()));
 		memberDao.save(mb);
+		addressDao.saveAddress(mb.getmId(), mb.getmAddress());
 		final Integer mId = mb.getmId();
 		if (mId != null) {
 			messageMap.put("emailCorrect", "註冊成功");
@@ -112,8 +120,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Map<String, Integer> findByOrderStatusAndHId(String status, Integer hId) {
-		Map<String, Integer> map = new HashMap<>();
+	public Map<String, Object> findByOrderStatusAndHId(String status, Integer hId) {
+		Map<String, Object> map = new HashMap<>();
 		List<OrderBean> orders = orderDao.findByOrderStatusAndhId(status, hId);
 		Integer rank = 0;
 		for (OrderBean order : orders) {
@@ -123,7 +131,7 @@ public class MemberServiceImpl implements MemberService {
 		map.put("rank", rank);
 		return map;
 	}
-	
+
 	private String enPassword(String password) {
 		String encryptStr = GlobalService.encryptString(password);
 		return GlobalService.getMD5Endocing(encryptStr);

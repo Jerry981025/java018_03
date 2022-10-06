@@ -43,6 +43,16 @@ public class MemberCenter {
 		this.memberService = memberService;
 		this.addressService = addressService;
 	}
+	
+	@GetMapping("/footer")
+	public String footer() {
+		return "footer";
+	}
+	
+	@GetMapping("/nav")
+	public String nav() {
+		return "nav";
+	}
 
 	@GetMapping("/MemberCenter")
 	public String loadMemberCenter() {
@@ -56,12 +66,11 @@ public class MemberCenter {
 
 	@GetMapping("/memberPicture")
 	public @ResponseBody Map<String, String> memberPicture(
-			@RequestParam(name = "mId", required = false) String StrmId) {
+			@SessionAttribute MemberBean member) {
 		File file = new File(noImagePath);
 		Map<String, String> map = new HashMap<>();
 		String mineType = null;
-		Integer mId = Integer.valueOf(StrmId);
-		MemberBean bean = memberService.findByMId(mId);
+		MemberBean bean = memberService.findByMId(member.getmId());
 		Blob blob = bean.getmPicture();
 		String base64 = null;
 		byte[] b = null;
@@ -71,7 +80,6 @@ public class MemberCenter {
 					b = new byte[(int) file.length()];
 					fis.read(b);
 					mineType = "image/png";
-					System.out.println("bitch");
 				} catch (IOException e) {
 					e.printStackTrace();
 					e.getMessage();
@@ -306,7 +314,10 @@ public class MemberCenter {
 	
 	@GetMapping("/star")
 	@ResponseBody
-	public Map<String, Integer> getRank(@SessionAttribute MemberBean member) {
-		return memberService.findByOrderStatusAndHId("已完成", member.getmId());
+	public Map<String, Object> getRank(@SessionAttribute MemberBean member) {
+		Map<String, Object> map = memberService.findByOrderStatusAndHId("已完成", member.getmId());
+		map.put("mId", member.getmId());
+		map.put("name", member.getmLastName() + member.getmFirstName());
+		return map;
 	}
 }

@@ -1,33 +1,32 @@
-*{
+* {
     font-size: 14px;
-    font-family:  Tahoma;  
+    font-family: Tahoma;
 }
 
 nav{
-    height: 5vh;
-    width: 100%;
-    position: fixed;
+    height: 70px;
 }
+
 
 .navbar{
-    background: rgb(238,174,202);
-    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    background-color:azure
 }
 
-li a:hover{
-    color:darkslateblue !important;
+li a:hover {
+    color: darkslateblue !important;
 }
 
-h1{
+h1 {
     text-align: center;
     padding: 10px;
 }
-img .mapImg{
+
+img .mapImg {
     width: 100%;
     height: 100%;
 }
 
-.mission{
+.mission {
     height: 95vh;
     overflow: scroll;
 }
@@ -35,15 +34,15 @@ img .mapImg{
 #googleMap {
     width: 100%;
     height: 95vh;
-    /* margin: 10px auto; */
-    
 }
+
 #output {
-    text-align: center;
+    text-align: left;
     font-size: 2em;
     margin: 20px auto;
 }
-.payment{ /* newkni */
+
+.payment {
     display: none;
     height: 95vh;
     overflow: scroll;
