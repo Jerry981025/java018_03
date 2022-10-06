@@ -403,9 +403,9 @@ function createAddressOption(addressBeans) {
 }
 
 function setMemberDetail(resJson) {
-	$('#c1').text(resJson.mFirstName + resJson.mLastName)
-	$('#c14').text(resJson.mFirstName + resJson.mLastName)
-	$('#c15').text(resJson.mFirstName + resJson.mLastName)
+	$('#c1').text(resJson.mLastName + resJson.mFirstName)
+	$('#c14').text(resJson.mLastName + resJson.mFirstName)
+	$('#c15').text(resJson.mLastName + resJson.mFirstName)
 	$('#c2').text(resJson.mId)
 	$('#c17').text(resJson.mId)
 	$('#c5').text(resJson.mEmail)

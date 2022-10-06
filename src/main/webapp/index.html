@@ -5,14 +5,12 @@
     <title>首頁</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/handbag-fill.svg">
     <!-- Boostrap5.0 導入程式 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="static/css/bootstrap.css">
+    <script src="static/js/bootstrap.bundle.js"></script>
     <!-- 連結內容CSS -->
-    <link rel="stylesheet" href="./css/frontPage.css">
+    <link rel="stylesheet" href="css/frontPage.css">
 
     <!-- 連結內容js -->
     <script src="javaScript/frontPage.js"></script>
@@ -25,7 +23,7 @@
         <div class="container-fluid">
             <!-- 品牌LOGO -->
             <a class="navbar-brand" href="#">幫幫忙
-                <img src="./images/handbag-fill.svg" alt="handbagLogo" width="30" height="24"
+                <img src="images/handbag-fill.svg" alt="handbagLogo" width="30" height="24"
                     class="d-inline-block align-text-top">
             </a>
             <!-- 手機版顯示-->
@@ -83,7 +81,7 @@
                                         <div id="errMsg" class="error"></div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./registerForm/registerForm.html">會員註冊</a>
+                        <a class="nav-link" href="registerForm">會員註冊</a>
                     </li>
 
                 </ul>
@@ -102,53 +100,36 @@
     <footer class="navbar-fixed-bottom border-top bg-dark text-light">
         <div class="container">
             <div class="row gy-4">
-                <div class="col-lg-5 col-md-12 p-2" href="#">
+                <div class="col-lg-6 col-md-12 p-2" href="#">
                     <h4 class="text-nowrap">幫幫忙</h4>
                     <h6>俗話說在家靠父母，出外靠朋友</h6>
                     <h6>但不好請朋友幫忙怎麼辦？沒有朋友幫忙怎麼辦？</h6>
                     <h6>為了解決這個問題，我們提供一個平台，不管是「I need help ! 」</h6>
                     <h6>還是「I can help ! 」，只要使用「幫幫忙」，問題歹就補！</h6>
                     <div class="">
-                        <a href="#"><img class="bi bi-twitter m-1" src="./images/svg/twitter-svgrepo-com.svg"
+                        <a href="#"><img class="bi bi-twitter m-1" src="images/svg/twitter-svgrepo-com.svg"
                                 style="height: 40px; width: 40px;"></a>
-                        <a href="#"><img class="bi bi-facebook m-1" src="./images/svg/facebook-svgrepo-com.svg"
+                        <a href="#"><img class="bi bi-facebook m-1" src="images/svg/facebook-svgrepo-com.svg"
                                 style="height: 40px; width: 40px;"></a>
                         <a href="#"><img class="bi bi-instagram m-1 rounded-circle"
-                                src="./images/svg/instagram-cat-tail-svgrepo-com.svg"
+                                src="images/svg/instagram-cat-tail-svgrepo-com.svg"
                                 style="height: 40px; width: 40px; border: 1px solid ; color: #aaa;"></a>
-                        <a href="#"><img class="bi bi-linkedin m-1" src="./images/svg/linkedin-svgrepo-com.svg"
+                        <a href="#"><img class="bi bi-linkedin m-1" src="images/svg/linkedin-svgrepo-com.svg"
                                 style="height: 40px; width: 40px;"></a>
                     </div>
                 </div>
-                <div class="col-lg-2 col-6 align-items-center p-2">
+                <div class="col-lg-3 col-6 align-items-center p-2">
                     <h4>其他資訊</h4>
                     <ul class="nav flex-column">
                         <li class="nav-item pt-1">
-                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page" href="MemberCenter">會員中心</a>
-                        </li>
-                        <li class="nav-item pt-1">
-                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page" href="#">使用者條款</a>
+                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page" href="userPolicies">使用者條款</a>
                         </li>
                         <li class="nav-item pt-1">
                             <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
-                                href="./privacyPolicy/privacy.html">隱私權條款</a>
+                                href="privacyPolicies">隱私權條款</a>
                         </li>
                         <li class="nav-item pt-1">
-                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page" href="#">常見問題</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-6 p-2">
-                    <h4>我們的服務</h4>
-                    <ul class="nav flex-column">
-                        <li class="nav-item pt-2">
-                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page" href="addOrder">提出需求(I need
-                                help!)</a>
-                        </li>
-                        <li class="nav-item pt-2">
-                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
-                                href="orderItem">我要幫忙(I can
-                                help!)</a>
+                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page" href="commonproblems">常見問題</a>
                         </li>
                     </ul>
                 </div>
