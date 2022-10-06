@@ -120,8 +120,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Map<String, Integer> findByOrderStatusAndHId(String status, Integer hId) {
-		Map<String, Integer> map = new HashMap<>();
+	public Map<String, Object> findByOrderStatusAndHId(String status, Integer hId) {
+		Map<String, Object> map = new HashMap<>();
 		List<OrderBean> orders = orderDao.findByOrderStatusAndhId(status, hId);
 		Integer rank = 0;
 		for (OrderBean order : orders) {
