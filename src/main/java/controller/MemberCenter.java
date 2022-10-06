@@ -314,7 +314,10 @@ public class MemberCenter {
 	
 	@GetMapping("/star")
 	@ResponseBody
-	public Map<String, Integer> getRank(@SessionAttribute MemberBean member) {
-		return memberService.findByOrderStatusAndHId("已完成", member.getmId());
+	public Map<String, Object> getRank(@SessionAttribute MemberBean member) {
+		Map<String, Object> map = memberService.findByOrderStatusAndHId("已完成", member.getmId());
+		map.put("mId", member.getmId());
+		map.put("name", member.getmLastName() + member.getmFirstName());
+		return map;
 	}
 }
