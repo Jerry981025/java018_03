@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>會員中心</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/handbag-fill.svg">
+    <!-- Boostrap5.0 導入程式 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+    <!-- jquery引用 -->
+    <script src="javaScript/jquery.js"></script>
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js"></script>
+    <!-- 連結內容CSS -->
+    <link rel="stylesheet" href="css/MemberCenter.css">
+
+
+</head>
+
+<body>
+    <!-- 導覽列 -->
+    <nav class="navbar navbar-expand-md navbar-light">
+        <div class="container-fluid">
+            <!-- 品牌LOGO -->
+            <a class="navbar-brand" href="../LoginHome/LoginHome.html">幫幫忙
+                <img src="images/handbag-fill.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            </a>
+            <!-- 手機版顯示 -->
+            <div class="navbar-toggler border-0 p-0">
+                <div class="rounded-circle d-flex">
+                    <img id="c29" width="50" height="50" class="rounded-circle" data-bs-toggle="collapse"
+                        data-bs-target="#offcanvas">
+                    <p id="c14" class="fs-1 py-2 ps-1 m-0" data-bs-toggle="collapse" data-bs-target="#offcanvas"></p>
+                </div>
+            </div>
+            <!-- 桌機版顯示 -->
+
+            <div class="collapse navbar-collapse" id="linkbar">
+                <!-- 內容 -->
+                <ul class="navbar-nav me-auto p-2">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../INeedHelp/INeedHelp.html">提出需求(I need help!)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../ICanHelp/ICanHelp.html">我要幫忙(I can help!)</a>
+                    </li>
+                </ul>
+                <img class="rounded-circle" id="c27" style="height:40px; width:40px;" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+            </div>
+        </div>
+    </nav>
+
+    <!-- 小視窗時點大頭貼的offcanvas -->
+    <div class="collapse navbar-collapse bg-light p-2" id="offcanvas">
+        <!-- 內容 -->
+        <ul class="navbar-nav me-auto bg-light">
+            <li class="nav-item">
+                <p class="nav-link m-0 fs-5 text-dark">會員中心</p>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../INeedHelp/INeedHelp.html">提出需求(I need help!)</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../Login-Home/Login-Home.html">我要幫忙(I can help!)</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../CommonProblem/CommonProblem.html">常見問題</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../others/aboutUs.html">關於我們</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../others/contact.html">聯絡我們</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">登出</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 聊天室 -->
+
+    <body>
+        <label>訂單明細</label><br>
+        <div class="orderList">
+            <h2 class="title mt-3 mb-2">我的訂單</h2>
+            <div id="feedback" align="center" class="mb-2">
+                <div class="row"></div>
+            </div>
+            <div id="result" align="center">
+                <div class="row"></div>
+            </div>
+        </div>
+        <a>1</a>
+        <input type="button" value="開聊" onclick="initWebSocket1()" /><br>
+        <a>2</a>
+        <input type="button" value="開聊" onclick="initWebSocket2()" /><br>
+        <div class="msg_board"></div>
+        <input id="input_msg" size="43" maxlength="40">
+        <input type="button" value="只傳送" onclick="send_msg()" />
+        <button class="btn btn-primary" id="sendData">傳送+資料庫</button><br>
+        <input type="button" value="退出聊天室" onclick="closeWs()" />
+    </body>
+
+
+    <script>
+        //訂單列表
+
+        $(document).ready(function () {
+            fetch('list').then(res => res.json()).then(res => {
+                let orderList = ``
+                orderList += `
+            <div class="col-10">
+                <table class="table table-bordered table-striped" style="text-align: center; line-height:50px">
+                    <thead>
+                        <tr>
+                            <th scope="col">訂單明細</th>
+                            <th scope="col">訂單編號</th>
+                            <th scope="col">提貨地址</th>
+                            <th scope="col">運送地址</th>
+                            <th scope="col">成立時間</th>
+                            <th scope="col">總計</th>   
+                            <th scope="col">開聊</th>
+                        </tr>
+                    </thead>
+                    <tbody>`
+                x = 0
+                for (let i = 0; i < res.length; i++) {
+                    let oId = res[i].oId
+                    orderList += `
+                <tr>
+                    <th scope="row" style="text-align: center;">
+                        <button onclick="orderItem(${x})" class="btn btn-info">查詢</button>
+                    </th>
+                    <td>${res[i].oId}</td>
+                    <td>${res[i].oShippingAddress}</td>
+                    <td>${res[i].oDestinationAddress}</td>
+                    <td>${res[i].oTime}</td>
+                    <td>${res[i].oPrice + res[i].oFee}</td>                   
+                    <td>`
+                    orderList += `
+                   <button onclick="startChat(${x})" class="btn btn-info">開聊</button>
+                    `
+                    orderList += `
+                    </td>
+                </tr>`
+                    x++
+                }
+                orderList += ` 
+                    </tbody>
+                </table> 
+            </div>`
+                $('#feedback').append(orderList)
+            })
+        })
+        //訂單明細
+        let roomName;
+        function startChat(x) {
+            fetch('list').then(res => res.json()).then(res => {
+                while (document.querySelector('#result').hasChildNodes()) {
+                    result.removeChild(result.firstChild)
+                }
+                orderDetail = ``
+                orderDetail += `訂單編號 ${res[x].oId}
+            <div class="col-6">
+                <table class="table table-bordered table-striped">`
+                for (let i = 0; i < res[x].items.length; i++) {
+                    orderDetail += `
+                           ${res[x].items[i].oBrand},${res[x].items[i].oQuantity},${res[x].items[i].oDetail}                       
+                        `
+                }
+                orderDetail += `
+                    </tbody>
+                </table> 
+            </div>`
+                $('#result').append(orderDetail)
+                roomName = `${res[x].oId}`
+                axios.get('chats', { params: { roomId: roomName } })
+                    .then(res => {
+                        console.log(res)
+                        let message;
+                        for (let i = 0; i < res.data.length; i++) {
+                            message += `${res.data[i].message}<br>`
+
+                        }
+                        msg_board.innerHTML = message;
+                    })
+                    .catch()
+            })
+
+
+
+
+
+            var msg_board = document.getElementsByClassName("msg_board")[0];
+            //建立WebSocket連線
+            if (webSocket == null) {
+
+                var url = "ws://localhost:8080/java018_03/chatCenter/" + roomName;
+                webSocket = new WebSocket(url);
+            }
+
+            //提示可聊天
+            webSocket.onopen = function () {
+                alert("已進入聊天室，聊起來");
+            };
+
+            //顯示聊天內容
+            webSocket.onmessage = function (evt) {
+                var msg_board = document.getElementsByClassName("msg_board")[0];
+                var received_msg = evt.data;
+                var old_msg = msg_board.innerHTML;
+                msg_board.innerHTML = old_msg + received_msg + "<br>";
+                msg_board.scrollTop = msg_board.scrollTop + 40;
+
+            };
+            //關閉加清空
+            webSocket.onclose = function () {
+                alert("已下線");
+                webSocket = null;
+                document.getElementsByClassName("msg_board")[0].innerHTML = "";
+            };
+
+
+        }
+
+
+
+
+        var res;
+        var webSocket;
+        var sendData = document.getElementById("sendData");
+
+
+        //傳送出去加資料庫
+        sendData.onclick = function () {
+            if (webSocket != null) {
+                var input_msg = document.getElementById("input_msg").value.trim();
+                if (input_msg == "") {
+                    return;
+                }
+                webSocket.send(input_msg);
+                document.getElementById("input_msg").value = "";
+            } else {
+                alert("您已斷線，請重新進入聊天室...");
+            }
+
+            var xhr1 = new XMLHttpRequest();
+            xhr1.open("POST", "chats", true);
+            var jsonChat = {
+                "roomid": roomName,
+                "message": input_msg
+            }
+            xhr1.setRequestHeader("Content-Type", "application/json");
+            xhr1.send(JSON.stringify(jsonChat));
+        }
+
+        //只有傳送功能  
+        function send_msg() {
+            if (webSocket != null) {
+                var input_msg = document.getElementById("input_msg").value.trim();
+                if (input_msg == "") {
+                    return;
+                }
+                webSocket.send(input_msg);
+                document.getElementById("input_msg").value = "";
+            } else {
+                alert("您已斷線，請重新進入聊天室...");
+            }
+        };
+
+
+        //聊天室1開聊
+        function initWebSocket1() {
+
+            var msg_board = document.getElementsByClassName("msg_board")[0];
+            var roomName = 1;
+
+            axios.get('chats', { params: { roomId: 1 } })
+                .then(res => {
+                    console.log(res)
+                    let message;
+                    for (let i = 0; i < res.data.length; i++) {
+                        message += `${res.data[i].message}<br>`
+
+                    }
+                    msg_board.innerHTML = message;
+                })
+                .catch()
+
+            //建立WebSocket連線
+            if (webSocket == null) {
+
+                var url = "ws://localhost:8080/java018_03/chatCenter/" + roomName;
+                webSocket = new WebSocket(url);
+            }
+
+            //提示可聊天
+            webSocket.onopen = function () {
+                alert("已進入聊天室，聊起來");
+            };
+
+            //顯示聊天內容
+            webSocket.onmessage = function (evt) {
+                var msg_board = document.getElementsByClassName("msg_board")[0];
+                var received_msg = evt.data;
+                var old_msg = msg_board.innerHTML;
+                msg_board.innerHTML = old_msg + received_msg + "<br>";
+                msg_board.scrollTop = msg_board.scrollTop + 40;
+
+            };
+            //關閉加清空
+            webSocket.onclose = function () {
+                alert("已下線");
+                webSocket = null;
+                document.getElementsByClassName("msg_board")[0].innerHTML = "";
+            };
+        }
+
+        //聊天室2開聊
+        function initWebSocket2() {
+
+
+            var msg_board = document.getElementsByClassName("msg_board")[0];
+            var roomName = 2;
+            var username = "小明";
+
+
+            axios.get('chats', { params: { roomId: 2 } })
+                .then(res => {
+                    console.log(res)
+                    let message;
+                    for (let i = 0; i < res.data.length; i++) {
+                        message += `${res.data[i].message}<br>`
+
+                    }
+                    msg_board.innerHTML = message;
+                })
+                .catch()
+
+
+
+
+            //建立WebSocket連線
+            if (webSocket == null) {
+                var url = "ws://localhost:8080/java018_03/chatCenter/" + roomName;
+                webSocket = new WebSocket(url);
+            }
+
+            //提示可聊天
+            webSocket.onopen = function () {
+                alert("已進入聊天室，聊起來");
+            };
+
+            //顯示聊天內容
+            webSocket.onmessage = function (evt) {
+                var msg_board = document.getElementsByClassName("msg_board")[0];
+                var received_msg = evt.data;
+                var old_msg = msg_board.innerHTML;
+                msg_board.innerHTML = old_msg + received_msg + "<br>";
+                msg_board.scrollTop = msg_board.scrollTop + 40;
+            };
+            //關閉加清空
+            webSocket.onclose = function () {
+                alert("已下線");
+                webSocket = null;
+                document.getElementsByClassName("msg_board")[0].innerHTML = "";
+            };
+        }
+
+        //關閉加清空
+        function closeWs() {
+            webSocket.close();
+        };   
+    </script>
+    <style>
+        .msg_board {
+            width: 800px;
+            height: 500px;
+            border: solid 1px;
+            padding: 5px;
+            overflow-y: scroll;
+            word-break: break-all;
+        }
+    </style>
+
+
+    <!-- 大視窗時點大頭貼的offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header pb-0">
+            <div class="d-flex">
+                <img id="c28" width="55" height="55" class="rounded-circle">
+                <div class="ps-3">
+                    <p id="c15" class="fs-4 p-0 m-0"></p>
+                    <p class="fs-6 p-0 mb-2 text-secondary">會員編號#<label id="c17"></label></p>
+                </div>
+                <div class="ps-2">
+                    <div class="d-flex ps-4 pb-1">
+                        <p id="c18" class="m-0 me-1 pt-1 fs-6"></p>
+                        <div id="offcanvasStarRating" class="d-flex p-2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offcanvas-body pt-0">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <p class="nav-link m-0 fs-5 text-dark">會員中心</p>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../CommonProblem/CommonProblem.html">常見問題</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../AboutUs/AboutUs.html">關於我們</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../others/contactUs.html">聯絡我們</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="logout">登出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 更換大頭貼彈出視窗 -->
+    <div class="modal fade" id="exampleModalCenter123" tabindex="-1" aria-labelledby="exampleModalCenterTitle"
+        style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">更換個人照片</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <input id="file" type="file" style="display: none;" accept="images/*" onchange="readFile(event)">
+                    <button id="c20" class="rounded-circle border-0">
+                        <img id="member_picture" style="border-radius: 50%;" height="300px" width="300px">
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button id="c21" type="button" onclick="updatePicture()" class="btn btn-primary"
+                        data-bs-dismiss="modal">修改</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 頁尾 -->
+    <footer class="footer border-top bg-dark text-light">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-5 col-md-12 p-2" href="#">
+                    <h4 class="text-nowrap">幫幫忙</h4>
+                    <h6>俗話說在家靠父母，出外靠朋友</h6>
+                    <h6>但不好請朋友幫忙怎麼辦？沒有朋友幫忙怎麼辦？</h6>
+                    <h6>為了解決這個問題，我們提供一個平台，不管是「I need help ! 」</h6>
+                    <h6>還是「I can help ! 」，只要使用「幫幫忙」，問題歹就補！</h6>
+                    <div class="">
+                        <a href="#"><img class="bi bi-twitter m-1" src="images/svg/twitter-svgrepo-com.svg"
+                                style="height: 40px; width: 40px;"></a>
+                        <a href="#"><img class="bi bi-facebook m-1" src="images/svg/facebook-svgrepo-com.svg"
+                                style="height: 40px; width: 40px;"></a>
+                        <a href="#"><img class="bi bi-instagram m-1 rounded-circle"
+                                src="images/svg/instagram-cat-tail-svgrepo-com.svg"
+                                style="height: 40px; width: 40px; border: 1px solid ; color: #aaa;"></a>
+                        <a href="#"><img class="bi bi-linkedin m-1" src="images/svg/linkedin-svgrepo-com.svg"
+                                style="height: 40px; width: 40px;"></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6 align-items-center p-2">
+                    <h4>其他資訊</h4>
+                    <ul class="nav flex-column">
+                        <li class="nav-item pt-1">
+                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
+                                href="../Login-Home/Login-Home.html">首頁</a>
+                        </li>
+                        <li class="nav-item pt-1">
+                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
+                                href="../MemberCenter/MemberCenter.html">會員中心</a>
+                        </li>
+                        <li class="nav-item pt-1">
+                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
+                                href="../others/userPolicies.html">使用者條款</a>
+                        </li>
+                        <li class="nav-item pt-1">
+                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
+                                href="../others/privacyPolicies.html">隱私權條款</a>
+                        </li>
+                        <li class="nav-item pt-1">
+                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
+                                href="../CommonProblem/CommonProblem.html">常見問題</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6 p-2">
+                    <h4>我們的服務</h4>
+                    <ul class="nav flex-column">
+                        <li class="nav-item pt-2">
+                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
+                                href="../INeedHelp/INeedHelp.html">提出需求(I need
+                                help!)</a>
+                        </li>
+                        <li class="nav-item pt-2">
+                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
+                                href="../Login-Home/Login-Home.html">我要幫忙(I can
+                                help!)</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 p-2 text-center text-md-start">
+                    <h4 class="text-nowrap">聯絡我們</h4>
+                    <p>JAVA班018第三組</p>
+                    <p class="m-0">Phone : (xx) xxxx-xxxx</p>
+                    <p class="p-0 m-0">Email : 018_team03@xxx.com.tw</p>
+                </div>
+            </div>
+            <div class="container text-center p-1">
+                <h6 class="text-nowrap">© 2022 JAVA班018第三組. 版權所有</h6>
+            </div>
+        </div>
+    </footer>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTRB1lKaBC5bZnOqjeff7M3sjzvaOGVPo&libraries=places"></script>
+    <script src="javaScript/memberCenter.js"></script>
+</body>
+
+</html>
