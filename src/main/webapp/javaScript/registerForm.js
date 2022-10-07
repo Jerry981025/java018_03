@@ -53,10 +53,11 @@ function doFirst() {
         let mEmail = document.querySelector('#email').value
         let mBirth = document.querySelector('#birthday').value
         let mCellphone = document.querySelector('#mobile').value
-        let inputZip = document.querySelector('#inputZip').value
-        let inputAddress = document.querySelector('#inputAddress').value
+        //   let inputAddress = document.querySelector('#inputAddress').value
+        let mArea = document.querySelector('#inputAddress').value
         let Address = document.querySelector('#roadAddress').value
-        let mAddress = `${inputZip}${inputAddress}${Address}`
+        let mAddress = `${Address}`
+
         let body = {
             mFirstName: `${FirstName}`,
             mLastName: `${mLastName}`,
@@ -64,6 +65,7 @@ function doFirst() {
             mCheckPassword: `${mCheckPassword}`,
             mEmail: `${mEmail}`,
             mAddress: `${mAddress}`,
+            mArea: `${mArea}`,
             mBirth: `${mBirth}`,
             mCellphone: `${mCellphone}`,
         }
@@ -86,6 +88,7 @@ function register(body) {
             console.log(data.addressError);
             let birthdayRow = document.getElementById('birthdayRow')
             let addressRow = document.getElementById('addressRow')
+            let areaRow = document.getElementById('areaRow')
             let lastNameRow = document.getElementById('lastNameRow')
             let firstNameRow = document.getElementById('firstNameRow')
             let emailRow = document.getElementById('emailRow')
@@ -101,7 +104,7 @@ function register(body) {
             let doublePasswordGo = document.getElementById('CheckPasswordDoubleErrorShow')
             let cellPhoneGo = document.getElementById('cellPhoneErrorShow')
             let birthdayGo = document.getElementById('birthdayErrorShow')
-
+            let areaGo = document.getElementById('areaErrorShow')
 
 
             //生日
@@ -115,6 +118,19 @@ function register(body) {
                 }
             } else if (data.birthdayError == null && birthdayGo != null) {
                 birthdayRow.removeChild(birthdayGo)
+            }
+
+            //地區
+            if (data.areaError != null) {
+                let errorArea = document.createElement('div')
+                errorArea.setAttribute('id', 'areaErrorShow')
+                errorArea.setAttribute('style', 'color:red;')
+                errorArea.innerText = data.areaError
+                if (areaGo == null) {
+                    areaRow.appendChild(errorArea)
+                }
+            } else if (data.areaError == null && areaGo != null) {
+                areaRow.removeChild(areaGo)
             }
 
             //地址
@@ -227,7 +243,7 @@ function register(body) {
             errMsg.textContent = '';
             let { successful, message } = data;
             if (successful) {
-                location.replace('../index.html');
+                location.replace('index.html');
                 alert("註冊成功");
             } else {
                 errMsg.textContent = message;
@@ -256,7 +272,6 @@ function register(body) {
                 alert("手機號碼有誤，請重新填寫");
                 return false;
             }
-
 
 
 

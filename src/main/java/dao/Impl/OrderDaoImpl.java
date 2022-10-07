@@ -41,9 +41,7 @@ public class OrderDaoImpl implements OrderDao {
 		List<OrderBean> list = null;
 		Session session = factory.getCurrentSession();
 		String hql = "FROM OrderBean ob WHERE ob.mId = :mid";
-		list = session.createQuery(hql, OrderBean.class)
-					  .setParameter("mid", mId)
-					  .getResultList();
+		list = session.createQuery(hql, OrderBean.class).setParameter("mid", mId).getResultList();
 		return list;
 	}
 
@@ -51,8 +49,7 @@ public class OrderDaoImpl implements OrderDao {
 	public List<OrderBean> findAllOrders() {
 		Session session = factory.getCurrentSession();
 		String hql = "FROM OrderBean";
-		List<OrderBean> beans = session.createQuery(hql, OrderBean.class)
-									  .getResultList();
+		List<OrderBean> beans = session.createQuery(hql, OrderBean.class).getResultList();
 		return beans;
 	}
 
@@ -66,18 +63,14 @@ public class OrderDaoImpl implements OrderDao {
 	public List<OrderBean> findByOrderStatus(String status) {
 		Session session = factory.getCurrentSession();
 		String hql = "FROM OrderBean ob WHERE ob.oOrderStatus = :status";
-		return  session.createQuery(hql, OrderBean.class)
-					  .setParameter("status", status)
-					  .getResultList();
+		return session.createQuery(hql, OrderBean.class).setParameter("status", status).getResultList();
 	}
 
 	@Override
 	public List<OrderBean> findByOrderStatusAndhId(String status, Integer hId) {
 		Session session = factory.getCurrentSession();
 		String hql = "FROM OrderBean ob WHERE ob.oOrderStatus = :status AND ob.hId = :hId";
-		return  session.createQuery(hql, OrderBean.class)
-					  .setParameter("status", status)
-					  .setParameter("hId", hId)
-					  .getResultList();
+		return session.createQuery(hql, OrderBean.class).setParameter("status", status).setParameter("hId", hId)
+				.getResultList();
 	}
 }

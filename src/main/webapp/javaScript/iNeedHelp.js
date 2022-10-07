@@ -266,7 +266,7 @@ function paymentPage() {
   let oPrice = document.querySelector('#price').value
   let oDeadLine = document.querySelector('#meeting-time').value
   oDeadLine = oDeadLine.replace(/T/g, ' ')
-  let oOrderType = document.querySelector('#radio').value
+  let oOrderType = document.querySelector('#radio:checked').value
   let oComment = document.querySelector('#talk').value
   let items = []
   for (let j = 0; j < i; j++) {
