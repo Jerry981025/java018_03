@@ -71,6 +71,10 @@ public class MemberServiceImpl implements MemberService {
 		if (mb.getmAddress() == null || mb.getmAddress().trim().length() == 0) {
 			messageMap.put("addressError", "請輸入地址");
 		}
+		
+		if (mb.getmArea() == null || mb.getmArea().trim().length() == 0) {
+			messageMap.put("areaError", "請輸入地區");
+		}
 
 		if (messageMap.size() != 0) {
 			return messageMap;

@@ -104,12 +104,12 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-sm-2">
+            <!-- <div class="col-sm-2">
                 <label for="inputZip" class="form-label">地址</label>
                 <input type="text" class="form-select" id="inputZip" placeholder="郵遞區號">
-            </div>
-            <div class="col-sm-4">
-                <label for="inputArea" class="form-label">地區</label>
+            </div> -->
+            <div class="col-sm-6" id="areaRow">
+                <label for="inputArea" class="form-label">聯絡地址</label>
                 <input id="inputAddress" type="text" list="address" name="Area" placeholder="請選擇地區" class="form-control"
                     required>
                 <datalist id="address">
@@ -210,18 +210,20 @@
                 <div class="col-lg-3 col-6 align-items-center p-2 m-0">
                     <h4>其他資訊</h4>
                     <ul class="nav flex-column">
-                  	  <li class="nav-item pt-1">
+                        <li class="nav-item pt-1">
                             <a class="nav-link p-0 text-secondary fs-6" aria-current="page" href="index">首頁</a>
                         </li>
                         <li class="nav-item pt-1">
-                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page" href="userPolicies">使用者條款</a>
+                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
+                                href="userPolicies">使用者條款</a>
                         </li>
                         <li class="nav-item pt-1">
                             <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
                                 href="privacyPolicies">隱私權條款</a>
                         </li>
                         <li class="nav-item pt-1">
-                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page" href="commonproblems">常見問題</a>
+                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
+                                href="commonproblems">常見問題</a>
                         </li>
                     </ul>
                 </div>
