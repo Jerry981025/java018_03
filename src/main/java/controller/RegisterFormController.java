@@ -6,6 +6,7 @@ import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,6 +22,11 @@ public class RegisterFormController {
 	@Autowired
 	MemberService memberService;
 
+	@GetMapping("/registerForm")
+	public String registerForm() {
+		return "registerForm";
+	}
+	
 	@PostMapping("/registerForm")
 	public @ResponseBody Map<String, Object> addMember(@RequestBody MemberBean mb) {
 		return memberService.saveMember(mb);

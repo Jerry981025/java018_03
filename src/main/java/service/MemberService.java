@@ -18,6 +18,6 @@ public interface MemberService {
 
 	MemberBean findByEmailAndPassword(MemberBean mb);
 	
-	Map<String, Integer> findByOrderStatusAndHId(String status, Integer hId);
+	Map<String, Object> findByOrderStatusAndHId(String status, Integer hId);
 
 }

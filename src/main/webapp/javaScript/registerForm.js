@@ -156,7 +156,7 @@ function register(body) {
                 lastNameRow.removeChild(lastNameGo)
             }
 
-            //Email
+            //信箱
             if (data.emailError != null) {
                 if (emailGo != null) {
                     emailGo.innerText = data.emailError;
@@ -232,6 +232,36 @@ function register(body) {
             } else {
                 errMsg.textContent = message;
             }
+
+            //欄位格式及密碼強度檢查
+            //===================================================================
+
+            //密碼強度檢查(6位數以上，並且至少包含 大寫字母、小寫字母、數字、符號 各一)
+            let pswdStrenghCheck = document.getElementById('password').value
+            if (!(/^(?=.*[^a-zA-Z0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$/.test(pswdStrenghCheck))) {
+                alert("密碼至少6位數，需包含大小寫字母、數字、符號各一");
+                return false;
+            }
+
+            //信箱格式檢查
+            let emailFormCheck = document.getElementById('email').value
+            if (!(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/.test(emailFormCheck))) {
+                alert("信箱格式有誤，請重新填寫");
+                return false;
+            }
+
+            //手機號碼格式檢查
+            let mobileFormCheck = document.getElementById('mobile').value
+            if (!(/^09\d{2}-?\d{3}-?\d{3}$/.test(mobileFormCheck))) {
+                alert("手機號碼有誤，請重新填寫");
+                return false;
+            }
+
+
+
+
+
+
 
 
 

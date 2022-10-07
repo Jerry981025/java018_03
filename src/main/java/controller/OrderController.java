@@ -38,18 +38,17 @@ public class OrderController {
 	public String myOrders() {
 		return "queryOrderByMemberId";
 	}
-	
-	@GetMapping("/orderitem")
+
+	@GetMapping("/orderItem")
 	public String orderitem() {
 		return "orderItem";
 	}
 
 	@PostMapping(value = "/add", produces = { "application/json; charset=UTF-8" })
-	public @ResponseBody void addOrder(@RequestBody() OrderVo params,
-			@SessionAttribute MemberBean member) {
+	public @ResponseBody void addOrder(@RequestBody() OrderVo params, @SessionAttribute MemberBean member) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		OrderBean bean = new OrderBean();
-		bean.setMemberBean(member);
+		bean.setmId(member.getmId());
 		bean.setoShippingAddress(params.getoShippingAddress());
 		bean.setoDestinationAddress(params.getoDestinationAddress());
 		bean.setoFee(params.getoFee());
@@ -61,14 +60,13 @@ public class OrderController {
 		bean.setoTime(sdf.format(new Date()));
 		bean.setoOrderStatus("未完成");
 		bean.setItems(params.getItem());
+		bean.sethId(0);
 		orderService.addOrder(bean);
 	}
 
 	@GetMapping("/list")
 	public @ResponseBody List<OrderBean> orderListById(Integer mId) {
-		mId = 1;
-		List<OrderBean> memberOrders = orderService.findByMemberId(mId);
-		return memberOrders;
+		return orderService.findByMemberId(mId);
 	}
 
 	@GetMapping("/allOrders")
@@ -100,8 +98,9 @@ public class OrderController {
 	}
 
 	@GetMapping("/status")
-	public @ResponseBody List<OrderBean> findByOrderStatus(@RequestParam() String status) {
-		List<OrderBean> ob = orderService.findByOrderStatus(status);
+	public @ResponseBody List<OrderBean> findByOrderStatus(@RequestParam() String status,
+			@SessionAttribute MemberBean member) {
+		List<OrderBean> ob = orderService.findByOrderStatus(status, member.getmId());
 		return ob;
 	}
 }
