@@ -12,12 +12,12 @@ public interface MemberService {
 
 	boolean existsByEmail(String id);
 
-	Integer saveMember(MemberBean mb);
+	Map<String, Object> saveMember(MemberBean mb);
 
 	MemberBean findByEmail(String mEmail);
 
 	MemberBean findByEmailAndPassword(MemberBean mb);
 	
-	Map<String, Integer> findByOrderStatusAndHId(String status, Integer hId);
+	Map<String, Object> findByOrderStatusAndHId(String status, Integer hId);
 
 }

@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
+import model.MemberBean;
 import model.OrderBean;
 import service.OrderService;
 import vo.OrderVo;
@@ -37,11 +39,16 @@ public class OrderController {
 		return "queryOrderByMemberId";
 	}
 
+	@GetMapping("/orderItem")
+	public String orderitem() {
+		return "orderItem";
+	}
+
 	@PostMapping(value = "/add", produces = { "application/json; charset=UTF-8" })
-	public @ResponseBody void addOrder(@RequestBody() OrderVo params) {
+	public @ResponseBody void addOrder(@RequestBody() OrderVo params, @SessionAttribute MemberBean member) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		OrderBean bean = new OrderBean();
-		bean.setmId(001);
+		bean.setmId(member.getmId());
 		bean.setoShippingAddress(params.getoShippingAddress());
 		bean.setoDestinationAddress(params.getoDestinationAddress());
 		bean.setoFee(params.getoFee());
@@ -53,14 +60,13 @@ public class OrderController {
 		bean.setoTime(sdf.format(new Date()));
 		bean.setoOrderStatus("未完成");
 		bean.setItems(params.getItem());
+		bean.sethId(0);
 		orderService.addOrder(bean);
 	}
 
 	@GetMapping("/list")
 	public @ResponseBody List<OrderBean> orderListById(Integer mId) {
-		mId = 1;
-		List<OrderBean> memberOrders = orderService.findByMemberId(mId);
-		return memberOrders;
+		return orderService.findByMemberId(mId);
 	}
 
 	@GetMapping("/allOrders")
@@ -92,8 +98,9 @@ public class OrderController {
 	}
 
 	@GetMapping("/status")
-	public @ResponseBody List<OrderBean> findByOrderStatus(@RequestParam() String status) {
-		List<OrderBean> ob = orderService.findByOrderStatus(status);
+	public @ResponseBody List<OrderBean> findByOrderStatus(@RequestParam() String status,
+			@SessionAttribute MemberBean member) {
+		List<OrderBean> ob = orderService.findByOrderStatus(status, member.getmId());
 		return ob;
 	}
 }

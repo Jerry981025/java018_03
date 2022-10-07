@@ -11,7 +11,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
 @Entity
 @Table(name = "orderitem")
 public class OrderItemBean {
@@ -22,18 +21,19 @@ public class OrderItemBean {
 	private String oDetail;
 	private Integer oQuantity;
 //	private Blob oPic;
-	
+
 	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_orderBean")
 	OrderBean orderBean;
-	
+
 	public OrderItemBean() {
 	}
 
-	public OrderItemBean(Integer seqno, String oBrand, String oDetail, Integer oQuantity
-			, OrderBean orderBean//, Integer oId
-			) {
+	public OrderItemBean(Integer seqno, String oBrand, String oDetail, Integer oQuantity, OrderBean orderBean// ,
+																												// Integer
+																												// oId
+	) {
 		this.seqno = seqno;
 		this.oBrand = oBrand;
 		this.oDetail = oDetail;
@@ -57,7 +57,6 @@ public class OrderItemBean {
 	public void setSeqno(Integer seqno) {
 		this.seqno = seqno;
 	}
-
 
 	public String getoBrand() {
 		return oBrand;
@@ -99,7 +98,4 @@ public class OrderItemBean {
 		this.orderBean = orderBean;
 	}
 
-	
-	
-	
 }

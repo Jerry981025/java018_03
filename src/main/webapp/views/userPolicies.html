@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>使用者條款</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/handbag-fill.svg">
+    <!-- Boostrap5.0 導入程式 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+	<!-- axios -->
+    <script src="static/js/axios.js"></script>
+    <!-- 連結內容CSS -->
+    <link rel="stylesheet" href="css/policies.css">
+    <link href="images/favicon.ico" rel="icon">
+
+    <!-- jquery引用 -->
+    <script src="static/js/jquery.js"></script>
+    <script src="javaScript/logout.js"></script>
+</head>
+
+<body>
+<<<<<<< HEAD
+	<div class="header"></div>
+    <!-- 導覽列 -->
+    <nav class="navbar navbar-expand-md navbar-light">
+        <div class="container-fluid">
+            <!-- 品牌LOGO -->
+            <a class="navbar-brand" href="index">幫幫忙
+                <img src="images/handbag-fill.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            </a>
+            <!-- 手機版顯示 -->
+            <div class="navbar-toggler border-0 p-0">
+                <div class="rounded-circle d-flex">
+                    <img id="c29" width="50" height="50" class="rounded-circle" data-bs-toggle="collapse" data-bs-target="#offcanvas">
+                    <p id="c14" class="fs-1 py-2 ps-1 m-0" data-bs-toggle="collapse" data-bs-target="#offcanvas"></p>
+                </div>
+            </div>
+            <!-- 桌機版顯示 -->
+
+            <div class="collapse navbar-collapse" id="linkbar">
+                <!-- 內容 -->
+                <ul class="navbar-nav me-auto p-2">
+                    <li class="nav-item">
+                        <a class="nav-link" href="addOrders">提出需求(I need help!)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../ICanHelp/ICanHelp.html">我要幫忙(I can help!)</a>
+                    </li>
+                </ul>
+                <img class="rounded-circle" id="c27" style="height:40px; width:40px;" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+            </div>
+        </div>
+    </nav>
+    <!-- 小視窗時點大頭貼的offcanvas -->
+    <div class="collapse navbar-collapse bg-light p-2" id="offcanvas">
+        <!-- 內容 -->
+        <ul class="navbar-nav me-auto bg-light">
+            <li class="nav-item">
+                <p class="nav-link" href="MemberCenter">會員中心</p>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="addOrders">提出需求(I need help!)</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../Login-Home/Login-Home.html">我要幫忙(I can help!)</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="commonproblems">常見問題</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="contact">聯絡我們</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">登出</a>
+            </li>
+        </ul>
+    </div>
+    <!-- 大視窗時點大頭貼的offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header pb-0">
+            <div class="d-flex">
+                <img id="c28" width="55" height="55" class="rounded-circle">
+                <div class="ps-3">
+                    <p id="c15" class="fs-4 p-0 m-0"></p>
+                    <p class="fs-6 p-0 mb-2 text-secondary">會員編號#<label id="c17"></label></p>
+                </div>
+                <div class="ps-2">
+                    <div class="d-flex ps-4 pb-1">
+                        <p id="c18" class="m-0 me-1 pt-1 fs-6"></p>
+                        <div id="offcanvasStarRating" class="d-flex p-2">
+                        </div>
+                    </div>
+                    <a class="m-4" href="#">???筆紀錄</a>
+                </div>
+            </div>
+        </div>
+        <div class="offcanvas-body pt-0">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <p class="nav-link" href="MemberCenter">會員中心</p>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="commonproblems">常見問題</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact">聯絡我們</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">登出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+=======
+	<!-- 導覽列 -->
+    <div id="header"></div>
+>>>>>>> main
+    <!-- 內容 -->
+    <div class="main-content">
+	    <div class="container-fluid px-0 py-3">
+	        <div class="policies">
+	            <h2 class="policiesTitle">幫幫忙使用者條款</h2>
+	            <br>
+	            <p>＊幫幫忙為共享經濟的人力跑腿媒合服務平台，平臺和幫手沒有雇傭關係，因此無法保證馬上會有幫手接受任務</p>
+	            <p>請閱讀以下條款，當您使用本程式或幫幫忙平台服務時，即視為您瞭解並同意遵守本使用條款</p>
+	            <p><strong>您承諾並保證</strong>：</p>
+	            <div>
+	                <ol>
+	                    <li>您所提供予幫幫忙新創科技，包括但不限於透過本平台所提供的所有資料及細節均為真實、準確、完整和最新。</li>
+	                    <li>您同意提供幫幫忙新創科技合理要求的身份證明。</li>
+	                    <li>您同意尊重對待經本平台介紹予您的幫手或參與供應商。</li>
+	                    <li>於使用本程式或有關服務時，遵守所有適用的法律。</li>
+	                    <li>您不會將本程式或本平台服務做以下使用：
+	                        <ol type="a">   
+	                            <li>做任何非法用途；</li>
+	                            <li>使用任何方式干擾、損害、削弱本程式或有關服務，或使其效率降低；</li>
+	                            <li>登入或企圖登入其他用戶的帳戶，滲透或企圖滲透任何保安措施；</li>
+	                            <li>宣傳或推廣第三方或您的產品或服務；</li>
+	                            <li>您不會使用本平台或有關服務造成滋擾、煩擾或不便。</li>
+	                            <li>您不會做任何有損幫幫忙新創科技聲譽的事情。</li>
+	                            <li>不對本平台媒合的幫手造成損害，或於委託幫手進行服務時構成任何非法、威脅、騷擾、辱罵的行為或活動。</li>
+	                        </ol>                       
+	                    </li>
+	                    <li>若幫幫忙新創科技因您違反本條款而需面對任何其他人提出的任何申訴或涉訟，您同意完全補償幫幫忙新創科技所支出之訴訟及律師費用，並積極提供幫幫忙新創科技所需協助。</li>
+	                    <li>幫幫忙平台的服務，不提供任何危險物品，或違禁品的跑腿； 如有違反，除相應的法律責任須由您自負其責外，亦須賠償對本平台及幫手造成的一切損害。 至於跑腿物品如有毀損者，依照跑腿人的限制責任，最高以不超過相當運費的十倍為限。</li>
+	                </ol>
+	            </div>
+	            <br>
+	            <div>
+	                <p><strong>客戶服務條款：</strong></p>
+	                <ul>
+	                    <li>幫幫忙平台（ 下稱本平台）為共享經濟的人力媒合服務平台，與幫手並無僱傭關係，幫手有絕對的自主權可選擇接單與否。故無法保證每一次的訂單皆能媒合到幫手。</li>
+	                    <li>使用代買服務：幫手僅提供代付費用給店家並送去給您的服務，完成後會交付店家商品的發票，並且只會收取商品原價金額。</li>
+	                    <li>本平台目前用戶支付的所有費用（含任務小費、多點費用）皆為幫手所有，故無開立統一發票或收據，可提供當次任務的線上明細。</li>
+	                    <li>本平台不提供 18 歲以下用戶使用，用戶須提供真實姓名及手機號碼，且須確保資訊正確，如有不符，所衍生的後續責任，將由用戶自行承擔。</li>
+	                    <li>本平台不提供非法、危險、活體等配送服務媒合，因本平台及幫手對所有配送包裹內容毫不知情，若因配送過程而引起法律及安全相關問題，用戶應自行承擔所有相關責任及風險，亦須賠償對本平台及幫手造成的一切損害。</li>
+	                    <li>用戶不得使用本平台進行惡作劇（ 例如：惡意取消訂單、危害本平台名譽等行為，或違法使用 )，若查證屬實，本平台得自行採取適當措施，並將對您進行警告，嚴重者將永久停權。如引起額外相關法律責任（ 包括但不限於民事、刑事或行政責任 ）及安全問題，用戶應自行負責。若本平台因用戶的違法行為而依法須負擔責任，本平台得對用戶請求損害賠償，包括但不限於因此所產生之訴訟費用與律師費用。</li>
+	                    <li>如本平台認定您所進行的任務帶有欺騙性、非法的，或違反本服務條款，本平台有隨時終止服務的權利，並移送司法機關處理。</li>
+	                    <li>任務成立後，平台將會顯示您提供的所有資訊給該次執行任務之幫手，以利任務順遂，任務結束後將會立即隱藏該次任務地址及聯絡電話等資訊。</li>
+	                    <li>訂單成立後，如欲任務中途修改訂單，將會依照增加的內容酌收相應費用。</li>
+	                    <li>任務完成後幫手將會提供您一個電子簽收頁面，請用戶確認該次任務無誤並由本人親自簽收，即完成此次任務。（務必檢查該次委託任務內容是否符合並完整，如有問題請不要進行簽收作業，立即與客服聯繫，平台將會第一時間為您協助處理）</li>
+	                </ul>
+	            </div>
+	        </div>
+        </div>
+   	</div>
+<<<<<<< HEAD
+
+    <!-- 頁尾 -->
+    <footer class="footer border-top bg-dark text-light">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-5 col-md-12 p-2" href="#">
+                    <h4 class="text-nowrap">幫幫忙</h4>
+                    <h6>俗話說在家靠父母，出外靠朋友</h6>
+                    <h6>但不好請朋友幫忙怎麼辦？沒有朋友幫忙怎麼辦？</h6>
+                    <h6>為了解決這個問題，我們提供一個平台，不管是「I need help ! 」</h6>
+                    <h6>還是「I can help ! 」，只要使用「幫幫忙」，問題歹就補！</h6>
+                    <div class="">
+                        <a href="#"><img class="bi bi-twitter m-1" src="images/svg/twitter-svgrepo-com.svg"
+                                style="height: 40px; width: 40px;"></a>
+                        <a href="#"><img class="bi bi-facebook m-1" src="images/svg/facebook-svgrepo-com.svg"
+                                style="height: 40px; width: 40px;"></a>
+                        <a href="#"><img class="bi bi-instagram m-1 rounded-circle"
+                                src="images/svg/instagram-cat-tail-svgrepo-com.svg"
+                                style="height: 40px; width: 40px; border: 1px solid ; color: #aaa;"></a>
+                        <a href="#"><img class="bi bi-linkedin m-1" src="images/svg/linkedin-svgrepo-com.svg"
+                                style="height: 40px; width: 40px;"></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6 align-items-center p-2">
+                    <h4>其他資訊</h4>
+                    <ul class="nav flex-column">
+                        <li class="nav-item pt-1">
+                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
+                                href="index">首頁</a>
+                        </li>
+                        <li class="nav-item pt-1">
+                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
+                                href="MemberCenter">會員中心</a>
+                        </li>
+                        <li class="nav-item pt-1">
+                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page" 
+                            	href="userPolicies">使用者條款</a>
+                        </li>
+                        <li class="nav-item pt-1">
+                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page" 
+                            	href="privacyPolicies">隱私權條款</a>
+                        </li>
+                        <li class="nav-item pt-1">
+                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
+                                href="commonproblems">常見問題</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6 p-2">
+                    <h4>我們的服務</h4>
+                    <ul class="nav flex-column">
+                        <li class="nav-item pt-2">
+                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
+                                href="addOrders">提出需求(I need
+                                help!)</a>
+                        </li>
+                        <li class="nav-item pt-2">
+                            <a class="nav-link p-0 text-secondary fs-6" aria-current="page"
+                                href="../Login-Home/Login-Home.html">我要幫忙(I can
+                                help!)</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 p-2 text-center text-md-start">
+                    <h4 class="text-nowrap">聯絡我們</h4>
+                    <p>JAVA班018第三組</p>
+                    <p class="m-0">Phone : (xx) xxxx-xxxx</p>
+                    <p class="p-0 m-0">Email : 018_team03@xxx.com.tw</p>
+                </div>
+            </div>
+            <div class="container text-center p-1">
+                <h6 class="text-nowrap">© 2022 JAVA班018第三組. 版權所有</h6>
+            </div>
+        </div>
+    </footer>
+	 <div class="footer"></div>
+=======
+	<!-- 頁尾 -->
+    <div id="footer"></div>
+	<script src="javaScript/logout.js"></script>
+
+>>>>>>> main
+</body>
+
+</html>

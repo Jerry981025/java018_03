@@ -48,8 +48,13 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<OrderBean> findByOrderStatus(String status) {
-		return orderDao.findByOrderStatus(status);
+	public List<OrderBean> findByOrderStatus(String status, Integer mId) {
+		List<OrderBean> orders = orderDao.findByOrderStatus(status);
+		for (int i = 0; i < orders.size(); i++) {
+			if (orders.get(i).getmId() == mId) {
+				orders.remove(i);
+			}
+		}
+		return orders;
 	}
-
 }

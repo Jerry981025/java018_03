@@ -1,17 +1,71 @@
 
 let allOrders;
 
-$(document).ready(function () {
-	
+$(document).ready(function abc() {
+
 	fetch('status?status=未完成')
 		.then(res => res.json())
 		.then(res => {
 			allOrders = res
-			console.log(res);
-
 			let orderList = ``
-			
+
 			for (let i = 0; i < res.length; i++) {
+				// 所有資料庫資訊 
+				//------------------------------------------
+				var geocoder = new google.maps.Geocoder();
+				const id = res[i].oId
+				const address = res[i].oDestinationAddress;
+				const comment = res[i].oComment;
+				const deadLine = res[i].oDeadLine;
+				const fee = res[i].oFee;
+				const price = res[i].oPrice;
+				const time = res[i].oTime;
+				const ranking = res[i].oRanking;
+				const orderType = res[i].oOrderType;
+				console.log(address);
+
+				geocoder.geocode({ 'address': address }, function (results, status) {
+					// 經度
+					var latitude = results[0].geometry.location.lat();
+					// 緯度
+					var longitude = results[0].geometry.location.lng();
+
+					// 變數地址後的經緯度
+					var latlng = new google.maps.LatLng(latitude, longitude);
+					// 建立marker
+					var marker = new google.maps.Marker({
+						position: latlng,
+						id: `${id}`,
+						address: `${address}`,
+						comment: `${comment}`,
+						deadLine: `${deadLine}`,
+						fee: `${fee}元`,
+						price: `${price}`,
+						time: `${time}`,
+						ranking: `${ranking}`,
+						map: map,
+						content: `<h2>${address}</h2>`,
+						orderType: `${orderType}`,
+						draggable: false
+					});
+					// 建立marker視窗
+					if (marker.content) {
+						const detailWindow = new google.maps.InfoWindow({
+							content: marker.id
+						});
+						google.maps.event.addListener(map, 'click', function () {
+							detailWindow.close();
+							$('#result').empty()
+						});
+
+						// 加入點擊事件
+						marker.addListener("click", () => {
+							detailWindow.open(map, marker);
+
+						})
+					}
+				});
+				//------------------------------------------
 				orderList += `
                       <table class="table">
                           <tbody>
@@ -67,14 +121,14 @@ $(document).ready(function () {
 														<td width="80%">${res[i].items[0].oBrand} (${res[i].items[0].oDetail}) * ${res[i].items[0].oQuantity}</td>
 											        </tr>`
 
-													for (let j = 1; j < res[i].items.length; j++) {
-														orderList += `
+				for (let j = 1; j < res[i].items.length; j++) {
+					orderList += `
 																	<tr>
 																		<td width="20%"></td>
 																		<td width="80%">${res[i].items[j].oBrand} (${res[i].items[j].oDetail}) * ${res[i].items[j].oQuantity}</td>
 															        </tr>`
-													}
-													orderList += `
+				}
+				orderList += `
 													<tr>
 											            <td width="20%">店家地址</td>
 											            <td width="80%">${res[i].oShippingAddress}</td>
@@ -102,7 +156,7 @@ $(document).ready(function () {
 									      </div>
 									      <div class="modal-footer">
 									        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-									        <button type="button" class="btn btn-primary" onclick="sendOrderItems()">確認接單</button>
+									        <button type="button" class="btn btn-primary" onclick="returnOrderItems(${id})">確認接單</button>
 									      </div>
 									    </div>
 									  </div>
@@ -121,15 +175,15 @@ $(document).ready(function () {
 // })
 
 
-function itemsDetail(items) {
-	console.log(items);
-}
+//function itemsDetail(items) {
+//	console.log(items);
+//}
 
 
 let myLatLng = { lat: 25.042563029213984, lng: 121.52015437660762 };
 let mapOptions = {
 	center: myLatLng,
-	zoom: 16,
+	zoom: 12,
 	mapTypeId: google.maps.MapTypeId.ROADMAP,
 
 	styles: [
@@ -317,12 +371,69 @@ let map = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
 
 $('input[name="orderType"]').change(function () {
 	$('#result').empty()
-	console.log(allOrders)
+	// console.log(allOrders)
 	let orderList = ``
 
 	for (let i = 0; i < allOrders.length; i++) {
-	
-			if (allOrders[i].oOrderType === $( "input:checked" ).val()) {
+
+		if (allOrders[i].oOrderType == $("input:checked").val()) {
+			// console.log(allOrders[i].oOrderType);
+			// 所有資料庫資訊 
+			//------------------------------------------
+			var geocoder = new google.maps.Geocoder();
+			const id = allOrders[i].oId
+			const address = allOrders[i].oDestinationAddress;
+			const comment = allOrders[i].oComment;
+			const deadLine = allOrders[i].oDeadLine;
+			const fee = allOrders[i].oFee;
+			const price = allOrders[i].oPrice;
+			const time = allOrders[i].oTime;
+			const ranking = allOrders[i].oRanking;
+			const orderType = allOrders[i].oOrderType;
+			// console.log(address);
+
+			geocoder.geocode({ 'address': address }, function (results, status) {
+				// 經度
+				var latitude = results[0].geometry.location.lat();
+				// 緯度
+				var longitude = results[0].geometry.location.lng();
+
+				// 變數地址後的經緯度
+				var latlng = new google.maps.LatLng(latitude, longitude);
+				// 建立marker
+				var marker = new google.maps.Marker({
+					position: latlng,
+					id: `${id}`,
+					address: `${address}`,
+					comment: `${comment}`,
+					deadLine: `${deadLine}`,
+					fee: `${fee}元`,
+					price: `${price}`,
+					time: `${time}`,
+					ranking: `${ranking}`,
+					map: map,
+					content: `<h2>${address}</h2>`,
+					orderType: `${orderType}`,
+					draggable: false
+				});
+				// 建立marker視窗
+				if (marker.content) {
+					const detailWindow = new google.maps.InfoWindow({
+						content: marker.id
+					});
+					google.maps.event.addListener(map, 'click', function () {
+						detailWindow.close();
+						$('#result').empty()
+					});
+
+					// 加入點擊事件
+					marker.addListener("click", () => {
+						detailWindow.open(map, marker);
+
+					})
+				}
+			});
+			//------------------------------------------
 			orderList += `
 				  <table class="table">
 					  <tbody>
@@ -346,7 +457,7 @@ $('input[name="orderType"]').change(function () {
 							  <td>
 								評分: ${allOrders[i].oRanking}
 
-								<button type="button" class="btn btn-primary"  onclick="itemsDetail(${allOrders[i].oId})" data-bs-toggle="modal" data-bs-target="#exampleModal${allOrders[i].oId}">
+								<button type="button" style="float:right;" class="btn btn-primary"  onclick="itemsDetail(${allOrders[i].oId})" data-bs-toggle="modal" data-bs-target="#exampleModal${allOrders[i].oId}">
 									我要接單
 								</button>
 
@@ -413,7 +524,7 @@ $('input[name="orderType"]').change(function () {
 									  </div>
 									  <div class="modal-footer">
 										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-										<button type="button" class="btn btn-primary" onclick="sendOrderItems()">確認接單</button>
+										<button type="button" class="btn btn-primary" onclick="returnOrderItems(${id})">確認接單</button>
 									  </div>
 									</div>
 								  </div>
@@ -425,21 +536,187 @@ $('input[name="orderType"]').change(function () {
 					  </tbody>
 				  </table>
 					`
+		}
+		// 
+		else if ($("input:checked").val() === "所有種類") {
+			//------------------------------------------
+			var geocoder = new google.maps.Geocoder();
+			const id = allOrders[i].oId
+			const address = allOrders[i].oDestinationAddress;
+			const comment = allOrders[i].oComment;
+			const deadLine = allOrders[i].oDeadLine;
+			const fee = allOrders[i].oFee;
+			const price = allOrders[i].oPrice;
+			const time = allOrders[i].oTime;
+			const ranking = allOrders[i].oRanking;
+			const orderType = allOrders[i].oOrderType;
+			// console.log(address);
+
+			geocoder.geocode({ 'address': address }, function (results, status) {
+				// 經度
+				var latitude = results[0].geometry.location.lat();
+				// 緯度
+				var longitude = results[0].geometry.location.lng();
+
+				// 變數地址後的經緯度
+				var latlng = new google.maps.LatLng(latitude, longitude);
+				// 建立marker
+				var marker = new google.maps.Marker({
+					position: latlng,
+					id: `${id}`,
+					address: `${address}`,
+					comment: `${comment}`,
+					deadLine: `${deadLine}`,
+					fee: `${fee}元`,
+					price: `${price}`,
+					time: `${time}`,
+					ranking: `${ranking}`,
+					map: map,
+					content: `<h2>${address}</h2>`,
+					orderType: `${orderType}`,
+					draggable: false
+				});
+				// 建立marker視窗
+				if (marker.content) {
+					const detailWindow = new google.maps.InfoWindow({
+						content: marker.id
+					});
+					google.maps.event.addListener(map, 'click', function () {
+						detailWindow.close();
+						$('#result').empty()
+					});
+
+					// 加入點擊事件
+					marker.addListener("click", () => {
+						detailWindow.open(map, marker);
+
+					})
 				}
+			});
+			//------------------------------------------
+
+			orderList += `
+					 <table class="table">
+					  <tbody>
+					   <tr>
+						<td>訂單編號: ${allOrders[i].oId}</td>
+					   </tr>
+					   <tr>
+						<td>小費金額: ${allOrders[i].oFee}</td>
+					   </tr>
+					   <tr>
+						<td>訂單類型: ${allOrders[i].oOrderType}</td>
+					   </tr>
+					   <tr>
+						<td>店家地址: ${allOrders[i].oShippingAddress}</td>
+					   </tr>
+					   
+					   <tr>
+						<td>截止時間: ${allOrders[i].oDeadLine}</td>
+					   </tr>
+					   <tr>
+						<td>
+					   評分: ${allOrders[i].oRanking}
+			   
+					   <button type="button" class="btn btn-primary" style="float:right;" onclick="itemsDetail(${allOrders[i].oId})" data-bs-toggle="modal" data-bs-target="#exampleModal${allOrders[i].oId}">
+						我要接單
+					   </button>
+			   
+					   <div class="modal fade" id="exampleModal${allOrders[i].oId}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						 <div class="modal-dialog">
+						<div class="modal-content">
+						  <div class="modal-header">
+						 <h5 class="modal-title" id="exampleModalLabel" style="font-weight:600; font-size: 22px">訂單編號${allOrders[i].oId} : </h5>
+						 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						  </div>
+						  <div class="modal-body">
+						 <table width = "100%" class = "detailTab">
+						  <thead>
+						   <tr>
+							<th colspan="2" width="100%">The table header</th>
+						   </tr>
+						  </thead>
+						  <tbody>
+						   <tr>
+							<td width="20%">顧客姓名</td>
+							<td width="80%">${allOrders[i].memberBean.mLastName + allOrders[i].memberBean.mFirstName}</td>
+						   </tr>
+						   <tr>
+							<td width="20%">電話</td>
+							<td width="80%">${allOrders[i].memberBean.mPhone}</td>
+						   </tr>
+						   <tr>
+							<td width="20%">訂單細項</td>
+							<td width="80%">${allOrders[i].items[0].oBrand} (${allOrders[i].items[0].oDetail}) * ${allOrders[i].items[0].oQuantity}</td>
+						   </tr>`
+
+			for (let j = 1; j < allOrders[i].items.length; j++) {
+				orderList += `
+							   <tr>
+								<td width="20%"></td>
+								<td width="80%">${allOrders[i].items[j].oBrand} (${allOrders[i].items[j].oDetail}) * ${allOrders[i].items[j].oQuantity}</td>
+							   </tr>`
 			}
-			$('#result').append(orderList)
+			orderList += `
+						   <tr>
+							<td width="20%">店家地址</td>
+							<td width="80%">${allOrders[i].oShippingAddress}</td>
+						   </tr>
+						   <tr>
+							<td width="20%">目的地</td>
+							<td width="80%">${allOrders[i].oDestinationAddress}</td>
+						   </tr>
+						   <tr>
+							<td width="20%">下單時間</td>
+							<td width="80%">${allOrders[i].oTime}</td>
+						   </tr>
+						   <tr>
+							<td width="20%">截止時間</td>
+							<td width="80%">${allOrders[i].oDeadLine}</td>
+						   </tr>
+						   <tr>
+							<td width="20%">金額+小費</td>
+							<td width="80%">${allOrders[i].oPrice} + ${allOrders[i].oFee} = ${allOrders[i].oPrice + allOrders[i].oFee}</td>
+						   </tr>
+						   
+						   
+						  </tbody>
+						 </table>
+						  </div>
+						  <div class="modal-footer">
+						 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+						 <button type="button" class="btn btn-primary" onclick="returnOrderItems(${id})">確認接單</button>
+						  </div>
+						</div>
+						 </div>
+					   </div>
+						</td>
+						
+					   </tr>
+					   <hr>
+					  </tbody>
+					 </table>
+					`
+		}
+
+		// 
+	}
+	map = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
+	$('#result').append(orderList)
 })
 
-function sendOrderItems(res) {
-	fetch('status?status=未完成')
-    .then((res) => {
-        console.log(res); 
-    })
-    .catch((error) => {
-        console.log(`Error: ${error}`);
-    })
+function returnOrderItems(id) {
+	console.log(id);
+	let body = id;
+	fetch('updateOrderStatus',
+        { method: 'PUT', headers: { 'content-type': 'application/json' }, body }).then((response) => response.text()).then(res => {
+            // window.location.reload();
+        }).catch((error) => {
+            console.log(`Error`);
+        })
 }
 
+// 所有訂單
 
 // fetch('status?status=未完成')
 //     .then((res) => {

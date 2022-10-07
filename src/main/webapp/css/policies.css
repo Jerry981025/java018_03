@@ -12,15 +12,15 @@ body{
 }
 .main-content{
 	min-height: 100%;
-	padding-bottom: 265px;
+/* 	padding-bottom: 265px; */
 }
 
-footer{
-	height: 265px;
-	position: relative;
-    top: -265px;
-    height: 265px;
-}
+/* footer{ */
+/* 	height: 265px; */
+/* 	position: relative; */
+/*     top: -265px; */
+/*     height: 265px; */
+/* } */
 
 nav{
     height: 70px;
