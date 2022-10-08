@@ -273,14 +273,7 @@ function paymentPage() {
     let brand = document.querySelector(`#brand${j}`).value
     let detail = document.querySelector(`#detail${j}`).value
     let quantity = document.querySelector(`#quantity${j}`).value
-
-    re = /^\d+$/;
-    if (oShippingAddress == "" && oDestinationAddress == "") {
-      alert("請輸入運送地址");
-      oShippingAddress.focus();
-      oDestinationAddress.focus();
-      return (false);
-    } if (brand == "") {
+    if (brand == "") {
       alert("請輸入產品名稱!!");
       brand.focus();
       return (false);
@@ -292,20 +285,8 @@ function paymentPage() {
       alert("請輸入購買數量");
       quantity.focus();
       return false;
-    } if (!re.test(oFee)) {
-      alert("請輸入跑腿費");
-      oFee.focus();
-      return false;
-    } if (!re.test(oPrice)) {
-      alert("請輸入預估價格");
-      oPrice.focus();
-      return false;
     }
-    if (oComment == "") {
-      alert("請輸入留言內容!!");
-      oComment.focus();
-      return (false);
-    }
+
     items.push({
       oBrand: brand,
       oDetail: detail,
@@ -313,6 +294,32 @@ function paymentPage() {
     })
   }
 
+  re = /^\d+$/;
+  if (oShippingAddress == "") {
+    alert("請輸入需求起點");
+    oShippingAddress.focus();
+    return (false);
+  } if (oDestinationAddress == "") {
+    alert("請輸入需求終點");
+    oDestinationAddress.focus();
+    return (false);
+  }  if (!re.test(oFee)) {
+    alert("請輸入跑腿費");
+    oFee.focus();
+    return false;
+  } if (!re.test(oPrice)) {
+    alert("請輸入預估價格");
+    oPrice.focus();
+    return false;
+  }if (oComment == "") {
+    alert("請輸入留言內容!!");
+    oComment.focus();
+    return (false);
+  } if (items.length == 0) {
+    alert("請新增至少一項產品");
+    items.focus();
+    return (false);
+  }
   let body = {
     oShippingAddress: oShippingAddress,
     oDestinationAddress: oDestinationAddress,
