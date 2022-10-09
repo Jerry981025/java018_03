@@ -269,7 +269,6 @@ function paymentPage() {
   let oOrderType = document.querySelector('#radio:checked').value
   let oComment = document.querySelector('#talk').value
   let items = []
-  re = /^\d+$/;
   for (let j = 0; j < i; j++) {
     let brand = document.querySelector(`#brand${j}`).value
     let detail = document.querySelector(`#detail${j}`).value
@@ -295,6 +294,7 @@ function paymentPage() {
     })
   }
 
+  re = /^\d+$/;
   if (oShippingAddress == "") {
     alert("請輸入需求起點");
     oShippingAddress.focus();
