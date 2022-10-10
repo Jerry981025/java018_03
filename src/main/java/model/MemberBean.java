@@ -49,6 +49,9 @@ public class MemberBean implements Serializable{
 	private Set<AddressBean> addressBeans;
 	@Transient
 	private String mCheckPassword;
+	@Transient
+	private String mArea;
+	
 	
 	public MemberBean() {}
 
@@ -180,5 +183,13 @@ public class MemberBean implements Serializable{
 
 	public void setmCheckPassword(String mCheckPassword) {
 		this.mCheckPassword = mCheckPassword;
+	}
+
+	public String getmArea() {
+		return mArea;
+	}
+
+	public void setmArea(String mArea) {
+		this.mArea = mArea;
 	}
 }
