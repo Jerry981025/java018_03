@@ -10,7 +10,7 @@ function doFirst() {
   sendAddressButton = document.getElementById('sendAddressButton')
   result = document.getElementById('result')
   initMeetingTime()
-
+  infoBtn = document.getElementById(`insertInfo`)
 
   // 再建事件聆聽功能
   loadButton.addEventListener('click', function () {
@@ -21,6 +21,9 @@ function doFirst() {
   })
   sendAddressButton.addEventListener('click', function () {
     calcRoute()
+  })
+  infoBtn.addEventListener('click', function () {
+    insertInfo()
   })
 }
 function createItems() {
@@ -251,7 +254,7 @@ function deleteItem() {
 }
 function initMeetingTime() {
   let meetingTime = document.getElementById('meeting-time')
-  let date = new Date(+new Date() + 8 * 3600 * 1000).toISOString()
+  let date = new Date(+new Date() + 8 * 3600 * 1000 + 60 * 60 *1000).toISOString()
   let formatTime = date.substring(0, date.lastIndexOf(':'))
   meetingTime.value = formatTime
   meetingTime.min = formatTime
@@ -295,7 +298,7 @@ function paymentPage() {
     })
   }
 
- 
+
   if (oShippingAddress == "") {
     alert("請輸入需求起點");
     oShippingAddress.focus();
@@ -304,7 +307,7 @@ function paymentPage() {
     alert("請輸入需求終點");
     oDestinationAddress.focus();
     return (false);
-  }  if (!re.test(oFee)) {
+  } if (!re.test(oFee)) {
     alert("請輸入跑腿費");
     oFee.focus();
     return false;
@@ -312,7 +315,7 @@ function paymentPage() {
     alert("請輸入預估價格");
     oPrice.focus();
     return false;
-  }if (oComment == "") {
+  } if (oComment == "") {
     alert("請輸入留言內容!!");
     oComment.focus();
     return (false);
@@ -339,6 +342,70 @@ function paymentPage() {
       console.log(`Error: ${error}`);
     })
 
+}
+function insertInfo() {
+  let searchInputFrom = document.getElementById(`searchInputFrom`)
+  searchInputFrom.value = `台灣台北市中正區忠孝東路一段全聯福利中心 中正華山店`
+  let searchInputTo = document.getElementById(`searchInputTo`)
+  searchInputTo.value = `台灣台北市大安區新生南路一段光華館`
+  if (i == 1) {
+    let brand0 = document.getElementById(`brand0`)
+    brand0.value = `舒潔衛生紙`
+    let detail0 = document.getElementById(`detail0`)
+    detail0.value = `抽取式`
+    let quantity0 = document.getElementById(`quantity0`)
+    quantity0.value = `2`
+    let talk = document.getElementById(`talk`)
+    talk.value = `舒潔衛生紙 120抽10包裝`
+    let fee = document.getElementById(`fee`)
+    fee.value = `30`
+    let price = document.getElementById(`price`)
+    price.value = `500`
+  } if (i == 2) {
+    let brand0 = document.getElementById(`brand0`)
+    brand0.value = `舒潔衛生紙`
+    let detail0 = document.getElementById(`detail0`)
+    detail0.value = `抽取式`
+    let quantity0 = document.getElementById(`quantity0`)
+    quantity0.value = `2`
+    let brand1 = document.getElementById(`brand1`)
+    brand1.value = `飛柔洗髮乳`
+    let detail1 = document.getElementById(`detail1`)
+    detail1.value = `1L`
+    let quantity1 = document.getElementById(`quantity1`)
+    quantity1.value = `2`
+    let talk = document.getElementById(`talk`)
+    talk.value = `舒潔衛生紙 10包裝,飛柔洗髮乳 去頭皮屑熱油`
+    let fee = document.getElementById(`fee`)
+    fee.value = `40`
+    let price = document.getElementById(`price`)
+    price.value = `800`
+  } if (i == 3) {
+    let brand0 = document.getElementById(`brand0`)
+    brand0.value = `舒潔衛生紙`
+    let detail0 = document.getElementById(`detail0`)
+    detail0.value = `抽取式`
+    let quantity0 = document.getElementById(`quantity0`)
+    quantity0.value = `2`
+    let brand1 = document.getElementById(`brand1`)
+    brand1.value = `飛柔洗髮乳`
+    let detail1 = document.getElementById(`detail1`)
+    detail1.value = `1L`
+    let quantity1 = document.getElementById(`quantity1`)
+    quantity1.value = `2`
+    let brand2 = document.getElementById(`brand2`)
+    brand2.value = `Biore淨嫩沐浴乳`
+    let detail2 = document.getElementById(`detail2`)
+    detail2.value = `1L`
+    let quantity2 = document.getElementById(`quantity2`)
+    quantity2.value = `2`
+    let talk = document.getElementById(`talk`)
+    talk.value = `舒潔衛生紙 10包裝,飛柔洗髮乳 去頭皮屑熱油,Biore淨嫩沐浴乳 木蘭與麝檀香`
+    let fee = document.getElementById(`fee`)
+    fee.value = `50`
+    let price = document.getElementById(`price`)
+    price.value = `1100`
+  }
 }
 
 // GoogleMap part
