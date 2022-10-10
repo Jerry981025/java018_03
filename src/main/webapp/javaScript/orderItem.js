@@ -121,14 +121,14 @@ $(document).ready(function abc() {
 														<td width="80%">${res[i].items[0].oBrand} (${res[i].items[0].oDetail}) * ${res[i].items[0].oQuantity}</td>
 											        </tr>`
 
-				for (let j = 1; j < res[i].items.length; j++) {
-					orderList += `
+													for (let j = 1; j < res[i].items.length; j++) {
+														orderList += `
 																	<tr>
 																		<td width="20%"></td>
 																		<td width="80%">${res[i].items[j].oBrand} (${res[i].items[j].oDetail}) * ${res[i].items[j].oQuantity}</td>
 															        </tr>`
-				}
-				orderList += `
+													}
+													orderList += `
 													<tr>
 											            <td width="20%">店家地址</td>
 											            <td width="80%">${res[i].oShippingAddress}</td>
@@ -458,6 +458,7 @@ $('input[name="orderType"]').change(function () {
 								評分: ${allOrders[i].oRanking}
 
 								<button type="button" style="float:right;" class="btn btn-primary"  onclick="itemsDetail(${allOrders[i].oId})" data-bs-toggle="modal" data-bs-target="#exampleModal${allOrders[i].oId}">
+								<button type="button" class="btn btn-primary" style="float:right;" onclick="itemsDetail(${allOrders[i].oId})" data-bs-toggle="modal" data-bs-target="#exampleModal${allOrders[i].oId}">
 									我要接單
 								</button>
 
@@ -650,14 +651,14 @@ $('input[name="orderType"]').change(function () {
 							<td width="80%">${allOrders[i].items[0].oBrand} (${allOrders[i].items[0].oDetail}) * ${allOrders[i].items[0].oQuantity}</td>
 						   </tr>`
 
-			for (let j = 1; j < allOrders[i].items.length; j++) {
-				orderList += `
+							for (let j = 1; j < allOrders[i].items.length; j++) {
+								orderList += `
 							   <tr>
 								<td width="20%"></td>
 								<td width="80%">${allOrders[i].items[j].oBrand} (${allOrders[i].items[j].oDetail}) * ${allOrders[i].items[j].oQuantity}</td>
 							   </tr>`
-			}
-			orderList += `
+							}
+							orderList += `
 						   <tr>
 							<td width="20%">店家地址</td>
 							<td width="80%">${allOrders[i].oShippingAddress}</td>
@@ -706,6 +707,8 @@ $('input[name="orderType"]').change(function () {
 })
 
 function returnOrderItems(id) {
+	$('.mission').hide()
+  	$('.payment').show()
 	console.log(id);
 	let body = id;
 	fetch('updateOrderStatus',
@@ -714,6 +717,11 @@ function returnOrderItems(id) {
         }).catch((error) => {
             console.log(`Error`);
         })
+}
+
+function name() {
+	// $('.mission').hide()
+  	// $('.payment').show()
 }
 
 // 所有訂單
