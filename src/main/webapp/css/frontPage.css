@@ -1,26 +1,29 @@
 body {
     margin: 0%;
-    background: rgb(238, 174, 202);
-    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+    background-color: rgb(191, 184, 184);
+    /* background: rgb(238, 174, 202); */
+    /* background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%); */
 
 }
 
-.bground-video {
+/* .bground-video {
     width: 100%;
     height: 100%;
-}
+} */
 
 nav {
     height: 70px;
 }
 
 .navbar {
-    background-color: azure
+    background-color: rgba(188, 196, 182, 0.468)
+    /* rgb(188, 196, 182) */
 }
 
 li a {
-    color: darkgray !important;
-    font-size: 20px;
+    /* color: darkgray !important; */
+    color: black !important;
+    font-size: 18px;
 }
 
 li a:hover {
@@ -81,3 +84,13 @@ footer a {
     width: 80%;
     height: 80%;
 }
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+  
+.col-md-4 {
+	text-align: center;
+} 
