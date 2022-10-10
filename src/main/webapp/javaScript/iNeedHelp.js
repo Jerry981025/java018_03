@@ -27,7 +27,6 @@ function doFirst() {
   })
 }
 function createItems() {
-
   // accordion item
   let accordion = document.createElement('div')
   accordion.setAttribute('class', 'accordion')
@@ -51,7 +50,6 @@ function createItems() {
   accordionButton.setAttribute('aria-controls', `panelsStayOpen-collapse${i}`)
   accordionButton.innerText = `購買產品`
 
-
   let accordionCollapse = document.createElement('div')
   accordionCollapse.setAttribute('id', `panelsStayOpen-collapse${i}`)
   accordionCollapse.setAttribute('class', 'accordion-collapse collapse show')
@@ -70,7 +68,6 @@ function createItems() {
   accordion.appendChild(accordionItem)
   result.appendChild(accordion)
 
-
   //item
   let item = document.createElement('div')
   item.setAttribute('class', 'item')
@@ -88,7 +85,7 @@ function createItems() {
   brandInput.setAttribute('id', `brand${i}`)
   brandInput.setAttribute('class', 'brandInput form-control')
   brandInput.setAttribute('type', 'text')
-
+  brandInput.setAttribute('required', '')
 
   brandInput.addEventListener('change', function () {
     accordionButton.innerText = brandInput.value
@@ -111,6 +108,7 @@ function createItems() {
   detailInput.setAttribute('class', 'detailInput form-control')
   detailInput.setAttribute('type', 'text')
   detailInput.setAttribute('placeholder', 'ex:大小、尺寸、容量、口味')
+  detailInput.setAttribute('required', '')
 
   detailInput.addEventListener('change', function () {
     accordionHeader.title = '產品細項: ' + detailInput.value + '\n'
@@ -134,6 +132,7 @@ function createItems() {
   quantityInput.setAttribute('type', 'number')
   quantityInput.setAttribute('min', '1')
   quantityInput.setAttribute('step', '1')
+  quantityInput.setAttribute('required', '')
 
   quantityInput.addEventListener('change', function () {
     accordionHeader.title += '產品數量: ' + quantityInput.value + '\n'
@@ -288,7 +287,7 @@ function paymentPage() {
     } if (!re.test(quantity)) {
       alert("請輸入購買數量");
       quantity.focus();
-      return false;
+      return (false);
     }
 
     items.push({
@@ -297,8 +296,7 @@ function paymentPage() {
       oQuantity: quantity,
     })
   }
-
-
+  
   if (oShippingAddress == "") {
     alert("請輸入需求起點");
     oShippingAddress.focus();
