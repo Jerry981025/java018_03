@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import dao.OrderDao;
+import model.MemberBean;
 import model.OrderBean;
 import model.OrderItemBean;
 
@@ -26,8 +27,16 @@ public class OrderDaoImpl implements OrderDao {
 		Session session = factory.getCurrentSession();
 		for (OrderItemBean item : ob.getItems()) {
 			item.setOrderBean(ob);
+			MemberBean mb = new MemberBean();
+			mb.setmId(ob.getmId());
+			ob.setMemberBean(mb);
 		}
 		session.save(ob);
+//		Session session = factory.getCurrentSession();
+//		for (OrderItemBean item : ob.getItems()) {
+//			item.setOrderBean(ob);
+//		}
+//		session.save(ob);
 	}
 
 	@Override
