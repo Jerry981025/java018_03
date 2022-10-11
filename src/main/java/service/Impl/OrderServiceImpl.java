@@ -1,13 +1,20 @@
 package service.Impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import dao.OrderDao;
+import ecpay.payment.integration.AllInOne;
+import ecpay.payment.integration.domain.AioCheckOutALL;
+import javassist.Loader.Simple;
 import model.OrderBean;
+import net.bytebuddy.asm.Advice.AllArguments;
 import service.OrderService;
 
 @Service
@@ -56,5 +63,30 @@ public class OrderServiceImpl implements OrderService {
 			}
 		}
 		return orders;
+	}
+
+	@Override
+	public String ecpayValidation(List<String> nameList, Integer oId, OrderBean orderBean) {
+		
+		Optional<String> reduce = nameList.stream().reduce((String acc, String curr) -> {
+			return acc + "#" + curr;
+		});
+		String itemName = reduce.get();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String tradeDate = sdf.format(new Date());
+		AllInOne allInOne = new AllInOne("");
+		AioCheckOutALL aioCheckOutALL = new AioCheckOutALL();
+		aioCheckOutALL.setMerchantTradeNo(oId + "Help");
+		aioCheckOutALL.setMerchantTradeDate(tradeDate);
+		Integer oTotal = orderBean.getoFee() + orderBean.getoPrice();
+		aioCheckOutALL.setTotalAmount(oTotal.toString());
+		aioCheckOutALL.setTradeDesc("幫幫忙測試付款");
+		aioCheckOutALL.setItemName(itemName);
+		aioCheckOutALL.setClientBackURL("");
+		aioCheckOutALL.setReturnURL("");
+		aioCheckOutALL.setNeedExtraPaidInfo("N");
+		
+		return allInOne.aioCheckOut(aioCheckOutALL, null);
 	}
 }
