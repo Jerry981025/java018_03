@@ -18,5 +18,5 @@ public interface OrderService {
 
 	List<OrderBean> findByOrderStatus(String status, Integer mId);
 	
-	String ecpayValidation(Integer oId, OrderBean orderBean);
+	String ecpayValidation(OrderBean orderBean);
 }

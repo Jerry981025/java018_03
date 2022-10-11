@@ -51,7 +51,7 @@ public class OrderController {
 	}
 
 	@PostMapping(value = "/add", produces = { "application/json; charset=UTF-8" })
-	public @ResponseBody void addOrder(@RequestBody() OrderVo params, @SessionAttribute MemberBean member) {
+	public @ResponseBody String addOrder(@RequestBody() OrderVo params, @SessionAttribute MemberBean member) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		OrderBean bean = new OrderBean();
 		bean.setmId(member.getmId());
@@ -69,7 +69,7 @@ public class OrderController {
 		bean.sethId(0);
 		orderService.addOrder(bean);
 		
-		orderService.ecpayValidation(params.getoId(), bean);
+		return orderService.ecpayValidation(bean);
 	}
 
 	@GetMapping("/list")

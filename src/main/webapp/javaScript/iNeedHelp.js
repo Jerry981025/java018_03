@@ -334,9 +334,12 @@ function paymentPage() {
   }
   console.log(body);
   fetch('add',
-    { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) }).then(res => {
-      console.log('ok');
-    }).catch((error) => {
+    { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) })
+    .then(res => res.text())
+    .then(formHtml => {
+      console.log(formHtml)
+    })
+    .catch((error) => {
       console.log(`Error: ${error}`);
     })
 
