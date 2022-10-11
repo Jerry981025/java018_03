@@ -1,5 +1,4 @@
 let content
-let originalcontent
 let originBirthday
 let input1 = document.getElementById("newAddress");
 $(document).ready(() => {
