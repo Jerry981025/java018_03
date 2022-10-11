@@ -117,10 +117,12 @@ $(document).ready(function(){
                             <hr>
                         </div>
                         <div class="row d-flex">`
-                        if (orders[i].oRanking == 0) {
+                        if (orders[i].oRanking == 0 && orders[i].oOrderStatus === "已完成") {
 			                content += `
 				                <!-- Button trigger modal -->
-				                <div class="INHbtn"><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#rateModal${i}">給予評價</button></div>
+				                <div class="INHbtn">
+                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#rateModal${i}">給予評價</button>
+                                </div>
 				                <!-- Modal -->
 				                <div class="modal fade" id="rateModal${i}" tabindex="-1" aria-labelledby="rateModalLabel${i}" aria-hidden="true">
 				                    <div class="modal-dialog">
@@ -164,10 +166,7 @@ $(document).ready(function(){
 		                <!-- Button trigger modal -->
 		                <div class="INHbtn">
 		                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal${i}">取消</button>
-		                <!-- 聊天室 Button   -->
-                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#chatModal${i}" onclick="setRoom(${orders[i].oId})">聊天室</button>
 		                </div>		                		                
-		                
 		                
 		                <!-- Modal -->
 		                <div class="modal fade" id="exampleModal${i}" tabindex="-1" aria-labelledby="exampleModalLabel${i}" aria-hidden="true">
@@ -183,9 +182,15 @@ $(document).ready(function(){
 		                            </div>
 		                        </div>
 		                    </div>
-		                </div>
-		                
-		                 <!-- 動態新增聊天室頁面   -->
+		                </div>`
+                    }
+                    if (orders[i].oOrderStatus === "進行中") {
+                        content += `
+		                <!-- 聊天室 Button   -->
+                        <div class="chatBtn mt-1">
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#chatModal${i}" onclick="setRoom(${orders[i].oId})">聊天室</button>
+		                </div> 
+                        <!-- 動態新增聊天室頁面   -->
                         <div class="modal fade" id="chatModal${i}" tabindex="-1" aria-labelledby="chatModalLabel${i}" aria-hidden="true">
 		                    <div class="modal-dialog">
 		                        <div class="modal-content">

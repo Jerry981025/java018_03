@@ -135,7 +135,7 @@ $(document).ready(function() {
 						if (orders[i].oOrderStatus === "進行中") {
 							content += `
                             <!-- 聊天室 Button   -->  
-							 <div class="chatBtn">
+							 <div class="chatBtn mt-1">
                              <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#chatModal${i}" onclick="setRoom(${orders[i].oId})">聊天室</button>
 							 </div>                           
                              <!-- 動態新增聊天室頁面   -->
