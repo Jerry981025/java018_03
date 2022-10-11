@@ -4,30 +4,17 @@ html,body
     height: 100%;
     margin: 0px;
     padding: 0px;
-/*     overflow-x: hidden;  */
 }
 
 body{
-    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    background: #DCDCD7;
+	margin: 0%;
 }
-
-/* nav{
-    height: 70px;
-}
-
-
-.navbar{
-    background-color:azure
-} */
 
 li a{
-    /* color:darkgray !important; */
     font-size: 20px;
 }
 
-/* li a:hover{
-    color:darkslateblue !important;
-} */
 a{
     text-decoration: none;
 }

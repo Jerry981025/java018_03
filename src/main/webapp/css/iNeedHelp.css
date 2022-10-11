@@ -1,21 +1,3 @@
-/* * {
-    font-size: 14px;
-    font-family: Tahoma;
-}
-
-nav{
-    height: 70px;
-}
-
-
-.navbar{
-    background-color:azure
-}
-
-li a:hover {
-    color: darkslateblue !important;
-} */
-
 h1 {
     text-align: center;
     padding: 10px;
@@ -24,11 +6,12 @@ h1 {
 img .mapImg {
     width: 100%;
     height: 100%;
-} */
+} 
 
 .mission {
     height: 95vh;
     overflow: scroll;
+    background: #DCDCD7;
 }
 
 #googleMap {

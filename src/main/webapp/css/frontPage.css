@@ -1,9 +1,6 @@
 body {
-    margin: 0%;
-    background-color: rgb(191, 184, 184);
-    /* background: rgb(238, 174, 202); */
-    /* background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%); */
-
+    background: #DCDCD7;
+	margin: 0%;
 }
 
 /* .bground-video {
