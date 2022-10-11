@@ -200,9 +200,6 @@ $(document).ready(function(){
 		                            </div>		                       
 		                    </div>
 		                </div>
-		                
-		                
-		                
 	                	`
 	            	}
                 content+= `

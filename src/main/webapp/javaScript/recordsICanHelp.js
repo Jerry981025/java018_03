@@ -106,30 +106,52 @@ $(document).ready(function() {
                                 <p class="py-1 m-0">${orders[i].oComment}</p>
                             </div>
                             <hr>
-                            </div>
-                            `
-
-			if (orders[i].oOrderStatus === "未完成") {
-				content += `
-                            <!-- 聊天室 Button   -->  
-                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#chatModal${i}" onclick="setRoom(${orders[i].oId})">聊天室</button>                           
-                             <!-- 動態新增聊天室頁面   -->
-                             <div class="modal fade" id="chatModal${i}" tabindex="-1" aria-labelledby="chatModalLabel${i}" aria-hidden="true">
-		                    <div class="modal-dialog">
-		                        <div class="modal-content">
-		                            <div class="modal-header">
-		                                <h5 class="modal-title" id="chatModalLabel${i}"></h5>
-                                        <div class="modal-body">
-                                        <div class="chatBoard" id="msg_board${orders[i].oId}"></div><br>
-                                        <input id="input_msg${orders[i].oId}" size="43" maxlength="40">                                      
-                                        <input type="button" value="傳送" onclick="sendData(${orders[i].oId})" />
-                                        <button class="btn btn-secondary" onclick="closeWs()" >退出聊天室</button>
-                                    </div>
-		                        </div>		                       
-		                    </div>
-		                </div>
-                            `
-			}
+                       	</div>
+                        <div class="row d-flex">`
+						if (orders[i].oOrderStatus === "進行中") {
+	                		content+= `
+			                <!-- Button trigger modal -->
+			                <div class="ICHbtn">
+			                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#example2Modal${i}">完成</button>
+			                </div>		                		                
+			                
+			                
+			                <!-- Modal -->
+			                <div class="modal fade" id="example2Modal${i}" tabindex="-1" aria-labelledby="exampleModal2Label${i}" aria-hidden="true">
+			                    <div class="modal-dialog">
+			                        <div class="modal-content">
+			                            <div class="modal-header">
+			                                <h5 class="modal-title" id="exampleModal2Label${i}">完成訂單</h5>
+			                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			                            </div>
+			                        <div class="modal-body">確定已完成了嗎?</div>
+			                            <div class="modal-footer">
+			                                <button id=finishBtn${orders[i].oId} onclick="finishOrder(${orders[i].oId})" class="btn btn-warning refresh-butto">確定</button>
+			                            </div>
+			                        </div>
+			                    </div>
+			                </div>`
+							if (orders[i].oOrderStatus === "未完成") {
+								content += `
+	                            <!-- 聊天室 Button   -->  
+	                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#chatModal${i}" onclick="setRoom(${orders[i].oId})">聊天室</button>                           
+	                             <!-- 動態新增聊天室頁面   -->
+	                             <div class="modal fade" id="chatModal${i}" tabindex="-1" aria-labelledby="chatModalLabel${i}" aria-hidden="true">
+			                     <div class="modal-dialog">
+			                         <div class="modal-content">
+			                             <div class="modal-header">
+			                                 <h5 class="modal-title" id="chatModalLabel${i}"></h5>
+	                                         <div class="modal-body">
+		                                         <div class="chatBoard" id="msg_board${orders[i].oId}"></div><br>
+		                                         <input id="input_msg${orders[i].oId}" size="43" maxlength="40">                                      
+		                                         <input type="button" value="傳送" onclick="sendData(${orders[i].oId})" />
+		                                         <button class="btn btn-secondary" onclick="closeWs()" >退出聊天室</button>
+	                                     	 </div>
+			                         	 </div>		                       
+			                     	 </div>
+			                	 </div>
+	                            `
+							}
 			content += `
 		                </div>                    
                     </form>
@@ -159,12 +181,16 @@ function myRating(rating, i) {
 	}
 }
 
-
-
-
-
-
-
+function finishOrder(oId) {
+    // console.log(oId);
+    let body = oId
+    fetch('finishOrder',
+        { method: 'PUT', headers: { 'content-type': 'application/json' }, body }).then((response) => response.text()).then(res => {
+            window.location.reload();
+        }).catch((error) => {
+            console.log(`Error`);
+        })
+}
 
 //聊天室功能
 
