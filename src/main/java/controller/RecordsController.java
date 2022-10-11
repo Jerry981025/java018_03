@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import model.MemberBean;
 import model.OrderBean;
 import net.bytebuddy.asm.Advice.Return;
+import service.OrderService;
 import service.RecordsService;
 
 @Controller
@@ -21,6 +24,7 @@ public class RecordsController {
 	
 	@Autowired
 	RecordsService recordsService;
+	OrderService orderService;
 	
 	public RecordsController(RecordsService recordsService) {
 		this.recordsService = recordsService;
@@ -73,4 +77,16 @@ public class RecordsController {
 		return "recordsINeedHelp";
 	}
 	
+	@PutMapping(value = "/finishOrder", produces = { "application/json; charset=UTF-8" })
+	public @ResponseBody String finishOrder(@RequestBody() Integer oId) {
+		OrderBean bean = orderService.findById(oId);
+		if (bean.getoOrderStatus().equals("進行中")) {
+			bean.setoOrderStatus("已完成");
+			orderService.updateOrderStatus(bean);
+			return "已完成訂單";
+		} else {
+			return "未接單，無法完成訂單";
+		}
+
+	}
 }

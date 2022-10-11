@@ -28,164 +28,159 @@
         </div>
         <!-- 需求表單 -->
         <div class="col col-4 col-md-4 bg-light m-0 py-0 mission">
-<!--             <form class="needs-validation"> -->
-                <h3 class="p-0 m-0 text-center mt-2">任務事項</h3>
-                <hr class="my-2 container-fluid">
-                <!-- 運送地址 -->
-                <p class="fs-6 m-0">需求起點:</p>
-                <div class="row mb-3">
-                    <div class="col-xxl-12 px-2 py-1">
-                        <input type="text" class="form-control p-0" id="searchInputFrom" placeholder=" 輸入起點" required>
-                    </div>
-                </div>
-                <p class="fs-6 m-0">需求終點:</p>
-                <div class="row mb-3">
-                    <div class="col-xxl-12 px-2 py-1">
-                        <input type="text" class="form-control p-0" id="searchInputTo" placeholder=" 輸入終點" required>
-                    </div>
-                </div>
-                <div class="text-center mb-3" style="text-align:center">
-                    <button id="sendAddressButton" type="button" class="btn btn-success"
-                        style="justify-content: start ;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                            class="bi bi-plus-lg" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
-                        </svg> 送出地址
-                    </button>
-
-                    <button id="loadButton" type="button" class="btn btn-success" style="justify-content: end;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                            class="bi bi-plus-lg" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
-                        </svg> 新增產品
-                    </button>
-                </div>
-                <!-- 動態新增產品 -->
-                <div id="result"></div>
-                <!-- <div class="accordion" id="accordionExample">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingOne" data-bs-toggle="tooltip" title=""><button
-                                class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#panelsStayOpen-collapse1" aria-expanded="true"
-                                aria-controls="panelsStayOpen-collapse1">產品細項</button></h2>
-                        <div id="panelsStayOpen-collapse1" class="accordion-collapse collapse show"
-                            aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                            <div class="accordion-body container">
-                                <div class="item">
-                                    <div class="brandDiv input-group mb-1"><span
-                                            class="brandSpan input-group-text">品名</span><input id="brand1"
-                                            class="brandInput form-control" type="text"></div>
-                                    <div class="detailDiv input-group mb-1"><span
-                                            class="detailSpan input-group-text">產品細項</span><input id="detail1"
-                                            class="detailInput form-control" type="text"></div>
-                                    <div class="quantityDiv input-group mb-1"><span
-                                            class="quantitySpan input-group-text">數量</span><input id="quantity1"
-                                            class="quantityInput form-control" type="number" min="0"></div>
-                                    <div class="imgDiv input-group mb-1"><label
-                                            class="imgLabel input-group-text">上傳圖片</label><img id="newImg1">
-                                        <div id="newImg1662206306033" class="newImg"></div><input
-                                            id="upload_img16622063060331" class="form-control" type="file">
-                                    </div>
-                                    <div class="deleteDiv"><button id="deleteButton" class="btn btn-secondary"
-                                            type="button">刪除</button></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                <div class="row mt-2">
-                    <!-- 跑腿費 -->
-                    <div style="display: inline" class="col col-xxl-6">
-                        <div class="input-group input-group-sm mb-3">
-                            <span class="input-group-text" id="inputGroup-sizing-sm">跑腿費</span>
-                            <input type="number" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-sm" id="fee" min="1" step="1" required>
-                        </div>
-                    </div>
-                    <!-- 預估價格 -->
-                    <div style="display: inline" class="col col-xxl-6">
-                        <div class="input-group input-group-sm mb-3">
-                            <span class="input-group-text" id="inputGroup-sizing-sm">預估價格</span>
-                            <input type="number" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-sm" id="price" min="1" step="1" required>
-                        </div>
-                    </div>
-                </div>
-                <!-- 送達時間 -->
-                <div class="container text-cente">
-                    <div class="row">
-                        <div class="col-12">
-                            <input type="datetime-local" id="meeting-time" name="meeting-time">
-                        </div>
-                    </div>
-                </div>
-                <!-- 訂單類型 -->
-                <div class="d-flex row">
-                    <div class="col col-6 col-lg-12 col-xxl-3">
-                        <div class="form-check mx-1 d-flex">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio" value="代買"
-                                checked>
-                            <label class="form-check-label fs-6" for="flexRadioDefault1">
-                                代買
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col col-6 col-lg-12 col-xxl-3">
-                        <div class="form-check mx-1 d-flex">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio" value="代排">
-                            <label class="form-check-label fs-6" for="flexRadioDefault2">
-                                代排
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col col-6 col-lg-12 col-xxl-3">
-                        <div class="form-check mx-1 d-flex">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio"
-                                value="到府服務">
-                            <label class="form-check-label fs-6" for="flexRadioDefault3">
-                                到府服務
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col col-6 col-lg-12 col-xxl-3">
-                        <div class="form-check mx-1 d-flex">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio" value="團購">
-                            <label class="form-check-label fs-6" for="flexRadioDefault4">
-                                團購
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <p class="fs-6 m-0">備註:</p>
-                <div class="input-group input-group-sm mb-3">
-                    <textarea id="talk" rows="8" cols="100" maxlength="500"
-                        placeholder="請輸入任何與此訂單相關的重要資訊，例如地標、物品數量、代付金額等。" id="talk" required></textarea>
-                </div>
-                <p id="feedback"></p>
-                <!-- 付款按鈕 -->
-                <div id="output"> </div>
-                <div id="total"></div>
-                <div class="container text-end" required="required">
-                    <div class="row">
-                        <div class="align-self-end">
-                            <button class="btn btn-light" id="insertInfo" type="button">
-                                DEMO
-                            </button>
-                            <button class="btn btn-primary" id="orderButton">
-                                選擇付款方式
-                            </button>
-                            <div class="ecpay">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-<!--             </form> -->
+	        <h3 class="p-0 m-0 text-center mt-2">任務事項</h3>
+	        <hr class="my-2 container-fluid">
+	        <!-- 運送地址 -->
+	        <p class="fs-6 m-0">需求起點:</p>
+	        <div class="row mb-3">
+	            <div class="col-xxl-12 px-2 py-1">
+	                <input type="text" class="form-control p-0" id="searchInputFrom" placeholder=" 輸入起點" required>
+	            </div>
+	        </div>
+	        <p class="fs-6 m-0">需求終點:</p>
+	        <div class="row mb-3">
+	            <div class="col-xxl-12 px-2 py-1">
+	                <input type="text" class="form-control p-0" id="searchInputTo" placeholder=" 輸入終點" required>
+	            </div>
+	        </div>
+	        <div class="text-center mb-3" style="text-align:center">
+	            <button id="sendAddressButton" type="button" class="btn btn-success"
+	                style="justify-content: start ;">
+	                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+	                    class="bi bi-plus-lg" viewBox="0 0 16 16">
+	                    <path fill-rule="evenodd"
+	                        d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+	                </svg> 送出地址
+	            </button>
+	
+	            <button id="loadButton" type="button" class="btn btn-success" style="justify-content: end;">
+	                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+	                    class="bi bi-plus-lg" viewBox="0 0 16 16">
+	                    <path fill-rule="evenodd"
+	                        d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+	                </svg> 新增產品
+	            </button>
+	        </div>
+	        <!-- 動態新增產品 -->
+	        <div id="result"></div>
+	        <!-- <div class="accordion" id="accordionExample">
+	            <div class="accordion-item">
+	                <h2 class="accordion-header" id="headingOne" data-bs-toggle="tooltip" title=""><button
+	                        class="accordion-button" type="button" data-bs-toggle="collapse"
+	                        data-bs-target="#panelsStayOpen-collapse1" aria-expanded="true"
+	                        aria-controls="panelsStayOpen-collapse1">產品細項</button></h2>
+	                <div id="panelsStayOpen-collapse1" class="accordion-collapse collapse show"
+	                    aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+	                    <div class="accordion-body container">
+	                        <div class="item">
+	                            <div class="brandDiv input-group mb-1"><span
+	                                    class="brandSpan input-group-text">品名</span><input id="brand1"
+	                                    class="brandInput form-control" type="text"></div>
+	                            <div class="detailDiv input-group mb-1"><span
+	                                    class="detailSpan input-group-text">產品細項</span><input id="detail1"
+	                                    class="detailInput form-control" type="text"></div>
+	                            <div class="quantityDiv input-group mb-1"><span
+	                                    class="quantitySpan input-group-text">數量</span><input id="quantity1"
+	                                    class="quantityInput form-control" type="number" min="0"></div>
+	                            <div class="imgDiv input-group mb-1"><label
+	                                    class="imgLabel input-group-text">上傳圖片</label><img id="newImg1">
+	                                <div id="newImg1662206306033" class="newImg"></div><input
+	                                    id="upload_img16622063060331" class="form-control" type="file">
+	                            </div>
+	                            <div class="deleteDiv"><button id="deleteButton" class="btn btn-secondary"
+	                                    type="button">刪除</button></div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div> -->
+	        <div class="row mt-2">
+	            <!-- 跑腿費 -->
+	            <div style="display: inline" class="col col-xxl-6">
+	                <div class="input-group input-group-sm mb-3">
+	                    <span class="input-group-text" id="inputGroup-sizing-sm">跑腿費</span>
+	                    <input type="number" class="form-control" aria-label="Sizing example input"
+	                        aria-describedby="inputGroup-sizing-sm" id="fee" min="1" step="1" required>
+	                </div>
+	            </div>
+	            <!-- 預估價格 -->
+	            <div style="display: inline" class="col col-xxl-6">
+	                <div class="input-group input-group-sm mb-3">
+	                    <span class="input-group-text" id="inputGroup-sizing-sm">預估價格</span>
+	                    <input type="number" class="form-control" aria-label="Sizing example input"
+	                        aria-describedby="inputGroup-sizing-sm" id="price" min="1" step="1" required>
+	                </div>
+	            </div>
+	        </div>
+	        <!-- 送達時間 -->
+	        <div class="container text-cente">
+	            <div class="row">
+	                <div class="col-12">
+	                    <input type="datetime-local" id="meeting-time" name="meeting-time">
+	                </div>
+	            </div>
+	        </div>
+	        <!-- 訂單類型 -->
+	        <div class="d-flex row">
+	            <div class="col col-6 col-lg-12 col-xxl-3">
+	                <div class="form-check mx-1 d-flex">
+	                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio" value="代買"
+	                        checked>
+	                    <label class="form-check-label fs-6" for="flexRadioDefault1">
+	                        代買
+	                    </label>
+	                </div>
+	            </div>
+	            <div class="col col-6 col-lg-12 col-xxl-3">
+	                <div class="form-check mx-1 d-flex">
+	                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio" value="代排">
+	                    <label class="form-check-label fs-6" for="flexRadioDefault2">
+	                        代排
+	                    </label>
+	                </div>
+	            </div>
+	            <div class="col col-6 col-lg-12 col-xxl-3">
+	                <div class="form-check mx-1 d-flex">
+	                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio"
+	                        value="到府服務">
+	                    <label class="form-check-label fs-6" for="flexRadioDefault3">
+	                        到府服務
+	                    </label>
+	                </div>
+	            </div>
+	            <div class="col col-6 col-lg-12 col-xxl-3">
+	                <div class="form-check mx-1 d-flex">
+	                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio" value="團購">
+	                    <label class="form-check-label fs-6" for="flexRadioDefault4">
+	                        團購
+	                    </label>
+	                </div>
+	            </div>
+	        </div>
+	        <p class="fs-6 m-0">備註:</p>
+	        <div class="input-group input-group-sm mb-3">
+	            <textarea id="talk" rows="8" cols="100" maxlength="500"
+	                placeholder="請輸入任何與此訂單相關的重要資訊，例如地標、物品數量、代付金額等。" id="talk" required></textarea>
+	        </div>
+	        <p id="feedback"></p>
+	        <!-- 付款按鈕 -->
+	        <div id="output"> </div>
+	        <div id="total"></div>
+	        <div class="container text-end" required="required">
+	            <div class="row">
+	                <div class="align-self-end">
+	                    <button class="btn btn-light" id="insertInfo" type="button">
+	                        DEMO
+	                    </button>
+	                    <button class="btn btn-primary" id="orderButton">
+	                        選擇付款方式
+	                    </button>
+	                    <div class="ecpay">
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
         </div>
-<!--         <div class="col col-4 col-md-4 bg-light m-0 py-0 order-2 order-lg-1 payment">
-            付款頁面
-        </div> -->
     </div>
     <div id="footer"></div>
     <!-- Boostrap5.0 導入程式 -->

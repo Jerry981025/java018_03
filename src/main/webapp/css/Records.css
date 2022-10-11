@@ -7,30 +7,11 @@ html,body
 }
 
 body{
-    background: rgb(238,174,202);
-    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    background: #DCDCD7;
+	margin: 0%;
 }
 .main-content{
 	min-height: 100%;
-/* 	padding-bottom: 265px; */
-}
-
-/* footer{ */
-/* 	height: 265px; */
-/* 	position: relative; */
-/*     top: -265px; */
-/*     height: 265px; */
-/* } */
-
-nav{
-    height: 70px;
-    position: absolute;
-    top:0;
-}
-
-
-.navbar{
-    background-color:azure
 }
 
 li a{
@@ -38,9 +19,6 @@ li a{
     font-size: 20px;
 }
 
-li a:hover{
-    color:darkslateblue !important;
-}
 a{
     text-decoration: none;
 }

@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -18,6 +21,7 @@ public class OrderBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer oId;
+	@Column(insertable = false, updatable=false)
 	private Integer mId;
 	private String oShippingAddress;
 	private String oDestinationAddress;
@@ -36,9 +40,9 @@ public class OrderBean {
 	@OneToMany(mappedBy = "orderBean", cascade = CascadeType.ALL)
 	List<OrderItemBean> items = new ArrayList<>();
 	
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name="mId")
-//	MemberBean memberBean;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="mId")
+	MemberBean memberBean;
 
 	public OrderBean(Integer oId, Integer mId, String oShippingAddress, String oDestinationAddress, String oTime,
 			Integer oFee, Integer oPrice, String oDeadLine, String oOrderType, String oComment, Integer oRanking,
@@ -174,12 +178,12 @@ public class OrderBean {
 		this.items = items;
 	}
 
-//	public MemberBean getMemberBean() {
-//		return memberBean;
-//	}
-//
-//	public void setMemberBean(MemberBean memberBean) {
-//		this.memberBean = memberBean;
-//	}
+	public MemberBean getMemberBean() {
+		return memberBean;
+	}
+
+	public void setMemberBean(MemberBean memberBean) {
+		this.memberBean = memberBean;
+	}
 	
 }
