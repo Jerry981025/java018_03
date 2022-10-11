@@ -9,7 +9,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.sql.rowset.serial.SerialBlob;
@@ -27,13 +26,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import model.MemberBean;
-import model.OrderBean;
 import service.AddressService;
 import service.MemberService;
 
 @Controller
 public class MemberCenter {
-	String noImagePath = "C:/_SpringBoot/workspace/java018_03/src/main/webapp/images/Noimages.png";
+	String noImagePath = "/Users/huien/Documents/workspace-spring-tool-suite-4-4.14.1.RELEASE/java018_03/src/main/webapp/images/Noimages.png";
 
 	MemberService memberService;
 	AddressService addressService;
@@ -45,13 +43,21 @@ public class MemberCenter {
 	}
 	
 	@GetMapping("/footer")
-	public String footer() {
-		return "footer";
+	public String footer(@SessionAttribute MemberBean member) {
+		if(member == null) {
+			return "logoutfooter";			
+		}else {
+			return "footer";
+		}
 	}
 	
 	@GetMapping("/nav")
-	public String nav() {
-		return "nav";
+	public String nav(@SessionAttribute MemberBean member) {
+		if(member == null) {
+			return "logoutnav";
+		}else {
+			return "nav";
+		}
 	}
 
 	@GetMapping("/MemberCenter")

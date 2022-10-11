@@ -69,22 +69,23 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public String ecpayValidation(Integer oId, OrderBean orderBean) {
+	public String ecpayValidation(OrderBean orderBean) {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String tradeDate = sdf.format(new Date());
 		AllInOne allInOne = new AllInOne("");
 		AioCheckOutALL aioCheckOutALL = new AioCheckOutALL();
-		aioCheckOutALL.setMerchantTradeNo(oId + "Help");
+		aioCheckOutALL.setMerchantTradeNo(orderBean.getoId()+ "Help");
 		aioCheckOutALL.setMerchantTradeDate(tradeDate);
 		Integer oTotal = orderBean.getoFee() + orderBean.getoPrice();
 		aioCheckOutALL.setTotalAmount(oTotal.toString());
 		aioCheckOutALL.setTradeDesc("幫幫忙測試付款");
 		aioCheckOutALL.setReturnURL("http://localhost:8080/java018_03/INHrecords");
+		aioCheckOutALL.setClientBackURL("http://localhost:8080/java018_03/INHrecords");
 		aioCheckOutALL.setNeedExtraPaidInfo("N");
 		aioCheckOutALL.setItemName("跑腿費及商品合計");
 		
-		
+//		System.out.println(allInOne.aioCheckOut(aioCheckOutALL, null));
 		return allInOne.aioCheckOut(aioCheckOutALL, null);
 	}
 }
