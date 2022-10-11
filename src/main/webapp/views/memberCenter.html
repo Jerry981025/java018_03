@@ -77,9 +77,14 @@
                     <div class="col-3 col-lg-2">
                         <p class="p-0 m-0">密碼:</p>
                     </div>
-                    <div class="col-9 d-flex">
-                        <p class="p-0 m-0">********</p>
-                        <a class="ms-3" href="javascript:;">修改</a>
+                    <div class="col-9 d-flex" id="passwordRow">
+                        <p id="password" class="p-0 m-0">********</p>
+                        <input style="display: none;" type="text" id="newpassword" class="p-0">
+                        <a id="passwordUpdate" class="ms-3" style="width: 35px;" href="javascript:;">修改</a>
+                        <a id="passwordUpdateConfirm" class="ms-3 pt-1" style="width: 35px; display: none;"
+                            href="javascript:;">確認</a>
+                        <a id="passwordUpdateCancel" class="ms-3 pt-1" style="width: 35px; display: none;"
+                            href="javascript:;">取消</a>
                     </div>
                 </div>
                 <hr>

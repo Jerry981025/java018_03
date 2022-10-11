@@ -75,6 +75,64 @@ $(document).ready(() => {
 		document.getElementById('birthdayrow').removeChild(document.getElementById('errorBirthday'))
 	})
 
+	let passwordUpdateConfirm = $('#passwordUpdateConfirm')
+	let passwordUpdateCancel = $('#passwordUpdateCancel')
+	let passwordUpdate = $('#passwordUpdate')
+	let newpassword = $('#newpassword')
+	let errorPassword = document.createElement('div')
+	errorPassword.setAttribute('id', 'errorPassword')
+	errorPassword.setAttribute('style', 'color:red;')
+	errorPassword.setAttribute('class', 'ms-3 pt-1')
+	$('#passwordUpdate').click(function () {
+		$('#password').css('display', 'none')
+		newpassword.css('display', 'block')
+		this.style.display = 'none'
+		passwordUpdateConfirm.css('display', 'block')
+		passwordUpdateCancel.css('display', 'block')
+	})
+
+	// 確認修改密碼
+	passwordUpdateConfirm.click(function () {
+		let obj = { "mPassword": String(newpassword.val()) };
+		let json = JSON.stringify(obj);
+		let config = {
+			headers: {
+				'content-type': 'application/json'
+			}
+		}
+		axios.put('memberPassword', json, config)
+			.then((res) => {
+				if (res.data.errorPassword != null) {
+					errorPassword.innerText = res.data.errorPassword
+					$('#passwordRow').append(errorPassword)
+				} else if (res.data.success != null) {
+					$('#password').css('display', 'block').text("********")
+					newpassword.val("")
+					newpassword.css('display', 'none')
+					passwordUpdate.css('display', 'block')
+					passwordUpdateConfirm.css('display', 'none')
+					passwordUpdateCancel.css('display', 'none')
+					if (errorPassword != null) {
+						$("#errorPassword").remove()
+					}
+					alert(res.data.success)
+				}
+			})
+			.catch((error) => { console.error(error) })
+	})
+
+	// 取消修改密碼
+	passwordUpdateCancel.click(function () {
+		$('#password').css('display', 'block').text("********")
+		newpassword.val("")
+		newpassword.css('display', 'none')
+		passwordUpdate.css('display', 'block')
+		passwordUpdateConfirm.css('display', 'none')
+		passwordUpdateCancel.css('display', 'none')
+		document.getElementById('passwordRow').removeChild(document.getElementById('errorPassword'))
+	})
+
+
 	// 設為常用地址
 	let saveAddress
 	$('#setCommonAddress').click(function () {
