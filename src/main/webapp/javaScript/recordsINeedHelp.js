@@ -1,4 +1,8 @@
 let siteContent = ``
+let res
+let webSocket
+let roomName
+
 $(document).ready(function(){
 	axios.get('http://localhost:8080/java018_03/RecordsINeedHelp').then(res => {
 		console.log(res);
@@ -158,7 +162,13 @@ $(document).ready(function(){
 					if (orders[i].oOrderStatus === "未完成") {
                 		content+= `
 		                <!-- Button trigger modal -->
-		                <div class="INHbtn"><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal${i}">取消</button></div>
+		                <div class="INHbtn">
+		                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal${i}">取消</button>
+		                <!-- 聊天室 Button   -->
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#chatModal${i}" onclick="setRoom(${orders[i].oId})">聊天室</button>
+		                </div>		                		                
+		                
+		                
 		                <!-- Modal -->
 		                <div class="modal fade" id="exampleModal${i}" tabindex="-1" aria-labelledby="exampleModalLabel${i}" aria-hidden="true">
 		                    <div class="modal-dialog">
@@ -174,6 +184,25 @@ $(document).ready(function(){
 		                        </div>
 		                    </div>
 		                </div>
+		                
+		                 <!-- 動態新增聊天室頁面   -->
+                        <div class="modal fade" id="chatModal${i}" tabindex="-1" aria-labelledby="chatModalLabel${i}" aria-hidden="true">
+		                    <div class="modal-dialog">
+		                        <div class="modal-content">
+		                            <div class="modal-header">
+		                                <h5 class="modal-title" id="chatModalLabel${i}"></h5>
+                                        <div class="modal-body">
+                                        <div class="chatBoard" id="msg_board${orders[i].oId}"></div><br>
+                                        <input  id="input_msg${orders[i].oId}" size="43" maxlength="40">                                      
+                                        <input type="button" value="傳送" onclick="sendData(${orders[i].oId})" />
+                                        <button class="btn btn-secondary" onclick="closeWs()" >退出聊天室</button>
+                                        </div>
+		                            </div>		                       
+		                    </div>
+		                </div>
+		                
+		                
+		                
 	                	`
 	            	}
                 content+= `
@@ -227,4 +256,82 @@ function rateOrder(oId,i) {
         }).catch((error) => {
             console.log(`Error`);
         })
+}
+
+
+//關閉加清空
+function closeWs() {
+    webSocket.close();
+}
+
+//發送聊天內容
+function sendData(oId) {
+    console.log(oId)
+    let input_msg = document.getElementById(`input_msg${oId}`).value.trim();
+    if (webSocket != null) {
+        if (input_msg == "") {
+            return;
+        }
+        webSocket.send(input_msg);
+        document.getElementById(`input_msg${oId}`).value = "";
+    } else {
+        alert("您已斷線，請重新進入聊天室...");
+    }
+
+    let xhr1 = new XMLHttpRequest();
+    xhr1.open("POST", "chats", true);
+    let jsonChat = {
+        "roomid": oId,
+        "message": input_msg
+    }
+    xhr1.setRequestHeader("Content-Type", "application/json");
+    console.log(jsonChat)
+    xhr1.send(JSON.stringify(jsonChat));
+}
+
+//開始連線+讀取紀錄
+function setRoom(oId) {
+    roomName = oId;
+    let msg_board = document.getElementById(`msg_board${oId}`);
+
+    axios.get('chats',{params:{roomId:oId}})
+            .then(res => {
+                console.log(res)
+                let message="";
+                for(let i=0; i<res.data.length; i++){
+                    message += `${res.data[i].message}<br>`
+                    
+                   }
+                   msg_board.innerHTML = message;		        		
+               })    
+               .catch() 	
+
+    //建立WebSocket連線
+    if (webSocket == null) {
+
+        let url = "ws://localhost:8080/java018_03/chatCenter/" + roomName;
+        webSocket = new WebSocket(url);
+    }
+
+    //提示可聊天
+    webSocket.onopen = function () {
+        alert("已進入聊天室，聊起來");
+    };
+
+    //顯示聊天內容
+    webSocket.onmessage = function (evt) {
+        let msg_board = document.getElementById(`msg_board${oId}`);
+        let received_msg = evt.data;
+        let old_msg = msg_board.innerHTML;
+        msg_board.innerHTML = old_msg + received_msg + "<br>";
+        msg_board.scrollTop = msg_board.scrollTop + 40;
+
+    };
+    //關閉加清空
+    webSocket.onclose = function () {
+        alert("已下線");
+        webSocket = null;
+        document.getElementById(`msg_board${oId}`).innerHTML = "";
+    };
+
 }
