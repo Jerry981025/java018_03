@@ -25,13 +25,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import global.GlobalService;
 import model.MemberBean;
 import service.AddressService;
 import service.MemberService;
 
 @Controller
 public class MemberCenter {
-	String noImagePath = "/Users/huien/Documents/workspace-spring-tool-suite-4-4.14.1.RELEASE/java018_03/src/main/webapp/images/Noimages.png";
+	String noImagePath = "C:/_SpringBoot/workspace/java018_03/src/main/webapp/images/Noimages.png";
 
 	MemberService memberService;
 	AddressService addressService;
@@ -309,6 +310,30 @@ public class MemberCenter {
 		if (map.isEmpty()) {
 			try {
 				memberService.updateDetail(memberBean);
+				map.put("success", "更新成功");
+			} catch (Exception e) {
+				e.printStackTrace();
+				map.put("fail", "更新失敗");
+			}
+		}
+		return map;
+	}
+	
+	@PutMapping("/memberPassword")
+	public @ResponseBody Map<String, String> updatePassword(@RequestBody Map<String, String> maps,
+			@SessionAttribute MemberBean member) {
+		Map<String, String> map = new HashMap<>();
+		String mPassword = maps.get("mPassword");
+		if (mPassword.matches("^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(.{6,})$")) {
+			member.setmPassword(mPassword);
+		} else {
+			map.put("errorPassword", "密碼至少6位數，需包含大小寫字母、數字、符號各一");
+		}
+
+		if (map.isEmpty()) {
+			try {
+				member.setmPassword(GlobalService.getMD5Endocing(GlobalService.encryptString(mPassword)));
+				memberService.updateDetail(member);
 				map.put("success", "更新成功");
 			} catch (Exception e) {
 				e.printStackTrace();
