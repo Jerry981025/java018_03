@@ -31,7 +31,7 @@ import service.MemberService;
 
 @Controller
 public class MemberCenter {
-	String noImagePath = "C:/_SpringBoot/workspace/java018_03/src/main/webapp/images/Noimages.png";
+	String noImagePath = "/Users/huien/Documents/workspace-spring-tool-suite-4-4.14.1.RELEASE/java018_03/src/main/webapp/images/Noimages.png";
 
 	MemberService memberService;
 	AddressService addressService;

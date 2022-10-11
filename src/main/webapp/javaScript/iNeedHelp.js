@@ -2,6 +2,7 @@ window.addEventListener('load', doFirst)
 let i = 0;
 let input1 = document.getElementById("searchInputFrom");
 let input2 = document.getElementById("searchInputTo");
+let formHtml = ``
 
 function doFirst() {
   // 先跟 HTML 畫面產生關聯
@@ -334,12 +335,16 @@ function paymentPage() {
   }
   console.log(body);
   fetch('add',
-    { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) }).then(res => {
-      console.log('ok');
-    }).catch((error) => {
+    { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) })
+    .then(res => res.text())
+    .then(formHtml => {
+      console.log(formHtml)
+      $('#orderButton').append(formHtml)
+    })
+    .catch((error) => {
       console.log(`Error: ${error}`);
     })
-
+  
 }
 function insertInfo() {
   let searchInputFrom = document.getElementById(`searchInputFrom`)
