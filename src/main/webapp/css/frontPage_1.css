@@ -319,3 +319,44 @@ h6,
     background: linear-gradient(rgba(43, 40, 37, .5), rgba(43, 40, 37, .5)), url(../index_img/bg.jpg) center center no-repeat;
     background-size: cover;
 }
+
+/* 彈出視窗 */
+.modal-header h3 {
+    font-size: 30px;
+    color: black;
+    position: absolute;
+    top: 7%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal-content {
+    background-color: gainsboro;
+}
+
+.modal-body form .account,
+.password {
+    margin: 30px;
+    width: 90%;
+    border-radius: 20px;
+}
+
+
+.mycheckbox {
+    margin-bottom: 20px;
+}
+
+.modal-body form .btn {
+    width: 100%;
+    font-size: 20px;
+    color: #FAF3EB;
+}
+
+.btn-info:hover {
+    background: whitesmoke;
+    background-color: #E88F2A;
+    border-color: #000000;
+}
+#clickLogin {
+    background-color: #E88F2A;
+}

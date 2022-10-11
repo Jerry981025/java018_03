@@ -11,6 +11,8 @@
     <!-- 連結內容CSS -->
     <link rel="stylesheet" href="css/contactUs.css">
     <link href="images/favicon.ico" rel="icon">
+    <link rel="stylesheet" href="css/headerfooter.css">
+
 	<!-- axios -->
     <script src="static/js/axios.js"></script>
     <!-- jquery引用 -->
@@ -25,11 +27,12 @@
     <!-- 內容 -->
 	<div class='main-content'>
 	    <div class="container-fluid px-0 py-3">
-	    	<p class="contactUsTitle">聯絡我們</p>
+	    	<!-- <p class="contactUsTitle">聯絡我們</p> -->
 	        <div class="contactBox">
 	            <!-- 一開始即執行javascript的 init() function -->
 	            <div onload="init()">
 	                <form   enctype="text/plain" accept-charset="utf-8">
+						<h3 class="ms-2">聯絡我們</h3>
 	                <!-- 寄件者姓名    -->
 	                    <input id="nameText" type="text" name="Name"  value size="60" placeholder="姓名(name)" required>  <!-- required 必填欄位 ，placeholder 預設內容--> 
 	                    
