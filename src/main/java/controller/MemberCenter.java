@@ -32,8 +32,6 @@ import service.MemberService;
 
 @Controller
 public class MemberCenter {
-	String noImagePath = "C:/_SpringBoot/workspace/java018_03/src/main/webapp/images/Noimages.png";
-
 	MemberService memberService;
 	AddressService addressService;
 
@@ -74,7 +72,6 @@ public class MemberCenter {
 	@GetMapping("/memberPicture")
 	public @ResponseBody Map<String, String> memberPicture(
 			@SessionAttribute MemberBean member) {
-		File file = new File(noImagePath);
 		Map<String, String> map = new HashMap<>();
 		String mineType = null;
 		MemberBean bean = memberService.findByMId(member.getmId());
@@ -82,20 +79,11 @@ public class MemberCenter {
 		String base64 = null;
 		byte[] b = null;
 		try {
-			if (blob == null || blob.length() == 0) {
-				try (FileInputStream fis = new FileInputStream(file)) {
-					b = new byte[(int) file.length()];
-					fis.read(b);
-					mineType = "image/png";
-				} catch (IOException e) {
-					e.printStackTrace();
-					e.getMessage();
-				}
-			} else {
+			if (blob != null && blob.length() != 0) {
 				b = blob.getBytes(1, (int) blob.length());
 				mineType = bean.getmMineType();
+				base64 = Base64.getEncoder().encodeToString(b);
 			}
-			base64 = Base64.getEncoder().encodeToString(b);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			e.getMessage();

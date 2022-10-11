@@ -10,7 +10,7 @@ $(document).ready(() => {
 function getMemeberPicture() {
 	axios.get('memberPicture')
 		.then((res) => {
-			originalcontent = `data:${res.data.mineType};base64, ${res.data.base64}`
+			originalcontent = originalcontent ? `data:${res.data.mineType};base64, ${res.data.base64}` : 'images/Noimages.png';
 			$('#c19').attr('src', originalcontent)
 			$('#c27').attr('src', originalcontent)
 			$('#c29').attr('src', originalcontent)
