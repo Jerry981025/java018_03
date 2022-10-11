@@ -47,10 +47,10 @@ function rankingStar() {
 					starRating.append(fullStar)
 					offcanvasStarRating.append(fullStar)
 				} else if (stars < 0 && stars > -1) {
-					starRating.append(fullStar)
+					starRating.append(halfStar)
 					offcanvasStarRating.append(halfStar)
 				} else {
-					starRating.append(fullStar)
+					starRating.append(nullStar)
 					offcanvasStarRating.append(nullStar)
 				}
 			}
