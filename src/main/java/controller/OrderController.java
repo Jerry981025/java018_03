@@ -1,6 +1,7 @@
 package controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import model.MemberBean;
 import model.OrderBean;
 import service.OrderService;
@@ -23,6 +28,7 @@ import vo.OrderVo;
 public class OrderController {
 
 	OrderService orderService;
+	String result;
 
 	@Autowired
 	public OrderController(OrderService orderService) {
@@ -38,18 +44,17 @@ public class OrderController {
 	public String myOrders() {
 		return "queryOrderByMemberId";
 	}
-	
+
 	@GetMapping("/orderItem")
 	public String orderitem() {
 		return "orderItem";
 	}
 
 	@PostMapping(value = "/add", produces = { "application/json; charset=UTF-8" })
-	public @ResponseBody void addOrder(@RequestBody() OrderVo params,
-			@SessionAttribute MemberBean member) {
+	public @ResponseBody void addOrder(@RequestBody() OrderVo params, @SessionAttribute MemberBean member) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		OrderBean bean = new OrderBean();
-		bean.setMemberBean(member);
+		bean.setmId(member.getmId());
 		bean.setoShippingAddress(params.getoShippingAddress());
 		bean.setoDestinationAddress(params.getoDestinationAddress());
 		bean.setoFee(params.getoFee());
@@ -61,14 +66,15 @@ public class OrderController {
 		bean.setoTime(sdf.format(new Date()));
 		bean.setoOrderStatus("未完成");
 		bean.setItems(params.getItem());
+		bean.sethId(0);
 		orderService.addOrder(bean);
+		
+		orderService.ecpayValidation(params.getoId(), bean);
 	}
 
 	@GetMapping("/list")
 	public @ResponseBody List<OrderBean> orderListById(Integer mId) {
-		mId = 1;
-		List<OrderBean> memberOrders = orderService.findByMemberId(mId);
-		return memberOrders;
+		return orderService.findByMemberId(mId);
 	}
 
 	@GetMapping("/allOrders")
@@ -100,7 +106,8 @@ public class OrderController {
 	}
 
 	@GetMapping("/status")
-	public @ResponseBody List<OrderBean> findByOrderStatus(@RequestParam() String status, @SessionAttribute MemberBean member) {
+	public @ResponseBody List<OrderBean> findByOrderStatus(@RequestParam() String status,
+			@SessionAttribute MemberBean member) {
 		List<OrderBean> ob = orderService.findByOrderStatus(status, member.getmId());
 		return ob;
 	}

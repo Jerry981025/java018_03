@@ -53,10 +53,11 @@ function doFirst() {
         let mEmail = document.querySelector('#email').value
         let mBirth = document.querySelector('#birthday').value
         let mCellphone = document.querySelector('#mobile').value
-        let inputZip = document.querySelector('#inputZip').value
-        let inputAddress = document.querySelector('#inputAddress').value
+        //   let inputAddress = document.querySelector('#inputAddress').value
+        let mArea = document.querySelector('#inputAddress').value
         let Address = document.querySelector('#roadAddress').value
-        let mAddress = `${inputZip}${inputAddress}${Address}`
+        let mAddress = `${Address}`
+
         let body = {
             mFirstName: `${FirstName}`,
             mLastName: `${mLastName}`,
@@ -64,6 +65,7 @@ function doFirst() {
             mCheckPassword: `${mCheckPassword}`,
             mEmail: `${mEmail}`,
             mAddress: `${mAddress}`,
+            mArea: `${mArea}`,
             mBirth: `${mBirth}`,
             mCellphone: `${mCellphone}`,
         }
@@ -86,6 +88,7 @@ function register(body) {
             console.log(data.addressError);
             let birthdayRow = document.getElementById('birthdayRow')
             let addressRow = document.getElementById('addressRow')
+            let areaRow = document.getElementById('areaRow')
             let lastNameRow = document.getElementById('lastNameRow')
             let firstNameRow = document.getElementById('firstNameRow')
             let emailRow = document.getElementById('emailRow')
@@ -101,7 +104,7 @@ function register(body) {
             let doublePasswordGo = document.getElementById('CheckPasswordDoubleErrorShow')
             let cellPhoneGo = document.getElementById('cellPhoneErrorShow')
             let birthdayGo = document.getElementById('birthdayErrorShow')
-
+            let areaGo = document.getElementById('areaErrorShow')
 
 
             //生日
@@ -115,6 +118,19 @@ function register(body) {
                 }
             } else if (data.birthdayError == null && birthdayGo != null) {
                 birthdayRow.removeChild(birthdayGo)
+            }
+
+            //地區
+            if (data.areaError != null) {
+                let errorArea = document.createElement('div')
+                errorArea.setAttribute('id', 'areaErrorShow')
+                errorArea.setAttribute('style', 'color:red;')
+                errorArea.innerText = data.areaError
+                if (areaGo == null) {
+                    areaRow.appendChild(errorArea)
+                }
+            } else if (data.areaError == null && areaGo != null) {
+                areaRow.removeChild(areaGo)
             }
 
             //地址
@@ -156,7 +172,7 @@ function register(body) {
                 lastNameRow.removeChild(lastNameGo)
             }
 
-            //Email
+            //信箱
             if (data.emailError != null) {
                 if (emailGo != null) {
                     emailGo.innerText = data.emailError;
@@ -227,11 +243,40 @@ function register(body) {
             errMsg.textContent = '';
             let { successful, message } = data;
             if (successful) {
-                location.replace('../index.html');
+                location.replace('index.html');
                 alert("註冊成功");
             } else {
                 errMsg.textContent = message;
             }
+
+            //欄位格式及密碼強度檢查
+            //===================================================================
+
+            //密碼強度檢查(6位數以上，並且至少包含 大寫字母、小寫字母、數字、符號 各一)
+            let pswdStrenghCheck = document.getElementById('password').value
+            if (!(/^(?=.*[^a-zA-Z0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$/.test(pswdStrenghCheck))) {
+                alert("密碼至少6位數，需包含大小寫字母、數字、符號各一");
+                return false;
+            }
+
+            //信箱格式檢查
+            let emailFormCheck = document.getElementById('email').value
+            if (!(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/.test(emailFormCheck))) {
+                alert("信箱格式有誤，請重新填寫");
+                return false;
+            }
+
+            //手機號碼格式檢查
+            let mobileFormCheck = document.getElementById('mobile').value
+            if (!(/^09\d{2}-?\d{3}-?\d{3}$/.test(mobileFormCheck))) {
+                alert("手機號碼有誤，請重新填寫");
+                return false;
+            }
+
+
+
+
+
 
 
 

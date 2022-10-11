@@ -26,7 +26,7 @@ public class RecordsController {
 		this.recordsService = recordsService;
 	}
 
-	@GetMapping(value="RecordsINeedHelp", produces="application/json; charset=UTF-8")
+	@GetMapping(value="/RecordsINeedHelp", produces="application/json; charset=UTF-8")
 	public @ResponseBody List<OrderBean> getOrdersByMemberId(@SessionAttribute MemberBean member
 			){
 //		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");

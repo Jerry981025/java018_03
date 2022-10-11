@@ -24,6 +24,7 @@ import ecpay.payment.integration.domain.QueryTradeObj;
 import ecpay.payment.integration.domain.TradeNoAioObj;
 
 public class ExampleAllInOne {
+	
 	public static AllInOne all;
 	public static void main(String[] args) {
 		initial();

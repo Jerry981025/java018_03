@@ -10,7 +10,7 @@ function doFirst() {
   sendAddressButton = document.getElementById('sendAddressButton')
   result = document.getElementById('result')
   initMeetingTime()
-
+  infoBtn = document.getElementById(`insertInfo`)
 
   // 再建事件聆聽功能
   loadButton.addEventListener('click', function () {
@@ -22,9 +22,11 @@ function doFirst() {
   sendAddressButton.addEventListener('click', function () {
     calcRoute()
   })
+  infoBtn.addEventListener('click', function () {
+    insertInfo()
+  })
 }
 function createItems() {
-
   // accordion item
   let accordion = document.createElement('div')
   accordion.setAttribute('class', 'accordion')
@@ -48,7 +50,6 @@ function createItems() {
   accordionButton.setAttribute('aria-controls', `panelsStayOpen-collapse${i}`)
   accordionButton.innerText = `購買產品`
 
-
   let accordionCollapse = document.createElement('div')
   accordionCollapse.setAttribute('id', `panelsStayOpen-collapse${i}`)
   accordionCollapse.setAttribute('class', 'accordion-collapse collapse show')
@@ -67,7 +68,6 @@ function createItems() {
   accordion.appendChild(accordionItem)
   result.appendChild(accordion)
 
-
   //item
   let item = document.createElement('div')
   item.setAttribute('class', 'item')
@@ -85,7 +85,7 @@ function createItems() {
   brandInput.setAttribute('id', `brand${i}`)
   brandInput.setAttribute('class', 'brandInput form-control')
   brandInput.setAttribute('type', 'text')
-
+  brandInput.setAttribute('required', '')
 
   brandInput.addEventListener('change', function () {
     accordionButton.innerText = brandInput.value
@@ -108,6 +108,7 @@ function createItems() {
   detailInput.setAttribute('class', 'detailInput form-control')
   detailInput.setAttribute('type', 'text')
   detailInput.setAttribute('placeholder', 'ex:大小、尺寸、容量、口味')
+  detailInput.setAttribute('required', '')
 
   detailInput.addEventListener('change', function () {
     accordionHeader.title = '產品細項: ' + detailInput.value + '\n'
@@ -131,6 +132,7 @@ function createItems() {
   quantityInput.setAttribute('type', 'number')
   quantityInput.setAttribute('min', '1')
   quantityInput.setAttribute('step', '1')
+  quantityInput.setAttribute('required', '')
 
   quantityInput.addEventListener('change', function () {
     accordionHeader.title += '產品數量: ' + quantityInput.value + '\n'
@@ -251,7 +253,7 @@ function deleteItem() {
 }
 function initMeetingTime() {
   let meetingTime = document.getElementById('meeting-time')
-  let date = new Date(+new Date() + 8 * 3600 * 1000).toISOString()
+  let date = new Date(+new Date() + 8 * 3600 * 1000 + 60 * 60 *1000).toISOString()
   let formatTime = date.substring(0, date.lastIndexOf(':'))
   meetingTime.value = formatTime
   meetingTime.min = formatTime
@@ -266,21 +268,15 @@ function paymentPage() {
   let oPrice = document.querySelector('#price').value
   let oDeadLine = document.querySelector('#meeting-time').value
   oDeadLine = oDeadLine.replace(/T/g, ' ')
-  let oOrderType = document.querySelector('#radio').value
+  let oOrderType = document.querySelector('#radio:checked').value
   let oComment = document.querySelector('#talk').value
   let items = []
+  re = /^\d+$/;
   for (let j = 0; j < i; j++) {
     let brand = document.querySelector(`#brand${j}`).value
     let detail = document.querySelector(`#detail${j}`).value
     let quantity = document.querySelector(`#quantity${j}`).value
-
-    re = /^\d+$/;
-    if (oShippingAddress == "" && oDestinationAddress == "") {
-      alert("請輸入運送地址");
-      oShippingAddress.focus();
-      oDestinationAddress.focus();
-      return (false);
-    } if (brand == "") {
+    if (brand == "") {
       alert("請輸入產品名稱!!");
       brand.focus();
       return (false);
@@ -291,28 +287,41 @@ function paymentPage() {
     } if (!re.test(quantity)) {
       alert("請輸入購買數量");
       quantity.focus();
-      return false;
-    } if (!re.test(oFee)) {
-      alert("請輸入跑腿費");
-      oFee.focus();
-      return false;
-    } if (!re.test(oPrice)) {
-      alert("請輸入預估價格");
-      oPrice.focus();
-      return false;
-    }
-    if (oComment == "") {
-      alert("請輸入留言內容!!");
-      oComment.focus();
       return (false);
     }
+
     items.push({
       oBrand: brand,
       oDetail: detail,
       oQuantity: quantity,
     })
   }
-
+  
+  if (oShippingAddress == "") {
+    alert("請輸入需求起點");
+    oShippingAddress.focus();
+    return (false);
+  } if (oDestinationAddress == "") {
+    alert("請輸入需求終點");
+    oDestinationAddress.focus();
+    return (false);
+  } if (!re.test(oFee)) {
+    alert("請輸入跑腿費");
+    oFee.focus();
+    return false;
+  } if (!re.test(oPrice)) {
+    alert("請輸入預估價格");
+    oPrice.focus();
+    return false;
+  } if (oComment == "") {
+    alert("請輸入留言內容!!");
+    oComment.focus();
+    return (false);
+  } if (items.length == 0) {
+    alert("請新增至少一項產品");
+    items.focus();
+    return (false);
+  }
   let body = {
     oShippingAddress: oShippingAddress,
     oDestinationAddress: oDestinationAddress,
@@ -331,6 +340,70 @@ function paymentPage() {
       console.log(`Error: ${error}`);
     })
 
+}
+function insertInfo() {
+  let searchInputFrom = document.getElementById(`searchInputFrom`)
+  searchInputFrom.value = `台灣台北市中正區忠孝東路一段全聯福利中心 中正華山店`
+  let searchInputTo = document.getElementById(`searchInputTo`)
+  searchInputTo.value = `台灣台北市大安區新生南路一段光華館`
+  if (i == 1) {
+    let brand0 = document.getElementById(`brand0`)
+    brand0.value = `舒潔衛生紙`
+    let detail0 = document.getElementById(`detail0`)
+    detail0.value = `抽取式`
+    let quantity0 = document.getElementById(`quantity0`)
+    quantity0.value = `2`
+    let talk = document.getElementById(`talk`)
+    talk.value = `舒潔衛生紙 120抽10包裝`
+    let fee = document.getElementById(`fee`)
+    fee.value = `30`
+    let price = document.getElementById(`price`)
+    price.value = `500`
+  } if (i == 2) {
+    let brand0 = document.getElementById(`brand0`)
+    brand0.value = `舒潔衛生紙`
+    let detail0 = document.getElementById(`detail0`)
+    detail0.value = `抽取式`
+    let quantity0 = document.getElementById(`quantity0`)
+    quantity0.value = `2`
+    let brand1 = document.getElementById(`brand1`)
+    brand1.value = `飛柔洗髮乳`
+    let detail1 = document.getElementById(`detail1`)
+    detail1.value = `1L`
+    let quantity1 = document.getElementById(`quantity1`)
+    quantity1.value = `2`
+    let talk = document.getElementById(`talk`)
+    talk.value = `舒潔衛生紙 10包裝,飛柔洗髮乳 去頭皮屑熱油`
+    let fee = document.getElementById(`fee`)
+    fee.value = `40`
+    let price = document.getElementById(`price`)
+    price.value = `800`
+  } if (i == 3) {
+    let brand0 = document.getElementById(`brand0`)
+    brand0.value = `舒潔衛生紙`
+    let detail0 = document.getElementById(`detail0`)
+    detail0.value = `抽取式`
+    let quantity0 = document.getElementById(`quantity0`)
+    quantity0.value = `2`
+    let brand1 = document.getElementById(`brand1`)
+    brand1.value = `飛柔洗髮乳`
+    let detail1 = document.getElementById(`detail1`)
+    detail1.value = `1L`
+    let quantity1 = document.getElementById(`quantity1`)
+    quantity1.value = `2`
+    let brand2 = document.getElementById(`brand2`)
+    brand2.value = `Biore淨嫩沐浴乳`
+    let detail2 = document.getElementById(`detail2`)
+    detail2.value = `1L`
+    let quantity2 = document.getElementById(`quantity2`)
+    quantity2.value = `2`
+    let talk = document.getElementById(`talk`)
+    talk.value = `舒潔衛生紙 10包裝,飛柔洗髮乳 去頭皮屑熱油,Biore淨嫩沐浴乳 木蘭與麝檀香`
+    let fee = document.getElementById(`fee`)
+    fee.value = `50`
+    let price = document.getElementById(`price`)
+    price.value = `1100`
+  }
 }
 
 // GoogleMap part
