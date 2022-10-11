@@ -1,6 +1,6 @@
 $("#header").load(`${getContextPath()}/nav`);
 $("#footer").load(`${getContextPath()}/footer`);
-
+let originalcontent
 
 $(document).ready(() => {
 	getMemeberPicture();
@@ -10,7 +10,7 @@ $(document).ready(() => {
 function getMemeberPicture() {
 	axios.get('memberPicture')
 		.then((res) => {
-			originalcontent = originalcontent ? `data:${res.data.mineType};base64, ${res.data.base64}` : 'images/Noimages.png';
+			originalcontent = res.data.base64 ? `data:${res.data.mineType};base64, ${res.data.base64}` : 'images/Noimages.png';
 			$('#c19').attr('src', originalcontent)
 			$('#c27').attr('src', originalcontent)
 			$('#c29').attr('src', originalcontent)
