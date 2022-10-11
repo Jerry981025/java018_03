@@ -24,7 +24,6 @@ public class RecordsController {
 	
 	@Autowired
 	RecordsService recordsService;
-	OrderService orderService;
 	
 	public RecordsController(RecordsService recordsService) {
 		this.recordsService = recordsService;
@@ -75,18 +74,5 @@ public class RecordsController {
 	@GetMapping("/INHrecords")
 	public String loadRecordsINeedHelp() {
 		return "recordsINeedHelp";
-	}
-	
-	@PutMapping(value = "/finishOrder", produces = { "application/json; charset=UTF-8" })
-	public @ResponseBody String finishOrder(@RequestBody() Integer oId) {
-		OrderBean bean = orderService.findById(oId);
-		if (bean.getoOrderStatus().equals("進行中")) {
-			bean.setoOrderStatus("已完成");
-			orderService.updateOrderStatus(bean);
-			return "已完成訂單";
-		} else {
-			return "未接單，無法完成訂單";
-		}
-
 	}
 }

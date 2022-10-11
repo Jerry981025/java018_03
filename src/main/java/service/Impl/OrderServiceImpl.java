@@ -86,6 +86,7 @@ public class OrderServiceImpl implements OrderService {
 		aioCheckOutALL.setItemName("跑腿費及商品合計");
 		
 //		System.out.println(allInOne.aioCheckOut(aioCheckOutALL, null));
+//		return "";
 		return allInOne.aioCheckOut(aioCheckOutALL, null);
 	}
 }

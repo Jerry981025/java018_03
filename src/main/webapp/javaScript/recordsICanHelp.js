@@ -108,13 +108,13 @@ $(document).ready(function(){
 					if (orders[i].oOrderStatus === "進行中") {
                 		content+= `
 		                <!-- Button trigger modal -->
-		                <div class="ICHbtn"><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal${i}">完成</button></div>
+		                <div class="ICHbtn"><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#example2Modal${i}">完成</button></div>
 		                <!-- Modal -->
-		                <div class="modal fade" id="exampleModal${i}" tabindex="-1" aria-labelledby="exampleModalLabel${i}" aria-hidden="true">
+		                <div class="modal fade" id="example2Modal${i}" tabindex="-1" aria-labelledby="example2ModalLabel${i}" aria-hidden="true">
 		                    <div class="modal-dialog">
 		                        <div class="modal-content">
 		                            <div class="modal-header">
-		                                <h5 class="modal-title" id="exampleModalLabel${i}">完成訂單</h5>
+		                                <h5 class="modal-title" id="exampleModal2Label${i}">完成訂單</h5>
 		                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		                            </div>
 		                        <div class="modal-body">確定完成訂單了嗎?</div>
