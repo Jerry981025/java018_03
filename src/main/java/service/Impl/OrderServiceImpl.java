@@ -81,6 +81,7 @@ public class OrderServiceImpl implements OrderService {
 		aioCheckOutALL.setTotalAmount(oTotal.toString());
 		aioCheckOutALL.setTradeDesc("幫幫忙測試付款");
 		aioCheckOutALL.setReturnURL("http://localhost:8080/java018_03/INHrecords");
+		aioCheckOutALL.setClientBackURL("http://localhost:8080/java018_03/INHrecords");
 		aioCheckOutALL.setNeedExtraPaidInfo("N");
 		aioCheckOutALL.setItemName("跑腿費及商品合計");
 		
