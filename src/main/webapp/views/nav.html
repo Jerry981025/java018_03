@@ -1,68 +1,46 @@
- <!-- 導覽列 -->
- <nav class="navbar navbar-expand-md navbar-light">
+<!-- Navbar 開始 -->
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm py-3 py-lg-0 px-3 px-lg-0">
     <div class="container-fluid">
-        <!-- 品牌LOGO -->
-        <a class="navbar-brand" href="MemberCenter">
-            <img src="images/Help.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
-            幫幫忙
+        <a href="" class="navbar-brand">
+            <h1 class="m-0 text-uppercase text-white">
+                <img src="./index_img/Help_0_1.png" style="width: 45px; height: 45px; margin-bottom: 10px;">
+                幫幫忙
+            </h1>
         </a>
-        <!-- 手機版顯示 -->
-        <div class="navbar-toggler border-0 p-0">
-            <div class="rounded-circle d-flex">
-                <img id="c29" width="50" height="50" class="rounded-circle" data-bs-toggle="collapse" data-bs-target="#offcanvas">
-                <p id="c14" class="fs-1 py-2 ps-1 m-0" data-bs-toggle="collapse" data-bs-target="#offcanvas"></p>
-            </div>
-        </div>
-        <!-- 桌機版顯示 -->
-
-        <div class="collapse navbar-collapse" id="linkbar">
-            <!-- 內容 -->
-            <ul class="navbar-nav me-auto p-2">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-sm-flex flex-sm-column flex-lg-row d-lg-flex" id="navbarCollapse">
+            <ul class="navbar-nav mx-lg-auto me-auto navbar-nav-scroll order-sm-2 order-lg-1">
                 <li class="nav-item">
-                    <a class="nav-link" href="addOrder">提出需求(I need help!)</a>
+                    <a href="MemberCenter" class="nav-item nav-link">會員中心</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="orderItem">我要幫忙(I can help!)</a>
+                    <a href="addOrder" class="nav-item nav-link">提出需求</a>
+                </li>
+                <li class="nav-item">
+                    <a href="orderItem" class="nav-item nav-link">我要幫忙</a>
                 </li>
             </ul>
-            <img class="rounded-circle" id="c27" style="height:40px; width:40px;" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+            <div class="d-flex me-auto me-lg-2 order-sm-1 order-lg-2">
+                <img class="rounded-circle align-self-center" id="c27" style="height:40px; width:40px;"
+                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+            </div>
         </div>
+
     </div>
+
 </nav>
 
-<!-- 小視窗時點大頭貼的offcanvas -->
-<div class="collapse navbar-collapse bg-light p-2" id="offcanvas">
-    <!-- 內容 -->
-    <ul class="navbar-nav me-auto bg-light">
-        <li class="nav-item">
-        	<a class="nav-link" href="MemberCenter">會員中心</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="addOrder">提出需求(I need help!)</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="orderItem">我要幫忙(I can help!)</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="commonproblems">常見問題</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="contact">聯絡我們</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">登出</a>
-        </li>
-    </ul>
-</div>
+
 
 <!-- 大視窗時點大頭貼的offcanvas -->
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-    <div class="offcanvas-header pb-0">
+    <div class="offcanvas-header pb-0" style="background-color: #212529; border-color: #212529;">
         <div class="d-flex">
             <img id="c28" width="55" height="55" class="rounded-circle">
             <div class="ps-3">
-                <p id="c15" class="fs-4 p-0 m-0"></p>
+                <p id="c15" class="fs-4 p-0 m-0" style="color: #E88F2A;"></p>
                 <p class="fs-6 p-0 mb-2 text-secondary">會員編號#<label id="c17"></label></p>
             </div>
             <div class="ps-2">
@@ -74,19 +52,19 @@
             </div>
         </div>
     </div>
-    <div class="offcanvas-body pt-0">
+    <div class="offcanvas-body pt-0" style="background-color: #212529; border-color: #212529;">
         <ul class="navbar-nav me-auto">
             <li class="nav-item">
-                <p class="nav-link m-0 fs-5 text-dark">會員中心</p>
+                <a class="nav-link" href="MemberCenter" style="color: #E88F2A;">會員中心</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="commonproblems">常見問題</a>
+                <a class="nav-link" href="commonproblems" style="color: #E88F2A;">常見問題</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="contact">聯絡我們</a>
+                <a class="nav-link" href="contact" style="color: #E88F2A;">聯絡我們</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" id="logout">登出</a>
+                <a class="nav-link" href="#" id="logout" style="color: #E88F2A;">登出</a>
             </li>
         </ul>
     </div>
@@ -95,13 +73,13 @@
 
 <script>
     const logout = document.querySelector('#logout');
-	logout.addEventListener('click', () => {
-		sessionStorage.removeItem('mEmail');
-		fetch('logout');
-		location = `${getContextPath()}/index.html`;
-	});
+    logout.addEventListener('click', () => {
+        sessionStorage.removeItem('mEmail');
+        fetch('logout');
+        location = `${getContextPath()}/index.html`;
+    });
 
     function getContextPath() {
-	return window.location.pathname.substring(0, window.location.pathname.indexOf('/', 2));
-}
+        return window.location.pathname.substring(0, window.location.pathname.indexOf('/', 2));
+    }
 </script>

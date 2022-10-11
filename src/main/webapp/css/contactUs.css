@@ -22,7 +22,7 @@ body{
 /*     height: 265px; */
 /* } */
 
-nav{
+/* nav{
     height: 70px;
     position: absolute;
     top:0;
@@ -31,16 +31,16 @@ nav{
 
 .navbar{
     background-color:azure
-}
+} */
 
 li a{
     /* color:darkgray !important; */
     font-size: 20px;
 }
 
-li a:hover{
+/* li a:hover{
     color:darkslateblue !important;
-}
+} */
 a{
     text-decoration: none;
 }
