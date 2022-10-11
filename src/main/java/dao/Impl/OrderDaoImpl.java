@@ -27,8 +27,7 @@ public class OrderDaoImpl implements OrderDao {
 		Session session = factory.getCurrentSession();
 		for (OrderItemBean item : ob.getItems()) {
 			item.setOrderBean(ob);
-			MemberBean mb = new MemberBean();
-			mb.setmId(ob.getmId());
+			MemberBean mb = session.load(MemberBean.class, ob.getmId());
 			ob.setMemberBean(mb);
 		}
 		session.save(ob);

@@ -75,7 +75,7 @@ public class OrderServiceImpl implements OrderService {
 		String tradeDate = sdf.format(new Date());
 		AllInOne allInOne = new AllInOne("");
 		AioCheckOutALL aioCheckOutALL = new AioCheckOutALL();
-		aioCheckOutALL.setMerchantTradeNo(orderBean.getoId()+ "Help");
+		aioCheckOutALL.setMerchantTradeNo("1011HelpOrderNo" + orderBean.getoId());
 		aioCheckOutALL.setMerchantTradeDate(tradeDate);
 		Integer oTotal = orderBean.getoFee() + orderBean.getoPrice();
 		aioCheckOutALL.setTotalAmount(oTotal.toString());
