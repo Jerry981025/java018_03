@@ -14,26 +14,11 @@ body{
 	min-height: 100%;
 }
 
-
-nav{
-    height: 70px;
-    position: absolute;
-    top:0;
-}
-
-
-.navbar{
-    background-color:azure
-}
-
 li a{
     /* color:darkgray !important; */
     font-size: 20px;
 }
 
-li a:hover{
-    color:darkslateblue !important;
-}
 a{
     text-decoration: none;
 }

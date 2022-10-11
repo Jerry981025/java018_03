@@ -22,7 +22,7 @@ a{
     text-decoration: none;
 }
 .policies{
-    background-color: azure;
+    background-color: #fff;
     border: 1px solid #ccc;
     position: relative;
     margin: 10px 20px 10px 20px;
@@ -30,7 +30,7 @@ a{
     
 }
 .policiesTitle{
-    font-size: large;
+    font-size: xx-large;
     margin: 1% auto;
 }
 .listType{
