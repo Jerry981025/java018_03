@@ -132,10 +132,12 @@ $(document).ready(function() {
 			                    </div>
 			                </div>`
 			             }
-						if (orders[i].oOrderStatus === "未完成") {
+						if (orders[i].oOrderStatus === "進行中") {
 							content += `
                             <!-- 聊天室 Button   -->  
-                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#chatModal${i}" onclick="setRoom(${orders[i].oId})">聊天室</button>                           
+							 <div class="chatBtn">
+                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#chatModal${i}" onclick="setRoom(${orders[i].oId})">聊天室</button>
+							 </div>                           
                              <!-- 動態新增聊天室頁面   -->
                              <div class="modal fade" id="chatModal${i}" tabindex="-1" aria-labelledby="chatModalLabel${i}" aria-hidden="true">
 		                     <div class="modal-dialog">
