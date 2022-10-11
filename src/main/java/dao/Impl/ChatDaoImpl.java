@@ -34,7 +34,7 @@ public class ChatDaoImpl implements ChatDao {
 	@Override
 	public List<ChatBean> findChatsByRoomId(Integer roomId) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM Chat WHERE roomid = :roomId";
+		String hql = "FROM ChatBean WHERE roomid = :roomId";
 		List<ChatBean> list = session.createQuery(hql,ChatBean.class)
 								 .setParameter("roomId", roomId)
 								 .getResultList();
