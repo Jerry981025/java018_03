@@ -1,6 +1,7 @@
 package service.Impl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -10,10 +11,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import dao.OrderDao;
+import dao.RecordsDao;
 import ecpay.payment.integration.AllInOne;
 import ecpay.payment.integration.domain.AioCheckOutALL;
 import javassist.Loader.Simple;
 import model.OrderBean;
+import model.OrderItemBean;
 import net.bytebuddy.asm.Advice.AllArguments;
 import service.OrderService;
 
@@ -66,12 +69,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public String ecpayValidation(List<String> nameList, Integer oId, OrderBean orderBean) {
-		
-		Optional<String> reduce = nameList.stream().reduce((String acc, String curr) -> {
-			return acc + "#" + curr;
-		});
-		String itemName = reduce.get();
+	public String ecpayValidation(Integer oId, OrderBean orderBean) {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String tradeDate = sdf.format(new Date());
@@ -82,10 +80,10 @@ public class OrderServiceImpl implements OrderService {
 		Integer oTotal = orderBean.getoFee() + orderBean.getoPrice();
 		aioCheckOutALL.setTotalAmount(oTotal.toString());
 		aioCheckOutALL.setTradeDesc("幫幫忙測試付款");
-		aioCheckOutALL.setItemName(itemName);
-		aioCheckOutALL.setClientBackURL("");
-		aioCheckOutALL.setReturnURL("");
+		aioCheckOutALL.setReturnURL("http://localhost:8080/java018_03/INHrecords");
 		aioCheckOutALL.setNeedExtraPaidInfo("N");
+		aioCheckOutALL.setItemName("跑腿費及商品合計");
+		
 		
 		return allInOne.aioCheckOut(aioCheckOutALL, null);
 	}

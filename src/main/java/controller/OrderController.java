@@ -1,6 +1,7 @@
 package controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import model.MemberBean;
 import model.OrderBean;
 import service.OrderService;
@@ -23,6 +28,7 @@ import vo.OrderVo;
 public class OrderController {
 
 	OrderService orderService;
+	String result;
 
 	@Autowired
 	public OrderController(OrderService orderService) {
@@ -62,6 +68,8 @@ public class OrderController {
 		bean.setItems(params.getItem());
 		bean.sethId(0);
 		orderService.addOrder(bean);
+		
+		orderService.ecpayValidation(params.getoId(), bean);
 	}
 
 	@GetMapping("/list")
