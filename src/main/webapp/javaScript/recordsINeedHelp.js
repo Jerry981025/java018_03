@@ -200,7 +200,7 @@ $(document).ready(function(){
                                         <div class="chatBoard" id="msg_board${orders[i].oId}"></div><br>
                                         <input  id="input_msg${orders[i].oId}" size="43" maxlength="40">                                      
                                         <input type="button" value="傳送" onclick="sendData(${orders[i].oId})" />
-                                        <button class="btn btn-secondary" onclick="closeWs()" >退出聊天室</button>
+                                        <button class="btn btn-secondary mt-2" onclick="closeWs()" >退出聊天室</button>
                                         </div>
 		                            </div>		                       
 		                    </div>
