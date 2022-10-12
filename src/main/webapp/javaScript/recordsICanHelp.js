@@ -112,9 +112,10 @@ $(document).ready(function() {
 	                		content+= `
 			                <!-- Button trigger modal -->
 			                <div class="ICHbtn">
-			                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#example2Modal${i}">完成</button>
+			                	<button type="button" class="btn btn-warning me-2" data-bs-toggle="modal" data-bs-target="#example2Modal${i}">完成</button>
+								<!-- 聊天室 Button   -->  
+								<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#chatModal${i}" onclick="setRoom(${orders[i].oId})">聊天室</button>
 			                </div>		                		                
-			                
 			                
 			                <!-- Modal -->
 			                <div class="modal fade" id="example2Modal${i}" tabindex="-1" aria-labelledby="exampleModal2Label${i}" aria-hidden="true">
@@ -134,10 +135,6 @@ $(document).ready(function() {
 			             }
 						if (orders[i].oOrderStatus === "進行中") {
 							content += `
-                            <!-- 聊天室 Button   -->  
-							 <div class="chatBtn mt-1">
-                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#chatModal${i}" onclick="setRoom(${orders[i].oId})">聊天室</button>
-							 </div>                           
                              <!-- 動態新增聊天室頁面   -->
                              <div class="modal fade" id="chatModal${i}" tabindex="-1" aria-labelledby="chatModalLabel${i}" aria-hidden="true">
 		                     <div class="modal-dialog">
@@ -148,7 +145,7 @@ $(document).ready(function() {
 	                                         <div class="chatBoard" id="msg_board${orders[i].oId}"></div><br>
 	                                         <input id="input_msg${orders[i].oId}" size="43" maxlength="40">                                      
 	                                         <input type="button" value="傳送" onclick="sendData(${orders[i].oId})" />
-	                                         <button class="btn btn-secondary" onclick="closeWs()" >退出聊天室</button>
+	                                         <button class="btn btn-secondary mt-2" onclick="closeWs()" >退出聊天室</button>
                                      	 </div>
 		                         	 </div>		                       
 		                     	 </div>
