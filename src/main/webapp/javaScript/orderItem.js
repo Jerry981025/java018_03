@@ -84,8 +84,6 @@ function lefterList(choice) {
 				for (let i = 0; i < res.length; i++) {
 					// 所有資料庫資訊 
 					if (choice == res[i].oOrderType || choice == null) {
-						console.log(res[i].memberBean);
-
 
 						//------------------------------------------
 						var geocoder = new google.maps.Geocoder();
@@ -109,7 +107,7 @@ function lefterList(choice) {
 								  
 								  <tr>
 									  <td>
-										評分: ${res[i].oDeadLine}
+										截止日期: ${res[i].oDeadLine}
 										
 										<button type="button" class="btn btn-primary" style="float:right;" onclick="itemsDetail(${res[i].oId})" data-bs-toggle="modal" data-bs-target="#exampleModal${res[i].oId}">
 											我要接單
@@ -240,7 +238,7 @@ function queryLefterList() {
 								  
 								  <tr>
 									  <td>
-										評分: ${res[i].oDeadLine}
+									  截止日期: ${res[i].oDeadLine}
 										
 										<button type="button" class="btn btn-primary" style="float:right;" onclick="itemsDetail(${res[i].oId})" data-bs-toggle="modal" data-bs-target="#exampleModal${res[i].oId}">
 											我要接單
@@ -367,7 +365,7 @@ function markerLefterList(oId) {
 									  
 									  <tr>
 										  <td>
-											評分: ${res[i].oDeadLine}
+										  截止日期: ${res[i].oDeadLine}
 											
 											<button type="button" class="btn btn-primary" style="float:right;" onclick="itemsDetail(${res[i].oId})" data-bs-toggle="modal" data-bs-target="#exampleModal${res[i].oId}">
 												我要接單
