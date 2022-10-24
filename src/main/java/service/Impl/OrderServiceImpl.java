@@ -72,10 +72,10 @@ public class OrderServiceImpl implements OrderService {
 	public String ecpayValidation(OrderBean orderBean) {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		String tradeDate = sdf.format(new Date());
+		String tradeDate = sdf.format(new Date(System.currentTimeMillis()));
 		AllInOne allInOne = new AllInOne("");
 		AioCheckOutALL aioCheckOutALL = new AioCheckOutALL();
-		aioCheckOutALL.setMerchantTradeNo("1011HelpOrderNo" + orderBean.getoId());
+		aioCheckOutALL.setMerchantTradeNo(tradeDate.replace("/", "").replace(":", "").replace(" ", "") + orderBean.getoId());
 		aioCheckOutALL.setMerchantTradeDate(tradeDate);
 		Integer oTotal = orderBean.getoFee() + orderBean.getoPrice();
 		aioCheckOutALL.setTotalAmount(oTotal.toString());
